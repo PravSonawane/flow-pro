@@ -1,3 +1,4 @@
 rootProject.name='Flow Pro'
 include ':app'
 include ':ui-flow-list'
+include ':ui-lib-assets'
