@@ -1,10 +1,12 @@
 package dev.curlybraces.flowpro
 
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import app.di.AppComponent
 import app.di.DaggerMainComponent
 import app.di.MainComponent
 import app.di.MainModule
+import dev.curlybraces.flowpro.databinding.ActivityMainBinding
 import ui.lib.base.BaseActivity
 
 class MainActivity : BaseActivity() {
@@ -26,7 +28,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // dagger injection
         mainComponent.injectIn(this)
