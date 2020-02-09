@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_flow_title_graph"
+    app:startDestination="@id/new_flow_title_graph"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/new_flow_title_graph"
+        android:name="ui.newflow.title.NewFlowTitleFragment"
+        android:label="fragment_flow_list"
+        tools:layout="@layout/fragment_new_flow_title">
+        <deepLink
+            android:id="@+id/deepLink_newflow_title"
+            app:uri="https://curlybraces.dev/newflow/title" />
+    </fragment>
+</navigation>

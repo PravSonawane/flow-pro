@@ -6,5 +6,6 @@
     app:startDestination="@id/flow_list_graph">
 
     <include app:graph="@navigation/nav_flow_list" />
+    <include app:graph="@navigation/nav_new_flow_title" />
 
 </navigation>

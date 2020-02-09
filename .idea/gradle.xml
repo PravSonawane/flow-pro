@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/ui-flow-list" />
             <option value="$PROJECT_DIR$/ui-lib-assets" />
             <option value="$PROJECT_DIR$/ui-lib-common-resources" />
+            <option value="$PROJECT_DIR$/ui-new-flow-title" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
