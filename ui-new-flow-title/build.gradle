@@ -40,6 +40,7 @@ dependencies {
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-base")
     implementation project(":app-base")
+    implementation project(":ui-lib-databinding-adapters")
 
     //di
     implementation project(":app-di")
