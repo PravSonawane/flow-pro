@@ -1,4 +1,4 @@
-package ui.newflow.title
+package ui.newflow.selectnode
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,26 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import ui.feature.create_new_flow.databinding.FragmentNewFlowTitleBinding
+import ui.feature.create_new_flow.databinding.FragmentNewFlowSelectNodeBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create_new_flow.R
 import javax.inject.Inject
 
-class NewFlowTitleFragment : AppBaseFragment() {
+class NewFlowSelectNodeFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
-            .get(NewFlowTitleViewModel::class.java)
+            .get(NewFlowSelectNodeViewModel::class.java)
     }
 
-    private val newFlowTitleComponent: NewFlowTitleComponent by lazy {
-        DaggerNewFlowTitleComponent.builder()
+    private val newFlowSelectNodeComponent: NewFlowSelectNodeComponent by lazy {
+        DaggerNewFlowSelectNodeComponent.builder()
             .mainComponent(mainComponent())
             .build()
     }
@@ -35,11 +34,11 @@ class NewFlowTitleFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentNewFlowTitleBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_title, container, false)
+        val binding: FragmentNewFlowSelectNodeBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_select_node, container, false)
 
         //dagger injection
-        newFlowTitleComponent.injectIn(this)
+        newFlowSelectNodeComponent.injectIn(this)
 
         binding.viewModel = viewModel
 
@@ -47,14 +46,10 @@ class NewFlowTitleFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when(it) {
-                    NewFlowTitleViewModel.Event.OnNext -> onNext()
+                    NewFlowSelectNodeViewModel.Event.OnNext -> {}
                 }
             }
 
         return binding.root
-    }
-
-    private fun onNext() {
-        findNavController().navigate(R.id.fragment_new_flow_select_node, null)
     }
 }
