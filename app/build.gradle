@@ -32,6 +32,9 @@ dependencies {
     implementation project(":ui-flow-list")
     implementation project(":ui-new-flow-title")
 
+    //ui lib
+    implementation project(":ui-lib-di")
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"

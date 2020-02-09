@@ -33,6 +33,9 @@ dependencies {
     implementation project (":ui-lib-assets")
     implementation project(":ui-lib-common-resources")
 
+    //ui lib
+    implementation project(":ui-lib-di")
+
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
