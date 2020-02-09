@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/ui-flow-list" />
             <option value="$PROJECT_DIR$/ui-lib-assets" />
+            <option value="$PROJECT_DIR$/ui-lib-base" />
             <option value="$PROJECT_DIR$/ui-lib-common-resources" />
             <option value="$PROJECT_DIR$/ui-lib-di" />
             <option value="$PROJECT_DIR$/ui-new-flow-title" />
