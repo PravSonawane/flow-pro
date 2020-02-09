@@ -5,8 +5,14 @@ import javax.inject.Inject
 
 class NewFlowTitleViewModel @Inject constructor() : BaseViewModel<NewFlowTitleViewModel.Event>() {
 
-    var title: String = ""
+    var title: String = "My Flow 1"
     var error: String = ""
 
-    sealed class Event
+    fun onNext() {
+        eventStream.onNext(Event.OnNext)
+    }
+
+    sealed class Event {
+        object OnNext : Event()
+    }
 }

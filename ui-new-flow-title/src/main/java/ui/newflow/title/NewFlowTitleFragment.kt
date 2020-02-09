@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
+import core.lib.rxutils.plusAssign
 import dev.curlybraces.ui_new_flow_title.R
 import dev.curlybraces.ui_new_flow_title.databinding.FragmentNewFlowTitleBinding
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class NewFlowTitleFragment : AppBaseFragment() {
@@ -39,6 +41,14 @@ class NewFlowTitleFragment : AppBaseFragment() {
         newFlowTitleComponent.injectIn(this)
 
         binding.viewModel = viewModel
+
+        compositeDisposable += viewModel.events()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when(it) {
+                    NewFlowTitleViewModel.Event.OnNext -> {}
+                }
+            }
 
         return binding.root
     }

@@ -45,6 +45,9 @@ dependencies {
     //di
     implementation project(":app-di")
 
+    //core-lib
+    implementation project(":core-lib-rxutils")
+
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
