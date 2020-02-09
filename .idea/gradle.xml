@@ -14,13 +14,13 @@
             <option value="$PROJECT_DIR$/app-base" />
             <option value="$PROJECT_DIR$/app-di" />
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
+            <option value="$PROJECT_DIR$/ui-feature-create-new-flow" />
             <option value="$PROJECT_DIR$/ui-flow-list" />
             <option value="$PROJECT_DIR$/ui-lib-assets" />
             <option value="$PROJECT_DIR$/ui-lib-base" />
             <option value="$PROJECT_DIR$/ui-lib-common-resources" />
             <option value="$PROJECT_DIR$/ui-lib-databinding-adapters" />
             <option value="$PROJECT_DIR$/ui-lib-di" />
-            <option value="$PROJECT_DIR$/ui-new-flow-title" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

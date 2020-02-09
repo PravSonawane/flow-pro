@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import dev.curlybraces.ui_new_flow_title.R
-import dev.curlybraces.ui_new_flow_title.databinding.FragmentNewFlowTitleBinding
+import ui.feature.create_new_flow.databinding.FragmentNewFlowTitleBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
+import ui.feature.create_new_flow.R
 import javax.inject.Inject
 
 class NewFlowTitleFragment : AppBaseFragment() {

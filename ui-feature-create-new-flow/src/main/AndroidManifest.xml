@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.curlybraces.ui_new_flow_title" />
+    package="ui.feature.create_new_flow" />
