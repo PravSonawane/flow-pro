@@ -1,4 +1,4 @@
-package dev.curlybraces.flowpro
+package app.di
 
 import android.app.Application
 import dagger.BindsInstance

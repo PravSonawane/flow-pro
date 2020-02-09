@@ -1,7 +1,8 @@
 package dev.curlybraces.flowpro
 
+import app.di.AppComponent
+import app.di.DaggerAppComponent
 import ui.lib.base.BaseApplication
-import ui.lib.di.BaseAppComponent
 
 class FlowProApp : BaseApplication() {
 
@@ -11,7 +12,7 @@ class FlowProApp : BaseApplication() {
             .build()
     }
 
-    override fun baseAppComponent(): BaseAppComponent {
+    override fun appComponent(): AppComponent {
         return appComponent
     }
 }

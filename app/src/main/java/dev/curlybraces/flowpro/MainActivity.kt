@@ -1,6 +1,10 @@
 package dev.curlybraces.flowpro
 
 import android.os.Bundle
+import app.di.AppComponent
+import app.di.DaggerMainComponent
+import app.di.MainComponent
+import app.di.MainModule
 import ui.lib.base.BaseActivity
 
 class MainActivity : BaseActivity() {
@@ -13,7 +17,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun appComponent(): AppComponent {
-        return (application as FlowProApp).baseAppComponent() as AppComponent
+        return (application as FlowProApp).appComponent()
     }
 
     override fun mainComponent(): MainComponent {
@@ -23,5 +27,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // dagger injection
+        mainComponent.injectIn(this)
     }
 }

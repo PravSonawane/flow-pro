@@ -4,10 +4,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import app.di.MainComponent
 import dev.curlybraces.ui_new_flow_title.R
+import ui.lib.base.BaseFragment
+import javax.inject.Inject
 
-class NewFlowTitleFragment : Fragment() {
+class NewFlowTitleFragment : BaseFragment() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)
+            .get(NewFlowTitleViewModel::class.java)
+    }
+
+    private val newFlowTitleComponent: NewFlowTitleComponent by lazy {
+        DaggerNewFlowTitleComponent.builder()
+            .mainComponent(mainComponent())
+            .build()
+    }
+
+    override fun mainComponent(): MainComponent {
+        return mainComponent()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

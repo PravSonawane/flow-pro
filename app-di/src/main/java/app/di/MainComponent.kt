@@ -1,7 +1,8 @@
-package dev.curlybraces.flowpro
+package app.di
 
 import androidx.appcompat.app.AppCompatActivity
 import dagger.Component
+import ui.lib.base.BaseActivity
 import ui.lib.di.ActivityScope
 import ui.lib.di.BaseMainComponent
 import ui.lib.di.UiModule
@@ -17,7 +18,7 @@ import ui.lib.di.UiModule
 )
 @ActivityScope
 interface MainComponent : BaseMainComponent {
-    fun injectIn(mainActivity: MainActivity)
+    fun injectIn(activity: BaseActivity)
 
     /** Dagger Builder for [MainComponent] */
     @Component.Builder

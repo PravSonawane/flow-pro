@@ -4,5 +4,5 @@ import android.app.Application
 import ui.lib.di.BaseAppComponent
 
 abstract class BaseApplication : Application() {
-    abstract fun baseAppComponent(): BaseAppComponent
+    abstract fun appComponent(): BaseAppComponent
 }

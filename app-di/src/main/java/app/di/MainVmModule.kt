@@ -1,4 +1,4 @@
-package dev.curlybraces.flowpro
+package app.di
 
 import dagger.Module
 
