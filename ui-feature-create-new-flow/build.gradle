@@ -32,15 +32,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // ui
-    implementation project(":ui-lib-assets")
-    implementation project(":ui-lib-common-resources")
-
     //ui lib
-    implementation project(":ui-lib-di")
-    implementation project(":ui-lib-base")
     implementation project(":app-base")
+    implementation project(":core-lib-rxutils")
+    implementation project(":ui-lib-assets")
+    implementation project(":ui-lib-base")
+    implementation project(":ui-lib-common-resources")
     implementation project(":ui-lib-databinding-adapters")
+    implementation project(":ui-lib-di")
+    implementation project(":ui-lib-utils")
+    implementation project(":ui-lib-views")
 
     //domain
     implementation project(":domain-core")
@@ -51,10 +52,6 @@ dependencies {
 
     //di
     implementation project(":app-di")
-
-    //lib
-    implementation project(":core-lib-rxutils")
-    implementation project(":ui-lib-utils")
 
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"

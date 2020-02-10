@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import ui.lib.base.BaseViewModel
+import ui.lib.views.RecyclerViewAdapter
 
 /** Android databindings for [RecyclerView]*/
 class RecyclerViewBindingAdapters {
@@ -53,4 +55,26 @@ class RecyclerViewBindingAdapters {
             )
         }
     }
+}
+
+/**
+ * [BindingAdapter] that sets data for a [RecyclerView] that renders [FeedAdapterItem]s.
+ *
+ * If an [RecyclerView.Adapter] has not been set for this [RecyclerView], a new
+ * [RecyclerViewAdapter] will be created and set using [RecyclerViewAdapter.updateData]. If data is null,
+ * an empty list will be set.
+ *
+ * @param recyclerView The [RecyclerView] that will render the data
+ * @param data a list of [BaseViewModel]
+ */
+@BindingAdapter("adapterClass", "adapterItems", requireAll = true)
+fun setAdapterItems(
+    recyclerView: RecyclerView,
+    adapterClass: Class<out RecyclerViewAdapter>,
+    data: List<BaseViewModel<Any>>?
+) {
+    val adapter: RecyclerViewAdapter =
+        (recyclerView.adapter as? RecyclerViewAdapter) ?: adapterClass.newInstance()
+    if (recyclerView.adapter == null) recyclerView.adapter = adapter
+    adapter.updateData(data?.map { it }?.toList() ?: emptyList())
 }
