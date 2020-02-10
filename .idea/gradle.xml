@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/ui-lib-common-resources" />
             <option value="$PROJECT_DIR$/ui-lib-databinding-adapters" />
             <option value="$PROJECT_DIR$/ui-lib-di" />
+            <option value="$PROJECT_DIR$/ui-lib-utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -13,6 +13,7 @@ import domain.flow.models.Flow
 import ui.feature.create_new_flow.databinding.FragmentNewFlowTitleBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create_new_flow.R
+import ui.newflow.selectnode.NewFlowSelectNodeFragment
 import javax.inject.Inject
 
 class NewFlowTitleFragment : AppBaseFragment() {
@@ -38,6 +39,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
     ): View? {
         val binding: FragmentNewFlowTitleBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_title, container, false)
+        binding.lifecycleOwner = this
 
         //dagger injection
         newFlowTitleComponent.injectIn(this)
@@ -57,7 +59,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
 
     private fun onNext(flow: Flow) {
         val bundle = Bundle()
-        bundle.putString("flowId", flow.id)
+        bundle.putString(NewFlowSelectNodeFragment.ARG_FLOW_ID, flow.id)
         findNavController().navigate(R.id.fragment_new_flow_select_node, bundle)
     }
 }

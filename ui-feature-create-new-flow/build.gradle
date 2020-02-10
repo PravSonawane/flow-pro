@@ -52,8 +52,9 @@ dependencies {
     //di
     implementation project(":app-di")
 
-    //core-lib
+    //lib
     implementation project(":core-lib-rxutils")
+    implementation project(":ui-lib-utils")
 
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
@@ -72,6 +73,9 @@ dependencies {
 
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
