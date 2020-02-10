@@ -1,8 +1,11 @@
 package app.di
 
 import dagger.Module
+import data.flow.di.FlowModule
 
 @Module(
-    includes = []
+    includes = [
+        FlowModule::class
+    ]
 )
 class AppModule

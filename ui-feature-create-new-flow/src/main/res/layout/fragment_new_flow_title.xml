@@ -14,8 +14,8 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/label_phone_number"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:id="@+id/label_flow_title_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_100"
@@ -26,11 +26,12 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/label_flow_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.title}"
                 android:hint="@string/label_title"
-                android:inputType="phone"
-                android:text="@={viewModel.title}"/>
+                android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

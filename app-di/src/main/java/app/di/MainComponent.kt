@@ -17,7 +17,7 @@ import ui.lib.di.UiModule
     ]
 )
 @ActivityScope
-interface MainComponent : BaseMainComponent {
+interface MainComponent : BaseMainComponent, AppComponent {
     fun injectIn(activity: BaseActivity)
 
     /** Dagger Builder for [MainComponent] */

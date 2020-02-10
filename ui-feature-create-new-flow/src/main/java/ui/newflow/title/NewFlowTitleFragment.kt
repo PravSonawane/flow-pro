@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
+import domain.flow.models.Flow
 import ui.feature.create_new_flow.databinding.FragmentNewFlowTitleBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create_new_flow.R
+import ui.newflow.selectnode.NewFlowSelectNodeFragment
 import javax.inject.Inject
 
 class NewFlowTitleFragment : AppBaseFragment() {
@@ -37,6 +39,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
     ): View? {
         val binding: FragmentNewFlowTitleBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_title, container, false)
+        binding.lifecycleOwner = this
 
         //dagger injection
         newFlowTitleComponent.injectIn(this)
@@ -47,14 +50,16 @@ class NewFlowTitleFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when(it) {
-                    NewFlowTitleViewModel.Event.OnNext -> onNext()
+                    is NewFlowTitleViewModel.Event.OnNext -> onNext(it.flow)
                 }
             }
 
         return binding.root
     }
 
-    private fun onNext() {
-        findNavController().navigate(R.id.fragment_new_flow_select_node, null)
+    private fun onNext(flow: Flow) {
+        val bundle = Bundle()
+        bundle.putString(NewFlowSelectNodeFragment.ARG_FLOW_ID, flow.id)
+        findNavController().navigate(R.id.fragment_new_flow_select_node, bundle)
     }
 }

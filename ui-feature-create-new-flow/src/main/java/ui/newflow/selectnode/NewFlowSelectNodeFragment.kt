@@ -42,6 +42,10 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
 
         binding.viewModel = viewModel
 
+        val flowId = arguments?.getString(ARG_FLOW_ID)
+            ?: throw IllegalStateException("Flow ID is required")
+        viewModel.flowId.value = flowId
+
         compositeDisposable += viewModel.events()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -51,5 +55,9 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
             }
 
         return binding.root
+    }
+
+    companion object {
+        const val ARG_FLOW_ID = "FLOW_ID"
     }
 }

@@ -40,6 +40,13 @@ dependencies {
     //di
     implementation project(":app-di")
 
+    //domain
+    implementation project(":domain-core")
+    implementation project(":domain-flow")
+
+    //data
+    implementation project(":data-flow")
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'

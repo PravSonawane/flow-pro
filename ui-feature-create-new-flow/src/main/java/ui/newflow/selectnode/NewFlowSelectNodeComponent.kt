@@ -2,6 +2,7 @@ package ui.newflow.selectnode
 
 import app.di.MainComponent
 import dagger.Component
+import data.flow.di.FlowModule
 import ui.lib.di.FeatureScope
 import ui.lib.di.UiModule
 
@@ -15,7 +16,7 @@ import ui.lib.di.UiModule
     ]
 )
 @FeatureScope
-interface NewFlowSelectNodeComponent {
+interface NewFlowSelectNodeComponent : MainComponent {
     fun injectIn(fragment: NewFlowSelectNodeFragment)
 
     /** Dagger Builder for [NewFlowSelectNodeComponent] */
