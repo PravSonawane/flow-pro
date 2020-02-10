@@ -2,6 +2,7 @@ package ui.newflow.selectnode
 
 import app.di.MainComponent
 import dagger.Component
+import data.flow.di.FlowModule
 import ui.lib.di.FeatureScope
 import ui.lib.di.UiModule
 
@@ -11,7 +12,8 @@ import ui.lib.di.UiModule
     ],
     modules = [
         UiModule::class,
-        NewFlowSelectNodeViewModelModule::class
+        NewFlowSelectNodeViewModelModule::class,
+        FlowModule::class
     ]
 )
 @FeatureScope

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
+import domain.flow.models.Flow
 import ui.feature.create_new_flow.databinding.FragmentNewFlowTitleBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create_new_flow.R
@@ -47,14 +48,16 @@ class NewFlowTitleFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when(it) {
-                    NewFlowTitleViewModel.Event.OnNext -> onNext()
+                    is NewFlowTitleViewModel.Event.OnNext -> onNext(it.flow)
                 }
             }
 
         return binding.root
     }
 
-    private fun onNext() {
-        findNavController().navigate(R.id.fragment_new_flow_select_node, null)
+    private fun onNext(flow: Flow) {
+        val bundle = Bundle()
+        bundle.putString("flowId", flow.id)
+        findNavController().navigate(R.id.fragment_new_flow_select_node, bundle)
     }
 }

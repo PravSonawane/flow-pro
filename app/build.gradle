@@ -44,6 +44,12 @@ dependencies {
     //app
     implementation project(":app-di")
 
+    //domain
+    implementation project(":domain-flow")
+
+    //data
+    implementation project(":data-flow")
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"

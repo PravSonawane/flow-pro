@@ -42,6 +42,13 @@ dependencies {
     implementation project(":app-base")
     implementation project(":ui-lib-databinding-adapters")
 
+    //domain
+    implementation project(":domain-core")
+    implementation project(":domain-flow")
+
+    //data
+    implementation project(":data-flow")
+
     //di
     implementation project(":app-di")
 

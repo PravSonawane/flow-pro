@@ -24,28 +24,26 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
-    }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //ui lib
-    implementation project(":ui-lib-di")
-    implementation project(":ui-lib-base")
-
-    //di
-    implementation project(":app-di")
+    //domain core
+    implementation project(":domain-core")
 
     //domain
-    implementation project(":domain-core")
     implementation project(":domain-flow")
 
-    //data
-    implementation project(":data-flow")
+    //dagger2
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

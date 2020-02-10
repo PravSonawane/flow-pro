@@ -3,6 +3,7 @@ package app.di
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import data.flow.di.FlowComponent
 import ui.lib.di.BaseAppComponent
 import javax.inject.Singleton
 
@@ -12,12 +13,13 @@ import javax.inject.Singleton
     ]
 )
 @Singleton
-interface AppComponent : BaseAppComponent {
+interface AppComponent : BaseAppComponent, FlowComponent {
 
     override fun application(): Application
 
     /** Dagger Builder for [AppComponent] */
-    @Component.Builder interface Builder {
+    @Component.Builder
+    interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
         fun build(): AppComponent
