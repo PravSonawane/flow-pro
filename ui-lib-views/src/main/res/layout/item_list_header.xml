@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="ui.lib.views.ItemListHeaderViewModel"/>
+
+    </data>
+
+    <TextView
+            android:id="@+id/header_name"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.headerText}"
+            android:maxLines="1"
+            android:layout_marginStart="@dimen/normal_100"
+            android:layout_marginTop="@dimen/normal_100"
+            android:layout_marginBottom="@dimen/normal_25"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="List header"/>
+
+</layout>

@@ -27,17 +27,28 @@ android {
     dataBinding {
         enabled true
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // lib
+    //lib
     implementation project(":ui-lib-base")
-    implementation project(":ui-lib-views")
+    implementation project(":ui-lib-common-resources")
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    //recycler view
+    implementation "androidx.recyclerview:recyclerview:$support_version"
 
     //design
     implementation "com.google.android.material:material:$material_components_version"
+
+    //javax inject
+    implementation "javax.inject:javax.inject:1"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

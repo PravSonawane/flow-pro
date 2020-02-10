@@ -7,19 +7,32 @@ import domain.flow.models.Flow
 import domain.flow.usecases.GetFlowByIdUseCase
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.InputStream
+import ui.lib.views.ListViewModel
 import javax.inject.Inject
 
 class NewFlowSelectNodeViewModel @Inject constructor(
+    val nodeListViewModel: ListViewModel,
     private val getFlowByIdUseCase: GetFlowByIdUseCase
 ) : BaseViewModel<NewFlowSelectNodeViewModel.Event>() {
 
     val flowId: MutableLiveData<String> = MutableLiveData()
     val flowName: MutableLiveData<String> = MutableLiveData()
-    var error: String = ""
 
     private val flowIdStream = InputStream<String>()
 
     init {
+        val items = listOf(
+            SelectNodeItemViewModel(),
+            SelectNodeItemViewModel(),
+            SelectNodeItemViewModel(),
+            SelectNodeItemViewModel(),
+            SelectNodeItemViewModel(),
+            SelectNodeItemViewModel()
+        )
+
+        nodeListViewModel.data.value = items
+        nodeListViewModel.adapterClass = NodeAdapter::class.java
+
         flowId.observeForever { flowIdStream.publish(it) }
 
         compositeDisposable += flowIdStream.subscribe()
