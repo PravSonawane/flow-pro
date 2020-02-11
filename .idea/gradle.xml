@@ -15,8 +15,8 @@
             <option value="$PROJECT_DIR$/app-di" />
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
             <option value="$PROJECT_DIR$/data-flow" />
-            <option value="$PROJECT_DIR$/domain-core" />
             <option value="$PROJECT_DIR$/domain-feature-flow" />
+            <option value="$PROJECT_DIR$/domain-lib-core" />
             <option value="$PROJECT_DIR$/ui-feature-create-new-flow" />
             <option value="$PROJECT_DIR$/ui-flow-list" />
             <option value="$PROJECT_DIR$/ui-lib-assets" />

@@ -41,7 +41,7 @@ dependencies {
     implementation project(":app-di")
 
     //domain
-    implementation project(":domain-core")
+    implementation project(':domain-lib-core')
     implementation project(':domain-feature-flow')
 
     //data

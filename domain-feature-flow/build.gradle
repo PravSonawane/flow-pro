@@ -7,7 +7,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //domain core
-    implementation project(":domain-core")
+    implementation project(':domain-lib-core')
 
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
