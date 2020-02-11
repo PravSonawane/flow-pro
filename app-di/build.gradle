@@ -40,7 +40,7 @@ dependencies {
     implementation project(':domain-feature-flow')
     
     //data
-    implementation project(":data-flow")
+    implementation project(':data-feature-flow')
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
