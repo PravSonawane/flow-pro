@@ -7,14 +7,15 @@ import domain.flow.models.Flow
 import domain.flow.usecases.GetFlowByIdUseCase
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.InputStream
-import ui.lib.views.ListViewModel
+import ui.lib.views.ItemListButtonViewModel
+import ui.lib.views.ItemListHeaderViewModel
 import javax.inject.Inject
 
 class NewFlowSelectNodeViewModel @Inject constructor(
-    val nodeListViewModel: ListViewModel,
     private val getFlowByIdUseCase: GetFlowByIdUseCase
 ) : BaseViewModel<NewFlowSelectNodeViewModel.Event>() {
 
+    val data: MutableLiveData<Any> = MutableLiveData()
     val flowId: MutableLiveData<String> = MutableLiveData()
     val flowName: MutableLiveData<String> = MutableLiveData()
 
@@ -23,14 +24,16 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     init {
         val items = listOf(
             SelectNodeItemViewModel(),
+            createHeader("Header"),
             SelectNodeItemViewModel(),
             SelectNodeItemViewModel(),
             SelectNodeItemViewModel(),
             SelectNodeItemViewModel(),
-            SelectNodeItemViewModel()
+            SelectNodeItemViewModel(),
+            createButton("Button")
         )
 
-        nodeListViewModel.data.value = items
+        data.value = items
 
         flowId.observeForever { flowIdStream.publish(it) }
 
@@ -41,6 +44,18 @@ class NewFlowSelectNodeViewModel @Inject constructor(
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)
                 }
             }
+    }
+
+    private fun createHeader(defaultHeader: CharSequence): ItemListHeaderViewModel {
+        val header = MutableLiveData<CharSequence>()
+        header.value = defaultHeader
+        return ItemListHeaderViewModel(header)
+    }
+
+    private fun createButton(defaultText: CharSequence): ItemListButtonViewModel {
+        val button = MutableLiveData<CharSequence>()
+        button.value = defaultText
+        return ItemListButtonViewModel(button)
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {
