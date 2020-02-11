@@ -2,7 +2,7 @@ package ui.newflow.selectnode
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.rxutils.plusAssign
-import domain.core.Result
+import domain.core.result.Result
 import domain.flow.models.Flow
 import domain.flow.usecases.GetFlowByIdUseCase
 import ui.lib.base.BaseViewModel

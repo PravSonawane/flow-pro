@@ -1,6 +1,6 @@
 package domain.flow.usecases
 
-import domain.core.Result
+import domain.core.result.Result
 import domain.flow.models.Flow
 import domain.flow.models.SaveFlowRequest
 import domain.flow.repositories.FlowRepository

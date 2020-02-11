@@ -1,4 +1,4 @@
-package domain.core
+package domain.core.result
 
 /**
  * The [Result] of a retrieval operation of a [List] of entities.

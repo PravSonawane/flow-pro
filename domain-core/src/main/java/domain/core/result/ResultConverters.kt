@@ -1,4 +1,4 @@
-package domain.core
+package domain.core.result
 
 import io.reactivex.Observable
 
@@ -58,7 +58,8 @@ fun <T> T.toResult(): Result<T> {
  */
 fun <T> Result<T?>.toResult(): Observable<Result<T>> {
     return when (this) {
-        is Result.OnSuccess -> Observable.just(Result.OnSuccess(this.data!!))
+        is Result.OnSuccess -> Observable.just(
+            Result.OnSuccess(this.data!!))
         is Result.OnError -> Observable.error(this.domainError.toThrowable())
     }
 }
@@ -68,7 +69,11 @@ fun createError(
     errorMessage: String? = null,
     errorThrowable: Throwable? = null
 ): DomainError {
-    return DomainError(errorCode, errorMessage, errorThrowable)
+    return DomainError(
+        errorCode,
+        errorMessage,
+        errorThrowable
+    )
 }
 
 // unknown error
