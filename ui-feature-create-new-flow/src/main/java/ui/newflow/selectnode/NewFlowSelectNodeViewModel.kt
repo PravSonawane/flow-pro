@@ -31,7 +31,6 @@ class NewFlowSelectNodeViewModel @Inject constructor(
         )
 
         nodeListViewModel.data.value = items
-        nodeListViewModel.adapterClass = NodeAdapter::class.java
 
         flowId.observeForever { flowIdStream.publish(it) }
 
