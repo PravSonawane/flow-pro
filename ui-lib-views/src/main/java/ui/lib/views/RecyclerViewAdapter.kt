@@ -27,10 +27,6 @@ abstract class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
     /**
      * Updates the data of this adapter.
      *
-     * In case a specific item of this adapter needs to be updated or deleted or a new item needs to
-     * be added, the [getData] function can be used to get the contents of the adapter. The [List]
-     * returned by that function can be modified and passed as an argument to this function.
-     *
      * Note that is it not required to call [notifyDataSetChanged] after calling this function. This
      * adapter handles the notification process internally. Calling [notifyDataSetChanged] or any
      * related methods might be inefficient.
@@ -41,16 +37,6 @@ abstract class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
         this.adapterItems.clear()
         this.adapterItems.addAll(newAdapterItemList)
         diffUtilResult.dispatchUpdatesTo(this)
-    }
-
-    /**
-     * Returns a defensive copy of this adapter's data.
-     *
-     * The returned [MutableList] can be modified (that is, add or delete items from it) and supplied
-     * back to this adapter using its [updateData] function.
-     */
-    fun getData(): MutableList<BaseViewModel<*>> {
-        return this.adapterItems.map { it.data }.toMutableList()
     }
 
     abstract fun getViewType(viewModel: BaseViewModel<*>): Int
