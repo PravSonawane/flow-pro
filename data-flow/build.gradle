@@ -33,7 +33,7 @@ dependencies {
     implementation project(":domain-core")
 
     //domain
-    implementation project(":domain-flow")
+    implementation project(':domain-feature-flow')
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"

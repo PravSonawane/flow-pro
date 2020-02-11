@@ -37,7 +37,7 @@ dependencies {
     implementation project(":ui-lib-di")
 
     //domain
-    implementation project(":domain-flow")
+    implementation project(':domain-feature-flow')
     
     //data
     implementation project(":data-flow")

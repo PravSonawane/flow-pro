@@ -45,7 +45,7 @@ dependencies {
 
     //domain
     implementation project(":domain-core")
-    implementation project(":domain-flow")
+    implementation project(':domain-feature-flow')
 
     //data
     implementation project(":data-flow")
