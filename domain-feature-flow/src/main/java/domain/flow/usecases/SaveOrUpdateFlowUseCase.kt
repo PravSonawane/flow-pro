@@ -1,7 +1,7 @@
 package domain.flow.usecases
 
 import core.lib.usecase.ObservableResultUseCase
-import domain.core.result.Result
+import core.lib.result.Result
 import domain.flow.models.Flow
 import domain.flow.models.SaveFlowInput
 import domain.flow.repositories.FlowRepository

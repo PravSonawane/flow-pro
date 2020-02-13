@@ -2,7 +2,7 @@ package domain.flow.repositories
 
 import domain.flow.models.Flow
 import domain.flow.models.SaveFlowInput
-import domain.core.result.Result
+import core.lib.result.Result
 import io.reactivex.Observable
 
 interface FlowRepository {

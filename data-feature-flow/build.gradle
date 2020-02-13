@@ -30,7 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //domain core
-    implementation project(':domain-lib-core')
+    implementation project(':core-lib-result')
 
     //domain
     implementation project(':domain-feature-flow')

@@ -1,7 +1,7 @@
 package data.flow.repositories
 
-import domain.core.result.Result
-import domain.core.result.UnknownError
+import core.lib.result.Result
+import core.lib.result.UnknownError
 import domain.flow.models.Flow
 import domain.flow.models.SaveFlowInput
 import domain.flow.repositories.FlowRepository

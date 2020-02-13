@@ -1,7 +1,7 @@
 package ui.newflow.title
 
 import androidx.lifecycle.MutableLiveData
-import domain.core.result.Result
+import core.lib.result.Result
 import domain.flow.models.Flow
 import domain.flow.models.SaveFlowInput
 import domain.flow.usecases.SaveOrUpdateFlowUseCase

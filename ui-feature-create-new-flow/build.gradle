@@ -47,7 +47,7 @@ dependencies {
     implementation project(":core-lib-usecase")
 
     //domain
-    implementation project(':domain-lib-core')
+    implementation project(':core-lib-result')
     implementation project(':domain-feature-flow')
 
     //data

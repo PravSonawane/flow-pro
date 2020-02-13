@@ -1,4 +1,4 @@
-package domain.core.result
+package core.lib.result
 
 import io.reactivex.Observable
 
