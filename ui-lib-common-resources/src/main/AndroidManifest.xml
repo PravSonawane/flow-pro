@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.curlybraces.ui_lib_common_resources" />
+    package="ui.lib.common.resources" />

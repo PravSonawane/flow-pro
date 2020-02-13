@@ -1,7 +1,7 @@
 package ui.newflow.selectnode
 
-import ui.feature.create_new_flow.BR
-import ui.feature.create_new_flow.R
+import ui.feature.create.newflow.BR
+import ui.feature.create.newflow.R
 import ui.lib.views.ItemViewModel
 
 const val VIEW_TYPE_ITEM_NODE = 100000

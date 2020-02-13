@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import ui.feature.create_new_flow.databinding.FragmentNewFlowSelectNodeBinding
+import ui.feature.create.newflow.databinding.FragmentNewFlowSelectNodeBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.create_new_flow.R
+import ui.feature.create.newflow.R
 import javax.inject.Inject
 
 class NewFlowSelectNodeFragment : AppBaseFragment() {

@@ -10,9 +10,9 @@ import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.flow.models.Flow
-import ui.feature.create_new_flow.databinding.FragmentNewFlowTitleBinding
+import ui.feature.create.newflow.databinding.FragmentNewFlowTitleBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.create_new_flow.R
+import ui.feature.create.newflow.R
 import ui.newflow.selectnode.NewFlowSelectNodeFragment
 import javax.inject.Inject
 
