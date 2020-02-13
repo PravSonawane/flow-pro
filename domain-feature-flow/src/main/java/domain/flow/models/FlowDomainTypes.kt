@@ -11,7 +11,7 @@ data class Flow(
     }
 }
 
-data class SaveFlowRequest(
+data class SaveFlowInput(
     val id: String? = null,
     val name: String? = null,
     val description: String? = null

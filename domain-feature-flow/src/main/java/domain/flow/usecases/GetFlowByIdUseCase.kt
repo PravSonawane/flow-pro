@@ -1,5 +1,6 @@
 package domain.flow.usecases
 
+import core.lib.usecase.ObservableResultUseCase
 import domain.core.result.Result
 import domain.flow.models.Flow
 import domain.flow.repositories.FlowRepository
@@ -8,9 +9,9 @@ import javax.inject.Inject
 
 class GetFlowByIdUseCase @Inject constructor(
     private val flowRepository: FlowRepository
-) {
+) : ObservableResultUseCase<String, Flow> {
 
-    operator fun invoke(id: String): Observable<Result<Flow>> {
-        return flowRepository.get(id)
+    override operator fun invoke(input: String): Observable<Result<Flow>> {
+        return flowRepository.get(input)
     }
 }

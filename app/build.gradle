@@ -41,6 +41,9 @@ dependencies {
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-databinding-adapters")
 
+    //core
+    implementation project(":core-lib-usecase")
+
     //app
     implementation project(":app-di")
 

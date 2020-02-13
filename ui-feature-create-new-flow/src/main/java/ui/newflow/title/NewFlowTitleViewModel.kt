@@ -3,7 +3,7 @@ package ui.newflow.title
 import androidx.lifecycle.MutableLiveData
 import domain.core.result.Result
 import domain.flow.models.Flow
-import domain.flow.models.SaveFlowRequest
+import domain.flow.models.SaveFlowInput
 import domain.flow.usecases.SaveOrUpdateFlowUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.lib.base.BaseViewModel
@@ -21,7 +21,7 @@ class NewFlowTitleViewModel @Inject constructor(
 
     fun onNext() {
         compositeDisposable += saveOrUpdateFlowUseCase.invoke(
-            SaveFlowRequest(
+            SaveFlowInput(
                 name = title.value
             )
         )
