@@ -20,11 +20,7 @@ class NewFlowTitleViewModel @Inject constructor(
     var error: String = ""
 
     fun onNext() {
-        compositeDisposable += saveOrUpdateFlowUseCase.invoke(
-            SaveFlowInput(
-                name = title.value
-            )
-        )
+        compositeDisposable += saveOrUpdateFlowUseCase.invoke(SaveFlowInput(title.value))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
