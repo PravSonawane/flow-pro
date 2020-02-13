@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import ui.lib.base.BaseViewModel
 import ui.lib.views.ItemViewModel
 import ui.lib.views.RecyclerViewAdapter
 
@@ -16,18 +14,6 @@ import ui.lib.views.RecyclerViewAdapter
 class RecyclerViewBindingAdapters {
 
     companion object {
-
-        @JvmStatic
-        @BindingAdapter("adapter")
-        fun onBindAdapter(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<ViewHolder>) {
-            recyclerView.adapter = adapter
-        }
-
-        @JvmStatic
-        @BindingAdapter("itemDecoration")
-        fun onItemDecoration(recyclerView: RecyclerView, itemDecoration: ItemDecoration) {
-            recyclerView.addItemDecoration(itemDecoration)
-        }
 
         @JvmStatic
         fun verticalLinear(context: Context): RecyclerView.LayoutManager {
