@@ -1,10 +1,10 @@
 package domain.flow.usecases
 
-import core.lib.usecase.ObservableResultUseCase
 import core.lib.result.Result
-import domain.flow.models.Flow
+import core.lib.usecase.ObservableResultUseCase
 import domain.flow.models.SaveFlowInput
 import domain.flow.repositories.FlowRepository
+import domain.models.flow.Flow
 import io.reactivex.Observable
 import javax.inject.Inject
 

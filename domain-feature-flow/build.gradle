@@ -11,6 +11,7 @@ dependencies {
 
     //domain core
     implementation project(':core-lib-result')
+    implementation project(':domain-models-flow')
 
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"

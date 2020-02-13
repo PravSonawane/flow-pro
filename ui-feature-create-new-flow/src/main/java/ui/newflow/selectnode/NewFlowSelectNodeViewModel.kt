@@ -1,10 +1,10 @@
 package ui.newflow.selectnode
 
 import androidx.lifecycle.MutableLiveData
-import core.lib.rxutils.plusAssign
 import core.lib.result.Result
-import domain.flow.models.Flow
+import core.lib.rxutils.plusAssign
 import domain.flow.usecases.GetFlowByIdUseCase
+import domain.models.flow.Flow
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.InputStream
 import ui.lib.views.ItemListButtonViewModel

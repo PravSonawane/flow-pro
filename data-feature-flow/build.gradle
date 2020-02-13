@@ -34,6 +34,7 @@ dependencies {
 
     //domain
     implementation project(':domain-feature-flow')
+    implementation project(':domain-models-flow')
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"

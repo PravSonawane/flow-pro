@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import domain.flow.models.Flow
+import domain.models.flow.Flow
 import ui.feature.create.newflow.databinding.FragmentNewFlowTitleBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create.newflow.R
