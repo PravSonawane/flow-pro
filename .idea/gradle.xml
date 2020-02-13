@@ -27,6 +27,7 @@
             <option value="$PROJECT_DIR$/ui-lib-di" />
             <option value="$PROJECT_DIR$/ui-lib-utils" />
             <option value="$PROJECT_DIR$/ui-lib-views" />
+            <option value="$PROJECT_DIR$/ui-navigation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
