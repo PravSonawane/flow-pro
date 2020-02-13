@@ -1,25 +1,14 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
-apply plugin: 'kotlin-kapt'
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //lib
-    implementation project(':core-lib-usecase')
 
     //domain core
     implementation project(':domain-lib-core')
 
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-
-    //dagger2
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

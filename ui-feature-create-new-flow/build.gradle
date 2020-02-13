@@ -43,6 +43,9 @@ dependencies {
     implementation project(":ui-lib-utils")
     implementation project(":ui-lib-views")
 
+    //core
+    implementation project(":core-lib-usecase")
+
     //domain
     implementation project(':domain-lib-core')
     implementation project(':domain-feature-flow')

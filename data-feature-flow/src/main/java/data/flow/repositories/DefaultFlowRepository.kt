@@ -3,7 +3,7 @@ package data.flow.repositories
 import domain.core.result.Result
 import domain.core.result.UnknownError
 import domain.flow.models.Flow
-import domain.flow.models.SaveFlowRequest
+import domain.flow.models.SaveFlowInput
 import domain.flow.repositories.FlowRepository
 import io.reactivex.Observable
 
@@ -20,16 +20,16 @@ class DefaultFlowRepository : FlowRepository {
         }
     }
 
-    override fun save(request: SaveFlowRequest): Observable<Result<Flow>> {
-        val flow = if (dataStore[request.id] == null) {
+    override fun save(input: SaveFlowInput): Observable<Result<Flow>> {
+        val flow = if (dataStore[input.id] == null) {
             Flow(
                 id = (++idCount).toString(),
-                name = request.name
+                name = input.name
             )
         } else {
             Flow(
-                id = dataStore[request.id]!!.id,
-                name = request.name
+                id = dataStore[input.id]!!.id,
+                name = input.name
             )
         }
 

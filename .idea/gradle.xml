@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app-base" />
             <option value="$PROJECT_DIR$/app-di" />
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
+            <option value="$PROJECT_DIR$/core-lib-usecase" />
             <option value="$PROJECT_DIR$/data-feature-flow" />
             <option value="$PROJECT_DIR$/domain-feature-flow" />
             <option value="$PROJECT_DIR$/domain-lib-core" />
