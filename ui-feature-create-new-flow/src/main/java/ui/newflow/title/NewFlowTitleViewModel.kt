@@ -2,13 +2,13 @@ package ui.newflow.title
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result
-import domain.flow.models.Flow
 import domain.flow.models.SaveFlowInput
 import domain.flow.usecases.SaveOrUpdateFlowUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.lib.base.BaseViewModel
 import javax.inject.Inject
 import core.lib.rxutils.plusAssign
+import domain.models.flow.Flow
 
 internal const val DEFAULT_FLOW_NAME_PREFIX = "My Flow "
 

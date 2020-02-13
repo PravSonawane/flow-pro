@@ -46,6 +46,7 @@ dependencies {
     //domain
     implementation project(':core-lib-result')
     implementation project(':domain-feature-flow')
+    implementation project(':domain-models-flow')
 
     //data
     implementation project(':data-feature-flow')

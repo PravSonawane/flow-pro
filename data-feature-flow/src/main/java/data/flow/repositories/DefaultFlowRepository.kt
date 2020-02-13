@@ -2,9 +2,9 @@ package data.flow.repositories
 
 import core.lib.result.Result
 import core.lib.result.UnknownError
-import domain.flow.models.Flow
 import domain.flow.models.SaveFlowInput
 import domain.flow.repositories.FlowRepository
+import domain.models.flow.Flow
 import io.reactivex.Observable
 
 class DefaultFlowRepository : FlowRepository {
