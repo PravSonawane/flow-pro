@@ -9,7 +9,6 @@ import io.reactivex.Observable
 
 class DefaultFlowRepository : FlowRepository {
 
-    private var idCount = 0
     private val dataStore = HashMap<String, Flow>()
 
     override fun get(id: String): Observable<Result<Flow>> {
@@ -21,21 +20,13 @@ class DefaultFlowRepository : FlowRepository {
     }
 
     override fun save(input: SaveFlowInput): Observable<Result<Flow>> {
-        val flow = if (dataStore[input.id] == null) {
-            Flow(
-                id = (++idCount).toString(),
-                name = input.name,
-                state = Flow.State.DRAFT
-            )
-        } else {
-            Flow(
-                id = dataStore[input.id]!!.id,
-                name = input.name,
-                state = Flow.State.DRAFT
-            )
-        }
+        val flow = Flow(
+            id = "1",
+            name = input.name,
+            state = Flow.State.DRAFT
+        )
 
-        dataStore[flow.id] = flow
+        dataStore["1"] = flow
 
         return Observable.just(Result.OnSuccess(flow))
     }
