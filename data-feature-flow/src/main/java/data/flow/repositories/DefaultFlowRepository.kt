@@ -24,12 +24,14 @@ class DefaultFlowRepository : FlowRepository {
         val flow = if (dataStore[input.id] == null) {
             Flow(
                 id = (++idCount).toString(),
-                name = input.name
+                name = input.name,
+                state = Flow.State.DRAFT
             )
         } else {
             Flow(
                 id = dataStore[input.id]!!.id,
-                name = input.name
+                name = input.name,
+                state = Flow.State.DRAFT
             )
         }
 
