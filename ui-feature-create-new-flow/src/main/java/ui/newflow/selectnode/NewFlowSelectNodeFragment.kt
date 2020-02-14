@@ -41,6 +41,7 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
         newFlowSelectNodeComponent.injectIn(this)
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         val flowId = arguments?.getString(ARG_FLOW_ID)
             ?: throw IllegalStateException("Flow ID is required")

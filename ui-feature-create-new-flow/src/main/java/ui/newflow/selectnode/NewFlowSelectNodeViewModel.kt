@@ -1,18 +1,22 @@
 package ui.newflow.selectnode
 
 import androidx.lifecycle.MutableLiveData
+import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
+import domain.models.flow.Node
+import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.InputStream
-import ui.lib.views.ItemListButtonViewModel
-import ui.lib.views.ItemListHeaderViewModel
 import javax.inject.Inject
 
 class NewFlowSelectNodeViewModel @Inject constructor(
-    private val getFlowByIdUseCase: GetFlowByIdUseCase
+    private val getFlowByIdUseCase: GetFlowByIdUseCase,
+    private val getAllNodesUseCase: GetAllNodesUseCase,
+    private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<NewFlowSelectNodeViewModel.Event>() {
 
     val data: MutableLiveData<Any> = MutableLiveData()
@@ -22,18 +26,15 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     private val flowIdStream = InputStream<String>()
 
     init {
-        val items = listOf(
-            SelectNodeItemViewModel(),
-            createHeader("Header"),
-            SelectNodeItemViewModel(),
-            SelectNodeItemViewModel(),
-            SelectNodeItemViewModel(),
-            SelectNodeItemViewModel(),
-            SelectNodeItemViewModel(),
-            createButton("Button")
-        )
 
-        data.value = items
+        compositeDisposable += getAllNodesUseCase(Unit)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it) {
+                    is Result.OnSuccess -> handleGetAllNodesSuccess(it.data)
+                    is Result.OnError -> handleGetAllNodesFailure(it.domainError)
+                }
+            }
 
         flowId.observeForever { flowIdStream.publish(it) }
 
@@ -46,16 +47,13 @@ class NewFlowSelectNodeViewModel @Inject constructor(
             }
     }
 
-    private fun createHeader(defaultHeader: CharSequence): ItemListHeaderViewModel {
-        val header = MutableLiveData<CharSequence>()
-        header.value = defaultHeader
-        return ItemListHeaderViewModel(header)
+    private fun handleGetAllNodesSuccess(nodes: List<Node>) {
+       val items: List<SelectNodeItemViewModel> = nodes.map { viewModelFactory.create(it) }
+        data.value = items
     }
 
-    private fun createButton(defaultText: CharSequence): ItemListButtonViewModel {
-        val button = MutableLiveData<CharSequence>()
-        button.value = defaultText
-        return ItemListButtonViewModel(button)
+    private fun handleGetAllNodesFailure(error: DomainError) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {
