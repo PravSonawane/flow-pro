@@ -27,6 +27,4 @@ abstract class BaseViewModel<Input, Output>(
     fun observeOutput(): Observable<Output> {
         return eventStream.subscribe()
     }
-
-    abstract fun dispose()
 }

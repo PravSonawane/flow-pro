@@ -58,7 +58,7 @@ class CreateStepViewModel @Inject constructor(
         object OnNoFlowError : Event()
     }
 
-    override fun dispose() {
+    override fun onCleared() {
         compositeDisposable.dispose()
     }
 }

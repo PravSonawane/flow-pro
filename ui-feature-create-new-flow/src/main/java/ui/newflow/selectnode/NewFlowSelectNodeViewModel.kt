@@ -79,7 +79,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
         object OnNext : Event()
     }
 
-    override fun dispose() {
+    override fun onCleared() {
         compositeDisposable.dispose()
     }
 

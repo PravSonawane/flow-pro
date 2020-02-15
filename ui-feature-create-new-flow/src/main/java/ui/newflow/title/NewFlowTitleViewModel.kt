@@ -49,7 +49,7 @@ class NewFlowTitleViewModel @Inject constructor(
         data class OnNext(val flow: Flow) : Event()
     }
 
-    override fun dispose() {
+    override fun onCleared() {
         compositeDisposable.dispose()
     }
 }

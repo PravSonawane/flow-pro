@@ -24,8 +24,6 @@ class ItemListHeaderViewModel(
 ) {
     sealed class Input
     sealed class Event
-
-    override fun dispose() {}
 }
 
 class ItemListButtonViewModel(
@@ -48,6 +46,4 @@ class ItemListButtonViewModel(
     sealed class Output {
         object OnClick : Output()
     }
-
-    override fun dispose() {}
 }

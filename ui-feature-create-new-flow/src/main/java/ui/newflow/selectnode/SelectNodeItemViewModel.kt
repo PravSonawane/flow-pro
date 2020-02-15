@@ -21,6 +21,4 @@ class SelectNodeItemViewModel(
 ) {
     sealed class Input
     sealed class Event
-
-    override fun dispose() {}
 }
