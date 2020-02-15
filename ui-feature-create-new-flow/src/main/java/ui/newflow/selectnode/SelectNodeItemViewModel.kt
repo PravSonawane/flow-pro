@@ -21,4 +21,8 @@ class SelectNodeItemViewModel(
 ) {
     sealed class Input
     sealed class Event
+
+    override fun toString(): String {
+        return "SelectNodeItemViewModel(node=$node)"
+    }
 }

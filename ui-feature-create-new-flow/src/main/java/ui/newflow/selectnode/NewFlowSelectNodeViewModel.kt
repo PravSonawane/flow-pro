@@ -27,7 +27,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val data: MutableLiveData<Any> = MutableLiveData()
+    val data: MutableLiveData<Any> = liveDataFactory.mutableLiveData("e588c436-e1a8")
     val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("3fbb7441-da29")
 
     init {

@@ -20,7 +20,7 @@ class AnalyticsMutableLiveData<T>(
 
     override fun getValue(): T? {
         val value = super.getValue()
-        analytics.logEvent(analyticsKey, mapOf("onGetValue" to value as Any))
+        analytics.logEvent(analyticsKey, mapOf("onGetValue" to value as Any?))
         return value
     }
 }
