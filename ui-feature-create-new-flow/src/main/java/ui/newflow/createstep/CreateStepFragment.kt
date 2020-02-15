@@ -49,7 +49,7 @@ class CreateStepFragment : AppBaseFragment() {
 
         val flowId = arguments?.getString(ARG_FLOW_ID)
             ?: throw IllegalStateException("Flow ID is required")
-        viewModel.flowId.value = flowId
+        viewModel.sendInput(CreateStepViewModel.Input.FlowId(flowId))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())

@@ -20,17 +20,15 @@ class CreateStepViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val data: MutableLiveData<Any> = MutableLiveData()
-    val flowId: MutableLiveData<String> = MutableLiveData()
     val flow: MutableLiveData<Flow> = MutableLiveData()
 
-    private val flowIdStream = StreamFactory().simpleStream<String>()
-
     init {
-
-        flowId.observeForever { flowIdStream.publish(it) }
-
-        compositeDisposable += flowIdStream.subscribe()
-            .flatMap { getFlowByIdUseCase(it) }
+        compositeDisposable += observeInput()
+            .flatMap {
+                when(it) {
+                    is Input.FlowId -> getFlowByIdUseCase(it.id)
+                }
+            }
             .subscribe {
                 when(it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)
@@ -51,7 +49,9 @@ class CreateStepViewModel @Inject constructor(
         }
     }
 
-    sealed class Input
+    sealed class Input {
+        data class FlowId(val id: String): Input()
+    }
 
     sealed class Event {
         class OnShowSelectNode(val flow: Flow) : Event()
