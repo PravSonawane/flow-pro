@@ -36,6 +36,10 @@ dependencies {
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-di")
 
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
+
     //domain
     implementation project(':domain-feature-flow')
     

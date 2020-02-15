@@ -11,6 +11,7 @@ import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
+import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 
@@ -18,7 +19,8 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     private val getFlowByIdUseCase: GetFlowByIdUseCase,
     private val getAllNodesUseCase: GetAllNodesUseCase,
     private val viewModelFactory: ViewModelFactory,
-    private val streamFactory: StreamFactory
+    private val streamFactory: StreamFactory,
+    private val liveDataFactory: LiveDataFactory
 ) : BaseViewModel<NewFlowSelectNodeViewModel.Input, NewFlowSelectNodeViewModel.Event>(
     "b7dcd411-0058",
     streamFactory
@@ -26,7 +28,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val data: MutableLiveData<Any> = MutableLiveData()
-    val flowName: MutableLiveData<String> = MutableLiveData()
+    val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("3fbb7441-da29")
 
     init {
 
