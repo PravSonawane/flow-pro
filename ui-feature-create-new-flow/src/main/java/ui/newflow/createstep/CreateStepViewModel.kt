@@ -6,7 +6,7 @@ import core.lib.rxutils.plusAssign
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import ui.lib.base.BaseViewModel
-import ui.lib.utils.InputStream
+import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 
 class CreateStepViewModel @Inject constructor(
@@ -17,7 +17,7 @@ class CreateStepViewModel @Inject constructor(
     val flowId: MutableLiveData<String> = MutableLiveData()
     val flow: MutableLiveData<Flow> = MutableLiveData()
 
-    private val flowIdStream = InputStream<String>()
+    private val flowIdStream = StreamFactory().simpleStream<String>()
 
     init {
 

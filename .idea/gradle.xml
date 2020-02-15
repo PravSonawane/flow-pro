@@ -13,6 +13,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app-base" />
             <option value="$PROJECT_DIR$/app-di" />
+            <option value="$PROJECT_DIR$/core-lib-analytics" />
+            <option value="$PROJECT_DIR$/core-lib-analytics-impl" />
             <option value="$PROJECT_DIR$/core-lib-result" />
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
             <option value="$PROJECT_DIR$/core-lib-usecase" />

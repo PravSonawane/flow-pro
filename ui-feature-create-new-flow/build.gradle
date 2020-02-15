@@ -57,6 +57,10 @@ dependencies {
     //di
     implementation project(":app-di")
 
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
+
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"

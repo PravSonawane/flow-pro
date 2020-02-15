@@ -41,6 +41,10 @@ dependencies {
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-databinding-adapters")
 
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
+
     //core
     implementation project(":core-lib-usecase")
 
