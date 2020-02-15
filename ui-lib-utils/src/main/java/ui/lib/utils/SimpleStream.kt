@@ -5,14 +5,14 @@ import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
-class InputStream<T> @Inject constructor() {
+class SimpleStream<T> @Inject constructor() : Stream<T> {
     private val stream: Subject<T> = PublishSubject.create()
 
-    fun publish(data: T) {
+    override fun publish(data: T) {
         stream.onNext(data)
     }
 
-    fun subscribe(): Observable<T> {
+    override fun subscribe(): Observable<T> {
         return stream.hide()
     }
 }

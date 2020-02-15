@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -24,40 +23,19 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
-    }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //ui lib
-    implementation project(":ui-lib-di")
-    implementation project(":ui-lib-base")
-
     //analytics
     implementation project(":core-lib-analytics")
-    implementation project(":core-lib-analytics-impl")
-
-    //core
-    implementation project(":core-lib-usecase")
-
-    //di
-    implementation project(":app-di")
-
-    //domain
-    implementation project(':core-lib-result')
-    implementation project(':domain-feature-flow')
-    implementation project(':domain-models-flow')
-
-    //data
-    implementation project(':data-feature-flow')
+    //javax inject
+    implementation "javax.inject:javax.inject:1"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

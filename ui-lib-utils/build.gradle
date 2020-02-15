@@ -34,6 +34,9 @@ dependencies {
     //javax inject
     implementation "javax.inject:javax.inject:1"
 
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

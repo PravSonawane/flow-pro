@@ -10,20 +10,21 @@ import domain.models.flow.Flow
 import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.lib.base.BaseViewModel
-import ui.lib.utils.InputStream
+import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 
 class NewFlowSelectNodeViewModel @Inject constructor(
     private val getFlowByIdUseCase: GetFlowByIdUseCase,
     private val getAllNodesUseCase: GetAllNodesUseCase,
-    private val viewModelFactory: ViewModelFactory
+    private val viewModelFactory: ViewModelFactory,
+    private val streamFactory: StreamFactory
 ) : BaseViewModel<NewFlowSelectNodeViewModel.Event>() {
 
     val data: MutableLiveData<Any> = MutableLiveData()
     val flowId: MutableLiveData<String> = MutableLiveData()
     val flowName: MutableLiveData<String> = MutableLiveData()
 
-    private val flowIdStream = InputStream<String>()
+    private val flowIdStream = streamFactory.analyticsStream<String>("xyz")
 
     init {
 
