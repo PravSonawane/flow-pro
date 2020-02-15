@@ -10,6 +10,7 @@ buildscript {
     ext.rxandroid_version = "2.0.1"
     ext.material_components_version = "1.1.0"
     ext.lifecycle_version = "2.2.0"
+    ext.detekt_version = "1.5.1"
 
     repositories {
         google()
@@ -25,15 +26,14 @@ buildscript {
 }
 
 plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.5.1"
+    id "io.gitlab.arturbosch.detekt" version "$detekt_version"
 }
 
 dependencies {
-    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.5.1"
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
 }
 
 allprojects {
-
     repositories {
         google()
         jcenter()
@@ -42,18 +42,18 @@ allprojects {
 }
 
 detekt {
-    toolVersion = "1.5.1"
+    toolVersion = "$detekt_version"
     input = files("$projectDir")
     config = files("$project.projectDir/config/detekt/detekt.yml")
     autoCorrect = true
     reports {
         xml {
-            enabled = true
-            destination = file("$project.projectDir/detekt-report.xml")
+            enabled = false
+            destination = file("$project.projectDir/config/detekt/detekt-report.xml")
         }
         html {
             enabled = true
-            destination = file("$project.projectDir/detekt-report.html")
+            destination = file("$project.projectDir/config/detekt/detekt-report.html")
         }
     }
 }
