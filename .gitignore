@@ -12,3 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
+detekt-report.html
+detekt-report.xml
