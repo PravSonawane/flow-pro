@@ -25,12 +25,12 @@ class CreateStepViewModel @Inject constructor(
     init {
         compositeDisposable += observeInput()
             .flatMap {
-                when(it) {
+                when (it) {
                     is Input.FlowId -> getFlowByIdUseCase(it.id)
                 }
             }
             .subscribe {
-                when(it) {
+                when (it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)
                 }
             }
@@ -50,7 +50,7 @@ class CreateStepViewModel @Inject constructor(
     }
 
     sealed class Input {
-        data class FlowId(val id: String): Input()
+        data class FlowId(val id: String) : Input()
     }
 
     sealed class Event {
@@ -58,7 +58,7 @@ class CreateStepViewModel @Inject constructor(
         object OnNoFlowError : Event()
     }
 
-    override fun dispose() {
+    override fun onCleared() {
         compositeDisposable.dispose()
     }
 }

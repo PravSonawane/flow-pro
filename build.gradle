@@ -10,6 +10,7 @@ buildscript {
     ext.rxandroid_version = "2.0.1"
     ext.material_components_version = "1.1.0"
     ext.lifecycle_version = "2.2.0"
+    ext.detekt_version = "1.5.1"
 
     repositories {
         google()
@@ -19,10 +20,17 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.0-rc03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "$detekt_version"
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
 }
 
 allprojects {
@@ -30,6 +38,23 @@ allprojects {
         google()
         jcenter()
         
+    }
+}
+
+detekt {
+    toolVersion = "$detekt_version"
+    input = files("$projectDir")
+    config = files("$project.projectDir/config/detekt/detekt.yml")
+    autoCorrect = true
+    reports {
+        xml {
+            enabled = false
+            destination = file("$project.projectDir/config/detekt/detekt-report.xml")
+        }
+        html {
+            enabled = true
+            destination = file("$project.projectDir/config/detekt/detekt-report.html")
+        }
     }
 }
 

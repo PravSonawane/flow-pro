@@ -37,7 +37,7 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
         val binding: FragmentNewFlowSelectNodeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_select_node, container, false)
 
-        //dagger injection
+        // dagger injection
         newFlowSelectNodeComponent.injectIn(this)
 
         binding.viewModel = viewModel
@@ -50,7 +50,7 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                when(it) {
+                when (it) {
                     NewFlowSelectNodeViewModel.Event.OnNext -> {}
                 }
             }

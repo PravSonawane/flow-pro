@@ -10,38 +10,28 @@ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import ui.lib.views.ItemViewModel
 import ui.lib.views.RecyclerViewAdapter
 
-/** Android databindings for [RecyclerView]*/
-class RecyclerViewBindingAdapters {
+fun verticalLinear(context: Context): RecyclerView.LayoutManager {
+    return LinearLayoutManager(
+        context,
+        LinearLayoutManager.VERTICAL,
+        false
+    )
+}
 
-    companion object {
+fun verticalGrid(context: Context, columnCount: Int): RecyclerView.LayoutManager {
+    return GridLayoutManager(
+        context,
+        columnCount,
+        GridLayoutManager.VERTICAL,
+        false
+    )
+}
 
-        @JvmStatic
-        fun verticalLinear(context: Context): RecyclerView.LayoutManager {
-            return LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-        }
-
-        @JvmStatic
-        fun verticalGrid(context: Context, columnCount: Int): RecyclerView.LayoutManager {
-            return GridLayoutManager(
-                context,
-                columnCount,
-                GridLayoutManager.VERTICAL,
-                false
-            )
-        }
-
-        @JvmStatic
-        fun dividerItemDecorationVertical(context: Context): ItemDecoration {
-            return DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        }
-    }
+fun dividerItemDecorationVertical(context: Context): ItemDecoration {
+    return DividerItemDecoration(
+        context,
+        DividerItemDecoration.VERTICAL
+    )
 }
 
 /**

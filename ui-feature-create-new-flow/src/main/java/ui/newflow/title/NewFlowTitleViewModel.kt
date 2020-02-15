@@ -3,7 +3,6 @@ package ui.newflow.title
 import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import domain.flow.models.SaveFlowInput
 import domain.flow.usecases.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,7 +26,11 @@ class NewFlowTitleViewModel @Inject constructor(
     var error: String = ""
 
     fun onNext() {
-        compositeDisposable += saveOrUpdateFlowUseCase.invoke(SaveFlowInput(title.value))
+        compositeDisposable += saveOrUpdateFlowUseCase.invoke(
+            SaveOrUpdateFlowUseCase.Input(
+                title.value
+            )
+        )
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
@@ -46,7 +49,7 @@ class NewFlowTitleViewModel @Inject constructor(
         data class OnNext(val flow: Flow) : Event()
     }
 
-    override fun dispose() {
+    override fun onCleared() {
         compositeDisposable.dispose()
     }
 }

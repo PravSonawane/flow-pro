@@ -41,7 +41,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_title, container, false)
         binding.lifecycleOwner = this
 
-        //dagger injection
+        // dagger injection
         newFlowTitleComponent.injectIn(this)
 
         binding.viewModel = viewModel
@@ -49,7 +49,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                when(it) {
+                when (it) {
                     is NewFlowTitleViewModel.Event.OnNext -> onNext(it.flow)
                 }
             }
