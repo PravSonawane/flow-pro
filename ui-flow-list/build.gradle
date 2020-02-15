@@ -32,13 +32,39 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // ui
-    implementation project (":ui-lib-assets")
-    implementation project(":ui-lib-common-resources")
-
     //ui lib
+    implementation project(":app-base")
+    implementation project(":core-lib-rxutils")
+    implementation project(":ui-lib-assets")
+    implementation project(":ui-lib-base")
+    implementation project(":ui-lib-common-resources")
+    implementation project(":ui-lib-databinding-adapters")
     implementation project(":ui-lib-di")
+    implementation project(":ui-lib-utils")
+    implementation project(":ui-lib-views")
     implementation project(":ui-navigation")
+
+    //core
+    implementation project(":core-lib-usecase")
+
+    //domain
+    implementation project(':core-lib-result')
+    implementation project(':domain-feature-flow')
+    implementation project(':domain-models-flow')
+
+    //data
+    implementation project(':data-feature-flow')
+
+    //di
+    implementation project(":app-di")
+
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -53,6 +79,9 @@ dependencies {
 
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

@@ -34,6 +34,11 @@ dependencies {
 
     // ui lib
     implementation project(":ui-lib-di")
+    implementation project(":ui-lib-utils")
+
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
 
     //core lib
     implementation project(":core-lib-rxutils")

@@ -1,20 +1,33 @@
 package ui.lib.base
 
+
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
-import io.reactivex.subjects.Subject
+import ui.lib.utils.AnalyticsStream
+import ui.lib.utils.StreamFactory
 
-abstract class BaseViewModel<T>(
-    protected val eventStream: Subject<T> = PublishSubject.create(),
-    protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
+abstract class BaseViewModel<Input, Output>(
+    analyticsKey: String,
+    streamFactory: StreamFactory,
+    private val inputStream: AnalyticsStream<Input> = streamFactory.analyticsStream(analyticsKey),
+    private val eventStream: AnalyticsStream<Output> = streamFactory.analyticsStream(analyticsKey)
 ) : ViewModel() {
-    fun events(): Observable<T> {
-        return eventStream.hide()
+
+    fun sendInput(input: Input) {
+        inputStream.publish(input)
+    }
+    
+    protected fun observeInput(): Observable<Input> {
+        return inputStream.subscribe()
     }
 
-    fun dispose() {
-        compositeDisposable.dispose()
+    protected fun sendOutput(event: Output) {
+        eventStream.publish(event)
     }
+
+    fun observeOutput(): Observable<Output> {
+        return eventStream.subscribe()
+    }
+
+    abstract fun dispose()
 }

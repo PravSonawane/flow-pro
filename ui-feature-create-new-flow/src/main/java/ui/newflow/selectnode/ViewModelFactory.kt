@@ -1,11 +1,14 @@
 package ui.newflow.selectnode
 
 import domain.models.flow.Node
+import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 
-class ViewModelFactory @Inject constructor() {
+class ViewModelFactory @Inject constructor(
+    private val streamFactory: StreamFactory
+) {
 
-    fun create(node: Node): SelectNodeItemViewModel {
-        return SelectNodeItemViewModel(node)
+    fun create(analyticsKey: String, node: Node): SelectNodeItemViewModel {
+        return SelectNodeItemViewModel(analyticsKey, streamFactory, node)
     }
 }
