@@ -9,6 +9,7 @@ import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -18,13 +19,14 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     private val getAllNodesUseCase: GetAllNodesUseCase,
     private val viewModelFactory: ViewModelFactory,
     private val streamFactory: StreamFactory
-) : BaseViewModel<NewFlowSelectNodeViewModel.Event>() {
+) : BaseViewModel<NewFlowSelectNodeViewModel.Input, NewFlowSelectNodeViewModel.Event>(
+    "b7dcd411-0058",
+    streamFactory
+) {
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val data: MutableLiveData<Any> = MutableLiveData()
-    val flowId: MutableLiveData<String> = MutableLiveData()
     val flowName: MutableLiveData<String> = MutableLiveData()
-
-    private val flowIdStream = streamFactory.analyticsStream<String>("xyz")
 
     init {
 
@@ -37,19 +39,23 @@ class NewFlowSelectNodeViewModel @Inject constructor(
                 }
             }
 
-        flowId.observeForever { flowIdStream.publish(it) }
-
-        compositeDisposable += flowIdStream.subscribe()
-            .flatMap { getFlowByIdUseCase(it) }
+        compositeDisposable += observeInput()
+            .flatMap {
+                when (it) {
+                    is Input.FlowId -> getFlowByIdUseCase(it.id)
+                }
+            }
             .subscribe {
-                when(it) {
+                when (it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)
                 }
             }
     }
 
     private fun handleGetAllNodesSuccess(nodes: List<Node>) {
-       val items: List<SelectNodeItemViewModel> = nodes.map { viewModelFactory.create(it) }
+        val items: List<SelectNodeItemViewModel> = nodes.map {
+            viewModelFactory.create(NODE_ITEM_ANALYTICS_KEY, it)
+        }
         data.value = items
     }
 
@@ -62,10 +68,22 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     }
 
     fun onNext() {
-        eventStream.onNext(Event.OnNext)
+        sendOutput(Event.OnNext)
+    }
+
+    sealed class Input {
+        class FlowId(val id: String) : Input()
     }
 
     sealed class Event {
         object OnNext : Event()
+    }
+
+    override fun dispose() {
+        compositeDisposable.dispose()
+    }
+
+    companion object {
+        const val NODE_ITEM_ANALYTICS_KEY = "528a3a76-6aa9"
     }
 }

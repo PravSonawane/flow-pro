@@ -57,7 +57,7 @@ class RecyclerViewBindingAdapters {
 @BindingAdapter("adapterItems")
 fun setAdapterItems(
     recyclerView: RecyclerView,
-    data: List<ItemViewModel<Any>>?
+    data: List<ItemViewModel<Any, Any>>?
 ) {
     val adapter: RecyclerViewAdapter =
         (recyclerView.adapter as? RecyclerViewAdapter) ?: RecyclerViewAdapter()

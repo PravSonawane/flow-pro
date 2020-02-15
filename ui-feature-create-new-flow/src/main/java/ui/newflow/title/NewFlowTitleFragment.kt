@@ -47,7 +47,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
 
         binding.viewModel = viewModel
 
-        compositeDisposable += viewModel.events()
+        compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when(it) {
