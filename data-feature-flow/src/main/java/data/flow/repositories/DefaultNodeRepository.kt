@@ -17,6 +17,6 @@ class DefaultNodeRepository : NodeRepository {
     }
 
     override fun getAll(): Observable<Result<List<Node>>> {
-        return Observable.just(Result.OnSuccess(nodes));
+        return Observable.just(Result.OnSuccess(nodes))
     }
 }

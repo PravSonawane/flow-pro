@@ -60,7 +60,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     }
 
     private fun handleGetAllNodesFailure(error: DomainError) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {

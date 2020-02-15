@@ -8,7 +8,7 @@ class AnalyticsStream<T> @Inject constructor(
     private val analyticsKey: String,
     private val analytics: Analytics,
     private val stream: Stream<T>
-): Stream<T> {
+) : Stream<T> {
 
     override fun publish(data: T) {
         analytics.logEvent(analyticsKey, mapOf("onPublish" to data.toString()))

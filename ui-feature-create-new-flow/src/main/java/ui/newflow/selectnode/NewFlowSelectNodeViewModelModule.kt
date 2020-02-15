@@ -5,7 +5,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import ui.lib.di.ViewModelKey
-import ui.newflow.selectnode.NewFlowSelectNodeViewModel
 
 @Module
 abstract class NewFlowSelectNodeViewModelModule {

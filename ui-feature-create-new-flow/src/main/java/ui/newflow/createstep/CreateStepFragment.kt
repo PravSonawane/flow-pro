@@ -41,7 +41,7 @@ class CreateStepFragment : AppBaseFragment() {
         val binding: FragmentCreateStepBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_create_step, container, false)
 
-        //dagger injection
+        // dagger injection
         createStepComponent.injectIn(this)
 
         binding.viewModel = viewModel
@@ -54,7 +54,7 @@ class CreateStepFragment : AppBaseFragment() {
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                when(it) {
+                when (it) {
                     is CreateStepViewModel.Event.OnShowSelectNode -> onNext(it.flow)
                     is CreateStepViewModel.Event.OnNoFlowError -> onError()
                 }

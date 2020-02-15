@@ -19,7 +19,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.0-rc03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -27,6 +26,10 @@ buildscript {
 
 plugins {
     id "io.gitlab.arturbosch.detekt" version "1.5.1"
+}
+
+dependencies {
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.5.1"
 }
 
 allprojects {
@@ -42,6 +45,7 @@ detekt {
     toolVersion = "1.5.1"
     input = files("$projectDir")
     config = files("$project.projectDir/config/detekt/detekt.yml")
+    autoCorrect = true
     reports {
         xml {
             enabled = true
