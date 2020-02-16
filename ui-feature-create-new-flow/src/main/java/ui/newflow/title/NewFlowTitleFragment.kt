@@ -6,17 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create.newflow.R
 import ui.feature.create.newflow.databinding.FragmentNewFlowTitleBinding
-import ui.navigation.DEEPLINK_FLOW_STEPS
 import ui.navigation.navigate
-import ui.newflow.createstep.CreateStepFragment
 import javax.inject.Inject
 
 class NewFlowTitleFragment : AppBaseFragment() {
@@ -61,6 +57,6 @@ class NewFlowTitleFragment : AppBaseFragment() {
     }
 
     private fun onNext(flow: Flow) {
-        navigate(this, DEEPLINK_FLOW_STEPS)
+        navigate(R.string.deeplink_flow_steps, this)
     }
 }
