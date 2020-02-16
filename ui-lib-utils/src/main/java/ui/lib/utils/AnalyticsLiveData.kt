@@ -1,13 +1,14 @@
 package ui.lib.utils
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import core.lib.analytics.Analytics
 
-class AnalyticsMutableLiveData<T>(
+class AnalyticsLiveData<T>(
     private val analyticsKey: String,
     private val analytics: Analytics,
     private val defaultValue: T? = null
-) : MutableLiveData<T>(defaultValue) {
+) : LiveData<T>(defaultValue) {
 
     override fun setValue(value: T) {
         analytics.logEvent(analyticsKey, mapOf("onSetValue" to value as Any))

@@ -8,6 +8,7 @@ import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
+import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 
@@ -15,15 +16,17 @@ internal const val DEFAULT_FLOW_NAME_PREFIX = "My Flow "
 
 class NewFlowTitleViewModel @Inject constructor(
     streamFactory: StreamFactory,
-    private val saveOrUpdateFlowUseCase: SaveOrUpdateFlowUseCase
+    private val saveOrUpdateFlowUseCase: SaveOrUpdateFlowUseCase,
+    liveDataFactory: LiveDataFactory
 ) : BaseViewModel<NewFlowTitleViewModel.Input, NewFlowTitleViewModel.Event>(
     "718adc21-f9c0",
     streamFactory
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    var title: MutableLiveData<String> = MutableLiveData("$DEFAULT_FLOW_NAME_PREFIX 1")
-    var error: String = ""
+    var title: MutableLiveData<String> =
+        liveDataFactory.mutableLiveData("c6c9cc9a-b9cd", "$DEFAULT_FLOW_NAME_PREFIX 1")
+    var error: MutableLiveData<String> = liveDataFactory.mutableLiveData("ab7af821-67e7", "")
 
     fun onNext() {
         compositeDisposable += saveOrUpdateFlowUseCase.invoke(

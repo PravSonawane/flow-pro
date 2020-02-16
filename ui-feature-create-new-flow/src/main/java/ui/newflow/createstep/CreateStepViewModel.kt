@@ -7,20 +7,22 @@ import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
+import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 
 class CreateStepViewModel @Inject constructor(
     streamFactory: StreamFactory,
-    private val getFlowByIdUseCase: GetFlowByIdUseCase
+    private val getFlowByIdUseCase: GetFlowByIdUseCase,
+    private val liveDataFactory: LiveDataFactory
 ) : BaseViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
     "e2fc2772-418e",
     streamFactory
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val data: MutableLiveData<Any> = MutableLiveData()
-    val flow: MutableLiveData<Flow> = MutableLiveData()
+    val data: MutableLiveData<Any> = liveDataFactory.mutableLiveData("8e8cd2ab-2d38")
+    val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("6fad0157-ba41")
 
     init {
         compositeDisposable += observeInput()
