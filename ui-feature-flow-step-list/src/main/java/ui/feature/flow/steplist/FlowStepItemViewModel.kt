@@ -1,7 +1,6 @@
 package ui.feature.flow.steplist
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import domain.models.flow.Step
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory

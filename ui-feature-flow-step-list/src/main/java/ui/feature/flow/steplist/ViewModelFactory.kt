@@ -1,6 +1,5 @@
 package ui.feature.flow.steplist
 
-import domain.models.flow.Node
 import domain.models.flow.Step
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
