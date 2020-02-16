@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_new_flow_title">
         <deepLink
             android:id="@+id/deepLink_newflow_title"
-            app:uri="https://curlybraces.dev/newflow/title" />
+            app:uri="@string/deeplink_newflow_title" />
         <action
             android:id="@+id/action_newFlowTitleFragment_to_newFlowSelectNodeFragment"
             app:destination="@id/fragment_new_flow_select_node"/>

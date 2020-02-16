@@ -43,6 +43,7 @@ dependencies {
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-utils")
     implementation project(":ui-lib-views")
+    implementation project(":ui-navigation")
 
     //core
     implementation project(":core-lib-usecase")

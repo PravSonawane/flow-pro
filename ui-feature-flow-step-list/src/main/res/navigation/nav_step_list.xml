@@ -13,7 +13,7 @@
         tools:layout="@layout/fragment_flow_step_list">
         <deepLink
             android:id="@+id/deepLink_flow_steps"
-            app:uri="https://curlybraces.dev/flowpro/flow/steps"
+            app:uri="@string/deeplink_flow_steps"
             />
     </fragment>
 
