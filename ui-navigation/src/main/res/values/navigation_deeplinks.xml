@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deeplink to flow steps -->
+    <string name="deeplink_flow_steps">https://curlybraces.dev/flowpro/flow/{flow_id}/steps</string>
+    <string name="deeplink_flow_steps_path_param_flow_id">flow_id</string>
+
+    <!-- Deeplink to new flow title -->
+    <string name="deeplink_newflow_title">https://curlybraces.dev/flowpro/newflow/title</string>
+</resources>

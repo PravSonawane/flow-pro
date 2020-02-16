@@ -1,4 +1,4 @@
-package ui.newflow.title
+package ui.feature.flow.steplist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,25 +8,22 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.create.newflow.R
-import ui.feature.create.newflow.databinding.FragmentNewFlowTitleBinding
-import ui.navigation.navigate
+import ui.feature.flow.steplist.databinding.FragmentFlowStepListBinding
 import javax.inject.Inject
 
-class NewFlowTitleFragment : AppBaseFragment() {
+class FlowStepListFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
-            .get(NewFlowTitleViewModel::class.java)
+            .get(FlowStepListViewModel::class.java)
     }
 
-    private val newFlowTitleComponent: NewFlowTitleComponent by lazy {
-        DaggerNewFlowTitleComponent.builder()
+    private val flowStepListComponent: FlowStepListComponent by lazy {
+        DaggerFlowStepListComponent.builder()
             .mainComponent(mainComponent())
             .build()
     }
@@ -36,30 +33,31 @@ class NewFlowTitleFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentNewFlowTitleBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_title, container, false)
-        binding.lifecycleOwner = this
+        val binding: FragmentFlowStepListBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_flow_step_list, container, false)
 
         // dagger injection
-        newFlowTitleComponent.injectIn(this)
+        flowStepListComponent.injectIn(this)
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        val flowId = arguments?.getString(ARG_FLOW_ID)
+            ?: throw IllegalStateException("Flow ID is required")
+        viewModel.sendInput(FlowStepListViewModel.Input.FlowId(flowId))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is NewFlowTitleViewModel.Event.OnNext -> onNext(it.flow)
+                    FlowStepListViewModel.Event.OnNewStep -> {}
                 }
             }
 
         return binding.root
     }
 
-    private fun onNext(flow: Flow) {
-        val pathParams: Map<Int, String> = mapOf(
-            R.string.deeplink_flow_steps_path_param_flow_id to flow.id
-        )
-        navigate(this, R.string.deeplink_flow_steps, pathParams)
+    companion object {
+        const val ARG_FLOW_ID = "FLOW_ID"
     }
 }

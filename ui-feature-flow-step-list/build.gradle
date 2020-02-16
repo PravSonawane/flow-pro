@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -8,13 +8,13 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "dev.curlybraces.flowpro"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -25,41 +25,49 @@ android {
     }
 
     dataBinding {
-        enabled = true
+        enabled true
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //ui
-    implementation project(":ui-flow-list")
-    implementation project(':ui-feature-create-new-flow')
-    implementation project(':ui-feature-flow-step-list')
-
     //ui lib
+    implementation project(":app-base")
+    implementation project(":core-lib-rxutils")
+    implementation project(":ui-lib-assets")
     implementation project(":ui-lib-base")
-    implementation project(":ui-lib-di")
+    implementation project(":ui-lib-common-resources")
     implementation project(":ui-lib-databinding-adapters")
-
-    //analytics
-    implementation project(":core-lib-analytics")
-    implementation project(":core-lib-analytics-impl")
+    implementation project(":ui-lib-di")
+    implementation project(":ui-lib-utils")
+    implementation project(":ui-lib-views")
+    implementation project(":ui-navigation")
 
     //core
     implementation project(":core-lib-usecase")
 
-    //app
-    implementation project(":app-di")
-
     //domain
+    implementation project(':core-lib-result')
     implementation project(':domain-feature-flow')
     implementation project(':domain-models-flow')
 
     //data
     implementation project(':data-feature-flow')
 
-    // Navigation
+    //di
+    implementation project(":app-di")
+
+    //analytics
+    implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-impl")
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
@@ -73,9 +81,11 @@ dependencies {
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
