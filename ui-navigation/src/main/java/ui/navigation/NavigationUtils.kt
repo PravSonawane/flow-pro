@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import kotlin.text.Regex.Companion.escape
 
 fun navigate(
     @StringRes deeplinkResId: Int,
@@ -21,9 +22,11 @@ fun navigate(
 }
 
 private fun replacePathParams(deeplinkUri: String, pathParams: Map<String, String> = emptyMap()): Uri {
-    val deeplinkSb = StringBuilder(deeplinkUri)
-    pathParams.forEach { deeplinkSb.replaceFirst(Regex(it.key), it.value) }
-    val replacedDeeplinkUri = Uri.parse(deeplinkSb.toString())
+    var deeplinkSb = deeplinkUri
+    pathParams.forEach {
+        deeplinkSb = deeplinkSb.replace(Regex(escape("{" + it.key + "}")), it.value)
+    }
+    val replacedDeeplinkUri = Uri.parse(deeplinkSb)
     if (replacedDeeplinkUri.pathSegments.any { it.startsWith("{") }) {
         throw IllegalArgumentException("Incorrect pathParams: $pathParams")
     }

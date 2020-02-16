@@ -57,6 +57,7 @@ class NewFlowTitleFragment : AppBaseFragment() {
     }
 
     private fun onNext(flow: Flow) {
-        navigate(R.string.deeplink_flow_steps, this)
+        val pathParams: Map<String, String> = mapOf("flow_id" to flow.id)
+        navigate(R.string.deeplink_flow_steps, this, null, pathParams)
     }
 }
