@@ -1,8 +1,8 @@
 package ui.lib.views
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 
 /** A [RecyclerView.Adapter] view type for [ItemListHeaderViewModel] */
@@ -14,7 +14,7 @@ const val VIEW_TYPE_LIST_BUTTON = 11002
 class ItemListHeaderViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
-    val headerText: LiveData<CharSequence> = MutableLiveData()
+    liveDataFactory: LiveDataFactory
 ) : ItemViewModel<ItemListHeaderViewModel.Input, ItemListHeaderViewModel.Event>(
     analyticsKey,
     streamFactory,
@@ -22,6 +22,9 @@ class ItemListHeaderViewModel(
     BR.viewModel,
     VIEW_TYPE_LIST_HEADER
 ) {
+
+    val headerText: LiveData<CharSequence> = liveDataFactory.liveData("18a333b8-d6a9")
+
     sealed class Input
     sealed class Event
 }
@@ -29,7 +32,7 @@ class ItemListHeaderViewModel(
 class ItemListButtonViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
-    val buttonText: LiveData<CharSequence> = MutableLiveData()
+    liveDataFactory: LiveDataFactory
 ) : ItemViewModel<ItemListButtonViewModel.Input, ItemListButtonViewModel.Output>(
     analyticsKey,
     streamFactory,
@@ -37,6 +40,9 @@ class ItemListButtonViewModel(
     BR.viewModel,
     VIEW_TYPE_LIST_BUTTON
 ) {
+
+    val buttonText: LiveData<CharSequence> = liveDataFactory.liveData("17df35b8-486c")
+
     fun onClick() {
         sendOutput(Output.OnClick)
     }

@@ -1,6 +1,7 @@
 package app.di
 
 import android.app.Application
+import core.lib.analytics.di.AnalyticsComponent
 import dagger.BindsInstance
 import dagger.Component
 import data.flow.di.FlowComponent
@@ -13,7 +14,7 @@ import javax.inject.Singleton
     ]
 )
 @Singleton
-interface AppComponent : BaseAppComponent, FlowComponent {
+interface AppComponent : BaseAppComponent, AnalyticsComponent, FlowComponent {
 
     override fun application(): Application
 
