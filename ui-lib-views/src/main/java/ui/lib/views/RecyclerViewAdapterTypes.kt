@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class FeedViewHolder(
     val binding: ViewDataBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    abstract fun bind(itemViewModel: ItemViewModel<Any, Any>)
+    abstract fun bind(itemViewModel: ItemViewModel<*,*>)
 }
 
 /**
@@ -16,8 +16,8 @@ abstract class FeedViewHolder(
  */
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 class DiffUtilCallback(
-    private val oldList: List<ItemViewModel<Any, Any>>,
-    private val newList: List<ItemViewModel<Any, Any>>
+    private val oldList: List<ItemViewModel<*,*>>,
+    private val newList: List<ItemViewModel<*,*>>
 ) : DiffUtil.Callback() {
 
     override fun areItemsTheSame(

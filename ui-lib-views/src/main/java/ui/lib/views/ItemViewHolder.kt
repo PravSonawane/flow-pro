@@ -13,7 +13,7 @@ class ItemViewHolder(
     @LayoutRes layoutId: Int,
     @IntegerRes private val variableId: Int
 ) : FeedViewHolder(inflate(parent, layoutId)) {
-    override fun bind(itemViewModel: ItemViewModel<Any, Any>) {
+    override fun bind(itemViewModel: ItemViewModel<*,*>) {
         binding.setVariable(variableId, itemViewModel)
     }
 
