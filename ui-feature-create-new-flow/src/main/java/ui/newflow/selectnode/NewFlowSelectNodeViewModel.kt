@@ -27,7 +27,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val data: MutableLiveData<Any> = liveDataFactory.mutableLiveData("e588c436-e1a8")
+    val items: MutableLiveData<List<SelectNodeItemViewModel>> = liveDataFactory.mutableLiveData("e588c436-e1a8")
     val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("3fbb7441-da29")
 
     init {
@@ -58,7 +58,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
         val items: List<SelectNodeItemViewModel> = nodes.map {
             viewModelFactory.create(NODE_ITEM_ANALYTICS_KEY, it)
         }
-        data.value = items
+        this.items.value = items
     }
 
     private fun handleGetAllNodesFailure(error: DomainError) {

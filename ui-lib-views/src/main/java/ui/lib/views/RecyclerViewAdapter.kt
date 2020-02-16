@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
 
-    private val adapterItems = ArrayList<ItemViewModel<Any, Any>>()
+    private val adapterItems = ArrayList<ItemViewModel<*,*>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         val item = adapterItems.find { it.viewType == viewType }
@@ -35,7 +35,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
      * adapter handles the notification process internally. Calling [notifyDataSetChanged] or any
      * related methods might be inefficient.
      */
-    fun updateData(viewModels: List<ItemViewModel<Any, Any>>) {
+    fun updateData(viewModels: List<ItemViewModel<*, *>>) {
         val newAdapterItemList = viewModels.map { it }
         val diffUtilResult = DiffUtil.calculateDiff(DiffUtilCallback(adapterItems, newAdapterItemList))
         this.adapterItems.clear()
