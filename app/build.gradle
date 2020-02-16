@@ -35,6 +35,7 @@ dependencies {
     //ui
     implementation project(":ui-flow-list")
     implementation project(':ui-feature-create-new-flow')
+    implementation project(':ui-feature-flow-step-list')
 
     //ui lib
     implementation project(":ui-lib-base")

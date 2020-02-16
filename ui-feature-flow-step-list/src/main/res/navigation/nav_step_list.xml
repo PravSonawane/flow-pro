@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/step_list_graph"
+    app:startDestination="@id/fragment_flow_step_list"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/fragment_flow_step_list"
+        android:name="ui.feature.flow.steplist.FlowStepListFragment"
+        android:label="fragment_flow_step_list"
+        tools:layout="@layout/fragment_flow_step_list">
+        <deepLink
+            android:id="@+id/deepLink_flow_steps"
+            app:uri="https://curlybraces.dev/flowpro/flow/steps"
+            />
+    </fragment>
+
+</navigation>

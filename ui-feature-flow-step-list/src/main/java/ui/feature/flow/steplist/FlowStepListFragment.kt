@@ -42,9 +42,8 @@ class FlowStepListFragment : AppBaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val flowId = arguments?.getString(ARG_FLOW_ID)
-            ?: throw IllegalStateException("Flow ID is required")
-        viewModel.sendInput(FlowStepListViewModel.Input.FlowId(flowId))
+        //TODO need to pass arguments via deeplink. Hardcoding for now.
+        viewModel.sendInput(FlowStepListViewModel.Input.FlowId("1"))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
