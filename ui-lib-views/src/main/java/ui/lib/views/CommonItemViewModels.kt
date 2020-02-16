@@ -1,7 +1,6 @@
 package ui.lib.views
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory

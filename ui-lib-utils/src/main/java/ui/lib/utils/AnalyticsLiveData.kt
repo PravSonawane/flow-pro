@@ -1,7 +1,6 @@
 package ui.lib.utils
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import core.lib.analytics.Analytics
 
 class AnalyticsLiveData<T>(

@@ -14,7 +14,7 @@ class SelectNodeItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
-    _node: Node
+    item: Node
 ) : ItemViewModel<SelectNodeItemViewModel.Input, SelectNodeItemViewModel.Event>(
     analyticsKey,
     streamFactory,
@@ -23,7 +23,7 @@ class SelectNodeItemViewModel(
     VIEW_TYPE_ITEM_NODE
 ) {
 
-    val node: LiveData<Node> = liveDataFactory.liveData("6a4b42fe-09a3", _node)
+    val node: LiveData<Node> = liveDataFactory.liveData("6a4b42fe-09a3", item)
 
     sealed class Input
     sealed class Event
