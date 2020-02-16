@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.flow.steplist.R
 import ui.feature.flow.steplist.databinding.FragmentFlowStepListBinding
 import javax.inject.Inject
 
@@ -51,7 +50,7 @@ class FlowStepListFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    FlowStepListViewModel.Event.OnNext -> {}
+                    FlowStepListViewModel.Event.OnNewStep -> {}
                 }
             }
 

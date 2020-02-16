@@ -70,7 +70,7 @@ class FlowStepListViewModel @Inject constructor(
     }
 
     fun onNext() {
-        sendOutput(Event.OnNext)
+        sendOutput(Event.OnNewStep)
     }
 
     sealed class Input {
@@ -78,7 +78,7 @@ class FlowStepListViewModel @Inject constructor(
     }
 
     sealed class Event {
-        object OnNext : Event()
+        object OnNewStep : Event()
     }
 
     override fun onCleared() {
