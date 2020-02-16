@@ -45,7 +45,7 @@ fun dividerItemDecorationVertical(context: Context): ItemDecoration {
  * @param data a list of [ItemViewModel]
  */
 @BindingAdapter("adapterItems")
-fun <T : ItemViewModel<*,*>> setAdapterItems(
+fun <T : ItemViewModel<*, *>> setAdapterItems(
     recyclerView: RecyclerView,
     data: List<T>?
 ) {

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
 
-    private val adapterItems = ArrayList<ItemViewModel<*,*>>()
+    private val adapterItems = ArrayList<ItemViewModel<*, *>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         val item = adapterItems.find { it.viewType == viewType }
