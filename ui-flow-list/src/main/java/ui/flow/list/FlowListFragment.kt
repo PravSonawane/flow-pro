@@ -18,7 +18,7 @@ class FlowListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_flow_list, container, false)
 
         view.findViewById<FloatingActionButton>(R.id.fab_add_new_flow)
-            .setOnClickListener { navigate(R.string.deeplink_newflow_title, this) }
+            .setOnClickListener { navigate(this, R.string.deeplink_newflow_title) }
         return view
     }
 }

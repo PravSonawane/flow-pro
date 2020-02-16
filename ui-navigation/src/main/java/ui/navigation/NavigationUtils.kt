@@ -8,27 +8,32 @@ import androidx.navigation.fragment.findNavController
 import kotlin.text.Regex.Companion.escape
 
 fun navigate(
-    @StringRes deeplinkResId: Int,
     fragment: Fragment,
-    navOptions: NavOptions? = null,
+    @StringRes deeplinkResId: Int,
     pathParams: Map<String, String> = emptyMap(),
-    queryParams: Map<String, String> = emptyMap()
+    queryParams: Map<String, String> = emptyMap(),
+    navOptions: NavOptions? = null
 ) {
     val deeplinkUri = fragment.resources.getString(deeplinkResId)
     fragment.findNavController().navigate(
-        replacePathParams(deeplinkUri, pathParams),
+        replaceParams(deeplinkUri, pathParams),
         navOptions
     )
 }
 
-private fun replacePathParams(deeplinkUri: String, pathParams: Map<String, String> = emptyMap()): Uri {
+private fun replaceParams(
+    deeplinkUri: String,
+    pathParams: Map<String, String> = emptyMap(),
+    queryParams: Map<String, String> = emptyMap()
+): Uri {
     var deeplinkSb = deeplinkUri
     pathParams.forEach {
         deeplinkSb = deeplinkSb.replace(Regex(escape("{" + it.key + "}")), it.value)
     }
     val replacedDeeplinkUri = Uri.parse(deeplinkSb)
-    if (replacedDeeplinkUri.pathSegments.any { it.startsWith("{") }) {
-        throw IllegalArgumentException("Incorrect pathParams: $pathParams")
+    val pathSegments = replacedDeeplinkUri.pathSegments
+    if (pathSegments.any { it.startsWith("{") }) {
+        throw IllegalArgumentException("Incorrect pathParams: Required: $pathSegments. Found: $pathParams")
     }
     return replacedDeeplinkUri
 }
