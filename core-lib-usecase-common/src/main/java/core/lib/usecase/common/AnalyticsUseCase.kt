@@ -3,25 +3,40 @@ package core.lib.usecase.common
 import core.lib.analytics.Analytics
 import core.lib.analytics.AnalyticsRepository
 import core.lib.result.Result
+import core.lib.result.toData
+import core.lib.result.toResult
 import core.lib.usecase.ObservableResultUseCase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class AnalyticsUseCase<T> @Inject constructor(
-    private val useCase: ObservableResultUseCase<AnalyticsData<T>, T>,
+class AnalyticsUseCase<Input, Output> @Inject constructor(
+    private val useCase: ObservableResultUseCase<Input, Output>,
     private val analyticsRepository: AnalyticsRepository
-) : ObservableResultUseCase<AnalyticsData<T>, T> {
+) : ObservableResultUseCase<AnalyticsData<Input>, Output> {
 
-    override fun invoke(input: AnalyticsData<T>): Observable<Result<T>> {
+    override fun invoke(input: AnalyticsData<Input>): Observable<Result<Output>> {
         return Observable.just(input)
-            .doOnNext { logEvent(it) }
-            .flatMap { useCase.invoke(it) }
+            .doOnNext { logInput(it) }
+            .flatMap { useCase.invoke(it.data) }
+            .flatMap { it.toData() }
+            .map { AnalyticsData(input.analyticsKey, it) }
+            .doOnNext { logOutput(it) }
+            .map { it.data }
+            .map { it.toResult() }
     }
 
-    private fun logEvent(it: AnalyticsData<T>) {
+    private fun logInput(it: AnalyticsData<Input>) {
         val attributes: Map<String, String> = mapOf(
             "analyticsKey" to it.analyticsKey,
-            "data" to it.data.toString()
+            "input" to it.data.toString()
+        )
+        analyticsRepository.logEvent(Analytics.KEY_DEBUG, attributes)
+    }
+
+    private fun logOutput(it: AnalyticsData<Output>) {
+        val attributes: Map<String, String> = mapOf(
+            "analyticsKey" to it.analyticsKey,
+            "output" to it.data.toString()
         )
         analyticsRepository.logEvent(Analytics.KEY_DEBUG, attributes)
     }

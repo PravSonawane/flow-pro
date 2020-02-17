@@ -9,13 +9,13 @@ import core.lib.usecase.ObservableResultUseCase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class PluginUseCase<T> @Inject constructor(
-    private val useCase: ObservableResultUseCase<T, T>,
+class PluginUseCase<Input, Output> @Inject constructor(
+    private val useCase: ObservableResultUseCase<Input, Output>,
     private val analyticsRepository: AnalyticsRepository,
     private val pluginRepository: PluginRepository
-) : ObservableResultUseCase<PluginData<T>, T> {
+) : ObservableResultUseCase<PluginData<Input>, Output> {
 
-    override fun invoke(input: PluginData<T>): Observable<Result<T>> {
+    override fun invoke(input: PluginData<Input>): Observable<Result<Output>> {
         return pluginRepository.isEnabled(input.plugin)
             .flatMap { it.toData() }
             .doOnNext { logEvent(input.plugin.pluginKey, it) }
