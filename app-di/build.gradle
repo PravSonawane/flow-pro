@@ -35,9 +35,11 @@ dependencies {
     //ui lib
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-di")
+    implementation project(":app-di-annotations")
 
     //analytics
     implementation project(":core-lib-analytics")
+    implementation project(":core-lib-analytics-firebase")
     implementation project(":core-lib-analytics-impl")
 
     //domain

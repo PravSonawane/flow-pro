@@ -4,16 +4,16 @@ import core.lib.analytics.Analytics
 import core.lib.analytics.impl.AnalyticsImpl
 import javax.inject.Inject
 
-class StreamFactory @Inject constructor() {
+class StreamFactory @Inject constructor(
+    private val analytics: Analytics
+) {
     fun <T> simpleStream(): SimpleStream<T> {
         return SimpleStream()
     }
 
     fun <T> analyticsStream(
-        analyticsKey: String,
-        analytics: Analytics = AnalyticsImpl(),
-        stream: Stream<T> = SimpleStream()
+        analyticsKey: String
     ): AnalyticsStream<T> {
-        return AnalyticsStream(analyticsKey, analytics, stream)
+        return AnalyticsStream(analyticsKey, analytics, simpleStream())
     }
 }

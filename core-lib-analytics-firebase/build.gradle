@@ -1,5 +1,4 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -9,13 +8,13 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "dev.curlybraces.flowpro"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -25,45 +24,16 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //ui
-    implementation project(":ui-flow-list")
-    implementation project(':ui-feature-create-new-flow')
-    implementation project(':ui-feature-flow-step-list')
-
-    //ui lib
-    implementation project(":ui-lib-base")
-    implementation project(":ui-lib-di")
-    implementation project(":ui-lib-databinding-adapters")
-
     //analytics
     implementation project(":core-lib-analytics")
-    implementation project(":core-lib-analytics-impl")
 
-    //core
-    implementation project(":core-lib-usecase")
-
-    //app
-    implementation project(":app-di")
-
-    //domain
-    implementation project(':domain-feature-flow')
-    implementation project(':domain-models-flow')
-
-    //data
-    implementation project(':data-feature-flow')
-
-    // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    //lib
+    implementation project(":app-di-annotations")
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -71,15 +41,12 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    // Constraint Layout
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-
     // firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

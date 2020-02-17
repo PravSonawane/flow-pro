@@ -58,6 +58,7 @@ dependencies {
 
     //di
     implementation project(":app-di")
+    implementation project(":app-di-annotations")
 
     //analytics
     implementation project(":core-lib-analytics")

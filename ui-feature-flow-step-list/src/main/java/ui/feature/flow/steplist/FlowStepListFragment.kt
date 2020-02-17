@@ -42,7 +42,7 @@ class FlowStepListFragment : AppBaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val flowId = arguments?.getString(ARG_FLOW_ID)
+        val flowId = arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_flow_id))
             ?: throw IllegalStateException("Flow ID is required")
         viewModel.sendInput(FlowStepListViewModel.Input.FlowId(flowId))
 
@@ -55,9 +55,5 @@ class FlowStepListFragment : AppBaseFragment() {
             }
 
         return binding.root
-    }
-
-    companion object {
-        const val ARG_FLOW_ID = "FLOW_ID"
     }
 }
