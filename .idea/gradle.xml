@@ -17,9 +17,11 @@
             <option value="$PROJECT_DIR$/core-lib-analytics" />
             <option value="$PROJECT_DIR$/core-lib-analytics-firebase" />
             <option value="$PROJECT_DIR$/core-lib-analytics-impl" />
+            <option value="$PROJECT_DIR$/core-lib-plugin" />
             <option value="$PROJECT_DIR$/core-lib-result" />
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
             <option value="$PROJECT_DIR$/core-lib-usecase" />
+            <option value="$PROJECT_DIR$/core-lib-usecase-common" />
             <option value="$PROJECT_DIR$/data-feature-flow" />
             <option value="$PROJECT_DIR$/domain-feature-flow" />
             <option value="$PROJECT_DIR$/domain-models-flow" />
