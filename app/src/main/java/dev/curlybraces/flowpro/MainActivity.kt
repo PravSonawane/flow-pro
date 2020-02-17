@@ -6,6 +6,7 @@ import app.di.AppComponent
 import app.di.DaggerMainComponent
 import app.di.MainComponent
 import app.di.MainModule
+import com.google.firebase.analytics.FirebaseAnalytics
 import dev.curlybraces.flowpro.databinding.ActivityMainBinding
 import ui.lib.base.BaseActivity
 
@@ -27,6 +28,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val instance = FirebaseAnalytics.getInstance(application.applicationContext)
+        instance.logEvent(FirebaseAnalytics.Event.APP_OPEN, Bundle())
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 

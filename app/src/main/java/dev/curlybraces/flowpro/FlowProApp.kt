@@ -9,6 +9,7 @@ class FlowProApp : BaseApplication() {
     private val appComponent by lazy {
         DaggerAppComponent.builder()
             .application(this)
+            .applicationContext(this)
             .build()
     }
 

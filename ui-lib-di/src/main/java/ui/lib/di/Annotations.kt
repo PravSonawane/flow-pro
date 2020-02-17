@@ -4,6 +4,8 @@ import android.app.Service
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import javax.inject.Scope
+import android.content.Context
+import android.app.Application
 import kotlin.annotation.AnnotationRetention.RUNTIME
 
 /** Used to annotate dagger components/sub components which that should live as long as a [Fragment] */

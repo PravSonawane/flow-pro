@@ -11,16 +11,50 @@ class AnalyticsStream<T> @Inject constructor(
 ) : Stream<T> {
 
     override fun publish(data: T) {
-        analytics.logEvent(analyticsKey, mapOf("onPublish" to data.toString()))
+        val attributes: Map<String, String> = mapOf(
+            "analyticsKey" to analyticsKey,
+            "onPublish" to data.toString()
+        )
+        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
         return stream.publish(data)
     }
 
     override fun subscribe(): Observable<T> {
         return stream.subscribe()
-            .doOnNext { analytics.logEvent(analyticsKey, mapOf("onNext" to it.toString())) }
-            .doOnSubscribe { analytics.logEvent(analyticsKey, mapOf("onSubscribe" to it.toString())) }
-            .doOnComplete { analytics.logEvent(analyticsKey, mapOf("onComplete" to Unit)) }
-            .doOnDispose { analytics.logEvent(analyticsKey, mapOf("onDispose" to Unit)) }
-            .doOnError { analytics.logEvent(analyticsKey, mapOf("onError" to it.toString())) }
+            .doOnNext {
+                val attributes: Map<String, String> = mapOf(
+                    "analyticsKey" to analyticsKey,
+                    "onNext" to it.toString()
+                )
+                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+            }
+            .doOnSubscribe {
+                val attributes: Map<String, String> = mapOf(
+                    "analyticsKey" to analyticsKey,
+                    "onSubscribe" to it.toString()
+                )
+                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+            }
+            .doOnComplete {
+                val attributes: Map<String, String> = mapOf(
+                    "analyticsKey" to analyticsKey,
+                    "onComplete" to Unit.toString()
+                )
+                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+            }
+            .doOnDispose {
+                val attributes: Map<String, String> = mapOf(
+                    "analyticsKey" to analyticsKey,
+                    "onDispose" to Unit.toString()
+                )
+                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+            }
+            .doOnError {
+                val attributes: Map<String, String> = mapOf(
+                    "analyticsKey" to analyticsKey,
+                    "onError" to it.toString()
+                )
+                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+            }
     }
 }

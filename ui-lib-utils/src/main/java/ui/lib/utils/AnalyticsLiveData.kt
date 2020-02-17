@@ -10,18 +10,31 @@ class AnalyticsLiveData<T>(
 ) : LiveData<T>(defaultValue) {
 
     override fun setValue(value: T) {
-        analytics.logEvent(analyticsKey, mapOf("onSetValue" to value as Any))
+        val attributes: Map<String, String> = mapOf(
+            "analyticsKey" to analyticsKey,
+            "onSetValue" to (value as Any).toString()
+        )
+        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
         super.setValue(value)
     }
 
     override fun postValue(value: T) {
-        analytics.logEvent(analyticsKey, mapOf("onPostValue" to value as Any))
+        val attributes: Map<String, String> = mapOf(
+            "analyticsKey" to analyticsKey,
+            "onPostValue" to (value as Any).toString()
+        )
+        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
         super.postValue(value)
     }
 
     override fun getValue(): T? {
         val value = super.getValue()
-        analytics.logEvent(analyticsKey, mapOf("onGetValue" to value as Any?))
+
+        val attributes: Map<String, String> = mapOf(
+            "analyticsKey" to analyticsKey,
+            "onGetValue" to (value as Any?).toString()
+        )
+        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
         return value
     }
 }
