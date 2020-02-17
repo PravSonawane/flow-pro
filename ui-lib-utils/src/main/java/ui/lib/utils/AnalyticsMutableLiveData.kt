@@ -37,4 +37,8 @@ class AnalyticsMutableLiveData<T>(
         analytics.logEvent(Analytics.KEY_DEBUG, attributes)
         return value
     }
+
+    override fun toString(): String {
+        return "AnalyticsMutableLiveData(value=$value)"
+    }
 }
