@@ -43,12 +43,12 @@ class FlowModule {
     @Named("GET_FLOW_BY_ID")
     @Provides
     fun getFlowById(
-        flowRepository: FlowRepository,
+        getFlowByIdUseCase: GetFlowByIdUseCase,
         pluginRepository: PluginRepository,
         analyticsRepository: AnalyticsRepository
     ): BusinessUseCase<String, Flow> {
         return BusinessUseCase(
-            GetFlowByIdUseCase(flowRepository),
+            getFlowByIdUseCase,
             pluginRepository,
             analyticsRepository
         )
