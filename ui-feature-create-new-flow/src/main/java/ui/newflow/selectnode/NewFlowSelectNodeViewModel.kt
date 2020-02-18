@@ -74,7 +74,7 @@ class NewFlowSelectNodeViewModel @Inject constructor(
     }
 
     sealed class Input {
-        class FlowId(val id: String) : Input()
+        data class FlowId(val id: String) : Input()
     }
 
     sealed class Event {

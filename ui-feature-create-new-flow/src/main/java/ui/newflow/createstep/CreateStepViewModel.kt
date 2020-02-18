@@ -56,7 +56,7 @@ class CreateStepViewModel @Inject constructor(
     }
 
     sealed class Event {
-        class OnShowSelectNode(val flow: Flow) : Event()
+        data class OnShowSelectNode(val flow: Flow) : Event()
         object OnNoFlowError : Event()
     }
 
