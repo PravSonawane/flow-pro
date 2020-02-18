@@ -37,6 +37,10 @@ dependencies {
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-base")
 
+    //plugin
+    implementation project(":core-lib-plugin")
+    implementation project(":core-lib-plugin-impl")
+
     //analytics
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-impl")

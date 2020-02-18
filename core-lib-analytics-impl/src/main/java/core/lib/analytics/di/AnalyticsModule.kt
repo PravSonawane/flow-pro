@@ -1,6 +1,7 @@
 package core.lib.analytics.di
 
 import core.lib.analytics.Analytics
+import core.lib.analytics.AnalyticsRepository
 import core.lib.analytics.firebase.FirebaseAnalytics
 import core.lib.analytics.firebase.di.FirebaseAnalyticsModule
 import core.lib.analytics.impl.AnalyticsImpl
@@ -16,10 +17,16 @@ class AnalyticsModule {
 
     @Provides
     @Singleton
-    fun analytics(
+    fun analytics(analyticsRepository: AnalyticsRepository): Analytics {
+        return analyticsRepository
+    }
+
+    @Provides
+    @Singleton
+    fun analyticsRepository(
         loggingAnalytics: LoggingAnalytics,
         firebaseAnalytics: FirebaseAnalytics
-    ): Analytics {
+    ): AnalyticsRepository {
         return AnalyticsImpl(loggingAnalytics, firebaseAnalytics)
     }
 }

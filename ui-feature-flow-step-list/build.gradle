@@ -47,6 +47,7 @@ dependencies {
 
     //core
     implementation project(":core-lib-usecase")
+    implementation project(":core-lib-usecase-common")
 
     //domain
     implementation project(':core-lib-result')
@@ -63,6 +64,10 @@ dependencies {
     //analytics
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-impl")
+
+    //plugin
+    implementation project(":core-lib-plugin")
+    implementation project(":core-lib-plugin-impl")
 
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
