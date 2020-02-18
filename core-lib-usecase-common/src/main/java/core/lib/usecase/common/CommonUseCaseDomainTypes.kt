@@ -9,5 +9,11 @@ data class AnalyticsData<T>(
 
 data class PluginData<T>(
     val plugin: Plugin,
-    val data: T
+    val data: AnalyticsData<T>
+)
+
+data class BusinessInput<T>(
+    val input: T,
+    val analyticsKey: String,
+    val plugin: Plugin
 )

@@ -9,6 +9,7 @@ import data.flow.di.FlowComponent
 import ui.lib.di.BaseAppComponent
 import javax.inject.Singleton
 import app.di.annotations.ApplicationContext
+import core.lib.plugin.impl.di.PluginComponent
 
 @Component(
     modules = [
@@ -16,7 +17,10 @@ import app.di.annotations.ApplicationContext
     ]
 )
 @Singleton
-interface AppComponent : BaseAppComponent, AnalyticsComponent, FlowComponent {
+interface AppComponent : BaseAppComponent,
+    PluginComponent,
+    AnalyticsComponent,
+    FlowComponent {
 
     override fun application(): Application
     @ApplicationContext override fun applicationContext(): Context

@@ -1,9 +1,13 @@
 package ui.feature.flow.steplist
 
 import androidx.lifecycle.MutableLiveData
+import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.ObservableResultUseCase
+import core.lib.usecase.common.BusinessInput
+import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
@@ -14,9 +18,10 @@ import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
+import javax.inject.Named
 
 class FlowStepListViewModel @Inject constructor(
-    private val getFlowByIdUseCase: GetFlowByIdUseCase,
+    @Named("GET_FLOW_BY_ID") val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val viewModelFactory: ViewModelFactory,
     private val streamFactory: StreamFactory,
@@ -49,7 +54,13 @@ class FlowStepListViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .flatMap {
                 when (it) {
-                    is Input.FlowId -> getFlowByIdUseCase(it.id)
+                    is Input.FlowId -> getFlowByIdUseCase(
+                        BusinessInput(
+                            it.id,
+                            "39de221c-2d52",
+                            Plugin("8998e937-aa6d")
+                        )
+                    )
                 }
             }
             .subscribe {

@@ -10,7 +10,7 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class PluginUseCase<Input, Output> @Inject constructor(
-    private val useCase: ObservableResultUseCase<Input, Output>,
+    @JvmSuppressWildcards val useCase: AnalyticsUseCase<Input, Output>,
     private val analyticsRepository: AnalyticsRepository,
     private val pluginRepository: PluginRepository
 ) : ObservableResultUseCase<PluginData<Input>, Output> {

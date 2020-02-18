@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core-lib-analytics-firebase" />
             <option value="$PROJECT_DIR$/core-lib-analytics-impl" />
             <option value="$PROJECT_DIR$/core-lib-plugin" />
+            <option value="$PROJECT_DIR$/core-lib-plugin-impl" />
             <option value="$PROJECT_DIR$/core-lib-result" />
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
             <option value="$PROJECT_DIR$/core-lib-usecase" />
