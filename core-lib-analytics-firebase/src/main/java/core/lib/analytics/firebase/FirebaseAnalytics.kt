@@ -21,7 +21,9 @@ class FirebaseAnalytics @Inject constructor(
             newKey = KEY_DEBUG
             mutableMap["analyticsKey"] = key
             attributes.forEach {
-                mutableMap[it.key] = it.value.toString().take(1000)
+                // firebase key limit = 40 chars
+                // firebase value limit = 100 chars
+                mutableMap[it.key.take(40)] = it.value.toString().take(100)
             }
         }
 
