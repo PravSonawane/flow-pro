@@ -15,7 +15,7 @@ class AnalyticsStream<T> @Inject constructor(
             "analyticsKey" to analyticsKey,
             "onPublish" to data.toString()
         )
-        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+        analytics.logEvent(analyticsKey, attributes)
         return stream.publish(data)
     }
 
@@ -23,38 +23,33 @@ class AnalyticsStream<T> @Inject constructor(
         return stream.subscribe()
             .doOnNext {
                 val attributes: Map<String, String> = mapOf(
-                    "analyticsKey" to analyticsKey,
                     "onNext" to it.toString()
                 )
-                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+                analytics.logEvent(analyticsKey, attributes)
             }
             .doOnSubscribe {
                 val attributes: Map<String, String> = mapOf(
-                    "analyticsKey" to analyticsKey,
                     "onSubscribe" to it.toString()
                 )
-                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+                analytics.logEvent(analyticsKey, attributes)
             }
             .doOnComplete {
                 val attributes: Map<String, String> = mapOf(
-                    "analyticsKey" to analyticsKey,
                     "onComplete" to Unit.toString()
                 )
-                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+                analytics.logEvent(analyticsKey, attributes)
             }
             .doOnDispose {
                 val attributes: Map<String, String> = mapOf(
-                    "analyticsKey" to analyticsKey,
                     "onDispose" to Unit.toString()
                 )
-                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+                analytics.logEvent(analyticsKey, attributes)
             }
             .doOnError {
                 val attributes: Map<String, String> = mapOf(
-                    "analyticsKey" to analyticsKey,
                     "onError" to it.toString()
                 )
-                analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+                analytics.logEvent(analyticsKey, attributes)
             }
     }
 }

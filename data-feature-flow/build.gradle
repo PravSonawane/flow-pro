@@ -39,6 +39,7 @@ dependencies {
     implementation project(':core-lib-plugin-impl')
 
     //domain
+    implementation project(':domain-models-core')
     implementation project(':domain-feature-flow')
     implementation project(':domain-models-flow')
 

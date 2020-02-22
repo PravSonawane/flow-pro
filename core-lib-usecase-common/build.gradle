@@ -6,6 +6,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //domain core
+    implementation project(":domain-models-core")
     implementation project(':core-lib-analytics')
     implementation project(':core-lib-usecase')
     implementation project(':core-lib-result')

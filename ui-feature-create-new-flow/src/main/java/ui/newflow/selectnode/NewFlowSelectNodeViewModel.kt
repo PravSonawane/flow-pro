@@ -1,9 +1,12 @@
 package ui.newflow.selectnode
 
 import androidx.lifecycle.MutableLiveData
+import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.common.BusinessData
+import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
@@ -14,13 +17,14 @@ import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
+import javax.inject.Named
 
 class NewFlowSelectNodeViewModel @Inject constructor(
-    private val getFlowByIdUseCase: GetFlowByIdUseCase,
-    private val getAllNodesUseCase: GetAllNodesUseCase,
-    private val viewModelFactory: ViewModelFactory,
-    private val streamFactory: StreamFactory,
-    private val liveDataFactory: LiveDataFactory
+    @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    getAllNodesUseCase: GetAllNodesUseCase,
+    streamFactory: StreamFactory,
+    liveDataFactory: LiveDataFactory,
+    private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<NewFlowSelectNodeViewModel.Input, NewFlowSelectNodeViewModel.Event>(
     "b7dcd411-0058",
     streamFactory
@@ -44,7 +48,13 @@ class NewFlowSelectNodeViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .flatMap {
                 when (it) {
-                    is Input.FlowId -> getFlowByIdUseCase(it.id)
+                    is Input.FlowId -> getFlowByIdUseCase(
+                        BusinessData(
+                            "f432fdb6-f4d5",
+                            Plugin("004be7a6-34e9"),
+                            it.id
+                        )
+                    )
                 }
             }
             .subscribe {

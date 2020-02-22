@@ -5,9 +5,10 @@ import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.common.BusinessInput
+import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetAllStepsUseCase
+import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -19,7 +20,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class FlowStepListViewModel @Inject constructor(
-    @Named("GET_FLOW_BY_ID") val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val viewModelFactory: ViewModelFactory,
     private val streamFactory: StreamFactory,
@@ -53,10 +54,10 @@ class FlowStepListViewModel @Inject constructor(
             .flatMap {
                 when (it) {
                     is Input.FlowId -> getFlowByIdUseCase(
-                        BusinessInput(
-                            it.id,
-                            "39de221c-2d52",
-                            Plugin("8998e937-aa6d")
+                        BusinessData(
+                            "7880cff2-530e",
+                            Plugin("152a67de-3676"),
+                            it.id
                         )
                     )
                 }
