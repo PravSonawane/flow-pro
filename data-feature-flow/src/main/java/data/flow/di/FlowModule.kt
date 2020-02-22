@@ -41,16 +41,9 @@ class FlowModule {
     @Named(GetFlowByIdUseCase.NAMED)
     @Provides
     fun getFlowById(
-        getFlowByIdUseCase: GetFlowByIdUseCase,
-        inputAnalyticsTransformer: InputAnalyticsTransformer<String>,
-        outputAnalyticsTransformer: OutputAnalyticsTransformer<Flow>,
-        pluginTransformer: PluginTransformer<AnalyticsData<String>>
+        factory: BusinessUseCaseFactory<String, Flow>,
+        getFlowByIdUseCase: GetFlowByIdUseCase
     ): BusinessUseCase<String, Flow> {
-        return BusinessUseCase(
-            getFlowByIdUseCase,
-            inputAnalyticsTransformer,
-            outputAnalyticsTransformer,
-            pluginTransformer
-        )
+        return factory.create(getFlowByIdUseCase)
     }
 }
