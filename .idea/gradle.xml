@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/core-lib-usecase-common" />
             <option value="$PROJECT_DIR$/data-feature-flow" />
             <option value="$PROJECT_DIR$/domain-feature-flow" />
+            <option value="$PROJECT_DIR$/domain-models-core" />
             <option value="$PROJECT_DIR$/domain-models-flow" />
             <option value="$PROJECT_DIR$/ui-feature-create-new-flow" />
             <option value="$PROJECT_DIR$/ui-feature-flow-step-list" />

@@ -11,19 +11,17 @@ class AnalyticsLiveData<T>(
 
     override fun setValue(value: T) {
         val attributes: Map<String, String> = mapOf(
-            "analyticsKey" to analyticsKey,
             "onSetValue" to (value as Any).toString()
         )
-        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+        analytics.logEvent(analyticsKey, attributes)
         super.setValue(value)
     }
 
     override fun postValue(value: T) {
         val attributes: Map<String, String> = mapOf(
-            "analyticsKey" to analyticsKey,
             "onPostValue" to (value as Any).toString()
         )
-        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+        analytics.logEvent(analyticsKey, attributes)
         super.postValue(value)
     }
 
@@ -31,10 +29,9 @@ class AnalyticsLiveData<T>(
         val value = super.getValue()
 
         val attributes: Map<String, String> = mapOf(
-            "analyticsKey" to analyticsKey,
             "onGetValue" to (value as Any?).toString()
         )
-        analytics.logEvent(Analytics.KEY_DEBUG, attributes)
+        analytics.logEvent(analyticsKey, attributes)
         return value
     }
 

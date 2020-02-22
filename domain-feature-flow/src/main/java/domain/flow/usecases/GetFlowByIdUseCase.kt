@@ -14,4 +14,8 @@ class GetFlowByIdUseCase @Inject constructor(
     override operator fun invoke(input: String): Observable<Result<Flow>> {
         return flowRepository.get(input)
     }
+
+    companion object {
+        const val NAMED = "GET_FLOW_BY_ID"
+    }
 }

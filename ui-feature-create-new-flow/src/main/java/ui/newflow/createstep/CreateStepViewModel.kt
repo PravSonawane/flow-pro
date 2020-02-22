@@ -1,8 +1,11 @@
 package ui.newflow.createstep
 
 import androidx.lifecycle.MutableLiveData
+import core.lib.plugin.Plugin
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.common.BusinessData
+import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import io.reactivex.disposables.CompositeDisposable
@@ -10,11 +13,12 @@ import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
+import javax.inject.Named
 
 class CreateStepViewModel @Inject constructor(
     streamFactory: StreamFactory,
-    private val getFlowByIdUseCase: GetFlowByIdUseCase,
-    private val liveDataFactory: LiveDataFactory
+    @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    liveDataFactory: LiveDataFactory
 ) : BaseViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
     "e2fc2772-418e",
     streamFactory
@@ -28,7 +32,13 @@ class CreateStepViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .flatMap {
                 when (it) {
-                    is Input.FlowId -> getFlowByIdUseCase(it.id)
+                    is Input.FlowId -> getFlowByIdUseCase(
+                        BusinessData(
+                            "407a16de-1032",
+                            Plugin("4f270fb9-b350"),
+                            it.id
+                        )
+                    )
                 }
             }
             .subscribe {

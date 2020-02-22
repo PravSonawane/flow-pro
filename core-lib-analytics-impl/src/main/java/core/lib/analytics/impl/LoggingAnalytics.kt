@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class LoggingAnalytics @Inject constructor() : Analytics {
 
-    override fun logEvent(key: String, attributes: Map<String, Any?>) {
+    override fun logEvent(key: String, attributes: Map<String, Any?>, priority: Analytics.Priority) {
         Log.d(key, "logs:$attributes")
     }
 }

@@ -1,8 +1,6 @@
 package data.flow.di
 
-import core.lib.analytics.AnalyticsRepository
-import core.lib.plugin.PluginRepository
-import core.lib.usecase.common.BusinessUseCase
+import core.lib.usecase.common.*
 import core.lib.usecase.common.di.CommonUseCaseModule
 import dagger.Module
 import dagger.Provides
@@ -40,17 +38,19 @@ class FlowModule {
         return DefaultStepRepository()
     }
 
-    @Named("GET_FLOW_BY_ID")
+    @Named(GetFlowByIdUseCase.NAMED)
     @Provides
     fun getFlowById(
         getFlowByIdUseCase: GetFlowByIdUseCase,
-        pluginRepository: PluginRepository,
-        analyticsRepository: AnalyticsRepository
+        inputAnalyticsTransformer: InputAnalyticsTransformer<String>,
+        outputAnalyticsTransformer: OutputAnalyticsTransformer<Flow>,
+        pluginTransformer: PluginTransformer<AnalyticsData<String>>
     ): BusinessUseCase<String, Flow> {
         return BusinessUseCase(
             getFlowByIdUseCase,
-            pluginRepository,
-            analyticsRepository
+            inputAnalyticsTransformer,
+            outputAnalyticsTransformer,
+            pluginTransformer
         )
     }
 }
