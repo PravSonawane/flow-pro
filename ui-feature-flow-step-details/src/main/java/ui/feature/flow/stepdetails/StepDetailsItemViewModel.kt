@@ -1,4 +1,4 @@
-package ui.feature.flow.step.details
+package ui.feature.flow.stepdetails
 
 import androidx.lifecycle.LiveData
 import domain.models.flow.Step
@@ -29,7 +29,11 @@ class StepDetailsItemViewModel(
     }
 
     fun onStepDetails() {
-        step.value?.let { sendOutput(Event.OnStepDetails(it)) }
+        step.value?.let { sendOutput(
+            Event.OnStepDetails(
+                it
+            )
+        ) }
     }
 
     override fun toString(): String {

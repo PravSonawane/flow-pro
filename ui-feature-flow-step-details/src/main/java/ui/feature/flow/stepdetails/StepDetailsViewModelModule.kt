@@ -1,4 +1,4 @@
-package ui.feature.flow.step.details
+package ui.feature.flow.stepdetails
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds

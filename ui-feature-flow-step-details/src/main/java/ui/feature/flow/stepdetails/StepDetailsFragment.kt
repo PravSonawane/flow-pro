@@ -1,4 +1,4 @@
-package ui.feature.flow.step.details
+package ui.feature.flow.stepdetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.flow.step.details.databinding.FragmentFlowStepDetailsBinding
+import ui.feature.flow.stepdetails.databinding.FragmentFlowStepDetailsBinding
 import ui.navigation.navigate
 import javax.inject.Inject
 
@@ -48,8 +48,16 @@ class StepDetailsFragment : AppBaseFragment() {
             ?: throw IllegalStateException("Flow ID is required")
         val stepId = arguments?.getString(resources.getString(R.string.deeplink_flow_step_details_path_param_step_id))
             ?: throw IllegalStateException("Step ID is required")
-        viewModel.sendInput(StepDetailsViewModel.Input.FlowId(flowId))
-        viewModel.sendInput(StepDetailsViewModel.Input.StepId(stepId))
+        viewModel.sendInput(
+            StepDetailsViewModel.Input.FlowId(
+                flowId
+            )
+        )
+        viewModel.sendInput(
+            StepDetailsViewModel.Input.StepId(
+                stepId
+            )
+        )
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())

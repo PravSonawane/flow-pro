@@ -1,4 +1,4 @@
-package ui.feature.flow.step.details
+package ui.feature.flow.stepdetails
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin
@@ -153,7 +153,11 @@ class StepDetailsViewModel @Inject constructor(
     }
 
     private fun handleOnStepDetails(step: Step) {
-        sendOutput(Event.OnStepDetails(step))
+        sendOutput(
+            Event.OnStepDetails(
+                step
+            )
+        )
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {

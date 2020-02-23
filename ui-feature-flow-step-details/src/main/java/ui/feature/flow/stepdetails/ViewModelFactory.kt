@@ -1,4 +1,4 @@
-package ui.feature.flow.step.details
+package ui.feature.flow.stepdetails
 
 import domain.models.flow.Step
 import ui.lib.utils.LiveDataFactory
@@ -11,6 +11,11 @@ class ViewModelFactory @Inject constructor(
 ) {
 
     fun create(analyticsKey: String, step: Step): StepDetailsItemViewModel {
-        return StepDetailsItemViewModel(analyticsKey, streamFactory, liveDataFactory, step)
+        return StepDetailsItemViewModel(
+            analyticsKey,
+            streamFactory,
+            liveDataFactory,
+            step
+        )
     }
 }

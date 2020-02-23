@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ui.feature.flow.step.details" />
+    package="ui.feature.flow.stepdetails" />

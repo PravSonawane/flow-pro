@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_flow_step_details"
-        android:name="ui.feature.flow.step.details.StepDetailsFragment"
+        android:name="ui.feature.flow.stepdetails.StepDetailsFragment"
         android:label="fragment_flow_step_details"
         tools:layout="@layout/fragment_flow_step_details">
         <deepLink
