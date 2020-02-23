@@ -19,11 +19,11 @@ class FakeStorage {
             var step4 = Step("step4", "Is bulb burnt?", "Check if bulb is burnt", decisionNode)
             var step5 = Step("step5", "Stop", "Stop step", stopNode)
 
-            step1 = step1.copy(outputSteps = listOf(step2))
+            step1 = step1.copy(inputSteps = emptyList(), outputSteps = listOf(step2))
             step2 = step2.copy(inputSteps = listOf(step1), outputSteps = listOf(step3))
             step3 = step3.copy(inputSteps = listOf(step2), outputSteps = listOf(step4, step5))
             step4 = step4.copy(inputSteps = listOf(step3), outputSteps = listOf(step2, step5))
-            step5 = step5.copy(inputSteps = listOf(step3, step4))
+            step5 = step5.copy(inputSteps = listOf(step3, step4), outputSteps = emptyList())
 
             return Flow(
                 "1",

@@ -17,13 +17,38 @@
             android:id="@+id/input_step_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:adapterItems="@{viewModel.items}"
+            app:adapterItems="@{viewModel.inputItems}"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item_step_details"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/label_step_name"
+            />
+
+        <TextView
+            android:id="@+id/label_step_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.step.name}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_step_list"
+            app:layout_constraintBottom_toTopOf="@id/output_step_list"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/output_step_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adapterItems="@{viewModel.outputItems}"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_step_details"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_step_name"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

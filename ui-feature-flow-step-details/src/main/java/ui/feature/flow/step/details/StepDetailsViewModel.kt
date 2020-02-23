@@ -6,9 +6,7 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
-import domain.flow.usecases.GetInputStepsInput
-import domain.flow.usecases.GetInputStepsUseCase
+import domain.flow.usecases.*
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.disposables.CompositeDisposable
@@ -19,20 +17,25 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class StepDetailsViewModel @Inject constructor(
+    @Named(GetStepByIdUseCase.NAMED) val getStepByIdUseCase: BusinessUseCase<String, Step>,
     @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     @Named(GetInputStepsUseCase.NAMED) val getInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
+    @Named(GetOutputStepsUseCase.NAMED) val getOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<StepDetailsViewModel.Input, StepDetailsViewModel.Event>(
-    "ba45622c-d74a",
+    "29e6fff3-32a7",
     streamFactory
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<StepDetailsItemViewModel>> =
-        liveDataFactory.mutableLiveData("b277b859-277a")
-    val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("a4efee98-acaa")
+    val inputItems: MutableLiveData<List<StepDetailsItemViewModel>> =
+        liveDataFactory.mutableLiveData("d03bbb54-bfe0")
+    val outputItems: MutableLiveData<List<StepDetailsItemViewModel>> =
+        liveDataFactory.mutableLiveData("0f2ad39e-e31c")
+    val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("1692a7e5-47f5")
+    val step: MutableLiveData<Step> = liveDataFactory.mutableLiveData("53969ce5-8ef9")
 
     init {
         handleFlowIdInput()
@@ -46,8 +49,8 @@ class StepDetailsViewModel @Inject constructor(
             .flatMap {
                 getFlowByIdUseCase(
                     BusinessData(
-                        "7880cff2-530e",
-                        Plugin("152a67de-3676"),
+                        "e0ba73ff-5f29",
+                        Plugin("f34d4c75-3d81"),
                         it.id
                     )
                 )
@@ -60,14 +63,40 @@ class StepDetailsViewModel @Inject constructor(
     }
 
     private fun handleStepIdInput() {
+        getStep()
+        getInputSteps()
+        getOutputSteps()
+    }
+
+    private fun getStep() {
+        compositeDisposable += observeInput()
+            .filter { it is Input.StepId }
+            .map { it as Input.StepId }
+            .flatMap {
+                getStepByIdUseCase(
+                    BusinessData(
+                        "98301cab-9995",
+                        Plugin("8a35d450-f99b"),
+                        it.id
+                    )
+                )
+            }
+            .subscribe {
+                when (it) {
+                    is Result.OnSuccess -> handleGetStepByIdSuccess(it.data)
+                }
+            }
+    }
+
+    private fun getInputSteps() {
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
             .flatMap {
                 getInputStepsUseCase(
                     BusinessData(
-                        "7880cff2-530e",
-                        Plugin("152a67de-3676"),
+                        "52ad24ac-e785",
+                        Plugin("0290f8da-b3e3"),
                         GetInputStepsInput(it.id)
                     )
                 )
@@ -79,16 +108,40 @@ class StepDetailsViewModel @Inject constructor(
             }
     }
 
+    private fun getOutputSteps() {
+        compositeDisposable += observeInput()
+            .filter { it is Input.StepId }
+            .map { it as Input.StepId }
+            .flatMap {
+                getOutputStepsUseCase(
+                    BusinessData(
+                        "dfbb9ed3-588b",
+                        Plugin("2b100786-074c"),
+                        GetOutputStepsInput(it.id)
+                    )
+                )
+            }
+            .subscribe {
+                when (it) {
+                    is Result.OnSuccess -> handleGetOutputStepsSuccess(it.data)
+                }
+            }
+    }
+
     private fun handleGetFlowByIdSuccess(data: Flow) {
         flowName.value = data.name
     }
 
-    private fun handleGetInputStepsSuccess(data: List<Step>) {
-        items.value = data.map { viewModelFactory.create("a267d97f-d1e9", it) }
+    private fun handleGetStepByIdSuccess(data: Step) {
+        step.value = data
     }
 
-    fun onNext() {
-        sendOutput(Event.OnNewStep)
+    private fun handleGetInputStepsSuccess(data: List<Step>) {
+        inputItems.value = data.map { viewModelFactory.create("b3c872df-8066", it) }
+    }
+
+    private fun handleGetOutputStepsSuccess(data: List<Step>) {
+        outputItems.value = data.map { viewModelFactory.create("08a354bd-ab75", it) }
     }
 
     sealed class Input {

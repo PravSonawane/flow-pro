@@ -7,18 +7,19 @@ import domain.models.flow.Step
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class GetInputStepsUseCase @Inject constructor(
+class GetOutputStepsUseCase @Inject constructor(
     private val stepRepository: StepRepository
-) : ObservableResultUseCase<GetInputStepsInput, List<Step>> {
+) : ObservableResultUseCase<GetOutputStepsInput, List<Step>> {
 
-    override fun invoke(input: GetInputStepsInput): Observable<Result<List<Step>>> {
-        return stepRepository.getInputSteps(input.stepId)
+    override fun invoke(input: GetOutputStepsInput): Observable<Result<List<Step>>> {
+        return stepRepository.getOutputSteps(input.stepId)
     }
 
     companion object {
-        const val NAMED = "GET_INPUT_STEPS"
+        const val NAMED = "GET_OUTPUT_STEPS"
     }
 }
-data class GetInputStepsInput(
+
+data class GetOutputStepsInput(
     val stepId: String
 )
