@@ -24,7 +24,13 @@ class StepDetailsItemViewModel(
     val step: LiveData<Step> = liveDataFactory.liveData("d2e71ceb-80b4", item)
 
     sealed class Input
-    sealed class Event
+    sealed class Event {
+        data class OnStepDetails(val step: Step): Event()
+    }
+
+    fun onStepDetails() {
+        step.value?.let { sendOutput(Event.OnStepDetails(it)) }
+    }
 
     override fun toString(): String {
         return "FlowStepItemViewModel(step=$step)"

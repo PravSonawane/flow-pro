@@ -8,8 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
+import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.step.details.databinding.FragmentFlowStepDetailsBinding
+import ui.navigation.navigate
 import javax.inject.Inject
 
 class StepDetailsFragment : AppBaseFragment() {
@@ -53,10 +55,23 @@ class StepDetailsFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    StepDetailsViewModel.Event.OnNewStep -> {}
+                    is StepDetailsViewModel.Event.OnNewStep -> {}
+                    is StepDetailsViewModel.Event.OnStepDetails -> handleOnStepDetails(flowId, it.step)
                 }
             }
 
         return binding.root
+    }
+
+    private fun handleOnStepDetails(flowId: String, step: Step) {
+        val pathParams = mapOf(
+            R.string.deeplink_flow_step_details_path_param_flow_id to flowId,
+            R.string.deeplink_flow_step_details_path_param_step_id to step.id
+        )
+        navigate(
+            this,
+            R.string.deeplink_flow_step_details,
+            pathParams
+        )
     }
 }
