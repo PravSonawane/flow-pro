@@ -26,9 +26,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Flow name"
+                tools:text="Step name"
                 android:layout_gravity="center"
-                android:text="@{viewModel.step.name}" />
+                android:text="@{viewModel.step.name}"
+                android:onClick="@{() -> viewModel.onStepDetails()}"
+                />
 
         </androidx.cardview.widget.CardView>
 

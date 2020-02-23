@@ -9,6 +9,7 @@ import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.*
 import domain.models.flow.Flow
 import domain.models.flow.Step
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
@@ -23,7 +24,7 @@ class StepDetailsViewModel @Inject constructor(
     @Named(GetOutputStepsUseCase.NAMED) val getOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
-    val viewModelFactory: ViewModelFactory
+    private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<StepDetailsViewModel.Input, StepDetailsViewModel.Event>(
     "29e6fff3-32a7",
     streamFactory
@@ -31,15 +32,33 @@ class StepDetailsViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val inputItems: MutableLiveData<List<StepDetailsItemViewModel>> =
-        liveDataFactory.mutableLiveData("d03bbb54-bfe0")
+        liveDataFactory.mutableLiveData("d03bbb54-bfe0", emptyList())
     val outputItems: MutableLiveData<List<StepDetailsItemViewModel>> =
-        liveDataFactory.mutableLiveData("0f2ad39e-e31c")
+        liveDataFactory.mutableLiveData("0f2ad39e-e31c", emptyList())
     val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("1692a7e5-47f5")
     val step: MutableLiveData<Step> = liveDataFactory.mutableLiveData("53969ce5-8ef9")
 
     init {
         handleFlowIdInput()
         handleStepIdInput()
+
+        inputItems.observeForever {
+            compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
+                .subscribe { event ->
+                    when (event) {
+                        is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
+                    }
+                }
+        }
+
+        outputItems.observeForever {
+            compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
+                .subscribe { event ->
+                    when (event) {
+                        is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
+                    }
+                }
+        }
     }
 
     private fun handleFlowIdInput() {
@@ -128,6 +147,10 @@ class StepDetailsViewModel @Inject constructor(
             }
     }
 
+    private fun handleOnStepDetails(step: Step) {
+        sendOutput(Event.OnStepDetails(step))
+    }
+
     private fun handleGetFlowByIdSuccess(data: Flow) {
         flowName.value = data.name
     }
@@ -151,6 +174,7 @@ class StepDetailsViewModel @Inject constructor(
 
     sealed class Event {
         object OnNewStep : Event()
+        data class OnStepDetails(val step: Step) : Event()
     }
 
     override fun onCleared() {
