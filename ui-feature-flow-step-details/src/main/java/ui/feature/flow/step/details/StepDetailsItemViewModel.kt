@@ -25,7 +25,7 @@ class StepDetailsItemViewModel(
 
     sealed class Input
     sealed class Event {
-        data class OnStepDetails(val step: Step): Event()
+        data class OnStepDetails(val step: Step) : Event()
     }
 
     fun onStepDetails() {

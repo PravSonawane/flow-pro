@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class OutputAnalyticsTransformer<T> @Inject constructor(
     private val analyticsRepository: AnalyticsRepository
-): ObservableTransformer<AnalyticsData<T>, T> {
+) : ObservableTransformer<AnalyticsData<T>, T> {
 
     override fun apply(upstream: Observable<AnalyticsData<T>>): ObservableSource<T> {
         return upstream

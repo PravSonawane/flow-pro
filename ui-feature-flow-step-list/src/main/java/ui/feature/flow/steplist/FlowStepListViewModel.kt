@@ -32,7 +32,8 @@ class FlowStepListViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<FlowStepItemViewModel>> = liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
+    val items: MutableLiveData<List<FlowStepItemViewModel>> =
+        liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
     val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
 
     init {
@@ -108,7 +109,7 @@ class FlowStepListViewModel @Inject constructor(
 
     sealed class Event {
         object OnNewStep : Event()
-        data class OnViewStep(val flowId: String, val step: Step): Event()
+        data class OnViewStep(val flowId: String, val step: Step) : Event()
     }
 
     override fun onCleared() {

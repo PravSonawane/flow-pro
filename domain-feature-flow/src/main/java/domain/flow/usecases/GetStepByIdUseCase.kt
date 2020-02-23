@@ -2,9 +2,7 @@ package domain.flow.usecases
 
 import core.lib.result.Result
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.StepRepository
-import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.Observable
 import javax.inject.Inject

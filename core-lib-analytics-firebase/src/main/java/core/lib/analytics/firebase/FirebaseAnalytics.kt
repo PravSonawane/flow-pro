@@ -10,7 +10,7 @@ import javax.inject.Inject
 class FirebaseAnalytics @Inject constructor(
     @ApplicationContext private val context: Context
 ) : Analytics {
-    private val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+    private val instance = FirebaseAnalytics.getInstance(context)
 
     override fun logEvent(key: String, attributes: Map<String, Any?>, priority: Analytics.Priority) {
         val mutableMap = LinkedHashMap<String, String>()
@@ -28,7 +28,7 @@ class FirebaseAnalytics @Inject constructor(
         }
 
         val bundle = bundleOf(*mutableMap.toList().toTypedArray())
-        firebaseAnalytics.logEvent(newKey, bundle)
+        instance.logEvent(newKey, bundle)
     }
 
     companion object {

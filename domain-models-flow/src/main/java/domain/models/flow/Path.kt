@@ -12,7 +12,6 @@ data class Path(
     override fun toMap(): Map<String, Any?> {
         return mapper()
     }
-
 }
 
 fun Path.mapper(): Map<String, Any?> {
