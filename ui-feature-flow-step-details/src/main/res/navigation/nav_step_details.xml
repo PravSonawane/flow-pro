@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/step_details_graph"
+    app:startDestination="@id/fragment_flow_step_details"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/fragment_flow_step_details"
+        android:name="ui.feature.flow.step.details.StepDetailsFragment"
+        android:label="fragment_flow_step_details"
+        tools:layout="@layout/fragment_flow_step_details">
+        <deepLink
+            android:id="@+id/deepLink_flow_details"
+            app:uri="@string/deeplink_flow_step_details"
+            />
+    </fragment>
+
+</navigation>

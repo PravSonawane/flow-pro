@@ -1,4 +1,4 @@
-package ui.feature.flow.steplist
+package ui.feature.flow.step.details
 
 import androidx.lifecycle.LiveData
 import domain.models.flow.Step
@@ -8,29 +8,23 @@ import ui.lib.views.ItemViewModel
 
 const val VIEW_TYPE_ITEM_NODE = 100000
 
-class FlowStepItemViewModel(
+class StepDetailsItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     item: Step
-) : ItemViewModel<FlowStepItemViewModel.Input, FlowStepItemViewModel.Event>(
+) : ItemViewModel<StepDetailsItemViewModel.Input, StepDetailsItemViewModel.Event>(
     analyticsKey,
     streamFactory,
-    R.layout.list_item_flow_step,
+    R.layout.list_item_step_details,
     BR.viewModel,
     VIEW_TYPE_ITEM_NODE
 ) {
 
-    val step: LiveData<Step> = liveDataFactory.liveData("61b38fc7-69c5", item)
-
-    fun onSelectStep() {
-        step.value?.let { sendOutput(Event.OnSelectStep(it)) }
-    }
+    val step: LiveData<Step> = liveDataFactory.liveData("d2e71ceb-80b4", item)
 
     sealed class Input
-    sealed class Event {
-        data class OnSelectStep(val step: Step) : Event()
-    }
+    sealed class Event
 
     override fun toString(): String {
         return "FlowStepItemViewModel(step=$step)"

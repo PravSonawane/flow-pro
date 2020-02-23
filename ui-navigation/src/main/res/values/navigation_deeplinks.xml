@@ -4,6 +4,11 @@
     <string name="deeplink_flow_steps">https://curlybraces.dev/flowpro/flow/{flow_id}/steps</string>
     <string name="deeplink_flow_steps_path_param_flow_id">flow_id</string>
 
+    <!-- Deeplink to flow step details -->
+    <string name="deeplink_flow_step_details">https://curlybraces.dev/flowpro/flow/{flow_id}/step/{step_id}</string>
+    <string name="deeplink_flow_step_details_path_param_flow_id">flow_id</string>
+    <string name="deeplink_flow_step_details_path_param_step_id">step_id</string>
+
     <!-- Deeplink to new flow title -->
     <string name="deeplink_newflow_title">https://curlybraces.dev/flowpro/newflow/title</string>
 </resources>

@@ -42,9 +42,12 @@ class StepDetailsFragment : AppBaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val flowId = arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_flow_id))
+        val flowId = arguments?.getString(resources.getString(R.string.deeplink_flow_step_details_path_param_flow_id))
             ?: throw IllegalStateException("Flow ID is required")
+        val stepId = arguments?.getString(resources.getString(R.string.deeplink_flow_step_details_path_param_step_id))
+            ?: throw IllegalStateException("Step ID is required")
         viewModel.sendInput(StepDetailsViewModel.Input.FlowId(flowId))
+        viewModel.sendInput(StepDetailsViewModel.Input.StepId(stepId))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())

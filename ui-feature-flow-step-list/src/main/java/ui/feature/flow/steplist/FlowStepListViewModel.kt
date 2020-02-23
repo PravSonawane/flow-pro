@@ -11,6 +11,7 @@ import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
@@ -31,10 +32,19 @@ class FlowStepListViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<FlowStepItemViewModel>> = liveDataFactory.mutableLiveData("b277b859-277a")
-    val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("a4efee98-acaa")
+    val items: MutableLiveData<List<FlowStepItemViewModel>> = liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
+    val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
 
     init {
+
+        items.observeForever {
+            compositeDisposable += Observable.merge(it.map { steps -> steps.observeOutput() })
+                .subscribe { step ->
+                    when (step) {
+                        is FlowStepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
+                    }
+                }
+        }
 
         compositeDisposable += observeInput()
             .flatMap {
@@ -81,11 +91,15 @@ class FlowStepListViewModel @Inject constructor(
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {
-        flowName.value = data.name
+        flow.value = data
     }
 
     fun onNext() {
         sendOutput(Event.OnNewStep)
+    }
+
+    private fun handleOnSelectStep(step: Step) {
+        flow.value?.let { sendOutput(Event.OnViewStep(it.id, step)) }
     }
 
     sealed class Input {
@@ -94,6 +108,7 @@ class FlowStepListViewModel @Inject constructor(
 
     sealed class Event {
         object OnNewStep : Event()
+        data class OnViewStep(val flowId: String, val step: Step): Event()
     }
 
     override fun onCleared() {

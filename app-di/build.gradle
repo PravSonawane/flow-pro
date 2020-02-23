@@ -47,6 +47,7 @@ dependencies {
     implementation project(":core-lib-analytics-impl")
 
     //domain
+    implementation project(':domain-models-core')
     implementation project(':domain-feature-flow')
     implementation project(':domain-models-flow')
     

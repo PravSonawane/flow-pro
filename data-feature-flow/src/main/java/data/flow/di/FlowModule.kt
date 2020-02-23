@@ -11,7 +11,10 @@ import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
 import domain.flow.usecases.GetFlowByIdUseCase
+import domain.flow.usecases.GetInputStepsInput
+import domain.flow.usecases.GetInputStepsUseCase
 import domain.models.flow.Flow
+import domain.models.flow.Step
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -45,5 +48,14 @@ class FlowModule {
         getFlowByIdUseCase: GetFlowByIdUseCase
     ): BusinessUseCase<String, Flow> {
         return factory.create(getFlowByIdUseCase)
+    }
+
+    @Named(GetInputStepsUseCase.NAMED)
+    @Provides
+    fun getInputSteps(
+        factory: BusinessUseCaseFactory<GetInputStepsInput, List<Step>>,
+        getInputStepsUseCase: GetInputStepsUseCase
+    ): BusinessUseCase<GetInputStepsInput, List<Step>> {
+        return factory.create(getInputStepsUseCase)
     }
 }
