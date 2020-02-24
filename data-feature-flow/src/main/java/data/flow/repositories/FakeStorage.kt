@@ -6,11 +6,16 @@ import domain.models.flow.Step
 
 object FakeStorage {
 
+    private val startNode = Node("node1", "Start Node", "Indicates start of flow")
+    private val decisionNode = Node("node2", "Decision Node", "Indicates a decision")
+    private val processNode = Node("node3", "Process Node", "Indicates a process")
+    private val stopNode = Node("node4", "Stop Node", "Indicates stop of flow")
+
+    fun getNodes(): List<Node> {
+        return listOf(startNode, decisionNode, processNode, startNode)
+    }
+
     fun getFlow(): Flow {
-        val startNode = Node("node1", "Start Node", "Indicates start of flow")
-        val decisionNode = Node("node2", "Decision Node", "Indicates a decision")
-        val processNode = Node("node3", "Process Node", "Indicates a process")
-        val stopNode = Node("node4", "Stop Node", "Indicates stop of flow")
 
         var step1 = Step("step1", "Start", "Start step", startNode)
         var step2 = Step("step2", "Turn on bulb", "Turn on bulb", processNode)

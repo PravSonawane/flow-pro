@@ -1,7 +1,6 @@
 package data.flow.repositories
 
 import core.lib.result.Result
-import core.lib.result.UnknownError
 import domain.flow.repositories.FlowRepository
 import domain.flow.usecases.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow
@@ -9,25 +8,11 @@ import io.reactivex.Observable
 
 class DefaultFlowRepository : FlowRepository {
 
-    private val dataStore = HashMap<String, Flow>()
-
     override fun get(id: String): Observable<Result<Flow>> {
-        return if (dataStore[id] == null) {
-            Observable.just(Result.OnError(UnknownError()))
-        } else {
-            Observable.just(Result.OnSuccess(dataStore[id]!!))
-        }
+        return Observable.just(Result.OnSuccess(FakeStorage.getFlow()))
     }
 
     override fun save(input: SaveOrUpdateFlowUseCase.Input): Observable<Result<Flow>> {
-        val flow = Flow(
-            id = "1",
-            name = input.name,
-            state = Flow.State.DRAFT
-        )
-
-        dataStore["1"] = flow
-
-        return Observable.just(Result.OnSuccess(flow))
+        return Observable.just(Result.OnSuccess(FakeStorage.getFlow()))
     }
 }
