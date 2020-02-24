@@ -47,7 +47,7 @@ class FlowModule {
 
     @Named(GetFlowByIdUseCase.NAMED)
     @Provides
-    fun getFlowById(
+    fun provideGetFlowById(
         factory: BusinessUseCaseFactory<String, Flow>,
         getFlowByIdUseCase: GetFlowByIdUseCase
     ): BusinessUseCase<String, Flow> {
@@ -56,7 +56,7 @@ class FlowModule {
 
     @Named(GetInputStepsUseCase.NAMED)
     @Provides
-    fun getInputSteps(
+    fun provideGetInputSteps(
         factory: BusinessUseCaseFactory<GetInputStepsInput, List<Step>>,
         getInputStepsUseCase: GetInputStepsUseCase
     ): BusinessUseCase<GetInputStepsInput, List<Step>> {
@@ -65,7 +65,7 @@ class FlowModule {
 
     @Named(GetOutputStepsUseCase.NAMED)
     @Provides
-    fun getOutputSteps(
+    fun provideGetOutputSteps(
         factory: BusinessUseCaseFactory<GetOutputStepsInput, List<Step>>,
         getOutputStepsUseCase: GetOutputStepsUseCase
     ): BusinessUseCase<GetOutputStepsInput, List<Step>> {
@@ -74,7 +74,7 @@ class FlowModule {
 
     @Named(GetStepByIdUseCase.NAMED)
     @Provides
-    fun getStepById(
+    fun provideGetStepById(
         factory: BusinessUseCaseFactory<String, Step>,
         getStepByIdUseCase: GetStepByIdUseCase
     ): BusinessUseCase<String, Step> {
