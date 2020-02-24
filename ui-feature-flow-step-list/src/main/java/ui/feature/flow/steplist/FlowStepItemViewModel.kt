@@ -6,8 +6,6 @@ import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel
 
-const val VIEW_TYPE_ITEM_NODE = 100000
-
 class FlowStepItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
@@ -18,7 +16,7 @@ class FlowStepItemViewModel(
     streamFactory,
     R.layout.list_item_flow_step,
     BR.viewModel,
-    VIEW_TYPE_ITEM_NODE
+    100000
 ) {
 
     val step: LiveData<Step> = liveDataFactory.liveData("61b38fc7-69c5", item)
