@@ -1,4 +1,4 @@
-package ui.feature.newflow.selectnode
+package ui.feature.flow.selectnode
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import ui.feature.create.newflow.databinding.FragmentNewFlowSelectNodeBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.create.newflow.R
+import ui.feature.flow.selectnode.databinding.FragmentFlowSelectNodeBinding
 import javax.inject.Inject
 
 class NewFlowSelectNodeFragment : AppBaseFragment() {
@@ -34,8 +33,8 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentNewFlowSelectNodeBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_select_node, container, false)
+        val binding: FragmentFlowSelectNodeBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_flow_select_node, container, false)
 
         // dagger injection
         newFlowSelectNodeComponent.injectIn(this)
@@ -45,7 +44,11 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
 
         val flowId = arguments?.getString(ARG_FLOW_ID)
             ?: throw IllegalStateException("Flow ID is required")
-        viewModel.sendInput(NewFlowSelectNodeViewModel.Input.FlowId(flowId))
+        viewModel.sendInput(
+            NewFlowSelectNodeViewModel.Input.FlowId(
+                flowId
+            )
+        )
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())

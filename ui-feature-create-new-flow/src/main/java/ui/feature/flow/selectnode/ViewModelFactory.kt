@@ -1,4 +1,4 @@
-package ui.feature.newflow.selectnode
+package ui.feature.flow.selectnode
 
 import domain.models.flow.Node
 import ui.lib.utils.LiveDataFactory
@@ -11,6 +11,11 @@ class ViewModelFactory @Inject constructor(
 ) {
 
     fun create(analyticsKey: String, node: Node): SelectNodeItemViewModel {
-        return SelectNodeItemViewModel(analyticsKey, streamFactory, liveDataFactory, node)
+        return SelectNodeItemViewModel(
+            analyticsKey,
+            streamFactory,
+            liveDataFactory,
+            node
+        )
     }
 }

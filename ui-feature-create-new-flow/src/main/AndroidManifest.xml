@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ui.feature.create.newflow" />
+    package="ui.feature.flow.selectnode" />

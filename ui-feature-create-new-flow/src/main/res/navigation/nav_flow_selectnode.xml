@@ -8,8 +8,8 @@
 
     <fragment
         android:id="@+id/fragment_new_flow_select_node"
-        android:name="ui.feature.newflow.selectnode.NewFlowSelectNodeFragment"
+        android:name="ui.feature.flow.selectnode.NewFlowSelectNodeFragment"
         android:label="fragment_new_flow_select_node"
-        tools:layout="@layout/fragment_new_flow_select_node">
+        tools:layout="@layout/fragment_flow_select_node">
     </fragment>
 </navigation>
