@@ -1,4 +1,4 @@
-package ui.flow.list
+package ui.feature.flow.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import ui.flow.list.R
 import ui.navigation.navigate
 
 class FlowListFragment : Fragment() {
@@ -18,7 +19,9 @@ class FlowListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_flow_list, container, false)
 
         view.findViewById<FloatingActionButton>(R.id.fab_add_new_flow)
-            .setOnClickListener { navigate(this, R.string.deeplink_newflow_title) }
+            .setOnClickListener { navigate(this,
+                R.string.deeplink_newflow_title
+            ) }
         return view
     }
 }

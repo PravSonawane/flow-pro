@@ -34,7 +34,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //ui
-    implementation project(":ui-flow-list")
+    implementation project(':ui-feature-flow-list')
     implementation project(':ui-feature-newflow-title')
     implementation project(':ui-feature-newflow-step')
     implementation project(':ui-feature-flow-selectnode')
