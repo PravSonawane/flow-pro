@@ -37,7 +37,7 @@ dependencies {
     implementation project(":ui-flow-list")
     implementation project(':ui-feature-newflow-title')
     implementation project(':ui-feature-newflow-step')
-    implementation project(':ui-feature-create-new-flow')
+    implementation project(':ui-feature-flow-selectnode')
     implementation project(':ui-feature-flow-step-list')
     implementation project(':ui-feature-flow-step-details')
 
