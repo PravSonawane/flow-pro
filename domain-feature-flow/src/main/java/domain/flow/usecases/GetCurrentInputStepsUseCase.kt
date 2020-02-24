@@ -7,7 +7,7 @@ import domain.models.flow.Step
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class GetInputStepsUseCase @Inject constructor(
+class GetCurrentInputStepsUseCase @Inject constructor(
     private val stepRepository: StepRepository
 ) : ObservableResultUseCase<GetInputStepsInput, List<Step>> {
 
@@ -16,7 +16,7 @@ class GetInputStepsUseCase @Inject constructor(
     }
 
     companion object {
-        const val NAMED = "GET_INPUT_STEPS"
+        const val NAMED = "GET_CURRENT_INPUT_STEPS"
     }
 }
 data class GetInputStepsInput(

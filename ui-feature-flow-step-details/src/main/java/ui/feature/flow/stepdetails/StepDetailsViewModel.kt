@@ -6,9 +6,9 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
+import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
-import domain.flow.usecases.GetInputStepsUseCase
 import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
@@ -25,7 +25,7 @@ import javax.inject.Named
 class StepDetailsViewModel @Inject constructor(
     @Named(GetStepByIdUseCase.NAMED) val getStepByIdUseCase: BusinessUseCase<String, Step>,
     @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
-    @Named(GetInputStepsUseCase.NAMED) val getInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
+    @Named(GetCurrentInputStepsUseCase.NAMED) val getInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetOutputStepsUseCase.NAMED) val getOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
