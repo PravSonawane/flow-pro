@@ -2,7 +2,6 @@ package ui.feature.flow.selectnode
 
 import androidx.lifecycle.LiveData
 import domain.models.flow.Node
-import ui.feature.flow.selectnode.BR
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel

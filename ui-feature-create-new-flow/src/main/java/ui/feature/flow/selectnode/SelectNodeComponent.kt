@@ -11,17 +11,17 @@ import ui.lib.di.UiModule
     ],
     modules = [
         UiModule::class,
-        NewFlowSelectNodeViewModelModule::class
+        SelectNodeViewModelModule::class
     ]
 )
 @FeatureScope
-interface NewFlowSelectNodeComponent : MainComponent {
-    fun injectIn(fragment: NewFlowSelectNodeFragment)
+interface SelectNodeComponent : MainComponent {
+    fun injectIn(fragment: SelectNodeFragment)
 
-    /** Dagger Builder for [NewFlowSelectNodeComponent] */
+    /** Dagger Builder for [SelectNodeComponent] */
     @Component.Builder
     interface Builder {
         fun mainComponent(component: MainComponent): Builder
-        fun build(): NewFlowSelectNodeComponent
+        fun build(): SelectNodeComponent
     }
 }

@@ -19,13 +19,13 @@ import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 import javax.inject.Named
 
-class NewFlowSelectNodeViewModel @Inject constructor(
+class SelectNodeViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     getAllNodesUseCase: GetAllNodesUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory
-) : BaseViewModel<NewFlowSelectNodeViewModel.Input, NewFlowSelectNodeViewModel.Event>(
+) : BaseViewModel<SelectNodeViewModel.Input, SelectNodeViewModel.Event>(
     "b7dcd411-0058",
     streamFactory
 ) {

@@ -7,10 +7,10 @@ import dagger.multibindings.IntoMap
 import ui.lib.di.ViewModelKey
 
 @Module
-abstract class NewFlowSelectNodeViewModelModule {
+abstract class SelectNodeViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(NewFlowSelectNodeViewModel::class)
-    abstract fun bindViewModel(viewModel: NewFlowSelectNodeViewModel): ViewModel
+    @ViewModelKey(SelectNodeViewModel::class)
+    abstract fun bindViewModel(viewModel: SelectNodeViewModel): ViewModel
 }

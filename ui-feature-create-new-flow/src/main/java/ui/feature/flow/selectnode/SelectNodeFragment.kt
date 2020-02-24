@@ -12,18 +12,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.selectnode.databinding.FragmentFlowSelectNodeBinding
 import javax.inject.Inject
 
-class NewFlowSelectNodeFragment : AppBaseFragment() {
+class SelectNodeFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
-            .get(NewFlowSelectNodeViewModel::class.java)
+            .get(SelectNodeViewModel::class.java)
     }
 
-    private val newFlowSelectNodeComponent: NewFlowSelectNodeComponent by lazy {
-        DaggerNewFlowSelectNodeComponent.builder()
+    private val selectNodeComponent: SelectNodeComponent by lazy {
+        DaggerSelectNodeComponent.builder()
             .mainComponent(mainComponent())
             .build()
     }
@@ -37,7 +37,7 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_flow_select_node, container, false)
 
         // dagger injection
-        newFlowSelectNodeComponent.injectIn(this)
+        selectNodeComponent.injectIn(this)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -45,7 +45,7 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
         val flowId = arguments?.getString(ARG_FLOW_ID)
             ?: throw IllegalStateException("Flow ID is required")
         viewModel.sendInput(
-            NewFlowSelectNodeViewModel.Input.FlowId(
+            SelectNodeViewModel.Input.FlowId(
                 flowId
             )
         )
@@ -54,7 +54,7 @@ class NewFlowSelectNodeFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    NewFlowSelectNodeViewModel.Event.OnNext -> {}
+                    SelectNodeViewModel.Event.OnNext -> {}
                 }
             }
 
