@@ -10,7 +10,7 @@ class ViewModelFactory @Inject constructor(
     private val liveDataFactory: LiveDataFactory
 ) {
 
-    fun create(analyticsKey: String, step: Step): FlowStepItemViewModel {
-        return FlowStepItemViewModel(analyticsKey, streamFactory, liveDataFactory, step)
+    fun create(analyticsKey: String, step: Step): StepItemViewModel {
+        return StepItemViewModel(analyticsKey, streamFactory, liveDataFactory, step)
     }
 }

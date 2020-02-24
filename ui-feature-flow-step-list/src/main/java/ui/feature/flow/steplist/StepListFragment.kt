@@ -10,22 +10,22 @@ import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.flow.steplist.databinding.FragmentFlowStepListBinding
+import ui.feature.flow.steplist.databinding.FragmentStepListBinding
 import ui.navigation.navigate
 import javax.inject.Inject
 
-class FlowStepListFragment : AppBaseFragment() {
+class StepListFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
-            .get(FlowStepListViewModel::class.java)
+            .get(StepListViewModel::class.java)
     }
 
-    private val flowStepListComponent: FlowStepListComponent by lazy {
-        DaggerFlowStepListComponent.builder()
+    private val stepListComponent: StepListComponent by lazy {
+        DaggerStepListComponent.builder()
             .mainComponent(mainComponent())
             .build()
     }
@@ -35,11 +35,11 @@ class FlowStepListFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentFlowStepListBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_flow_step_list, container, false)
+        val binding: FragmentStepListBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_step_list, container, false)
 
         // dagger injection
-        flowStepListComponent.injectIn(this)
+        stepListComponent.injectIn(this)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -47,15 +47,15 @@ class FlowStepListFragment : AppBaseFragment() {
         val flowId =
             arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_flow_id))
                 ?: throw IllegalStateException("Flow ID is required")
-        viewModel.sendInput(FlowStepListViewModel.Input.FlowId(flowId))
+        viewModel.sendInput(StepListViewModel.Input.FlowId(flowId))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is FlowStepListViewModel.Event.OnNewStep -> {
+                    is StepListViewModel.Event.OnNewStep -> {
                     }
-                    is FlowStepListViewModel.Event.OnViewStep -> handleOnViewStep(
+                    is StepListViewModel.Event.OnViewStep -> handleOnViewStep(
                         it.flowId,
                         it.step
                     )

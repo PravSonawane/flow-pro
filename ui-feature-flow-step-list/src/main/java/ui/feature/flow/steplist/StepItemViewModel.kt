@@ -6,12 +6,12 @@ import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel
 
-class FlowStepItemViewModel(
+class StepItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     item: Step
-) : ItemViewModel<FlowStepItemViewModel.Input, FlowStepItemViewModel.Event>(
+) : ItemViewModel<StepItemViewModel.Input, StepItemViewModel.Event>(
     analyticsKey,
     streamFactory,
     R.layout.list_item_flow_step,

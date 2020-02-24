@@ -20,19 +20,19 @@ import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 import javax.inject.Named
 
-class FlowStepListViewModel @Inject constructor(
+class StepListViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val viewModelFactory: ViewModelFactory,
     private val streamFactory: StreamFactory,
     private val liveDataFactory: LiveDataFactory
-) : BaseViewModel<FlowStepListViewModel.Input, FlowStepListViewModel.Event>(
+) : BaseViewModel<StepListViewModel.Input, StepListViewModel.Event>(
     "ba45622c-d74a",
     streamFactory
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<FlowStepItemViewModel>> =
+    val items: MutableLiveData<List<StepItemViewModel>> =
         liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
     val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
 
@@ -42,7 +42,7 @@ class FlowStepListViewModel @Inject constructor(
             compositeDisposable += Observable.merge(it.map { steps -> steps.observeOutput() })
                 .subscribe { step ->
                     when (step) {
-                        is FlowStepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
+                        is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
                     }
                 }
         }
@@ -81,7 +81,7 @@ class FlowStepListViewModel @Inject constructor(
     }
 
     private fun handleGetAllStepsSuccess(steps: List<Step>) {
-        val items: List<FlowStepItemViewModel> = steps.map {
+        val items: List<StepItemViewModel> = steps.map {
             viewModelFactory.create(STEP_ITEM_ANALYTICS_KEY, it)
         }
         this.items.value = items

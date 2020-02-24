@@ -7,10 +7,10 @@ import dagger.multibindings.IntoMap
 import ui.lib.di.ViewModelKey
 
 @Module
-abstract class FlowStepListViewModelModule {
+abstract class StepListViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(FlowStepListViewModel::class)
-    abstract fun bindViewModel(viewModel: FlowStepListViewModel): ViewModel
+    @ViewModelKey(StepListViewModel::class)
+    abstract fun bindViewModel(viewModel: StepListViewModel): ViewModel
 }

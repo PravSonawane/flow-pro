@@ -11,17 +11,17 @@ import ui.lib.di.UiModule
     ],
     modules = [
         UiModule::class,
-        FlowStepListViewModelModule::class
+        StepListViewModelModule::class
     ]
 )
 @FeatureScope
-interface FlowStepListComponent : MainComponent {
-    fun injectIn(fragment: FlowStepListFragment)
+interface StepListComponent : MainComponent {
+    fun injectIn(fragment: StepListFragment)
 
-    /** Dagger Builder for [FlowStepListComponent] */
+    /** Dagger Builder for [StepListComponent] */
     @Component.Builder
     interface Builder {
         fun mainComponent(component: MainComponent): Builder
-        fun build(): FlowStepListComponent
+        fun build(): StepListComponent
     }
 }
