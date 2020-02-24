@@ -1,6 +1,6 @@
 rootProject.name='Flow Pro'
 include ':app'
-include ':ui-flow-list'
+include ':ui-feature-flow-list'
 include ':ui-lib-assets'
 include ':ui-lib-common-resources'
 include ':ui-feature-flow-selectnode'
