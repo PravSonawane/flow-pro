@@ -10,8 +10,7 @@ import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.create.newflow.R
-import ui.feature.create.newflow.databinding.FragmentNewFlowTitleBinding
+import ui.feature.newflow.title.databinding.FragmentNewFlowTitleBinding
 import ui.navigation.navigate
 import javax.inject.Inject
 

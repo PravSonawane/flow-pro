@@ -43,7 +43,11 @@ class NewFlowTitleViewModel @Inject constructor(
     }
 
     private fun handleSaveOrUpdateSuccess(data: Flow) {
-        sendOutput(Event.OnNext(data))
+        sendOutput(
+            Event.OnNext(
+                data
+            )
+        )
     }
 
     sealed class Input
