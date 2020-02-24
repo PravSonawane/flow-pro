@@ -15,7 +15,7 @@ import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetOutputStepsInput
-import domain.flow.usecases.GetOutputStepsUseCase
+import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
@@ -63,13 +63,13 @@ class FlowModule {
         return factory.create(getCurrentInputStepsUseCase)
     }
 
-    @Named(GetOutputStepsUseCase.NAMED)
+    @Named(GetCurrentOutputStepsUseCase.NAMED)
     @Provides
     fun provideGetOutputSteps(
         factory: BusinessUseCaseFactory<GetOutputStepsInput, List<Step>>,
-        getOutputStepsUseCase: GetOutputStepsUseCase
+        getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
     ): BusinessUseCase<GetOutputStepsInput, List<Step>> {
-        return factory.create(getOutputStepsUseCase)
+        return factory.create(getCurrentOutputStepsUseCase)
     }
 
     @Named(GetStepByIdUseCase.NAMED)

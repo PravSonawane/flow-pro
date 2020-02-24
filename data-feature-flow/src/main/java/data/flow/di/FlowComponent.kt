@@ -8,7 +8,7 @@ import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetOutputStepsInput
-import domain.flow.usecases.GetOutputStepsUseCase
+import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
@@ -25,7 +25,7 @@ interface FlowComponent {
     @Named(GetCurrentInputStepsUseCase.NAMED)
     fun getInputSteps(): BusinessUseCase<GetInputStepsInput, List<Step>>
 
-    @Named(GetOutputStepsUseCase.NAMED)
+    @Named(GetCurrentOutputStepsUseCase.NAMED)
     fun getOutputSteps(): BusinessUseCase<GetOutputStepsInput, List<Step>>
 
     fun flowRepository(): FlowRepository
