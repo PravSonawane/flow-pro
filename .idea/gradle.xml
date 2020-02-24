@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/domain-models-flow" />
             <option value="$PROJECT_DIR$/ui-feature-flow-list" />
             <option value="$PROJECT_DIR$/ui-feature-flow-selectnode" />
+            <option value="$PROJECT_DIR$/ui-feature-flow-selectstep" />
             <option value="$PROJECT_DIR$/ui-feature-flow-step-details" />
             <option value="$PROJECT_DIR$/ui-feature-flow-step-list" />
             <option value="$PROJECT_DIR$/ui-feature-newflow-step" />
