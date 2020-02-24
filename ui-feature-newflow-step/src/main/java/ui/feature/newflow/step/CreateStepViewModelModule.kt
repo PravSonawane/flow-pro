@@ -1,4 +1,4 @@
-package ui.feature.newflow.createstep
+package ui.feature.newflow.step
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds

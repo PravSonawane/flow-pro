@@ -1,4 +1,4 @@
-package ui.feature.newflow.createstep
+package ui.feature.newflow.step
 
 import app.di.MainComponent
 import dagger.Component

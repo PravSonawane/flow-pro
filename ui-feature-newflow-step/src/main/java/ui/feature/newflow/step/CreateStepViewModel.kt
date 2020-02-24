@@ -1,4 +1,4 @@
-package ui.feature.newflow.createstep
+package ui.feature.newflow.step
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin
@@ -55,7 +55,11 @@ class CreateStepViewModel @Inject constructor(
     fun onShowSelectNode() {
         val flow = flow.value
         if (flow != null) {
-            sendOutput(Event.OnShowSelectNode(flow))
+            sendOutput(
+                Event.OnShowSelectNode(
+                    flow
+                )
+            )
         } else {
             sendOutput(Event.OnNoFlowError)
         }

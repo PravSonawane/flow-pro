@@ -11,4 +11,8 @@
 
     <!-- Deeplink to new flow title -->
     <string name="deeplink_newflow_title">https://curlybraces.dev/flowpro/newflow/title</string>
+
+    <!-- Deeplink to newflow select node -->
+    <string name="deeplink_newflow_selectnode">https://curlybraces.dev/flowpro/flow/{flow_id}/step/selectnode</string>
+    <string name="deeplink_newflow_selectnode_path_param_flow_id">flow_id</string>
 </resources>

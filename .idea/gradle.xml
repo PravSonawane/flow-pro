@@ -30,6 +30,7 @@
             <option value="$PROJECT_DIR$/ui-feature-create-new-flow" />
             <option value="$PROJECT_DIR$/ui-feature-flow-step-details" />
             <option value="$PROJECT_DIR$/ui-feature-flow-step-list" />
+            <option value="$PROJECT_DIR$/ui-feature-newflow-step" />
             <option value="$PROJECT_DIR$/ui-feature-newflow-title" />
             <option value="$PROJECT_DIR$/ui-flow-list" />
             <option value="$PROJECT_DIR$/ui-lib-assets" />

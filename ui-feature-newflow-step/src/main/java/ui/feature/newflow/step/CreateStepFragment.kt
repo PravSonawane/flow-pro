@@ -1,4 +1,4 @@
-package ui.feature.newflow.createstep
+package ui.feature.newflow.step
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Flow
-import ui.feature.create.newflow.databinding.FragmentCreateStepBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ui.feature.create.newflow.R
-import ui.feature.newflow.selectnode.NewFlowSelectNodeFragment
+import ui.feature.newflow.step.databinding.FragmentCreateStepBinding
+import ui.navigation.navigate
 import javax.inject.Inject
 
 class CreateStepFragment : AppBaseFragment() {
@@ -64,9 +62,10 @@ class CreateStepFragment : AppBaseFragment() {
     }
 
     private fun onNext(flow: Flow) {
-        val bundle = Bundle()
-        bundle.putString(NewFlowSelectNodeFragment.ARG_FLOW_ID, flow.id)
-        findNavController().navigate(R.id.fragment_new_flow_select_node, bundle)
+        val pathParams: Map<Int, String> = mapOf(
+            R.string.deeplink_newflow_selectnode_path_param_flow_id to flow.id
+        )
+        navigate(this, R.string.deeplink_newflow_selectnode, pathParams)
     }
 
     private fun onError() {
