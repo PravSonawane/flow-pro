@@ -1,6 +1,5 @@
 package ui.lib.views
 
-import androidx.annotation.VisibleForTesting
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +11,8 @@ abstract class FeedViewHolder(
 }
 
 /**
- * [DiffUtil.Callback] implementation for a [RecyclerView.Adapter] that renders [AdapterItem]
+ * [DiffUtil.Callback] implementation for a [RecyclerView.Adapter] that renders [ItemViewModel]
  */
-@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 class DiffUtilCallback(
     private val oldList: List<ItemViewModel<*, *>>,
     private val newList: List<ItemViewModel<*, *>>
