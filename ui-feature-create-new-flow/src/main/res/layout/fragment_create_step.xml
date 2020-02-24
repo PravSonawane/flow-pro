@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ui.newflow.createstep.CreateStepViewModel" />
+            type="ui.feature.newflow.createstep.CreateStepViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

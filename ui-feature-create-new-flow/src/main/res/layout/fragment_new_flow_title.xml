@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ui.newflow.title.NewFlowTitleViewModel" />
+            type="ui.feature.newflow.title.NewFlowTitleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

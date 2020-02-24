@@ -1,4 +1,4 @@
-package ui.newflow.createstep
+package ui.feature.newflow.createstep
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin

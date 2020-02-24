@@ -1,3 +1,3 @@
-package ui.newflow.title
+package ui.feature.newflow.title
 
 class NewFlowTitleViewModelTest

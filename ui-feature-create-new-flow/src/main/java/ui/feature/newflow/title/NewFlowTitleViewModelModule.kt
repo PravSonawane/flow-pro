@@ -1,4 +1,4 @@
-package ui.newflow.title
+package ui.feature.newflow.title
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds

@@ -1,4 +1,4 @@
-package ui.newflow.selectnode
+package ui.feature.newflow.selectnode
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds

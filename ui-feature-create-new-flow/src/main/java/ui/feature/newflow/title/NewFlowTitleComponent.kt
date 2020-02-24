@@ -1,4 +1,4 @@
-package ui.newflow.createstep
+package ui.feature.newflow.title
 
 import app.di.MainComponent
 import dagger.Component
@@ -11,17 +11,17 @@ import ui.lib.di.UiModule
     ],
     modules = [
         UiModule::class,
-        CreateStepViewModelModule::class
+        NewFlowTitleViewModelModule::class
     ]
 )
 @FeatureScope
-interface CreateStepComponent : MainComponent {
-    fun injectIn(fragment: CreateStepFragment)
+interface NewFlowTitleComponent : MainComponent {
+    fun injectIn(fragment: NewFlowTitleFragment)
 
-    /** Dagger Builder for [CreateStepComponent] */
+    /** Dagger Builder for [NewFlowTitleComponent] */
     @Component.Builder
     interface Builder {
         fun mainComponent(component: MainComponent): Builder
-        fun build(): CreateStepComponent
+        fun build(): NewFlowTitleComponent
     }
 }

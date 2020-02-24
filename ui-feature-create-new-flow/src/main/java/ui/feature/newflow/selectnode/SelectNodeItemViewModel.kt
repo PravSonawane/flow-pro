@@ -1,4 +1,4 @@
-package ui.newflow.selectnode
+package ui.feature.newflow.selectnode
 
 import androidx.lifecycle.LiveData
 import domain.models.flow.Node

@@ -1,4 +1,4 @@
-package ui.newflow.selectnode
+package ui.feature.newflow.selectnode
 
 import domain.models.flow.Node
 import ui.lib.utils.LiveDataFactory

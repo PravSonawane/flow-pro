@@ -1,4 +1,4 @@
-package ui.newflow.selectnode
+package ui.feature.newflow.selectnode
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin

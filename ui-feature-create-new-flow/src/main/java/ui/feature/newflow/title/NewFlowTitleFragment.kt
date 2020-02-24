@@ -1,4 +1,4 @@
-package ui.newflow.title
+package ui.feature.newflow.title
 
 import android.os.Bundle
 import android.view.LayoutInflater

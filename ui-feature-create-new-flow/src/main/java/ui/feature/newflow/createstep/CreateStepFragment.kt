@@ -1,4 +1,4 @@
-package ui.newflow.createstep
+package ui.feature.newflow.createstep
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import domain.models.flow.Flow
 import ui.feature.create.newflow.databinding.FragmentCreateStepBinding
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.create.newflow.R
-import ui.newflow.selectnode.NewFlowSelectNodeFragment
+import ui.feature.newflow.selectnode.NewFlowSelectNodeFragment
 import javax.inject.Inject
 
 class CreateStepFragment : AppBaseFragment() {

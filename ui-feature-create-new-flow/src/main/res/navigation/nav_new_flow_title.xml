@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_new_flow_title"
-        android:name="ui.newflow.title.NewFlowTitleFragment"
+        android:name="ui.feature.newflow.title.NewFlowTitleFragment"
         android:label="fragment_new_flow_title"
         tools:layout="@layout/fragment_new_flow_title">
         <deepLink
@@ -21,14 +21,14 @@
 
     <fragment
         android:id="@+id/fragment_create_step"
-        android:name="ui.newflow.createstep.CreateStepFragment"
+        android:name="ui.feature.newflow.createstep.CreateStepFragment"
         android:label="fragment_create_step"
         tools:layout="@layout/fragment_create_step">
     </fragment>
 
     <fragment
         android:id="@+id/fragment_new_flow_select_node"
-        android:name="ui.newflow.selectnode.NewFlowSelectNodeFragment"
+        android:name="ui.feature.newflow.selectnode.NewFlowSelectNodeFragment"
         android:label="fragment_new_flow_select_node"
         tools:layout="@layout/fragment_new_flow_select_node">
     </fragment>

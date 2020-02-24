@@ -1,4 +1,4 @@
-package ui.newflow.title
+package ui.feature.newflow.title
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result

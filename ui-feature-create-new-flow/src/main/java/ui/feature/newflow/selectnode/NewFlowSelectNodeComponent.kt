@@ -1,4 +1,4 @@
-package ui.newflow.selectnode
+package ui.feature.newflow.selectnode
 
 import app.di.MainComponent
 import dagger.Component

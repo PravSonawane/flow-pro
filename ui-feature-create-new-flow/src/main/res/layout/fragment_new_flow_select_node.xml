@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ui.newflow.selectnode.NewFlowSelectNodeViewModel" />
+            type="ui.feature.newflow.selectnode.NewFlowSelectNodeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
