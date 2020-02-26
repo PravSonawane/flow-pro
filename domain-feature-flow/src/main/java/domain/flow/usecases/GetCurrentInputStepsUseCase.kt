@@ -12,7 +12,7 @@ class GetCurrentInputStepsUseCase @Inject constructor(
 ) : ObservableResultUseCase<GetInputStepsInput, List<Step>> {
 
     override fun invoke(input: GetInputStepsInput): Observable<Result<List<Step>>> {
-        return stepRepository.getInputSteps(input.stepId)
+        return stepRepository.getCurrentInputSteps(input.stepId)
     }
 
     companion object {

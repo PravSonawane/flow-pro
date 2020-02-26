@@ -6,7 +6,9 @@ import io.reactivex.Observable
 
 interface StepRepository {
     fun getAll(flowId: String): Observable<Result<List<Step>>>
-    fun getInputSteps(stepId: String): Observable<Result<List<Step>>>
-    fun getOutputSteps(stepId: String): Observable<Result<List<Step>>>
+    fun getCurrentInputSteps(stepId: String): Observable<Result<List<Step>>>
+    fun getCurrentOutputSteps(stepId: String): Observable<Result<List<Step>>>
+    fun getPossibleInputSteps(stepId: String): Observable<Result<List<Step>>>
+    fun getPossibleOutputSteps(stepId: String): Observable<Result<List<Step>>>
     fun getStepById(stepId: String): Observable<Result<Step>>
 }

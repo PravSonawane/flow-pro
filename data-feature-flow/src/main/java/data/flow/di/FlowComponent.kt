@@ -4,11 +4,15 @@ import core.lib.usecase.common.BusinessUseCase
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
+import domain.flow.usecases.GetCurrentInputStepsUseCase
+import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
-import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetOutputStepsInput
-import domain.flow.usecases.GetCurrentOutputStepsUseCase
+import domain.flow.usecases.GetPossibleInputStepsInput
+import domain.flow.usecases.GetPossibleInputStepsUseCase
+import domain.flow.usecases.GetPossibleOutputStepsInput
+import domain.flow.usecases.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
@@ -23,10 +27,16 @@ interface FlowComponent {
     fun getStepById(): BusinessUseCase<String, Step>
 
     @Named(GetCurrentInputStepsUseCase.NAMED)
-    fun getInputSteps(): BusinessUseCase<GetInputStepsInput, List<Step>>
+    fun getCurrentInputSteps(): BusinessUseCase<GetInputStepsInput, List<Step>>
 
     @Named(GetCurrentOutputStepsUseCase.NAMED)
-    fun getOutputSteps(): BusinessUseCase<GetOutputStepsInput, List<Step>>
+    fun getCurrentOutputSteps(): BusinessUseCase<GetOutputStepsInput, List<Step>>
+
+    @Named(GetPossibleInputStepsUseCase.NAMED)
+    fun getPossibleInputSteps(): BusinessUseCase<GetPossibleInputStepsInput, List<Step>>
+
+    @Named(GetPossibleOutputStepsUseCase.NAMED)
+    fun getPossibleOutputSteps(): BusinessUseCase<GetPossibleOutputStepsInput, List<Step>>
 
     fun flowRepository(): FlowRepository
     fun nodeRepository(): NodeRepository
