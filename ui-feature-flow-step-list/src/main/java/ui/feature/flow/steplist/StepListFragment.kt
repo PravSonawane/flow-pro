@@ -21,7 +21,7 @@ class StepListFragment : AppBaseFragment() {
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
-            .get(StepListViewModel::class.java)
+            .get(StepListScreenViewModel::class.java)
     }
 
     private val stepListComponent: StepListComponent by lazy {
@@ -47,15 +47,15 @@ class StepListFragment : AppBaseFragment() {
         val flowId =
             arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_flow_id))
                 ?: throw IllegalStateException("Flow ID is required")
-        viewModel.sendInput(StepListViewModel.Input.FlowId(flowId))
+        viewModel.sendInput(StepListScreenViewModel.Input.FlowId(flowId))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is StepListViewModel.Event.OnNewStep -> {
+                    is StepListScreenViewModel.Event.OnNewStep -> {
                     }
-                    is StepListViewModel.Event.OnViewStep -> handleOnViewStep(
+                    is StepListScreenViewModel.Event.OnViewStep -> handleOnViewStep(
                         it.flowId,
                         it.step
                     )

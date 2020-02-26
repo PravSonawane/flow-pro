@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="ui.feature.flow.steplist.StepListViewModel" />
+            type="ui.feature.flow.steplist.StepListScreenViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

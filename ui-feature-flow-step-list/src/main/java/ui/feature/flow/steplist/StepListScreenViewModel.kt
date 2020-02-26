@@ -20,13 +20,13 @@ import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 import javax.inject.Named
 
-class StepListViewModel @Inject constructor(
+class StepListScreenViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val viewModelFactory: ViewModelFactory,
     private val streamFactory: StreamFactory,
     private val liveDataFactory: LiveDataFactory
-) : BaseViewModel<StepListViewModel.Input, StepListViewModel.Event>(
+) : BaseViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
     "ba45622c-d74a",
     streamFactory
 ) {
