@@ -11,6 +11,6 @@ abstract class StepListViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(StepListViewModel::class)
-    abstract fun bindViewModel(viewModel: StepListViewModel): ViewModel
+    @ViewModelKey(StepListScreenViewModel::class)
+    abstract fun bindViewModel(viewModel: StepListScreenViewModel): ViewModel
 }

@@ -11,17 +11,17 @@ object FakeStorage {
     private val processNode = Node("node3", "Process Node", "Indicates a process")
     private val stopNode = Node("node4", "Stop Node", "Indicates stop of flow")
 
+    private var step1 = Step("step1", "Start", "Start step", startNode)
+    private var step2 = Step("step2", "Turn on bulb", "Turn on bulb", processNode)
+    private var step3 = Step("step3", "Is bulb on?", "Check if bulb is on", decisionNode)
+    private var step4 = Step("step4", "Is bulb burnt?", "Check if bulb is burnt", decisionNode)
+    private var step5 = Step("step5", "Stop", "Stop step", stopNode)
+
     fun getNodes(): List<Node> {
         return listOf(startNode, decisionNode, processNode, startNode)
     }
 
     fun getFlow(): Flow {
-
-        var step1 = Step("step1", "Start", "Start step", startNode)
-        var step2 = Step("step2", "Turn on bulb", "Turn on bulb", processNode)
-        var step3 = Step("step3", "Is bulb on?", "Check if bulb is on", decisionNode)
-        var step4 = Step("step4", "Is bulb burnt?", "Check if bulb is burnt", decisionNode)
-        var step5 = Step("step5", "Stop", "Stop step", stopNode)
 
         step1 = step1.copy(inputSteps = emptyList(), outputSteps = listOf(step2))
         step2 = step2.copy(inputSteps = listOf(step1), outputSteps = listOf(step3))

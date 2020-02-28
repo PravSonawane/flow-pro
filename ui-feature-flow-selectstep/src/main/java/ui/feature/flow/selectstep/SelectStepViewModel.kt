@@ -1,4 +1,4 @@
-package ui.feature.flow.steplist
+package ui.feature.flow.selectstep
 
 import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin
@@ -7,11 +7,10 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
-import domain.flow.usecases.GetAllStepsUseCase
+import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
-import domain.models.flow.Step
-import io.reactivex.Observable
+import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
@@ -20,43 +19,28 @@ import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 import javax.inject.Named
 
-class StepListViewModel @Inject constructor(
-    @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
-    private val getAllStepsUseCase: GetAllStepsUseCase,
-    private val viewModelFactory: ViewModelFactory,
-    private val streamFactory: StreamFactory,
-    private val liveDataFactory: LiveDataFactory
-) : BaseViewModel<StepListViewModel.Input, StepListViewModel.Event>(
-    "ba45622c-d74a",
+class SelectStepViewModel @Inject constructor(
+    @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    getAllNodesUseCase: GetAllNodesUseCase,
+    streamFactory: StreamFactory,
+    liveDataFactory: LiveDataFactory,
+    private val viewModelFactory: ViewModelFactory
+) : BaseViewModel<SelectStepViewModel.Input, SelectStepViewModel.Event>(
+    "50ef9e44-a305",
     streamFactory
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<StepItemViewModel>> =
-        liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
-    val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
+    val items: MutableLiveData<List<SelectStepItemViewModel>> = liveDataFactory.mutableLiveData("aee8f067-4962")
+    val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("0bdc8691-68f9")
 
     init {
 
-        items.observeForever {
-            compositeDisposable += Observable.merge(it.map { steps -> steps.observeOutput() })
-                .subscribe { step ->
-                    when (step) {
-                        is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
-                    }
-                }
-        }
-
-        compositeDisposable += observeInput()
-            .flatMap {
-                when (it) {
-                    is Input.FlowId -> getAllStepsUseCase(GetAllStepsUseCase.Input(it.id))
-                }
-            }
+        compositeDisposable += getAllNodesUseCase(Unit)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is Result.OnSuccess -> handleGetAllStepsSuccess(it.data)
+                    is Result.OnSuccess -> handleGetAllNodesSuccess(it.data)
                     is Result.OnError -> handleGetAllNodesFailure(it.domainError)
                 }
             }
@@ -66,8 +50,8 @@ class StepListViewModel @Inject constructor(
                 when (it) {
                     is Input.FlowId -> getFlowByIdUseCase(
                         BusinessData(
-                            "7880cff2-530e",
-                            Plugin("152a67de-3676"),
+                            "00df3fe1-3c62",
+                            Plugin("ed915444-3fde"),
                             it.id
                         )
                     )
@@ -80,8 +64,8 @@ class StepListViewModel @Inject constructor(
             }
     }
 
-    private fun handleGetAllStepsSuccess(steps: List<Step>) {
-        val items: List<StepItemViewModel> = steps.map {
+    private fun handleGetAllNodesSuccess(nodes: List<Node>) {
+        val items: List<SelectStepItemViewModel> = nodes.map {
             viewModelFactory.create(STEP_ITEM_ANALYTICS_KEY, it)
         }
         this.items.value = items
@@ -92,15 +76,11 @@ class StepListViewModel @Inject constructor(
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {
-        flow.value = data
+        flowName.value = data.name
     }
 
     fun onNext() {
-        sendOutput(Event.OnNewStep)
-    }
-
-    private fun handleOnSelectStep(step: Step) {
-        flow.value?.let { sendOutput(Event.OnViewStep(it.id, step)) }
+        sendOutput(Event.OnNext)
     }
 
     sealed class Input {
@@ -108,8 +88,7 @@ class StepListViewModel @Inject constructor(
     }
 
     sealed class Event {
-        object OnNewStep : Event()
-        data class OnViewStep(val flowId: String, val step: Step) : Event()
+        object OnNext : Event()
     }
 
     override fun onCleared() {
@@ -117,6 +96,6 @@ class StepListViewModel @Inject constructor(
     }
 
     companion object {
-        const val STEP_ITEM_ANALYTICS_KEY = "73d5b9c7-fbc4"
+        const val STEP_ITEM_ANALYTICS_KEY = "45eafd72-9a78"
     }
 }

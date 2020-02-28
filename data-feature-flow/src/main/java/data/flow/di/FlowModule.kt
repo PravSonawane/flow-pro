@@ -11,11 +11,15 @@ import data.flow.repositories.DefaultStepRepository
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
+import domain.flow.usecases.GetCurrentInputStepsUseCase
+import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
-import domain.flow.usecases.GetInputStepsUseCase
 import domain.flow.usecases.GetOutputStepsInput
-import domain.flow.usecases.GetOutputStepsUseCase
+import domain.flow.usecases.GetPossibleInputStepsInput
+import domain.flow.usecases.GetPossibleInputStepsUseCase
+import domain.flow.usecases.GetPossibleOutputStepsInput
+import domain.flow.usecases.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
@@ -54,22 +58,40 @@ class FlowModule {
         return factory.create(getFlowByIdUseCase)
     }
 
-    @Named(GetInputStepsUseCase.NAMED)
+    @Named(GetCurrentInputStepsUseCase.NAMED)
     @Provides
-    fun provideGetInputSteps(
+    fun provideGetCurrentInputSteps(
         factory: BusinessUseCaseFactory<GetInputStepsInput, List<Step>>,
-        getInputStepsUseCase: GetInputStepsUseCase
+        getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase
     ): BusinessUseCase<GetInputStepsInput, List<Step>> {
-        return factory.create(getInputStepsUseCase)
+        return factory.create(getCurrentInputStepsUseCase)
     }
 
-    @Named(GetOutputStepsUseCase.NAMED)
+    @Named(GetCurrentOutputStepsUseCase.NAMED)
     @Provides
-    fun provideGetOutputSteps(
+    fun provideGetCurrentOutputSteps(
         factory: BusinessUseCaseFactory<GetOutputStepsInput, List<Step>>,
-        getOutputStepsUseCase: GetOutputStepsUseCase
+        getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
     ): BusinessUseCase<GetOutputStepsInput, List<Step>> {
-        return factory.create(getOutputStepsUseCase)
+        return factory.create(getCurrentOutputStepsUseCase)
+    }
+
+    @Named(GetPossibleInputStepsUseCase.NAMED)
+    @Provides
+    fun provideGetPossibleInputSteps(
+        factory: BusinessUseCaseFactory<GetPossibleInputStepsInput, List<Step>>,
+        getPossibleInputStepsUseCase: GetPossibleInputStepsUseCase
+    ): BusinessUseCase<GetPossibleInputStepsInput, List<Step>> {
+        return factory.create(getPossibleInputStepsUseCase)
+    }
+
+    @Named(GetPossibleOutputStepsUseCase.NAMED)
+    @Provides
+    fun provideGetPossibleOutputSteps(
+        factory: BusinessUseCaseFactory<GetPossibleOutputStepsInput, List<Step>>,
+        getPossibleOutputStepsUseCase: GetPossibleOutputStepsUseCase
+    ): BusinessUseCase<GetPossibleOutputStepsInput, List<Step>> {
+        return factory.create(getPossibleOutputStepsUseCase)
     }
 
     @Named(GetStepByIdUseCase.NAMED)
