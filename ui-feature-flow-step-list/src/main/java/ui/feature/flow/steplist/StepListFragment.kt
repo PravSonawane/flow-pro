@@ -47,7 +47,11 @@ class StepListFragment : AppBaseFragment() {
         val flowId =
             arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_flow_id))
                 ?: throw IllegalStateException("Flow ID is required")
-        viewModel.sendInput(StepListScreenViewModel.Input.FlowId(flowId))
+        val stepId = "step1"
+            // TODO extract stepId
+            // arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_step_id))
+            //     ?: throw IllegalStateException("Step ID is required")
+        viewModel.sendInput(StepListScreenViewModel.Input.InputStepList(flowId, stepId))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
