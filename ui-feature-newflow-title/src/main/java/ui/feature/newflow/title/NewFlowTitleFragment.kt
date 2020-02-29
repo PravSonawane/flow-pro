@@ -59,6 +59,11 @@ class NewFlowTitleFragment : AppBaseFragment() {
         val pathParams: Map<Int, String> = mapOf(
             R.string.deeplink_flow_steps_path_param_flow_id to flow.id
         )
-        navigate(this, R.string.deeplink_flow_steps, pathParams)
+
+        val stepType = resources.getStringArray(R.array.deeplink_flow_steps_query_param_step_type)[0]
+        val queryParams: Map<Int, String> = mapOf(
+            R.string.deeplink_flow_steps_query_param_step_type to stepType
+        )
+        navigate(this, R.string.deeplink_flow_step_list, pathParams, queryParams)
     }
 }
