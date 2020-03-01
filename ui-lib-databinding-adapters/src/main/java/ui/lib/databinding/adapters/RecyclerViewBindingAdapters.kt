@@ -51,6 +51,9 @@ fun <T : ItemViewModel<*, *>> setAdapterItems(
 ) {
     val adapter: RecyclerViewAdapter =
         (recyclerView.adapter as? RecyclerViewAdapter) ?: RecyclerViewAdapter()
-    if (recyclerView.adapter == null) recyclerView.adapter = adapter
+    if (recyclerView.adapter == null) {
+        adapter.setHasStableIds(true)
+        recyclerView.adapter = adapter
+    }
     adapter.updateData(data?.map { it }?.toList() ?: emptyList())
 }
