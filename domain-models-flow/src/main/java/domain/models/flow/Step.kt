@@ -13,6 +13,11 @@ data class Step(
     override fun toMap(): Map<String, Any?> {
         return mapper()
     }
+
+    // Overriding toString() as this could be an input/output step for other steps resulting in a cycle
+    override fun toString(): String {
+        return "Step(id=$id, name=$name)"
+    }
 }
 
 fun Step.mapper(): Map<String, Any?> {

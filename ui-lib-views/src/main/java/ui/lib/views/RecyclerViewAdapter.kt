@@ -45,14 +45,14 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
         compositeDisposable += Observable.fromCallable {
             val newAdapterItemList = viewModels.map { it }
             val result = DiffUtil.calculateDiff(DiffUtilCallback(adapterItems, newAdapterItemList))
-            this.adapterItems.clear()
-            this.adapterItems.addAll(newAdapterItemList)
-            return@fromCallable result
+            return@fromCallable Pair(newAdapterItemList, result)
         }
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                it.dispatchUpdatesTo(this)
+                this.adapterItems.clear()
+                this.adapterItems.addAll(it.first)
+                it.second.dispatchUpdatesTo(this)
             }
     }
 
