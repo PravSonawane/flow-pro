@@ -3,6 +3,7 @@ package ui.feature.flow.steplist
 import androidx.lifecycle.MutableLiveData
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
@@ -25,6 +26,7 @@ class StepListScreenViewModel @Inject constructor(
 
     init {
         compositeDisposable += observeInput()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe { handleInputStepList(it) }
     }
 

@@ -15,6 +15,7 @@ import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
@@ -49,6 +50,7 @@ class StepDetailsViewModel @Inject constructor(
 
         inputItems.observeForever {
             compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { event ->
                     when (event) {
                         is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
@@ -58,6 +60,7 @@ class StepDetailsViewModel @Inject constructor(
 
         outputItems.observeForever {
             compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { event ->
                     when (event) {
                         is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
@@ -79,6 +82,7 @@ class StepDetailsViewModel @Inject constructor(
                     )
                 )
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)
@@ -105,6 +109,7 @@ class StepDetailsViewModel @Inject constructor(
                     )
                 )
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetStepByIdSuccess(it.data)
@@ -125,6 +130,7 @@ class StepDetailsViewModel @Inject constructor(
                     )
                 )
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetInputStepsSuccess(it.data)
@@ -145,6 +151,7 @@ class StepDetailsViewModel @Inject constructor(
                     )
                 )
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetOutputStepsSuccess(it.data)

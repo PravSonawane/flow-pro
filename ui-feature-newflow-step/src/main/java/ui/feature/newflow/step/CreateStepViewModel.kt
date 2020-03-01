@@ -8,6 +8,7 @@ import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
@@ -41,6 +42,7 @@ class CreateStepViewModel @Inject constructor(
                     )
                 }
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)

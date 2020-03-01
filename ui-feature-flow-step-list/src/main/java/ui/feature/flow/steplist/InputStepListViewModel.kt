@@ -41,6 +41,7 @@ class InputStepListViewModel @Inject constructor(
 
         items.observeForever {
             compositeDisposable += Observable.merge(it.map { steps -> steps.observeOutput() })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { step ->
                     when (step) {
                         is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
@@ -76,6 +77,7 @@ class InputStepListViewModel @Inject constructor(
                         )
                     )
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)
