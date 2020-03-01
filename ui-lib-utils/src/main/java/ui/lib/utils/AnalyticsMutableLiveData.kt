@@ -9,17 +9,17 @@ class AnalyticsMutableLiveData<T>(
     private val defaultValue: T? = null
 ) : MutableLiveData<T>(defaultValue) {
 
-    override fun setValue(value: T) {
+    override fun setValue(value: T?) {
         val attributes: Map<String, String> = mapOf(
-            "onSetValue" to (value as Any).toString()
+            "onSetValue" to (value as Any?).toString()
         )
         analytics.logEvent(analyticsKey, attributes)
         super.setValue(value)
     }
 
-    override fun postValue(value: T) {
+    override fun postValue(value: T?) {
         val attributes: Map<String, String> = mapOf(
-            "onPostValue" to (value as Any).toString()
+            "onPostValue" to (value as Any?).toString()
         )
         analytics.logEvent(analyticsKey, attributes)
         super.postValue(value)

@@ -11,31 +11,41 @@ fun navigate(
     fragment: Fragment,
     @StringRes deeplinkResId: Int,
     pathParams: Map<Int, String> = emptyMap(),
-    queryParams: Map<String, String> = emptyMap(),
+    queryParams: Map<Int, String> = emptyMap(),
     navOptions: NavOptions? = null
 ) {
     val deeplinkUri = fragment.resources.getString(deeplinkResId)
-    fragment.findNavController().navigate(
-        replaceParams(fragment, deeplinkUri, pathParams),
-        navOptions
-    )
-}
 
-private fun replaceParams(
-    fragment: Fragment,
-    deeplinkUri: String,
-    pathParams: Map<Int, String> = emptyMap(),
-    queryParams: Map<Int, String> = emptyMap()
-): Uri {
     var deeplinkSb = deeplinkUri
     pathParams.forEach {
         val key = fragment.resources.getString(it.key)
         deeplinkSb = deeplinkSb.replace(Regex(escape("{$key}")), it.value)
     }
+
+    deeplinkSb = if (deeplinkSb.contains("?")) {
+        deeplinkSb.substringBeforeLast("?").plus("?")
+    } else {
+        deeplinkSb.plus("?")
+    }
+    val queryParamsList = queryParams.toList()
+    queryParamsList.forEachIndexed { index, pair ->
+        val key = fragment.resources.getString(pair.first)
+        deeplinkSb = deeplinkSb.plus("${key}=${pair.second}")
+        if (index != queryParamsList.size - 1) {
+            deeplinkSb = deeplinkSb.plus("&")
+        }
+    }
+
+    // queryParams.forEach {
+    //     val key = fragment.resources.getString(it.key)
+    //     deeplinkSb = deeplinkSb.replace(Regex(escape("{$key}")), it.value)
+    // }
+
     val replacedDeeplinkUri = Uri.parse(deeplinkSb)
     val pathSegments = replacedDeeplinkUri.pathSegments
     if (pathSegments.any { it.startsWith("{") }) {
         throw IllegalArgumentException("Incorrect pathParams: Required: $pathSegments. Found: $pathParams")
     }
-    return replacedDeeplinkUri
+
+    fragment.findNavController().navigate(replacedDeeplinkUri, navOptions)
 }

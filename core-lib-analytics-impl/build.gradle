@@ -29,9 +29,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // libs
+    implementation project(":core-lib-rxutils")
+
     //analytics
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-firebase")
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"

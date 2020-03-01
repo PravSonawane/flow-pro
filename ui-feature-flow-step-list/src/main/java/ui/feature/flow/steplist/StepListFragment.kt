@@ -45,13 +45,12 @@ class StepListFragment : AppBaseFragment() {
         binding.lifecycleOwner = this
 
         val flowId =
-            arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_flow_id))
-                ?: throw IllegalStateException("Flow ID is required")
-        val stepId = "step1"
-            // TODO extract stepId
-            // arguments?.getString(resources.getString(R.string.deeplink_flow_steps_path_param_step_id))
-            //     ?: throw IllegalStateException("Step ID is required")
-        viewModel.sendInput(StepListScreenViewModel.Input.InputStepList(flowId, stepId))
+            arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_path_param_flow_id))
+        val stepId =
+            arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_query_param_step_id))
+        val stepType =
+            convertToStepType(arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_query_param_step_type)))
+        viewModel.sendInput(StepListScreenViewModel.Input(flowId, stepId, stepType))
 
         compositeDisposable += viewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
@@ -67,6 +66,14 @@ class StepListFragment : AppBaseFragment() {
             }
 
         return binding.root
+    }
+
+    private fun convertToStepType(stepType: String?): StepListScreenViewModel.StepType {
+        return when (stepType) {
+            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0] -> StepListScreenViewModel.StepType.INPUT
+            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[1] -> StepListScreenViewModel.StepType.OUTPUT
+            else -> StepListScreenViewModel.StepType.ALL
+        }
     }
 
     private fun handleOnViewStep(flowId: String, step: Step) {

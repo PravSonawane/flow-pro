@@ -3,6 +3,7 @@ package ui.feature.flow.steplist
 import androidx.lifecycle.MutableLiveData
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
@@ -12,6 +13,8 @@ import javax.inject.Inject
 class StepListScreenViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
+    val allStepListViewModel: AllStepListViewModel,
+    val incompleteInputViewModel: IncompleteInputViewModel,
     val inputStepListViewModel: InputStepListViewModel
 ) : BaseViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
     "493db3c5-f5ff",
@@ -19,30 +22,58 @@ class StepListScreenViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val screenMode: MutableLiveData<ScreenMode> = liveDataFactory.mutableLiveData("2fe0342c-9b15")
+    val screenMode: MutableLiveData<ScreenMode> = liveDataFactory.mutableLiveData("7f0d3a0d-8d76")
 
     init {
         compositeDisposable += observeInput()
-            .subscribe {
-                when (it) {
-                    is Input.InputStepList -> handleInputStepList(it)
-                }
-            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { handleInputStepList(it) }
     }
 
-    private fun handleInputStepList(input: Input.InputStepList) {
-        screenMode.value = ScreenMode.INPUT_STEP_LIST
-        inputStepListViewModel.sendInput(InputStepListViewModel.Input(input.flowId, input.stepId))
+    private fun handleInputStepList(input: Input) {
+        when {
+            input.flowId == null -> {
+                screenMode.value = ScreenMode.INCOMPLETE_INPUT
+                incompleteInputViewModel.sendInput(IncompleteInputViewModel.Input("Flow ID is required"))
+            }
+            input.stepId == null && input.stepType == StepType.ALL -> {
+                screenMode.value = ScreenMode.ALL_STEPS
+                allStepListViewModel.sendInput(AllStepListViewModel.Input(input.flowId))
+            }
+            input.stepId != null && input.stepType == StepType.INPUT -> {
+                screenMode.value = ScreenMode.INPUT_STEPS
+                inputStepListViewModel.sendInput(InputStepListViewModel.Input(input.flowId, input.stepId))
+            }
+            else -> {
+                screenMode.value = ScreenMode.INCOMPLETE_INPUT
+                incompleteInputViewModel.sendInput(IncompleteInputViewModel.Input("Unknown case"))
+            }
+        }
     }
 
     enum class ScreenMode {
-        INPUT_STEP_LIST,
-        OUTPUT_STEP_LIST
+        LOADING,
+        ERROR,
+        INCOMPLETE_INPUT,
+        ALL_STEPS,
+        INPUT_STEPS,
+        OUTPUT_STEPS
     }
 
-    sealed class Input {
-        data class InputStepList(val flowId: String, val stepId: String) : Input()
+    enum class StepType {
+        /** List all [Step]s */
+        ALL,
+        /** List input [Step]s */
+        INPUT,
+        /** List output [Step]s */
+        OUTPUT
     }
+
+    data class Input(
+        val flowId: String? = null,
+        val stepId: String? = null,
+        val stepType: StepType? = StepType.ALL
+    )
 
     sealed class Event {
         object OnNewStep : Event()

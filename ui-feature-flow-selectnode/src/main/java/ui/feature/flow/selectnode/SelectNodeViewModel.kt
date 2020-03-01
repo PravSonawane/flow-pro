@@ -57,6 +57,7 @@ class SelectNodeViewModel @Inject constructor(
                     )
                 }
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
                     is Result.OnSuccess -> handleGetFlowByIdSuccess(it.data)

@@ -9,13 +9,17 @@ import javax.inject.Inject
 
 class GetAllStepsUseCase @Inject constructor(
     private val stepRepository: StepRepository
-) : ObservableResultUseCase<GetAllStepsUseCase.Input, List<Step>> {
+) : ObservableResultUseCase<GetAllStepsInput, List<Step>> {
 
-    override fun invoke(input: Input): Observable<Result<List<Step>>> {
+    override fun invoke(input: GetAllStepsInput): Observable<Result<List<Step>>> {
         return stepRepository.getAll(input.flowId)
     }
 
-    data class Input(
-        val flowId: String
-    )
+    companion object {
+        const val NAMED = "GET_ALL_INPUT_STEPS"
+    }
 }
+
+data class GetAllStepsInput(
+    val flowId: String
+)

@@ -3,12 +3,18 @@ package ui.lib.views
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import core.lib.rxutils.plusAssign
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 /**
  * A [RecyclerView.Adapter]
  */
 class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
 
+    private val compositeDisposable = CompositeDisposable()
     private val adapterItems = ArrayList<ItemViewModel<*, *>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
@@ -36,10 +42,22 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
      * related methods might be inefficient.
      */
     fun updateData(viewModels: List<ItemViewModel<*, *>>) {
-        val newAdapterItemList = viewModels.map { it }
-        val diffUtilResult = DiffUtil.calculateDiff(DiffUtilCallback(adapterItems, newAdapterItemList))
-        this.adapterItems.clear()
-        this.adapterItems.addAll(newAdapterItemList)
-        diffUtilResult.dispatchUpdatesTo(this)
+        compositeDisposable += Observable.fromCallable {
+            val newAdapterItemList = viewModels.map { it }
+            val result = DiffUtil.calculateDiff(DiffUtilCallback(adapterItems, newAdapterItemList))
+            this.adapterItems.clear()
+            this.adapterItems.addAll(newAdapterItemList)
+            return@fromCallable result
+        }
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it.dispatchUpdatesTo(this)
+            }
+    }
+
+    override fun onViewDetachedFromWindow(holder: FeedViewHolder) {
+        compositeDisposable.clear()
+        super.onViewDetachedFromWindow(holder)
     }
 }

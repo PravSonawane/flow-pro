@@ -7,9 +7,9 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
+import domain.flow.usecases.GetAllStepsInput
+import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
-import domain.flow.usecases.GetPossibleInputStepsInput
-import domain.flow.usecases.GetPossibleOutputStepsUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.Observable
@@ -21,21 +21,21 @@ import ui.lib.utils.StreamFactory
 import javax.inject.Inject
 import javax.inject.Named
 
-class InputStepListViewModel @Inject constructor(
+class AllStepListViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
-    @Named(GetPossibleOutputStepsUseCase.NAMED) val getPossibleOutputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
+    @Named(GetAllStepsUseCase.NAMED) val getAllStepsUseCase: BusinessUseCase<GetAllStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
-) : BaseViewModel<InputStepListViewModel.Input, InputStepListViewModel.Event>(
-    "ba45622c-d74a",
+) : BaseViewModel<AllStepListViewModel.Input, AllStepListViewModel.Event>(
+    "877c5474-65e0",
     streamFactory
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val items: MutableLiveData<List<StepItemViewModel>> =
-        liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
-    val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
+        liveDataFactory.mutableLiveData("1de6d864-fd8a", emptyList())
+    val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("c6795166-d62c")
 
     init {
 
@@ -51,11 +51,11 @@ class InputStepListViewModel @Inject constructor(
 
         compositeDisposable += observeInput()
             .flatMap {
-                getPossibleOutputStepsUseCase(
+                getAllStepsUseCase(
                     BusinessData(
-                        "41508dfb-95b4",
-                        Plugin("23145985-698d"),
-                        GetPossibleInputStepsInput(it.stepId)
+                        "bac5054a-ce14",
+                        Plugin("c208efa2-554a"),
+                        GetAllStepsInput(it.flowId)
                     )
                 )
             }
@@ -71,8 +71,8 @@ class InputStepListViewModel @Inject constructor(
             .flatMap {
                     getFlowByIdUseCase(
                         BusinessData(
-                            "7880cff2-530e",
-                            Plugin("152a67de-3676"),
+                            "b15477ff-5711",
+                            Plugin("bdae4ab5-6f8d"),
                             it.flowId
                         )
                     )
@@ -87,7 +87,7 @@ class InputStepListViewModel @Inject constructor(
 
     private fun handleSuccess(steps: List<Step>) {
         val items: List<StepItemViewModel> = steps.map {
-            viewModelFactory.create("73d5b9c7-fbc4", it)
+            viewModelFactory.create("6bed4afd-a3dd", it)
         }
         this.items.value = items
     }
@@ -108,7 +108,7 @@ class InputStepListViewModel @Inject constructor(
         flow.value?.let { sendOutput(Event.OnViewStep(it.id, step)) }
     }
 
-    data class Input(val flowId: String, val stepId: String)
+    data class Input(val flowId: String)
 
     sealed class Event {
         object OnNewStep : Event()

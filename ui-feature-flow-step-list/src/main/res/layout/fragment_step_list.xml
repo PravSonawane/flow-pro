@@ -15,12 +15,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <include
-            android:id="@+id/view_stub_input_step_list"
+            android:id="@+id/include_incomplete_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            layout="@layout/layout_step_list_mode_input"
+            layout="@layout/layout_incomplete_input"
             tools:visibility="visible"
-            android:visibility="@{viewModel.screenMode == ScreenMode.INPUT_STEP_LIST}"
+            android:visibility="@{viewModel.screenMode == ScreenMode.INCOMPLETE_INPUT}"
+            app:viewModel="@{viewModel.incompleteInputViewModel}" />
+
+        <include
+            android:id="@+id/include_all_step_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_step_list_type_all"
+            tools:visibility="gone"
+            android:visibility="@{viewModel.screenMode == ScreenMode.ALL_STEPS}"
+            app:viewModel="@{viewModel.allStepListViewModel}" />
+
+        <include
+            android:id="@+id/include_input_step_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_step_list_type_input"
+            tools:visibility="gone"
+            android:visibility="@{viewModel.screenMode == ScreenMode.INPUT_STEPS}"
             app:viewModel="@{viewModel.inputStepListViewModel}" />
     </FrameLayout>
 </layout>
