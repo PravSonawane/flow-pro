@@ -12,6 +12,7 @@ import javax.inject.Inject
 class StepListScreenViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
+    val allStepListViewModel: AllStepListViewModel,
     val incompleteInputViewModel: IncompleteInputViewModel,
     val inputStepListViewModel: InputStepListViewModel
 ) : BaseViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
@@ -21,7 +22,6 @@ class StepListScreenViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val screenMode: MutableLiveData<ScreenMode> = liveDataFactory.mutableLiveData("7f0d3a0d-8d76")
-    val stepType: MutableLiveData<StepType> = liveDataFactory.mutableLiveData("2fe0342c-9b15")
 
     init {
         compositeDisposable += observeInput()
@@ -29,13 +29,22 @@ class StepListScreenViewModel @Inject constructor(
     }
 
     private fun handleInputStepList(input: Input) {
-        if (input.flowId == null) {
-            screenMode.value = ScreenMode.INCOMPLETE_INPUT
-            incompleteInputViewModel.sendInput(IncompleteInputViewModel.Input("Flow ID is required"))
-        } else {
-            if (input.stepId != null) {
-                stepType.value = StepType.INPUT
+        when {
+            input.flowId == null -> {
+                screenMode.value = ScreenMode.INCOMPLETE_INPUT
+                incompleteInputViewModel.sendInput(IncompleteInputViewModel.Input("Flow ID is required"))
+            }
+            input.stepId == null && input.stepType == StepType.ALL -> {
+                screenMode.value = ScreenMode.ALL_STEPS
+                allStepListViewModel.sendInput(AllStepListViewModel.Input(input.flowId))
+            }
+            input.stepId != null && input.stepType == StepType.INPUT -> {
+                screenMode.value = ScreenMode.INPUT_STEPS
                 inputStepListViewModel.sendInput(InputStepListViewModel.Input(input.flowId, input.stepId))
+            }
+            else -> {
+                screenMode.value = ScreenMode.INCOMPLETE_INPUT
+                incompleteInputViewModel.sendInput(IncompleteInputViewModel.Input("Unknown case"))
             }
         }
     }

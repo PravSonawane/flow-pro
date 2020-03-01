@@ -11,6 +11,8 @@ import data.flow.repositories.DefaultStepRepository
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
+import domain.flow.usecases.GetAllStepsInput
+import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
@@ -56,6 +58,15 @@ class FlowModule {
         getFlowByIdUseCase: GetFlowByIdUseCase
     ): BusinessUseCase<String, Flow> {
         return factory.create(getFlowByIdUseCase)
+    }
+
+    @Named(GetAllStepsUseCase.NAMED)
+    @Provides
+    fun provideGetAllSteps(
+        factory: BusinessUseCaseFactory<GetAllStepsInput, List<Step>>,
+        getAllStepsUseCase: GetAllStepsUseCase
+    ): BusinessUseCase<GetAllStepsInput, List<Step>> {
+        return factory.create(getAllStepsUseCase)
     }
 
     @Named(GetCurrentInputStepsUseCase.NAMED)

@@ -4,6 +4,8 @@ import core.lib.usecase.common.BusinessUseCase
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
+import domain.flow.usecases.GetAllStepsInput
+import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
@@ -25,6 +27,9 @@ interface FlowComponent {
 
     @Named(GetStepByIdUseCase.NAMED)
     fun getStepById(): BusinessUseCase<String, Step>
+
+    @Named(GetAllStepsUseCase.NAMED)
+    fun getAllSteps(): BusinessUseCase<GetAllStepsInput, List<Step>>
 
     @Named(GetCurrentInputStepsUseCase.NAMED)
     fun getCurrentInputSteps(): BusinessUseCase<GetInputStepsInput, List<Step>>

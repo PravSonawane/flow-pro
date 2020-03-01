@@ -22,19 +22,17 @@ fun navigate(
         deeplinkSb = deeplinkSb.replace(Regex(escape("{$key}")), it.value)
     }
 
-    if (queryParams.isNotEmpty()) {
-        deeplinkSb = if (deeplinkSb.contains("?")) {
-            deeplinkSb.substringBeforeLast("?").plus("?")
-        } else {
-            deeplinkSb.plus("?")
-        }
-        val queryParamsList = queryParams.toList()
-        queryParamsList.forEachIndexed { index, pair ->
-            val key = fragment.resources.getString(pair.first)
-            deeplinkSb = deeplinkSb.plus("${key}=${pair.second}")
-            if (index != queryParamsList.size - 1) {
-                deeplinkSb = deeplinkSb.plus("&")
-            }
+    deeplinkSb = if (deeplinkSb.contains("?")) {
+        deeplinkSb.substringBeforeLast("?").plus("?")
+    } else {
+        deeplinkSb.plus("?")
+    }
+    val queryParamsList = queryParams.toList()
+    queryParamsList.forEachIndexed { index, pair ->
+        val key = fragment.resources.getString(pair.first)
+        deeplinkSb = deeplinkSb.plus("${key}=${pair.second}")
+        if (index != queryParamsList.size - 1) {
+            deeplinkSb = deeplinkSb.plus("&")
         }
     }
 

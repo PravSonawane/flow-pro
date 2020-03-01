@@ -37,6 +37,8 @@ dependencies {
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-common-resources")
     implementation project(":ui-lib-utils")
+    implementation project(":core-lib-rxutils")
+
     //analytics
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-impl")
