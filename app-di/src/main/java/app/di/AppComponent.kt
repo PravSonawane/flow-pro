@@ -2,14 +2,14 @@ package app.di
 
 import android.app.Application
 import android.content.Context
+import app.di.annotations.ApplicationContext
 import core.lib.analytics.di.AnalyticsComponent
+import core.lib.plugin.impl.di.PluginComponent
 import dagger.BindsInstance
 import dagger.Component
 import data.flow.di.FlowComponent
 import ui.lib.di.BaseAppComponent
 import javax.inject.Singleton
-import app.di.annotations.ApplicationContext
-import core.lib.plugin.impl.di.PluginComponent
 
 @Component(
     modules = [
