@@ -33,7 +33,8 @@ class StepDetailsViewModel @Inject constructor(
     private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<StepDetailsViewModel.Input, StepDetailsViewModel.Event>(
     "29e6fff3-32a7",
-    streamFactory
+    streamFactory,
+    R.layout.fragment_flow_step_details
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

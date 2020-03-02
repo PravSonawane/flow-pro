@@ -14,7 +14,8 @@ class IncompleteInputViewModel @Inject constructor(
     liveDataFactory: LiveDataFactory
 ) : BaseViewModel<IncompleteInputViewModel.Input, IncompleteInputViewModel.Event>(
     "c68f8543-e30d",
-    streamFactory
+    streamFactory,
+    R.layout.layout_incomplete_input
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

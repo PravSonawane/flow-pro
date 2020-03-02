@@ -18,7 +18,8 @@ class StepListScreenViewModel @Inject constructor(
     val inputStepListViewModel: InputStepListViewModel
 ) : BaseViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
     "493db3c5-f5ff",
-    streamFactory
+    streamFactory,
+    R.layout.fragment_step_list
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

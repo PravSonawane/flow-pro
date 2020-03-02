@@ -22,7 +22,8 @@ class CreateStepViewModel @Inject constructor(
     liveDataFactory: LiveDataFactory
 ) : BaseViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
     "e2fc2772-418e",
-    streamFactory
+    streamFactory,
+    R.layout.fragment_create_step
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

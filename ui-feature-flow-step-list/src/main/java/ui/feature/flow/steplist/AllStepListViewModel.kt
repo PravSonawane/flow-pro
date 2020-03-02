@@ -29,7 +29,8 @@ class AllStepListViewModel @Inject constructor(
     liveDataFactory: LiveDataFactory
 ) : BaseViewModel<AllStepListViewModel.Input, AllStepListViewModel.Event>(
     "877c5474-65e0",
-    streamFactory
+    streamFactory,
+    R.layout.layout_step_list_type_all
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

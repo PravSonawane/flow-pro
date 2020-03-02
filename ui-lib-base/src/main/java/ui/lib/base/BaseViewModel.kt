@@ -1,5 +1,6 @@
 package ui.lib.base
 
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import ui.lib.utils.AnalyticsStream
@@ -8,9 +9,11 @@ import ui.lib.utils.StreamFactory
 abstract class BaseViewModel<Input, Output>(
     analyticsKey: String,
     streamFactory: StreamFactory,
-    private val inputStream: AnalyticsStream<Input> = streamFactory.analyticsStream(analyticsKey),
-    private val eventStream: AnalyticsStream<Output> = streamFactory.analyticsStream(analyticsKey)
+    @LayoutRes val layoutId: Int
 ) : ViewModel() {
+
+    private val inputStream: AnalyticsStream<Input> = streamFactory.analyticsStream(analyticsKey)
+    private val eventStream: AnalyticsStream<Output> = streamFactory.analyticsStream(analyticsKey)
 
     fun sendInput(input: Input) {
         inputStream.publish(input)

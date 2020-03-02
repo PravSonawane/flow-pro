@@ -20,7 +20,8 @@ class NewFlowTitleViewModel @Inject constructor(
     liveDataFactory: LiveDataFactory
 ) : BaseViewModel<NewFlowTitleViewModel.Input, NewFlowTitleViewModel.Event>(
     "718adc21-f9c0",
-    streamFactory
+    streamFactory,
+    R.layout.fragment_new_flow_title
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
