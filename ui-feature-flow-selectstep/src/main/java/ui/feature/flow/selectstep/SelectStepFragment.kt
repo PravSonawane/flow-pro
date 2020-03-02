@@ -33,11 +33,11 @@ class SelectStepFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentFlowSelectStepBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_flow_select_step, container, false)
-
         // dagger injection
         selectStepComponent.injectIn(this)
+
+        val binding: FragmentFlowSelectStepBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

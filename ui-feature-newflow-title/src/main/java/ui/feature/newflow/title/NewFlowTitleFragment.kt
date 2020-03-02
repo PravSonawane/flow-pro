@@ -35,13 +35,13 @@ class NewFlowTitleFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentNewFlowTitleBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_new_flow_title, container, false)
-        binding.lifecycleOwner = this
-
         // dagger injection
         newFlowTitleComponent.injectIn(this)
 
+        val binding: FragmentNewFlowTitleBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
+
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         compositeDisposable += viewModel.observeOutput()

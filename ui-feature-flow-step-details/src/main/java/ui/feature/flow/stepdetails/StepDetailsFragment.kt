@@ -35,11 +35,11 @@ class StepDetailsFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentFlowStepDetailsBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_flow_step_details, container, false)
-
         // dagger injection
         stepDetailsComponent.injectIn(this)
+
+        val binding: FragmentFlowStepDetailsBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

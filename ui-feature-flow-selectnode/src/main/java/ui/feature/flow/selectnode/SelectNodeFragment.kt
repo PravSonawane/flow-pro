@@ -33,11 +33,11 @@ class SelectNodeFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentFlowSelectNodeBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_flow_select_node, container, false)
-
         // dagger injection
         selectNodeComponent.injectIn(this)
+
+        val binding: FragmentFlowSelectNodeBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
