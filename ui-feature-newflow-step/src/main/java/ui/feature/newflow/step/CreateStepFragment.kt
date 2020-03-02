@@ -36,11 +36,12 @@ class CreateStepFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentCreateStepBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_create_step, container, false)
 
         // dagger injection
         createStepComponent.injectIn(this)
+
+        val binding: FragmentCreateStepBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

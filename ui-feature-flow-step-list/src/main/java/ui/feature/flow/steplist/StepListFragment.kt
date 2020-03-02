@@ -35,11 +35,11 @@ class StepListFragment : AppBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentStepListBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_step_list, container, false)
-
         // dagger injection
         stepListComponent.injectIn(this)
+
+        val binding: FragmentStepListBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

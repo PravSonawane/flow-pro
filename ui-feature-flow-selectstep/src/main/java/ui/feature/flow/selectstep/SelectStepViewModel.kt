@@ -27,7 +27,8 @@ class SelectStepViewModel @Inject constructor(
     private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<SelectStepViewModel.Input, SelectStepViewModel.Event>(
     "50ef9e44-a305",
-    streamFactory
+    streamFactory,
+    R.layout.fragment_flow_select_step
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 

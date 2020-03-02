@@ -27,7 +27,8 @@ class SelectNodeViewModel @Inject constructor(
     private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<SelectNodeViewModel.Input, SelectNodeViewModel.Event>(
     "b7dcd411-0058",
-    streamFactory
+    streamFactory,
+    R.layout.fragment_flow_select_node
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
