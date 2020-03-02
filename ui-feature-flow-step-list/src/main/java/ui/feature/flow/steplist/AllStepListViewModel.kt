@@ -45,7 +45,7 @@ class AllStepListViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { step ->
                     when (step) {
-                        is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
+                        is StepItemViewModel.Event.OnSelectStep -> handleOnViewStep(step.step)
                     }
                 }
         }
@@ -63,8 +63,8 @@ class AllStepListViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is Result.OnSuccess -> handleSuccess(it.data)
-                    is Result.OnError -> handleError(it.domainError)
+                    is Result.OnSuccess -> handleGetAllStepsSuccess(it.data)
+                    is Result.OnError -> handleGetAllStepsError(it.domainError)
                 }
             }
 
@@ -86,14 +86,14 @@ class AllStepListViewModel @Inject constructor(
             }
     }
 
-    private fun handleSuccess(steps: List<Step>) {
+    private fun handleGetAllStepsSuccess(steps: List<Step>) {
         val items: List<StepItemViewModel> = steps.map {
             viewModelFactory.create("6bed4afd-a3dd", it)
         }
         this.items.value = items
     }
 
-    private fun handleError(error: DomainError) {
+    private fun handleGetAllStepsError(error: DomainError) {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
@@ -101,18 +101,13 @@ class AllStepListViewModel @Inject constructor(
         flow.value = data
     }
 
-    fun onNext() {
-        sendOutput(Event.OnNewStep)
-    }
-
-    private fun handleOnSelectStep(step: Step) {
+    private fun handleOnViewStep(step: Step) {
         flow.value?.let { sendOutput(Event.OnViewStep(it.id, step)) }
     }
 
     data class Input(val flowId: String)
 
     sealed class Event {
-        object OnNewStep : Event()
         data class OnViewStep(val flowId: String, val step: Step) : Event()
     }
 

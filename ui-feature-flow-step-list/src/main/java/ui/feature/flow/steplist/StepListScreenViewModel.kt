@@ -29,6 +29,21 @@ class StepListScreenViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { handleInputStepList(it) }
+
+        compositeDisposable += allStepListViewModel.observeOutput()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { handleAllStepListOutputs(it) }
+    }
+
+    private fun handleAllStepListOutputs(event: AllStepListViewModel.Event) {
+        when (event) {
+            is AllStepListViewModel.Event.OnViewStep -> sendOutput(
+                Event.OnViewStep(
+                    event.flowId,
+                    event.step
+                )
+            )
+        }
     }
 
     private fun handleInputStepList(input: Input) {
@@ -43,7 +58,12 @@ class StepListScreenViewModel @Inject constructor(
             }
             input.stepId != null && input.stepType == StepType.INPUT -> {
                 screenMode.value = ScreenMode.INPUT_STEPS
-                inputStepListViewModel.sendInput(InputStepListViewModel.Input(input.flowId, input.stepId))
+                inputStepListViewModel.sendInput(
+                    InputStepListViewModel.Input(
+                        input.flowId,
+                        input.stepId
+                    )
+                )
             }
             else -> {
                 screenMode.value = ScreenMode.INCOMPLETE_INPUT
@@ -77,7 +97,6 @@ class StepListScreenViewModel @Inject constructor(
     )
 
     sealed class Event {
-        object OnNewStep : Event()
         data class OnViewStep(val flowId: String, val step: Step) : Event()
     }
 

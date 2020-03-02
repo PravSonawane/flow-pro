@@ -56,8 +56,6 @@ class StepListFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is StepListScreenViewModel.Event.OnNewStep -> {
-                    }
                     is StepListScreenViewModel.Event.OnViewStep -> handleOnViewStep(
                         it.flowId,
                         it.step
