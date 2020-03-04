@@ -39,7 +39,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
