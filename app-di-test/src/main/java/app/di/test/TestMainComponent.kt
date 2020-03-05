@@ -1,7 +1,6 @@
-package app.di
+package app.di.test
 
 import dagger.Component
-import ui.lib.base.BaseTest
 import ui.lib.di.ActivityScope
 import ui.lib.di.BaseMainComponent
 import ui.lib.di.UiModule
@@ -10,20 +9,16 @@ import ui.lib.di.UiModule
 @Component(
     dependencies = [TestAppComponent::class],
     modules = [
-        UiModule::class,
-        MainVmModule::class,
-        MainModule::class
+        UiModule::class
     ]
 )
 @ActivityScope
 interface TestMainComponent : BaseMainComponent, TestAppComponent {
-    fun injectIn(test: BaseTest)
 
     /** Dagger Builder for [TestMainComponent] */
     @Component.Builder
     interface Builder {
         fun appComponent(appComponent: TestAppComponent): Builder
-        fun mainModule(mainModule: MainModule): Builder
         fun build(): TestMainComponent
     }
 }

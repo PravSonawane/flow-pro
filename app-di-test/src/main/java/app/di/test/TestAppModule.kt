@@ -1,9 +1,9 @@
-package app.di
+package app.di.test
 
 import core.lib.analytics.test.di.FakeAnalyticsModule
 import core.lib.plugin.test.di.FakePluginModule
 import dagger.Module
-import data.flow.di.FakeFlowModule
+import data.feature.flow.test.di.FakeFlowModule
 
 @Module(
     includes = [

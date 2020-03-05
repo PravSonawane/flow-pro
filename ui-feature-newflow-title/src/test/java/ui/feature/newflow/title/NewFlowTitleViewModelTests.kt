@@ -1,35 +1,32 @@
 package ui.feature.newflow.title
 
-import app.di.TestAppModule
+import app.di.test.BaseTest
+import app.di.test.TestAppViewModelFactory
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import ui.lib.base.BaseTest
+import javax.inject.Inject
 
 class NewFlowTitleViewModelTests : BaseTest() {
 
-    //@Inject
-    //lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: TestAppViewModelFactory
 
-    // @Inject
-    // lateinit var viewModel: NewFlowTitleViewModel
-    //
-    // val appComponent = DaggerTestAppComponent.builder().build()
-    //
-    // val mainComponent = DaggerTestMainComponent.builder().appComponent(appComponent).build()
-    //
-    // private val newFlowTitleComponent: TestNewFlowTitleComponent by lazy {
-    //     DaggerTestNewFlowTitleComponent.builder()
-    //         .mainComponent(mainComponent)
-    //         .build()
-    // }
+    private lateinit var viewModel: NewFlowTitleViewModel
 
     @Before
     fun before() {
-        //newFlowTitleComponent.injectIn(this)
+        val newFlowTitleComponent: TestNewFlowTitleComponent =
+            DaggerTestNewFlowTitleComponent.builder()
+                .mainComponent(mainComponent())
+                .build()
+
+        newFlowTitleComponent.injectIn(this)
+        viewModel = viewModelFactory.create(NewFlowTitleViewModel::class.java)
     }
 
     @Test
     fun test() {
-        val m = TestAppModule()
+        assertEquals(true, viewModel != null)
     }
 }

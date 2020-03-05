@@ -1,4 +1,4 @@
-package data.flow.di
+package domain.flow.di
 
 import core.lib.usecase.common.BusinessUseCase
 import core.lib.usecase.common.BusinessUseCaseFactory

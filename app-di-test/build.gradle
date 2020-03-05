@@ -32,57 +32,27 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //ui lib
-    implementation project(":app-base")
-    implementation project(":core-lib-rxutils")
-    implementation project(":ui-lib-assets")
-    implementation project(":ui-lib-base")
-    implementation project(":ui-lib-common-resources")
-    implementation project(":ui-lib-databinding-adapters")
+
     implementation project(":ui-lib-di")
-    implementation project(":ui-lib-utils")
-    implementation project(":ui-lib-views")
-    implementation project(":ui-navigation")
+    implementation project(":app-di-annotations")
 
-    //test
-    testImplementation project(":core-lib-analytics-test")
-    testImplementation project(":core-lib-plugin-test")
-    testImplementation project(":data-feature-flow-test")
-    testImplementation project(":app-di-test")
-
-    //core
+    //lib
     implementation project(":core-lib-usecase")
     implementation project(":core-lib-usecase-common")
 
+    //analytics
+    implementation project(":core-lib-plugin")
+    implementation project(":core-lib-analytics")
+
     //domain
-    implementation project(':core-lib-result')
-    implementation project(':domain-feature-flow')
     implementation project(':domain-models-core')
+    implementation project(':domain-feature-flow')
     implementation project(':domain-models-flow')
 
-    //data
-    implementation project(':data-feature-flow')
-
-    //di
-    implementation project(":app-di")
-    implementation project(":app-di-annotations")
-
-    //analytics
-    implementation project(":core-lib-analytics")
-    implementation project(":core-lib-analytics-impl")
-
-    //plugin
-    implementation project(":core-lib-plugin")
-    implementation project(":core-lib-plugin-impl")
-
-    //rxjava2
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-
-    //navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    //test
+    implementation project(':core-lib-analytics-test')
+    implementation project(':core-lib-plugin-test')
+    implementation project(':data-feature-flow-test')
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -95,10 +65,9 @@ dependencies {
     kaptTest "com.google.dagger:dagger-android-processor:$dagger_version"
     kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
 
-    // Constraint Layout
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

@@ -1,7 +1,7 @@
-package data.flow.di
+package data.feature.flow.test.di
 
 import core.lib.result.Result
-import data.flow.repositories.FakeStorage
+import data.feature.flow.test.FakeStorage
 import domain.flow.repositories.FlowRepository
 import domain.flow.usecases.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow

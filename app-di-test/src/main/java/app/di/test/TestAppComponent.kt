@@ -1,4 +1,4 @@
-package app.di
+package app.di.test
 
 import android.app.Application
 import android.content.Context
@@ -13,25 +13,26 @@ import javax.inject.Singleton
 
 @Component(
     modules = [
-        AppModule::class
+        TestAppModule::class
     ]
 )
 @Singleton
-interface AppComponent : BaseAppComponent,
+interface TestAppComponent : BaseAppComponent,
     PluginComponent,
     AnalyticsComponent,
     FlowComponent {
 
     override fun application(): Application
-    @ApplicationContext override fun applicationContext(): Context
+    @ApplicationContext
+    override fun applicationContext(): Context
 
-    /** Dagger Builder for [AppComponent] */
+    /** Dagger Builder for [TestAppComponent] */
     @Component.Builder
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
         @BindsInstance
         fun applicationContext(@ApplicationContext context: Context): Builder
-        fun build(): AppComponent
+        fun build(): TestAppComponent
     }
 }

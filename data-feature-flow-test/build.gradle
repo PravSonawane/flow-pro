@@ -2,20 +2,17 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //lib
-    implementation project(':core-lib-usecase')
-    implementation project(':core-lib-usecase-common')
-
-    //domain core
+    // lib
     implementation project(':core-lib-result')
-    implementation project(':domain-models-flow')
+    implementation project(':core-lib-usecase')
 
-    //rxjava2
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    //domain
+    implementation project(':domain-models-core')
+    implementation project(':domain-feature-flow')
+    implementation project(':domain-models-flow')
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -23,6 +20,9 @@ dependencies {
     //dagger2 test
     testImplementation "com.google.dagger:dagger:$dagger_version"
     kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

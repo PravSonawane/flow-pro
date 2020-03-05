@@ -1,6 +1,6 @@
 package ui.feature.newflow.title
 
-import app.di.TestMainComponent
+import app.di.test.TestMainComponent
 import dagger.Component
 import ui.lib.di.FeatureScope
 import ui.lib.di.UiModule
@@ -16,6 +16,8 @@ import ui.lib.di.UiModule
 )
 @FeatureScope
 interface TestNewFlowTitleComponent : TestMainComponent {
+
+    fun injectIn(test: NewFlowTitleViewModelTests)
 
     /** Dagger Builder for [TestNewFlowTitleComponent] */
     @Component.Builder

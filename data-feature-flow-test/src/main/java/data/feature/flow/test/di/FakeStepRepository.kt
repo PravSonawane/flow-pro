@@ -1,7 +1,7 @@
-package data.flow.di
+package data.feature.flow.test.di
 
 import core.lib.result.Result
-import data.flow.repositories.FakeStorage
+import data.feature.flow.test.FakeStorage
 import domain.flow.repositories.StepRepository
 import domain.models.flow.Step
 import io.reactivex.Observable

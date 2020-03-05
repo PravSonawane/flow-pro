@@ -1,7 +1,8 @@
-package data.flow.di
+package data.feature.flow.test.di
 
 import dagger.Module
 import dagger.Provides
+import domain.flow.di.FlowModule
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
