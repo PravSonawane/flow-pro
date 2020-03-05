@@ -1,15 +1,15 @@
 package app.di
 
-import core.lib.analytics.di.AnalyticsModule
-import core.lib.plugin.impl.di.PluginModule
+import core.lib.analytics.di.DefaultAnalyticsModule
+import core.lib.plugin.impl.di.DefaultPluginModule
 import dagger.Module
-import data.flow.di.FlowModule
+import data.flow.di.DefaultFlowModule
 
 @Module(
     includes = [
-        PluginModule::class,
-        AnalyticsModule::class,
-        FlowModule::class
+        DefaultPluginModule::class,
+        DefaultAnalyticsModule::class,
+        DefaultFlowModule::class
     ]
 )
 class AppModule

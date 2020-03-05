@@ -1,4 +1,4 @@
-package core.lib.plugin.impl.di
+package core.lib.plugin.di
 
 import core.lib.plugin.PluginRepository
 

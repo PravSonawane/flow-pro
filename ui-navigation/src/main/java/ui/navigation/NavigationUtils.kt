@@ -30,7 +30,7 @@ fun navigate(
     val queryParamsList = queryParams.toList()
     queryParamsList.forEachIndexed { index, pair ->
         val key = fragment.resources.getString(pair.first)
-        deeplinkSb = deeplinkSb.plus("${key}=${pair.second}")
+        deeplinkSb = deeplinkSb.plus("$key=${pair.second}")
         if (index != queryParamsList.size - 1) {
             deeplinkSb = deeplinkSb.plus("&")
         }

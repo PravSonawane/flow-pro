@@ -1,6 +1,5 @@
 package core.lib.analytics.di
 
-import core.lib.analytics.Analytics
 import core.lib.analytics.AnalyticsRepository
 import core.lib.analytics.firebase.FirebaseAnalytics
 import core.lib.analytics.firebase.di.FirebaseAnalyticsModule
@@ -11,15 +10,9 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module(
-    includes = [FirebaseAnalyticsModule::class]
+    includes = [AnalyticsModule::class, FirebaseAnalyticsModule::class]
 )
-class AnalyticsModule {
-
-    @Provides
-    @Singleton
-    fun analytics(analyticsRepository: AnalyticsRepository): Analytics {
-        return analyticsRepository
-    }
+class DefaultAnalyticsModule {
 
     @Provides
     @Singleton
