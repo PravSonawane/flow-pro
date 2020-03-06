@@ -47,7 +47,7 @@ class FlowListViewModel @Inject constructor(
         compositeDisposable += getAllFlowsUseCase(BusinessData("58993dea-6ddf", Plugin("3f39506e-6669"), Unit))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                when(it) {
+                when (it) {
                     is Result.OnSuccess -> handleGetAllFlowsSuccess(it.data)
                     is Result.OnError -> handleGetAllFlowsError(it.domainError)
                 }
@@ -63,7 +63,7 @@ class FlowListViewModel @Inject constructor(
     }
 
     private fun handleGetAllFlowsError(domainError: DomainError) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
     private fun handleOnViewFlow(flow: Flow) {

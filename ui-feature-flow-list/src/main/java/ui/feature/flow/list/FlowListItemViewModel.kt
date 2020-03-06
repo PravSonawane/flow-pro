@@ -2,7 +2,6 @@ package ui.feature.flow.list
 
 import androidx.lifecycle.LiveData
 import domain.models.flow.Flow
-import domain.models.flow.Step
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel
