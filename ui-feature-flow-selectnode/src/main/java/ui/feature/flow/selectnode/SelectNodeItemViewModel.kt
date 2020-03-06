@@ -6,8 +6,6 @@ import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel
 
-const val VIEW_TYPE_ITEM_NODE = 100000
-
 class SelectNodeItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
@@ -17,8 +15,7 @@ class SelectNodeItemViewModel(
     analyticsKey,
     streamFactory,
     R.layout.list_item_select_node,
-    BR.viewModel,
-    VIEW_TYPE_ITEM_NODE
+    BR.viewModel
 ) {
 
     val node: LiveData<Node> = liveDataFactory.liveData("6a4b42fe-09a3", item)

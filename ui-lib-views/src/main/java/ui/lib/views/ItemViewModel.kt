@@ -8,6 +8,5 @@ abstract class ItemViewModel<Input, Output>(
     analyticsKey: String,
     streamFactory: StreamFactory,
     layoutId: Int,
-    @IntegerRes val variableId: Int,
-    val viewType: Int
+    @IntegerRes val variableId: Int
 ) : BaseViewModel<Input, Output>(analyticsKey, streamFactory, layoutId)

@@ -15,8 +15,7 @@ class SelectStepItemViewModel(
     analyticsKey,
     streamFactory,
     R.layout.list_item_select_step,
-    BR.viewModel,
-    100000
+    BR.viewModel
 ) {
 
     val node: LiveData<Node> = liveDataFactory.liveData("0c19c42b-4321", item)

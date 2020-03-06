@@ -16,8 +16,7 @@ class FlowListItemViewModel(
     analyticsKey,
     streamFactory,
     R.layout.list_item_flow,
-    BR.viewModel,
-    R.layout.list_item_flow
+    BR.viewModel
 ) {
 
     val flow: LiveData<Flow> = liveDataFactory.liveData("e93b6b24-7e7f", item)

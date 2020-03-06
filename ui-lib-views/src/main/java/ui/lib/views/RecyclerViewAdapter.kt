@@ -18,8 +18,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
     private val adapterItems = ArrayList<ItemViewModel<*, *>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
-        val item = adapterItems.find { it.viewType == viewType }
-            ?: throw IllegalStateException("Unknown viewType: $viewType")
+        val item = adapterItems.find { it.layoutId == viewType }
+            ?: throw IllegalStateException("Unknown viewType (layout resource ID): $viewType")
         return ItemViewHolder(parent, item.layoutId, item.variableId)
     }
 
@@ -32,7 +32,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
 
     override fun getItemCount() = adapterItems.size
 
-    override fun getItemViewType(position: Int) = adapterItems[position].viewType
+    override fun getItemViewType(position: Int) = adapterItems[position].layoutId
 
     /**
      * Updates the data of this adapter.
