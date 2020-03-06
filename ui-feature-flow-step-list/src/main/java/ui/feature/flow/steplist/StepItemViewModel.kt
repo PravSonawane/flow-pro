@@ -15,8 +15,7 @@ class StepItemViewModel(
     analyticsKey,
     streamFactory,
     R.layout.list_item_flow_step,
-    BR.viewModel,
-    100000
+    BR.viewModel
 ) {
 
     val step: LiveData<Step> = liveDataFactory.liveData("61b38fc7-69c5", item)

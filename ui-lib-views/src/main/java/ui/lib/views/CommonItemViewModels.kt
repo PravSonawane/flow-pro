@@ -12,8 +12,7 @@ class ItemListHeaderViewModel(
     analyticsKey,
     streamFactory,
     R.layout.item_list_header,
-    BR.viewModel,
-    11001
+    BR.viewModel
 ) {
 
     val headerText: LiveData<CharSequence> = liveDataFactory.liveData("18a333b8-d6a9")
@@ -30,8 +29,7 @@ class ItemListButtonViewModel(
     analyticsKey,
     streamFactory,
     R.layout.item_list_button,
-    BR.viewModel,
-    11002
+    BR.viewModel
 ) {
 
     val buttonText: LiveData<CharSequence> = liveDataFactory.liveData("17df35b8-486c")
