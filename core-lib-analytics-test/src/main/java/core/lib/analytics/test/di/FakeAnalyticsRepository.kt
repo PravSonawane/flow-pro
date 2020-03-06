@@ -7,6 +7,6 @@ import javax.inject.Inject
 class FakeAnalyticsRepository @Inject constructor() : AnalyticsRepository {
 
     override fun logEvent(key: String, attributes: Map<String, Any?>, priority: Analytics.Priority) {
-        println(key + "logs:$attributes")
+        println("analyticsKey: $key | logs:$attributes")
     }
 }
