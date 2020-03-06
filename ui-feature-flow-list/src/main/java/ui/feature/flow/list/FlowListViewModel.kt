@@ -15,6 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.toolbar.ToolbarViewModel
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -22,6 +23,7 @@ class FlowListViewModel @Inject constructor(
     @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: BusinessUseCase<Unit, List<Flow>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
+    val toolbarViewModel: ToolbarViewModel,
     private val viewModelFactory: ViewModelFactory
 ) : BaseViewModel<FlowListViewModel.Input, FlowListViewModel.Event>(
     "e0b523fe-2f8e",
@@ -34,6 +36,9 @@ class FlowListViewModel @Inject constructor(
         liveDataFactory.mutableLiveData("2ae5bd06-7b9a", emptyList())
 
     init {
+
+        toolbarViewModel.sendInput(ToolbarViewModel.Input("Flow pro"))
+
         items.observeForever {
             compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
                 .observeOn(AndroidSchedulers.mainThread())
