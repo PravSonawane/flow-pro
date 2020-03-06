@@ -23,7 +23,6 @@ class FlowListViewModel @Inject constructor(
     @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: BusinessUseCase<Unit, List<Flow>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
-    val toolbarViewModel: ToolbarViewModel,
     private val viewModelFactory: ViewModelFactory
 ) : LayoutViewModel<FlowListViewModel.Input, FlowListViewModel.Event>(
     "e0b523fe-2f8e",
@@ -34,6 +33,7 @@ class FlowListViewModel @Inject constructor(
 
     val items: MutableLiveData<List<FlowListItemViewModel>> =
         liveDataFactory.mutableLiveData("2ae5bd06-7b9a", emptyList())
+    val toolbarViewModel: ToolbarViewModel = viewModelFactory.toolbar("a89322ac-4701")
 
     init {
 

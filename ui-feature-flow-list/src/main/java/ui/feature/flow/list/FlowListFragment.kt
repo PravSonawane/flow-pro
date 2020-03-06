@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
@@ -40,6 +41,8 @@ class FlowListFragment : AppBaseFragment() {
 
         val binding: FragmentFlowListBinding =
             DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
+
+        (activity as? AppCompatActivity)?.setSupportActionBar(binding.includeToolbar.toolbar)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

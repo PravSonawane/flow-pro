@@ -3,6 +3,7 @@ package ui.feature.flow.list
 import domain.models.flow.Flow
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.toolbar.ToolbarViewModel
 import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor(
@@ -16,6 +17,16 @@ class ViewModelFactory @Inject constructor(
             streamFactory,
             liveDataFactory,
             flow
+        )
+    }
+
+    fun toolbar(analyticsKey: String): ToolbarViewModel {
+        return ToolbarViewModel(
+            analyticsKey,
+            liveDataFactory,
+            streamFactory,
+            R.layout.layout_toolbar,
+            BR.viewModel
         )
     }
 }
