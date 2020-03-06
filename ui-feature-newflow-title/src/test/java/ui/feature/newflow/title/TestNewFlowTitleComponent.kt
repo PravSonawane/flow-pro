@@ -15,7 +15,7 @@ import ui.lib.di.UiModule
     ]
 )
 @FeatureScope
-interface TestNewFlowTitleComponent : TestMainComponent {
+interface TestNewFlowTitleComponent : NewFlowTitleComponent, TestMainComponent {
 
     fun injectIn(test: NewFlowTitleViewModelTests)
 
