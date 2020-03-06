@@ -25,9 +25,8 @@ android {
     }
 
     dataBinding {
-        enabled true
+        enabled = true
     }
-
 }
 
 dependencies {
@@ -45,14 +44,20 @@ dependencies {
     implementation project(":ui-lib-views")
     implementation project(":ui-navigation")
 
+    //test
+    testImplementation project(":core-lib-analytics-test")
+    testImplementation project(":core-lib-plugin-test")
+    testImplementation project(":data-feature-flow-test")
+    testImplementation project(":app-di-test")
+
     //core
     implementation project(":core-lib-usecase")
     implementation project(":core-lib-usecase-common")
 
     //domain
     implementation project(':core-lib-result')
-    implementation project(':domain-models-core')
     implementation project(':domain-feature-flow')
+    implementation project(':domain-models-core')
     implementation project(':domain-models-flow')
 
     //data
@@ -73,6 +78,7 @@ dependencies {
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    testImplementation 'com.github.Plastix.RxSchedulerRule:rx2:1.0.2'
 
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -98,6 +104,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.core:core-ktx:$androidx_core_ktx_version"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

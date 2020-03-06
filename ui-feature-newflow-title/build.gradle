@@ -78,6 +78,7 @@ dependencies {
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    testImplementation 'com.github.Plastix.RxSchedulerRule:rx2:1.0.2'
 
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -104,6 +105,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.core:core-ktx:$androidx_core_ktx_version"
     testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
