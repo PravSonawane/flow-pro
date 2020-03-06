@@ -4,24 +4,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import ui.flow.list.R
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import app.base.AppBaseFragment
+import core.lib.rxutils.plusAssign
+import domain.models.flow.Flow
+import io.reactivex.android.schedulers.AndroidSchedulers
+import ui.feature.flow.list.databinding.FragmentFlowListBinding
 import ui.navigation.navigate
+import javax.inject.Inject
 
-class FlowListFragment : Fragment() {
+class FlowListFragment : AppBaseFragment() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)
+            .get(FlowListViewModel::class.java)
+    }
+
+    private val flowListComponent: FlowListComponent by lazy {
+        DaggerFlowListComponent.builder()
+            .mainComponent(mainComponent())
+            .build()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_flow_list, container, false)
+        // dagger injection
+        flowListComponent.injectIn(this)
 
-        view.findViewById<FloatingActionButton>(R.id.fab_add_new_flow)
-            .setOnClickListener { navigate(this,
-                R.string.deeplink_newflow_title
-            ) }
-        return view
+        val binding: FragmentFlowListBinding =
+            DataBindingUtil.inflate(inflater, viewModel.layoutId, container, false)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        compositeDisposable += viewModel.observeOutput()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it) {
+                    is FlowListViewModel.Event.OnViewFlow -> handleOnViewFlow(it.flow)
+                }
+            }
+
+        return binding.root
+    }
+
+    private fun handleOnViewFlow(flow: Flow) {
+        val pathParams = mapOf(
+            R.string.deeplink_flow_step_details_path_param_flow_id to flow.id
+        )
+        navigate(
+            this,
+            R.string.deeplink_flow_step_list,
+            pathParams
+        )
     }
 }

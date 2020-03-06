@@ -25,8 +25,9 @@ android {
     }
 
     dataBinding {
-        enabled = true
+        enabled true
     }
+
 }
 
 dependencies {
@@ -92,8 +93,7 @@ dependencies {
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

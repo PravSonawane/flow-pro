@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ui.flow.list" />
+    package="ui.feature.flow.list" />

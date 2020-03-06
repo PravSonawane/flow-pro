@@ -4,6 +4,7 @@ import core.lib.usecase.common.BusinessUseCase
 import core.lib.usecase.common.BusinessUseCaseFactory
 import dagger.Module
 import dagger.Provides
+import domain.flow.usecases.GetAllFlowsUseCase
 import domain.flow.usecases.GetAllStepsInput
 import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
@@ -22,6 +23,15 @@ import javax.inject.Named
 
 @Module
 class FlowModule {
+
+    @Named(GetAllFlowsUseCase.NAMED)
+    @Provides
+    fun provideGetAllFlows(
+        factory: BusinessUseCaseFactory<Unit, List<Flow>>,
+        getAllFlowsUseCase: GetAllFlowsUseCase
+    ): BusinessUseCase<Unit, List<Flow>> {
+        return factory.create(getAllFlowsUseCase)
+    }
 
     @Named(GetFlowByIdUseCase.NAMED)
     @Provides

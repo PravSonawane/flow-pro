@@ -31,6 +31,7 @@ object FakeStorage {
 
         return Flow(
             "1",
+            name = "Flow name",
             state = Flow.State.DRAFT,
             steps = listOf(step1, step2, step3, step4, step5)
         )
