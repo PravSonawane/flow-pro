@@ -49,10 +49,15 @@ class FlowListFragment : AppBaseFragment() {
             .subscribe {
                 when (it) {
                     is FlowListViewModel.Event.OnViewFlow -> handleOnViewFlow(it.flow)
+                    is FlowListViewModel.Event.OnCreateNewFlow -> handleOnCreateNewFlow()
                 }
             }
 
         return binding.root
+    }
+
+    private fun handleOnCreateNewFlow() {
+        navigate(this, R.string.deeplink_newflow_title)
     }
 
     private fun handleOnViewFlow(flow: Flow) {

@@ -54,6 +54,10 @@ class FlowListViewModel @Inject constructor(
             }
     }
 
+    fun onCreateNewFlow() {
+        sendOutput(Event.OnCreateNewFlow)
+    }
+
     private fun handleGetAllFlowsSuccess(data: List<Flow>) {
         items.value = data.map { viewModelFactory.create("1c85e2e8-1c87", it) }
     }
@@ -74,6 +78,7 @@ class FlowListViewModel @Inject constructor(
 
     sealed class Event {
         data class OnViewFlow(val flow: Flow) : Event()
+        object OnCreateNewFlow : Event()
     }
 
     override fun onCleared() {
