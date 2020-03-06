@@ -12,7 +12,7 @@ import domain.models.flow.Flow
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.toolbar.ToolbarViewModel
@@ -25,7 +25,7 @@ class FlowListViewModel @Inject constructor(
     liveDataFactory: LiveDataFactory,
     val toolbarViewModel: ToolbarViewModel,
     private val viewModelFactory: ViewModelFactory
-) : BaseViewModel<FlowListViewModel.Input, FlowListViewModel.Event>(
+) : LayoutViewModel<FlowListViewModel.Input, FlowListViewModel.Event>(
     "e0b523fe-2f8e",
     streamFactory,
     R.layout.fragment_flow_list

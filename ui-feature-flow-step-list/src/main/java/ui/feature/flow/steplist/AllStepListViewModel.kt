@@ -15,7 +15,7 @@ import domain.models.flow.Step
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -27,7 +27,7 @@ class AllStepListViewModel @Inject constructor(
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
-) : BaseViewModel<AllStepListViewModel.Input, AllStepListViewModel.Event>(
+) : LayoutViewModel<AllStepListViewModel.Input, AllStepListViewModel.Event>(
     "877c5474-65e0",
     streamFactory,
     R.layout.layout_step_list_type_all

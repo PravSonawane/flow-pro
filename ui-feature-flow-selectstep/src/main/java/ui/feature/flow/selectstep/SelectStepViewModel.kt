@@ -13,7 +13,7 @@ import domain.models.flow.Flow
 import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class SelectStepViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory
-) : BaseViewModel<SelectStepViewModel.Input, SelectStepViewModel.Event>(
+) : LayoutViewModel<SelectStepViewModel.Input, SelectStepViewModel.Event>(
     "50ef9e44-a305",
     streamFactory,
     R.layout.fragment_flow_select_step
