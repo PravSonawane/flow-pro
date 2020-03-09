@@ -33,4 +33,8 @@ class ToolbarViewModel @Inject constructor(
     data class Input(
         val title: CharSequence
     )
+
+    override fun onCleared() {
+        compositeDisposable.clear()
+    }
 }
