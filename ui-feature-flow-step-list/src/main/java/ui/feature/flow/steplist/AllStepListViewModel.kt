@@ -18,12 +18,15 @@ import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.toolbar.ToolbarViewModel
+import ui.lib.views.toolbar.ToolbarViewModelFactory
 import javax.inject.Inject
 import javax.inject.Named
 
 class AllStepListViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     @Named(GetAllStepsUseCase.NAMED) val getAllStepsUseCase: BusinessUseCase<GetAllStepsInput, List<Step>>,
+    toolbarViewModelFactory: ToolbarViewModelFactory,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
@@ -38,7 +41,10 @@ class AllStepListViewModel @Inject constructor(
         liveDataFactory.mutableLiveData("1de6d864-fd8a", emptyList())
     val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("c6795166-d62c")
 
+    val toolbarViewModel: ToolbarViewModel = toolbarViewModelFactory.create("e583fbab-f77a")
+
     init {
+        toolbarViewModel.sendInput(ToolbarViewModel.Input("Flow Steps"))
 
         items.observeForever {
             compositeDisposable += Observable.merge(it.map { steps -> steps.observeOutput() })

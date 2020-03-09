@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
@@ -43,6 +44,8 @@ class StepListFragment : AppBaseFragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        (activity as? AppCompatActivity)?.setSupportActionBar(binding.includeAllStepList.includeToolbar.toolbar)
 
         val flowId =
             arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_path_param_flow_id))
