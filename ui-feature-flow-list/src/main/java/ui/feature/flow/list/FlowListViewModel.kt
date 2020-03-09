@@ -1,6 +1,5 @@
 package ui.feature.flow.list
 
-import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
@@ -9,12 +8,12 @@ import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetAllFlowsUseCase
 import domain.models.flow.Flow
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
-import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.list.ListViewModel
+import ui.lib.views.list.ListViewModelFactory
 import ui.lib.views.toolbar.ToolbarViewModel
 import ui.lib.views.toolbar.ToolbarViewModelFactory
 import javax.inject.Inject
@@ -23,7 +22,7 @@ import javax.inject.Named
 class FlowListViewModel @Inject constructor(
     @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: BusinessUseCase<Unit, List<Flow>>,
     streamFactory: StreamFactory,
-    liveDataFactory: LiveDataFactory,
+    listViewModelFactory: ListViewModelFactory,
     toolbarViewModelFactory: ToolbarViewModelFactory,
     private val viewModelFactory: ViewModelFactory
 ) : LayoutViewModel<FlowListViewModel.Input, FlowListViewModel.Event>(
@@ -33,23 +32,12 @@ class FlowListViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<FlowListItemViewModel>> =
-        liveDataFactory.mutableLiveData("2ae5bd06-7b9a", emptyList())
+    val listViewModel: ListViewModel<FlowListItemViewModel> = listViewModelFactory.create("2ae5bd06-7b9a")
     val toolbarViewModel: ToolbarViewModel = toolbarViewModelFactory.create("a89322ac-4701")
 
     init {
 
         toolbarViewModel.sendInput(ToolbarViewModel.Input("Flow pro"))
-
-        items.observeForever {
-            compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { event ->
-                    when (event) {
-                        is FlowListItemViewModel.Event.OnViewFlow -> handleOnViewFlow(event.flow)
-                    }
-                }
-        }
 
         compositeDisposable += getAllFlowsUseCase(BusinessData("58993dea-6ddf", Plugin("3f39506e-6669"), Unit))
             .observeOn(AndroidSchedulers.mainThread())
@@ -66,7 +54,8 @@ class FlowListViewModel @Inject constructor(
     }
 
     private fun handleGetAllFlowsSuccess(data: List<Flow>) {
-        items.value = data.map { viewModelFactory.create("1c85e2e8-1c87", it) }
+        val viewModels = data.map { viewModelFactory.create("1c85e2e8-1c87", it) }
+        listViewModel.sendInput(ListViewModel.Input(viewModels))
     }
 
     private fun handleGetAllFlowsError(domainError: DomainError) {
