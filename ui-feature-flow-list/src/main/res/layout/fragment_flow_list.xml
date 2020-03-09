@@ -28,7 +28,7 @@
             android:id="@+id/flow_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:adapterItems="@{viewModel.items}"
+            app:adapterItems="@{viewModel.listViewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
