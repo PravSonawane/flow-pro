@@ -1,13 +1,13 @@
 package ui.feature.newflow.title
 
-import app.di.test.BaseTest
+import app.di.test.BaseViewModelTest
 import app.di.test.TestAppViewModelFactory
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import javax.inject.Inject
 
-class NewFlowTitleViewModelTests : BaseTest() {
+class NewFlowTitleViewModelTests : BaseViewModelTest() {
 
     @Inject
     lateinit var viewModelFactory: TestAppViewModelFactory

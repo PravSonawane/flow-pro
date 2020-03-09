@@ -1,23 +1,13 @@
 package ui.feature.flow.list
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import app.di.test.BaseTest
+import app.di.test.BaseViewModelTest
 import app.di.test.TestAppViewModelFactory
-import io.github.plastix.rxschedulerrule.RxSchedulerRule
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestRule
 import javax.inject.Inject
 
-class FlowListViewModelTests : BaseTest() {
-
-    @get:Rule
-    var rule: TestRule = InstantTaskExecutorRule()
-
-    @get:Rule
-    val schedulerRule = RxSchedulerRule()
+class FlowListViewModelTests : BaseViewModelTest() {
 
     @Inject
     lateinit var viewModelFactory: TestAppViewModelFactory
