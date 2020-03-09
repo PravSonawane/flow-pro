@@ -13,28 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/input_step_list"
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/layout_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintBottom_toTopOf="@id/flow_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:viewModel="@{viewModel.toolbarViewModel}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/flow_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:adapterItems="@{viewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/list_item_flow"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/includeToolbar"
+            tools:listitem="@layout/list_item_flow" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_new_flow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:onClick="@{() -> viewModel.onCreateNewFlow()}"
             android:src="@drawable/ic_add_black_24dp"
             android:contentDescription="@string/text_add_new_flow"
-            android:layout_margin="@dimen/normal_100" />
+            android:layout_margin="@dimen/normal_100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

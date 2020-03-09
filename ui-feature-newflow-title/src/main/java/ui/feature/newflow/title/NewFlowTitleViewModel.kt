@@ -7,7 +7,7 @@ import domain.flow.usecases.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class NewFlowTitleViewModel @Inject constructor(
     streamFactory: StreamFactory,
     private val saveOrUpdateFlowUseCase: SaveOrUpdateFlowUseCase,
     liveDataFactory: LiveDataFactory
-) : BaseViewModel<NewFlowTitleViewModel.Input, NewFlowTitleViewModel.Event>(
+) : LayoutViewModel<NewFlowTitleViewModel.Input, NewFlowTitleViewModel.Event>(
     "718adc21-f9c0",
     streamFactory,
     R.layout.fragment_new_flow_title

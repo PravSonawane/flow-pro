@@ -1,7 +1,7 @@
 package ui.lib.views
 
 import androidx.annotation.IntegerRes
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.StreamFactory
 
 abstract class ItemViewModel<Input, Output>(
@@ -9,4 +9,4 @@ abstract class ItemViewModel<Input, Output>(
     streamFactory: StreamFactory,
     layoutId: Int,
     @IntegerRes val variableId: Int
-) : BaseViewModel<Input, Output>(analyticsKey, streamFactory, layoutId)
+) : LayoutViewModel<Input, Output>(analyticsKey, streamFactory, layoutId)

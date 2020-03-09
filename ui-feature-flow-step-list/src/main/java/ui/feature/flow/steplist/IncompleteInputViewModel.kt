@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import core.lib.rxutils.plusAssign
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class IncompleteInputViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
-) : BaseViewModel<IncompleteInputViewModel.Input, IncompleteInputViewModel.Event>(
+) : LayoutViewModel<IncompleteInputViewModel.Input, IncompleteInputViewModel.Event>(
     "c68f8543-e30d",
     streamFactory,
     R.layout.layout_incomplete_input

@@ -10,7 +10,7 @@ import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class CreateStepViewModel @Inject constructor(
     streamFactory: StreamFactory,
     @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
     liveDataFactory: LiveDataFactory
-) : BaseViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
+) : LayoutViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
     "e2fc2772-418e",
     streamFactory,
     R.layout.fragment_create_step

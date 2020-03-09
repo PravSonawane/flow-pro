@@ -1,6 +1,5 @@
 package ui.lib.base
 
-import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import ui.lib.utils.AnalyticsStream
@@ -8,8 +7,7 @@ import ui.lib.utils.StreamFactory
 
 abstract class BaseViewModel<Input, Output>(
     analyticsKey: String,
-    streamFactory: StreamFactory,
-    @LayoutRes val layoutId: Int
+    streamFactory: StreamFactory
 ) : ViewModel() {
 
     private val inputStream: AnalyticsStream<Input> = streamFactory.analyticsStream(analyticsKey)

@@ -17,7 +17,7 @@ import domain.models.flow.Step
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class StepDetailsViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory
-) : BaseViewModel<StepDetailsViewModel.Input, StepDetailsViewModel.Event>(
+) : LayoutViewModel<StepDetailsViewModel.Input, StepDetailsViewModel.Event>(
     "29e6fff3-32a7",
     streamFactory,
     R.layout.fragment_flow_step_details

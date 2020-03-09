@@ -5,7 +5,7 @@ import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import ui.lib.base.BaseViewModel
+import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
@@ -16,7 +16,7 @@ class StepListScreenViewModel @Inject constructor(
     val allStepListViewModel: AllStepListViewModel,
     val incompleteInputViewModel: IncompleteInputViewModel,
     val inputStepListViewModel: InputStepListViewModel
-) : BaseViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
+) : LayoutViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
     "493db3c5-f5ff",
     streamFactory,
     R.layout.fragment_step_list
