@@ -32,14 +32,21 @@ class FlowListViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val listViewModel: ListViewModel<FlowListItemViewModel> = listViewModelFactory.create("2ae5bd06-7b9a")
+    val listViewModel: ListViewModel<FlowListItemViewModel> =
+        listViewModelFactory.create("2ae5bd06-7b9a")
     val toolbarViewModel: ToolbarViewModel = toolbarViewModelFactory.create("a89322ac-4701")
 
     init {
 
         toolbarViewModel.sendInput(ToolbarViewModel.Input("Flow pro"))
 
-        compositeDisposable += getAllFlowsUseCase(BusinessData("58993dea-6ddf", Plugin("3f39506e-6669"), Unit))
+        compositeDisposable += getAllFlowsUseCase(
+            BusinessData(
+                "58993dea-6ddf",
+                Plugin("3f39506e-6669"),
+                Unit
+            )
+        )
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
@@ -63,11 +70,7 @@ class FlowListViewModel @Inject constructor(
     }
 
     private fun handleOnViewFlow(flow: Flow) {
-        sendOutput(
-            Event.OnViewFlow(
-                flow
-            )
-        )
+        sendOutput(Event.OnViewFlow(flow))
     }
 
     sealed class Input

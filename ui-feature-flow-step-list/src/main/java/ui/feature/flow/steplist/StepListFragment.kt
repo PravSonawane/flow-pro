@@ -71,8 +71,12 @@ class StepListFragment : AppBaseFragment() {
 
     private fun convertToStepType(stepType: String?): StepListScreenViewModel.StepType {
         return when (stepType) {
-            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0] -> StepListScreenViewModel.StepType.INPUT
-            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[1] -> StepListScreenViewModel.StepType.OUTPUT
+            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0] -> {
+                StepListScreenViewModel.StepType.INPUT
+            }
+            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[1] -> {
+                StepListScreenViewModel.StepType.OUTPUT
+            }
             else -> StepListScreenViewModel.StepType.ALL
         }
     }

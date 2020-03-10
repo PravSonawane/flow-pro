@@ -24,10 +24,14 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class StepDetailsViewModel @Inject constructor(
-    @Named(GetStepByIdUseCase.NAMED) val getStepByIdUseCase: BusinessUseCase<String, Step>,
-    @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
-    @Named(GetCurrentInputStepsUseCase.NAMED) val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
-    @Named(GetCurrentOutputStepsUseCase.NAMED) val getCurrentOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
+    @Named(GetStepByIdUseCase.NAMED)
+    val getStepByIdUseCase: BusinessUseCase<String, Step>,
+    @Named(GetFlowByIdUseCase.NAMED)
+    val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    @Named(GetCurrentInputStepsUseCase.NAMED)
+    val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
+    @Named(GetCurrentOutputStepsUseCase.NAMED)
+    val getCurrentOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory
