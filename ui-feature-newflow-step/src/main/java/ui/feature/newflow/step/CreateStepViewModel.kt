@@ -5,7 +5,6 @@ import core.lib.plugin.Plugin
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,11 +13,10 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
-import javax.inject.Named
 
 class CreateStepViewModel @Inject constructor(
     streamFactory: StreamFactory,
-    @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    val getFlowByIdUseCase: GetFlowByIdUseCase,
     liveDataFactory: LiveDataFactory
 ) : LayoutViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
     "e2fc2772-418e",

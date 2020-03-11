@@ -14,14 +14,17 @@ class NewFlowTitleViewModelTests : BaseViewModelTest() {
 
     private lateinit var viewModel: NewFlowTitleViewModel
 
+    private val newFlowTitleComponent: TestNewFlowTitleComponent =
+        DaggerTestNewFlowTitleComponent.builder()
+            .mainComponent(mainComponent())
+            .build()
+
+    init {
+        newFlowTitleComponent.injectIn(this)
+    }
+
     @Before
     fun before() {
-        val newFlowTitleComponent: TestNewFlowTitleComponent =
-            DaggerTestNewFlowTitleComponent.builder()
-                .mainComponent(mainComponent())
-                .build()
-
-        newFlowTitleComponent.injectIn(this)
         viewModel = viewModelFactory.create(NewFlowTitleViewModel::class.java)
     }
 
@@ -30,3 +33,4 @@ class NewFlowTitleViewModelTests : BaseViewModelTest() {
         assertEquals(true, viewModel != null)
     }
 }
+

@@ -14,14 +14,17 @@ class FlowListViewModelTests : BaseViewModelTest() {
 
     private lateinit var viewModel: FlowListViewModel
 
+    private val flowTitleComponent: TestFlowListComponent =
+        DaggerTestFlowListComponent.builder()
+            .mainComponent(mainComponent())
+            .build()
+
+    init {
+        flowTitleComponent.injectIn(this)
+    }
+
     @Before
     fun before() {
-        val flowTitleComponent: TestFlowListComponent =
-            DaggerTestFlowListComponent.builder()
-                .mainComponent(mainComponent())
-                .build()
-
-        flowTitleComponent.injectIn(this)
         viewModel = viewModelFactory.create(FlowListViewModel::class.java)
     }
 

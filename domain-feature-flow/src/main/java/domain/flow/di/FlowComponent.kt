@@ -26,8 +26,7 @@ interface FlowComponent {
     @Named(GetAllFlowsUseCase.NAMED)
     fun getAllFlows(): BusinessUseCase<Unit, List<Flow>>
 
-    @Named(GetFlowByIdUseCase.NAMED)
-    fun getFlowById(): BusinessUseCase<String, Flow>
+    fun getFlowById(): GetFlowByIdUseCase
 
     @Named(GetStepByIdUseCase.NAMED)
     fun getStepById(): BusinessUseCase<String, Step>

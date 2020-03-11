@@ -9,7 +9,6 @@ import domain.flow.usecases.GetAllStepsInput
 import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
 import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetPossibleInputStepsInput
@@ -21,7 +20,7 @@ import domain.models.flow.Flow
 import domain.models.flow.Step
 import javax.inject.Named
 
-@Module
+@Module(includes = [AbstractFlowModule::class])
 class FlowModule {
 
     @Named(GetAllFlowsUseCase.NAMED)
@@ -31,15 +30,6 @@ class FlowModule {
         getAllFlowsUseCase: GetAllFlowsUseCase
     ): BusinessUseCase<Unit, List<Flow>> {
         return factory.create(getAllFlowsUseCase)
-    }
-
-    @Named(GetFlowByIdUseCase.NAMED)
-    @Provides
-    fun provideGetFlowById(
-        factory: BusinessUseCaseFactory<String, Flow>,
-        getFlowByIdUseCase: GetFlowByIdUseCase
-    ): BusinessUseCase<String, Flow> {
-        return factory.create(getFlowByIdUseCase)
     }
 
     @Named(GetAllStepsUseCase.NAMED)

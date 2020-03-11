@@ -26,8 +26,7 @@ import javax.inject.Named
 class StepDetailsViewModel @Inject constructor(
     @Named(GetStepByIdUseCase.NAMED)
     val getStepByIdUseCase: BusinessUseCase<String, Step>,
-    @Named(GetFlowByIdUseCase.NAMED)
-    val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetCurrentInputStepsUseCase.NAMED)
     val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
