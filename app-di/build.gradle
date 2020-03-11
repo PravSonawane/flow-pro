@@ -39,7 +39,8 @@ dependencies {
     implementation project(":core-lib-usecase")
     implementation project(":core-lib-usecase-common")
 
-    //analytics
+    //core lib
+    implementation project(":core-lib-result")
     implementation project(":core-lib-plugin")
     implementation project(":core-lib-plugin-impl")
     implementation project(":core-lib-analytics")

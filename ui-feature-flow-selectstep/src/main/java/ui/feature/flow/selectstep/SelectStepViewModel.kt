@@ -6,7 +6,6 @@ import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
@@ -17,10 +16,9 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
-import javax.inject.Named
 
 class SelectStepViewModel @Inject constructor(
-    @Named(GetFlowByIdUseCase.NAMED) getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    getFlowByIdUseCase: GetFlowByIdUseCase,
     getAllNodesUseCase: GetAllNodesUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,

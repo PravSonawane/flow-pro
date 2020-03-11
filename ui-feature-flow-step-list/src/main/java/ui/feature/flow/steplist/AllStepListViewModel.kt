@@ -24,7 +24,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class AllStepListViewModel @Inject constructor(
-    @Named(GetFlowByIdUseCase.NAMED) val getFlowByIdUseCase: BusinessUseCase<String, Flow>,
+    val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetAllStepsUseCase.NAMED) val getAllStepsUseCase: BusinessUseCase<GetAllStepsInput, List<Step>>,
     toolbarViewModelFactory: ToolbarViewModelFactory,
     private val viewModelFactory: ViewModelFactory,
