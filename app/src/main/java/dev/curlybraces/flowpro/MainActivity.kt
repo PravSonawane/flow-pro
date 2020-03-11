@@ -2,6 +2,9 @@ package dev.curlybraces.flowpro
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import app.di.AppComponent
 import app.di.DaggerMainComponent
 import app.di.MainComponent
@@ -35,5 +38,15 @@ class MainActivity : BaseActivity() {
 
         // dagger injection
         mainComponent.injectIn(this)
+
+        // navigation
+        setupNavigation()
+    }
+
+    override fun onSupportNavigateUp() = findNavController(R.id.nav_host_fragment).navigateUp()
+
+    private fun setupNavigation() {
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        setupActionBarWithNavController(navController)
     }
 }

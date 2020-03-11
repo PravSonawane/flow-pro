@@ -14,8 +14,6 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.StreamFactory
 import ui.lib.views.list.ListViewModel
 import ui.lib.views.list.ListViewModelFactory
-import ui.lib.views.toolbar.ToolbarViewModel
-import ui.lib.views.toolbar.ToolbarViewModelFactory
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -23,7 +21,6 @@ class FlowListViewModel @Inject constructor(
     @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: BusinessUseCase<Unit, List<Flow>>,
     streamFactory: StreamFactory,
     listViewModelFactory: ListViewModelFactory,
-    toolbarViewModelFactory: ToolbarViewModelFactory,
     private val viewModelFactory: ViewModelFactory
 ) : LayoutViewModel<FlowListViewModel.Input, FlowListViewModel.Event>(
     "e0b523fe-2f8e",
@@ -34,12 +31,7 @@ class FlowListViewModel @Inject constructor(
 
     val listViewModel: ListViewModel<FlowListItemViewModel> =
         listViewModelFactory.create("2ae5bd06-7b9a")
-    val toolbarViewModel: ToolbarViewModel = toolbarViewModelFactory.create("a89322ac-4701")
-
     init {
-
-        toolbarViewModel.sendInput(ToolbarViewModel.Input("Flow pro"))
-
         compositeDisposable += getAllFlowsUseCase(
             BusinessData(
                 "58993dea-6ddf",
