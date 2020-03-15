@@ -5,10 +5,6 @@
     <string name="deeplink_flow_step_list_path_param_flow_id">flowId</string>
     <string name="deeplink_flow_step_list_query_param_step_id">stepId</string>
     <string name="deeplink_flow_step_list_query_param_step_type">stepType</string>
-    <string-array name="deeplink_flow_step_list_query_param_step_type">
-        <item>input</item>
-        <item>output</item>
-    </string-array>
 
     <!-- Deeplink to flow step details -->
     <string name="deeplink_flow_step_details">https://curlybraces.dev/flowpro/flow/{flowId}/step/{stepId}</string>

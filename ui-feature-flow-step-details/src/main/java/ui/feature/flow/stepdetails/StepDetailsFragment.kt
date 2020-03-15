@@ -10,6 +10,7 @@ import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Flow
 import domain.models.flow.Step
+import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.stepdetails.databinding.FragmentFlowStepDetailsBinding
 import ui.navigation.navigate
@@ -87,30 +88,36 @@ class StepDetailsFragment : AppBaseFragment() {
     }
 
     private fun handleOnAddInputStep(flow: Flow, step: Step) {
-        val inputType = resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0]
         val pathParams = mapOf(
-            R.string.deeplink_flow_step_list_path_param_flow_id to flow.id,
+            R.string.deeplink_flow_step_list_path_param_flow_id to flow.id
+        )
+
+        val queryParams = mapOf(
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,
-            R.string.deeplink_flow_step_list_query_param_step_type to inputType
+            R.string.deeplink_flow_step_list_query_param_step_type to StepType.INPUT.toString()
         )
         navigate(
             this,
             R.string.deeplink_flow_step_list,
-            pathParams
+            pathParams,
+            queryParams
         )
     }
 
     private fun handleOnAddOutputStep(flow: Flow, step: Step) {
-        val inputType = resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[1]
         val pathParams = mapOf(
-            R.string.deeplink_flow_step_list_path_param_flow_id to flow.id,
+            R.string.deeplink_flow_step_list_path_param_flow_id to flow.id
+        )
+
+        val queryParams = mapOf(
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,
-            R.string.deeplink_flow_step_list_query_param_step_type to inputType
+            R.string.deeplink_flow_step_list_query_param_step_type to StepType.OUTPUT.toString()
         )
         navigate(
             this,
             R.string.deeplink_flow_step_list,
-            pathParams
+            pathParams,
+            queryParams
         )
     }
 }

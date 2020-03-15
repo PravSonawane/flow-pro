@@ -30,3 +30,8 @@ fun Step.mapper(): Map<String, Any?> {
     map["outputSteps"] = outputSteps
     return map
 }
+
+enum class StepType {
+    INPUT,
+    OUTPUT
+}

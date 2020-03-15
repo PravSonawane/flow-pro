@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
+import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.steplist.databinding.FragmentStepListBinding
 import ui.navigation.navigate
@@ -69,12 +70,8 @@ class StepListFragment : AppBaseFragment() {
 
     private fun convertToStepType(stepType: String?): StepListScreenViewModel.StepType {
         return when (stepType) {
-            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0] -> {
-                StepListScreenViewModel.StepType.INPUT
-            }
-            resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[1] -> {
-                StepListScreenViewModel.StepType.OUTPUT
-            }
+            StepType.INPUT.toString() -> StepListScreenViewModel.StepType.INPUT
+            StepType.OUTPUT.toString() -> StepListScreenViewModel.StepType.OUTPUT
             else -> StepListScreenViewModel.StepType.ALL
         }
     }
