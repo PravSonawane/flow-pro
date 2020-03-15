@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
+import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.stepdetails.databinding.FragmentFlowStepDetailsBinding
@@ -65,6 +66,7 @@ class StepDetailsFragment : AppBaseFragment() {
                 when (it) {
                     is StepDetailsViewModel.Event.OnNewStep -> {}
                     is StepDetailsViewModel.Event.OnStepDetails -> handleOnStepDetails(flowId, it.step)
+                    is StepDetailsViewModel.Event.OnAddInputStep -> handleOnAddInputStep(it.flow, it.step)
                 }
             }
 
@@ -79,6 +81,20 @@ class StepDetailsFragment : AppBaseFragment() {
         navigate(
             this,
             R.string.deeplink_flow_step_details,
+            pathParams
+        )
+    }
+
+    private fun handleOnAddInputStep(flow: Flow, step: Step) {
+        val inputType = resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0]
+        val pathParams = mapOf(
+            R.string.deeplink_flow_step_list_path_param_flow_id to flow.id,
+            R.string.deeplink_flow_step_list_query_param_step_id to step.id,
+            R.string.deeplink_flow_step_list_query_param_step_type to inputType
+        )
+        navigate(
+            this,
+            R.string.deeplink_flow_step_list,
             pathParams
         )
     }

@@ -18,4 +18,12 @@ class ViewModelFactory @Inject constructor(
             step
         )
     }
+
+    fun createAddStep(analyticsKey: String, step: Step): AddStepItemViewModel {
+        return AddStepItemViewModel(
+            analyticsKey,
+            streamFactory,
+            step
+        )
+    }
 }
