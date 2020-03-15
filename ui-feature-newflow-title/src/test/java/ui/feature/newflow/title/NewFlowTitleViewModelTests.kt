@@ -33,4 +33,3 @@ class NewFlowTitleViewModelTests : BaseViewModelTest() {
         assertEquals(true, viewModel != null)
     }
 }
-

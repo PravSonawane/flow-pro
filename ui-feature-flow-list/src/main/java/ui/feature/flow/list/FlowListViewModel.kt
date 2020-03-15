@@ -36,7 +36,7 @@ class FlowListViewModel @Inject constructor(
         compositeDisposable += listViewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                when(it) {
+                when (it) {
                     is FlowListItemViewModel.Event.OnViewFlow -> handleOnViewFlow(it.flow)
                 }
             }
