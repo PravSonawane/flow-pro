@@ -5,13 +5,14 @@ import domain.models.flow.Step
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel
+import ui.lib.views.list.ListViewModel
 
 class StepDetailsItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     item: Step
-) : ItemViewModel<StepDetailsItemViewModel.Input, StepDetailsItemViewModel.Event>(
+) : ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>(
     analyticsKey,
     streamFactory,
     R.layout.list_item_step_details,
@@ -20,8 +21,8 @@ class StepDetailsItemViewModel(
 
     val step: LiveData<Step> = liveDataFactory.liveData("d2e71ceb-80b4", item)
 
-    sealed class Input
-    sealed class Event {
+    sealed class Input : ListViewModel.ItemInput
+    sealed class Event : ListViewModel.ItemOutput {
         data class OnStepDetails(val step: Step) : Event()
     }
 

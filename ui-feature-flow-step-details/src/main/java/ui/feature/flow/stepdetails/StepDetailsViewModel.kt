@@ -14,12 +14,13 @@ import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.list.ListViewModel
+import ui.lib.views.list.ListViewModelFactory
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -33,6 +34,7 @@ class StepDetailsViewModel @Inject constructor(
     val getCurrentOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
+    listViewModelFactory: ListViewModelFactory,
     private val viewModelFactory: ViewModelFactory
 ) : LayoutViewModel<StepDetailsViewModel.Input, StepDetailsViewModel.Event>(
     "29e6fff3-32a7",
@@ -41,10 +43,8 @@ class StepDetailsViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val inputItems: MutableLiveData<List<StepDetailsItemViewModel>> =
-        liveDataFactory.mutableLiveData("d03bbb54-bfe0", emptyList())
-    val outputItems: MutableLiveData<List<StepDetailsItemViewModel>> =
-        liveDataFactory.mutableLiveData("0f2ad39e-e31c", emptyList())
+    val inputListViewModel = listViewModelFactory.create<StepDetailsItemViewModel>("d03bbb54-bfe0")
+    val outputListViewModel = listViewModelFactory.create<StepDetailsItemViewModel>("0f2ad39e-e31c")
     val flowName: MutableLiveData<String> = liveDataFactory.mutableLiveData("1692a7e5-47f5")
     val step: MutableLiveData<Step> = liveDataFactory.mutableLiveData("53969ce5-8ef9")
 
@@ -52,25 +52,21 @@ class StepDetailsViewModel @Inject constructor(
         handleFlowIdInput()
         handleStepIdInput()
 
-        inputItems.observeForever {
-            compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { event ->
-                    when (event) {
-                        is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
-                    }
+        compositeDisposable += inputListViewModel.observeOutput()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { event ->
+                when (event) {
+                    is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
                 }
-        }
+            }
 
-        outputItems.observeForever {
-            compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { event ->
-                    when (event) {
-                        is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
-                    }
+        compositeDisposable += outputListViewModel.observeOutput()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { event ->
+                when (event) {
+                    is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
                 }
-        }
+            }
     }
 
     private fun handleFlowIdInput() {
@@ -180,11 +176,13 @@ class StepDetailsViewModel @Inject constructor(
     }
 
     private fun handleGetInputStepsSuccess(data: List<Step>) {
-        inputItems.value = data.map { viewModelFactory.create("b3c872df-8066", it) }
+        val viewModels = data.map { viewModelFactory.create("b3c872df-8066", it) }
+        inputListViewModel.sendInput(ListViewModel.Input(viewModels))
     }
 
     private fun handleGetOutputStepsSuccess(data: List<Step>) {
-        outputItems.value = data.map { viewModelFactory.create("08a354bd-ab75", it) }
+        val viewModels = data.map { viewModelFactory.create("08a354bd-ab75", it) }
+        outputListViewModel.sendInput(ListViewModel.Input(viewModels))
     }
 
     sealed class Input {
