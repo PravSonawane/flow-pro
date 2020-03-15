@@ -23,7 +23,8 @@ import javax.inject.Named
 
 class InputStepListViewModel @Inject constructor(
     val getFlowByIdUseCase: GetFlowByIdUseCase,
-    @Named(GetPossibleOutputStepsUseCase.NAMED) val getPossibleOutputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
+    @Named(GetPossibleOutputStepsUseCase.NAMED)
+    val getPossibleOutputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory

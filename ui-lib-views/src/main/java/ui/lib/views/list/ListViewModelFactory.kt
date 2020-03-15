@@ -10,7 +10,9 @@ class ListViewModelFactory @Inject constructor(
     private val liveDataFactory: LiveDataFactory
 ) {
 
-    fun <T : ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>> create(analyticsKey: String): ListViewModel<T> {
+    fun <T : ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>> create(
+        analyticsKey: String
+    ): ListViewModel<T> {
         return ListViewModel(analyticsKey, liveDataFactory, streamFactory)
     }
 }

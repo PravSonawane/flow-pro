@@ -36,12 +36,12 @@ class FirebaseAnalytics @Inject constructor(
                     newKey = KEY_DEBUG
                     mutableMap["analyticsKey"] = key
                     attributes.forEach { entry ->
-                        // firebase key limit = 40 chars
-                        // firebase value limit = 100 chars
-                        mutableMap[entry.key.take(40)] = entry.value.toString().take(100)
+                        mutableMap[entry.key.take(KEY_SIZE_LIMIT_CHARS)] =
+                            entry.value.toString().take(VALUE_SIZE_LIMIT_CHARS)
                     }
                 }
 
+                @Suppress("SpreadOperator")
                 val bundle = bundleOf(*mutableMap.toList().toTypedArray())
                 instance.logEvent(newKey, bundle)
             }
@@ -53,5 +53,7 @@ class FirebaseAnalytics @Inject constructor(
 
     companion object {
         const val KEY_DEBUG = "debug"
+        const val KEY_SIZE_LIMIT_CHARS = 40
+        const val VALUE_SIZE_LIMIT_CHARS = 100
     }
 }

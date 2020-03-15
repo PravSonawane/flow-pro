@@ -48,8 +48,9 @@ class StepListFragment : AppBaseFragment() {
             arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_path_param_flow_id))
         val stepId =
             arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_query_param_step_id))
-        val stepType =
-            convertToStepType(arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_query_param_step_type)))
+        val stepType = convertToStepType(
+            arguments?.getString(resources.getString(R.string.deeplink_flow_step_list_query_param_step_type))
+        )
         viewModel.sendInput(StepListScreenViewModel.Input(flowId, stepId, stepType))
 
         compositeDisposable += viewModel.observeOutput()

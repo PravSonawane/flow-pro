@@ -1,8 +1,8 @@
 package app.di.test
 
-abstract class BaseTest {
+open class BaseTest {
 
-    fun appComponent(): TestAppComponent {
+    private fun appComponent(): TestAppComponent {
         val application = TestApplication()
         return DaggerTestAppComponent.builder()
             .application(application)
