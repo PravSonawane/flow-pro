@@ -67,6 +67,7 @@ class StepDetailsFragment : AppBaseFragment() {
                     is StepDetailsViewModel.Event.OnNewStep -> {}
                     is StepDetailsViewModel.Event.OnStepDetails -> handleOnStepDetails(flowId, it.step)
                     is StepDetailsViewModel.Event.OnAddInputStep -> handleOnAddInputStep(it.flow, it.step)
+                    is StepDetailsViewModel.Event.OnAddOutputStep -> handleOnAddOutputStep(it.flow, it.step)
                 }
             }
 
@@ -87,6 +88,20 @@ class StepDetailsFragment : AppBaseFragment() {
 
     private fun handleOnAddInputStep(flow: Flow, step: Step) {
         val inputType = resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[0]
+        val pathParams = mapOf(
+            R.string.deeplink_flow_step_list_path_param_flow_id to flow.id,
+            R.string.deeplink_flow_step_list_query_param_step_id to step.id,
+            R.string.deeplink_flow_step_list_query_param_step_type to inputType
+        )
+        navigate(
+            this,
+            R.string.deeplink_flow_step_list,
+            pathParams
+        )
+    }
+
+    private fun handleOnAddOutputStep(flow: Flow, step: Step) {
+        val inputType = resources.getStringArray(R.array.deeplink_flow_step_list_query_param_step_type)[1]
         val pathParams = mapOf(
             R.string.deeplink_flow_step_list_path_param_flow_id to flow.id,
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,

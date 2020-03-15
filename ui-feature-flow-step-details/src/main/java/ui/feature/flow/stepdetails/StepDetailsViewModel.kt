@@ -47,7 +47,10 @@ class StepDetailsViewModel @Inject constructor(
         listViewModelFactory.create<ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>>(
             "d03bbb54-bfe0"
         )
-    val outputListViewModel = listViewModelFactory.create<StepDetailsItemViewModel>("0f2ad39e-e31c")
+    val outputListViewModel =
+        listViewModelFactory.create<ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>>(
+            "0f2ad39e-e31c"
+        )
     val flow = liveDataFactory.mutableLiveData<Flow>("1692a7e5-47f5")
     val step = liveDataFactory.mutableLiveData<Step>("53969ce5-8ef9")
 
@@ -69,6 +72,7 @@ class StepDetailsViewModel @Inject constructor(
             .subscribe { event ->
                 when (event) {
                     is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
+                    is AddStepItemViewModel.Event.OnAddMore -> handleOnAddOutputStep(event.step)
                 }
             }
     }
@@ -171,6 +175,10 @@ class StepDetailsViewModel @Inject constructor(
         flow.value?.let { sendOutput(Event.OnAddInputStep(it, step)) }
     }
 
+    private fun handleOnAddOutputStep(step: Step) {
+        flow.value?.let { sendOutput(Event.OnAddOutputStep(it, step)) }
+    }
+
     private fun handleGetFlowByIdSuccess(data: Flow) {
         flow.value = data
     }
@@ -188,7 +196,9 @@ class StepDetailsViewModel @Inject constructor(
     }
 
     private fun handleGetOutputStepsSuccess(data: List<Step>) {
-        val viewModels = data.map { viewModelFactory.create("08a354bd-ab75", it) }
+        val viewModels: MutableList<ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>> =
+            data.map { viewModelFactory.create("08a354bd-ab75", it) }.toMutableList()
+        step.value?.let { viewModels.add(viewModelFactory.createAddStep("79906fc2-9f40", it)) }
         outputListViewModel.sendInput(ListViewModel.Input(viewModels))
     }
 
@@ -201,6 +211,7 @@ class StepDetailsViewModel @Inject constructor(
         object OnNewStep : Event()
         data class OnStepDetails(val step: Step) : Event()
         data class OnAddInputStep(val flow: Flow, val step: Step) : Event()
+        data class OnAddOutputStep(val flow: Flow, val step: Step) : Event()
     }
 
     override fun onCleared() {
