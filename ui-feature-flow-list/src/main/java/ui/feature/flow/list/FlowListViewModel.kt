@@ -32,6 +32,14 @@ class FlowListViewModel @Inject constructor(
     val listViewModel: ListViewModel<FlowListItemViewModel> =
         listViewModelFactory.create("2ae5bd06-7b9a")
     init {
+
+        compositeDisposable += listViewModel.observeOutput()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when(it) {
+                    is FlowListItemViewModel.Event.OnViewFlow -> handleOnViewFlow(it.flow)
+                }
+            }
         compositeDisposable += getAllFlowsUseCase(
             BusinessData(
                 "58993dea-6ddf",
