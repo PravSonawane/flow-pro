@@ -1,6 +1,8 @@
 package app.di
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
+import app.di.annotations.ActivityContext
 import dagger.Component
 import ui.lib.base.BaseActivity
 import ui.lib.di.ActivityScope
@@ -18,6 +20,7 @@ import ui.lib.di.UiModule
 )
 @ActivityScope
 interface MainComponent : BaseMainComponent, AppComponent {
+    @ActivityContext fun activity(): Activity
     fun injectIn(activity: BaseActivity)
 
     /** Dagger Builder for [MainComponent] */
