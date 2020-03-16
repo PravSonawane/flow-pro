@@ -13,13 +13,16 @@ import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.stepdetails.databinding.FragmentFlowStepDetailsBinding
-import ui.navigation.navigate
+import ui.navigation.Navigator
 import javax.inject.Inject
 
 class StepDetailsFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var navigator: Navigator
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
@@ -80,8 +83,7 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_details_path_param_flow_id to flowId,
             R.string.deeplink_flow_step_details_path_param_step_id to step.id
         )
-        navigate(
-            this,
+        navigator.navigate(
             R.string.deeplink_flow_step_details,
             pathParams
         )
@@ -96,8 +98,7 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,
             R.string.deeplink_flow_step_list_query_param_step_type to StepType.INPUT.toString()
         )
-        navigate(
-            this,
+        navigator.navigate(
             R.string.deeplink_flow_step_list,
             pathParams,
             queryParams
@@ -113,8 +114,7 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,
             R.string.deeplink_flow_step_list_query_param_step_type to StepType.OUTPUT.toString()
         )
-        navigate(
-            this,
+        navigator.navigate(
             R.string.deeplink_flow_step_list,
             pathParams,
             queryParams

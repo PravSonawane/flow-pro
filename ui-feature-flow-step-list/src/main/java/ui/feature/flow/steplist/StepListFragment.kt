@@ -12,13 +12,16 @@ import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.steplist.databinding.FragmentStepListBinding
-import ui.navigation.navigate
+import ui.navigation.Navigator
 import javax.inject.Inject
 
 class StepListFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var navigator: Navigator
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
@@ -81,8 +84,7 @@ class StepListFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_details_path_param_flow_id to flowId,
             R.string.deeplink_flow_step_details_path_param_step_id to step.id
         )
-        navigate(
-            this,
+        navigator.navigate(
             R.string.deeplink_flow_step_details,
             pathParams
         )
