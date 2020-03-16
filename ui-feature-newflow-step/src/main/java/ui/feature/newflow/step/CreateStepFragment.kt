@@ -12,13 +12,16 @@ import core.lib.rxutils.plusAssign
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.newflow.step.databinding.FragmentCreateStepBinding
-import ui.navigation.navigate
+import ui.navigation.Navigator
 import javax.inject.Inject
 
 class CreateStepFragment : AppBaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var navigator: Navigator
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
@@ -66,7 +69,7 @@ class CreateStepFragment : AppBaseFragment() {
         val pathParams: Map<Int, String> = mapOf(
             R.string.deeplink_newflow_selectnode_path_param_flow_id to flow.id
         )
-        navigate(this, R.string.deeplink_newflow_selectnode, pathParams)
+        navigator.navigate(R.string.deeplink_newflow_selectnode, pathParams)
     }
 
     private fun onError() {

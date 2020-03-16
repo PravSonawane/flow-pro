@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
     private val mainComponent: MainComponent by lazy {
         DaggerMainComponent.builder()
             .appComponent(appComponent())
-            .mainModule(MainModule())
+            .mainModule(MainModule(this, R.id.nav_host_fragment))
             .build()
     }
 
