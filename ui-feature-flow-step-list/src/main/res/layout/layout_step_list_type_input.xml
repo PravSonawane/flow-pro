@@ -26,7 +26,7 @@
             android:id="@+id/token_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:adapterItems="@{viewModel.items}"
+            app:adapterItems="@{viewModel.listViewModel.items}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item_flow_step"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -5,13 +5,14 @@ import domain.models.flow.Step
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.ItemViewModel
+import ui.lib.views.list.ListViewModel
 
 class StepItemViewModel(
     analyticsKey: String,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     item: Step
-) : ItemViewModel<StepItemViewModel.Input, StepItemViewModel.Event>(
+) : ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>(
     analyticsKey,
     streamFactory,
     R.layout.list_item_flow_step,
@@ -24,8 +25,8 @@ class StepItemViewModel(
         step.value?.let { sendOutput(Event.OnSelectStep(it)) }
     }
 
-    sealed class Input
-    sealed class Event {
+    sealed class Input : ListViewModel.ItemInput
+    sealed class Event : ListViewModel.ItemOutput {
         data class OnSelectStep(val step: Step) : Event()
     }
 

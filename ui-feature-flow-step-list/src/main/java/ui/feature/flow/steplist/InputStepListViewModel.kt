@@ -12,12 +12,13 @@ import domain.flow.usecases.GetPossibleInputStepsInput
 import domain.flow.usecases.GetPossibleInputStepsUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.list.ListViewModel
+import ui.lib.views.list.ListViewModelFactory
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -27,7 +28,8 @@ class InputStepListViewModel @Inject constructor(
     val getPossibleInputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
-    liveDataFactory: LiveDataFactory
+    liveDataFactory: LiveDataFactory,
+    listViewModelFactory: ListViewModelFactory
 ) : LayoutViewModel<InputStepListViewModel.Input, InputStepListViewModel.Event>(
     "ba45622c-d74a",
     streamFactory,
@@ -35,21 +37,17 @@ class InputStepListViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val items: MutableLiveData<List<StepItemViewModel>> =
-        liveDataFactory.mutableLiveData("b277b859-277a", emptyList())
+    val listViewModel = listViewModelFactory.create<StepItemViewModel>("b277b859-277a")
     val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
 
     init {
-
-        items.observeForever {
-            compositeDisposable += Observable.merge(it.map { steps -> steps.observeOutput() })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { step ->
-                    when (step) {
-                        is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
-                    }
+        compositeDisposable += listViewModel.observeOutput()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { step ->
+                when (step) {
+                    is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
                 }
-        }
+            }
 
         compositeDisposable += observeInput()
             .flatMap {
@@ -91,7 +89,7 @@ class InputStepListViewModel @Inject constructor(
         val items: List<StepItemViewModel> = steps.map {
             viewModelFactory.create("73d5b9c7-fbc4", it)
         }
-        this.items.value = items
+        this.listViewModel.sendInput(ListViewModel.Input(items))
     }
 
     private fun handleError(error: DomainError) {
