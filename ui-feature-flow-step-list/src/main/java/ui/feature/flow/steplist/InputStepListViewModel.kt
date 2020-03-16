@@ -9,7 +9,7 @@ import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetPossibleInputStepsInput
-import domain.flow.usecases.GetPossibleOutputStepsUseCase
+import domain.flow.usecases.GetPossibleInputStepsUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.Observable
@@ -23,8 +23,8 @@ import javax.inject.Named
 
 class InputStepListViewModel @Inject constructor(
     val getFlowByIdUseCase: GetFlowByIdUseCase,
-    @Named(GetPossibleOutputStepsUseCase.NAMED)
-    val getPossibleOutputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
+    @Named(GetPossibleInputStepsUseCase.NAMED)
+    val getPossibleInputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
@@ -53,7 +53,7 @@ class InputStepListViewModel @Inject constructor(
 
         compositeDisposable += observeInput()
             .flatMap {
-                getPossibleOutputStepsUseCase(
+                getPossibleInputStepsUseCase(
                     BusinessData(
                         "41508dfb-95b4",
                         Plugin("23145985-698d"),
