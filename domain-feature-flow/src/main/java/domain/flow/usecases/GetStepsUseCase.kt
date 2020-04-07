@@ -36,7 +36,7 @@ class GetStepsUseCase @Inject constructor(
             input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(
                 currentOutputStepsInput(input.stepId)
             )
-            else -> DomainError(INVALID_INPUT).toResult()
+            else -> invalidInputError(input).toResult()
         }
     }
 
@@ -64,9 +64,12 @@ class GetStepsUseCase @Inject constructor(
         )
     }
 
+    private fun invalidInputError(input: GetStepsInput): DomainError {
+        return DomainError("fa53026f-e8a8", "Cannot handle input:$input")
+    }
+
     companion object {
         const val NAMED = "GET_STEPS"
-        const val INVALID_INPUT = "fa53026f-e8a8"
     }
 }
 

@@ -16,6 +16,10 @@ class ErrorThrowable(
     fun toError(): DomainError {
         return DomainError(code, message, throwable)
     }
+
+    override fun toString(): String {
+        return "ErrorThrowable(code='$code', message=$message, throwable=$throwable)"
+    }
 }
 
 fun DomainError.toThrowable(): ErrorThrowable {

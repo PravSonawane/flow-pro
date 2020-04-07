@@ -69,7 +69,7 @@ class StepListScreenViewModel @Inject constructor(
             }
             input.stepId != null && input.stepType == StepType.OUTPUT -> {
                 screenMode.value = ScreenMode.OUTPUT_STEPS
-                inputStepListViewModel.sendInput(
+                outputStepListViewModel.sendInput(
                     StepListViewModel.Input(
                         input.flowId,
                         input.stepId
