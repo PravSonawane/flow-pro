@@ -11,8 +11,8 @@ class GetStepByIdUseCase @Inject constructor(
     private val stepRepository: StepRepository
 ) : ObservableResultUseCase<String, Step> {
 
-    override operator fun invoke(stepId: String): Observable<Result<Step>> {
-        return stepRepository.getStepById(stepId)
+    override operator fun invoke(input: String): Observable<Result<Step>> {
+        return stepRepository.getStepById(input)
     }
 
     companion object {
