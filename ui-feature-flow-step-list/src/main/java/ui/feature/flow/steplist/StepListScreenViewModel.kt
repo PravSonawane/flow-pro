@@ -103,6 +103,9 @@ class StepListScreenViewModel @Inject constructor(
     }
 
     override fun onCleared() {
+        allStepListViewModel.onCleared()
+        incompleteInputViewModel.onCleared()
+        inputStepListViewModel.onCleared()
         compositeDisposable.dispose()
     }
 }

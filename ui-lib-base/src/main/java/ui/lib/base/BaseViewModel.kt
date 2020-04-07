@@ -28,4 +28,8 @@ abstract class BaseViewModel<Input, Output>(
     fun observeOutput(): Observable<Output> {
         return eventStream.subscribe()
     }
+
+    public override fun onCleared() {
+        super.onCleared()
+    }
 }
