@@ -7,8 +7,8 @@ import core.lib.rxutils.plusAssign
 import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
-import domain.flow.usecases.GetPossibleInputStepsInput
-import domain.flow.usecases.GetPossibleInputStepsUseCase
+import domain.flow.usecases.GetStepsInput
+import domain.flow.usecases.GetStepsUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,8 +23,8 @@ import javax.inject.Named
 
 class StepListViewModel @Inject constructor(
     val getFlowByIdUseCase: GetFlowByIdUseCase,
-    @Named(GetPossibleInputStepsUseCase.NAMED)
-    val getPossibleInputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
+    @Named(GetStepsUseCase.NAMED)
+    val getStepsUseCase: BusinessUseCase<GetStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
@@ -49,14 +49,12 @@ class StepListViewModel @Inject constructor(
             }
 
         compositeDisposable += observeInput()
-            .filter { it.stepId != null }
-            .map { it.stepId as String }
             .flatMap {
-                getPossibleInputStepsUseCase(
+                getStepsUseCase(
                     BusinessData(
                         "41508dfb-95b4",
                         Plugin("23145985-698d"),
-                        GetPossibleInputStepsInput(it)
+                        GetStepsInput(it.flowId, it.stepId)
                     )
                 )
             }

@@ -17,6 +17,8 @@ import domain.flow.usecases.GetPossibleInputStepsUseCase
 import domain.flow.usecases.GetPossibleOutputStepsInput
 import domain.flow.usecases.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
+import domain.flow.usecases.GetStepsInput
+import domain.flow.usecases.GetStepsUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import javax.inject.Named
@@ -27,6 +29,9 @@ interface FlowComponent {
     fun getAllFlows(): BusinessUseCase<Unit, List<Flow>>
 
     fun getFlowById(): GetFlowByIdUseCase
+
+    @Named(GetStepsUseCase.NAMED)
+    fun getSteps(): BusinessUseCase<GetStepsInput, List<Step>>
 
     @Named(GetStepByIdUseCase.NAMED)
     fun getStepById(): BusinessUseCase<String, Step>
