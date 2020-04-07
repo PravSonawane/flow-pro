@@ -1,6 +1,5 @@
 package ui.feature.flow.steplist
 
-import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
@@ -22,7 +21,7 @@ import ui.lib.views.list.ListViewModelFactory
 import javax.inject.Inject
 import javax.inject.Named
 
-class InputStepListViewModel @Inject constructor(
+class StepListViewModel @Inject constructor(
     val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetPossibleInputStepsUseCase.NAMED)
     val getPossibleInputStepsUseCase: BusinessUseCase<GetPossibleInputStepsInput, List<Step>>,
@@ -30,18 +29,18 @@ class InputStepListViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     listViewModelFactory: ListViewModelFactory
-) : LayoutViewModel<InputStepListViewModel.Input, InputStepListViewModel.Event>(
+) : LayoutViewModel<StepListViewModel.Input, StepListViewModel.Event>(
     "ba45622c-d74a",
     streamFactory,
-    R.layout.layout_step_list_type_input
+    R.layout.layout_step_list
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val listViewModel = listViewModelFactory.create<StepItemViewModel>("b277b859-277a")
-    val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("a4efee98-acaa")
+    val stepListViewModel = listViewModelFactory.create<StepItemViewModel>("b277b859-277a")
+    val flow = liveDataFactory.mutableLiveData<Flow>("a4efee98-acaa")
 
     init {
-        compositeDisposable += listViewModel.observeOutput()
+        compositeDisposable += stepListViewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { step ->
                 when (step) {
@@ -50,12 +49,14 @@ class InputStepListViewModel @Inject constructor(
             }
 
         compositeDisposable += observeInput()
+            .filter { it.stepId != null }
+            .map { it.stepId as String }
             .flatMap {
                 getPossibleInputStepsUseCase(
                     BusinessData(
                         "41508dfb-95b4",
                         Plugin("23145985-698d"),
-                        GetPossibleInputStepsInput(it.stepId)
+                        GetPossibleInputStepsInput(it)
                     )
                 )
             }
@@ -89,7 +90,7 @@ class InputStepListViewModel @Inject constructor(
         val items: List<StepItemViewModel> = steps.map {
             viewModelFactory.create("73d5b9c7-fbc4", it)
         }
-        this.listViewModel.sendInput(ListViewModel.Input(items))
+        this.stepListViewModel.sendInput(ListViewModel.Input(items))
     }
 
     private fun handleError(error: DomainError) {
@@ -108,7 +109,7 @@ class InputStepListViewModel @Inject constructor(
         flow.value?.let { sendOutput(Event.OnViewStep(it.id, step)) }
     }
 
-    data class Input(val flowId: String, val stepId: String)
+    data class Input(val flowId: String, val stepId: String? = null)
 
     sealed class Event {
         object OnNewStep : Event()

@@ -71,11 +71,11 @@ class StepListFragment : AppBaseFragment() {
         return binding.root
     }
 
-    private fun convertToStepType(stepType: String?): StepListScreenViewModel.StepType {
+    private fun convertToStepType(stepType: String?): StepType? {
         return when (stepType) {
-            StepType.INPUT.toString() -> StepListScreenViewModel.StepType.INPUT
-            StepType.OUTPUT.toString() -> StepListScreenViewModel.StepType.OUTPUT
-            else -> StepListScreenViewModel.StepType.ALL
+            StepType.INPUT.toString() -> StepType.INPUT
+            StepType.OUTPUT.toString() -> StepType.OUTPUT
+            else -> null
         }
     }
 
