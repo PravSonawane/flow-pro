@@ -3,6 +3,7 @@ package ui.feature.flow.steplist
 import androidx.lifecycle.MutableLiveData
 import core.lib.rxutils.plusAssign
 import domain.models.flow.Step
+import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
@@ -13,9 +14,10 @@ import javax.inject.Inject
 class StepListScreenViewModel @Inject constructor(
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
-    val allStepListViewModel: AllStepListViewModel,
+    val allStepListViewModel: StepListViewModel,
     val incompleteInputViewModel: IncompleteInputViewModel,
-    val inputStepListViewModel: InputStepListViewModel
+    val inputStepListViewModel: StepListViewModel,
+    val outputStepListViewModel: StepListViewModel
 ) : LayoutViewModel<StepListScreenViewModel.Input, StepListScreenViewModel.Event>(
     "493db3c5-f5ff",
     streamFactory,
@@ -35,9 +37,9 @@ class StepListScreenViewModel @Inject constructor(
             .subscribe { handleAllStepListOutputs(it) }
     }
 
-    private fun handleAllStepListOutputs(event: AllStepListViewModel.Event) {
+    private fun handleAllStepListOutputs(event: StepListViewModel.Event) {
         when (event) {
-            is AllStepListViewModel.Event.OnViewStep -> sendOutput(
+            is StepListViewModel.Event.OnViewStep -> sendOutput(
                 Event.OnViewStep(
                     event.flowId,
                     event.step
@@ -52,14 +54,23 @@ class StepListScreenViewModel @Inject constructor(
                 screenMode.value = ScreenMode.INCOMPLETE_INPUT
                 incompleteInputViewModel.sendInput(IncompleteInputViewModel.Input("Flow ID is required"))
             }
-            input.stepId == null && input.stepType == StepType.ALL -> {
+            input.stepId == null && input.stepType == null -> {
                 screenMode.value = ScreenMode.ALL_STEPS
-                allStepListViewModel.sendInput(AllStepListViewModel.Input(input.flowId))
+                allStepListViewModel.sendInput(StepListViewModel.Input(input.flowId))
             }
             input.stepId != null && input.stepType == StepType.INPUT -> {
                 screenMode.value = ScreenMode.INPUT_STEPS
                 inputStepListViewModel.sendInput(
-                    InputStepListViewModel.Input(
+                    StepListViewModel.Input(
+                        input.flowId,
+                        input.stepId
+                    )
+                )
+            }
+            input.stepId != null && input.stepType == StepType.OUTPUT -> {
+                screenMode.value = ScreenMode.OUTPUT_STEPS
+                inputStepListViewModel.sendInput(
+                    StepListViewModel.Input(
                         input.flowId,
                         input.stepId
                     )
@@ -81,19 +92,10 @@ class StepListScreenViewModel @Inject constructor(
         OUTPUT_STEPS
     }
 
-    enum class StepType {
-        /** List all [Step]s */
-        ALL,
-        /** List input [Step]s */
-        INPUT,
-        /** List output [Step]s */
-        OUTPUT
-    }
-
     data class Input(
         val flowId: String? = null,
         val stepId: String? = null,
-        val stepType: StepType? = StepType.ALL
+        val stepType: StepType? = null
     )
 
     sealed class Event {

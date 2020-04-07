@@ -3,15 +3,15 @@ package core.lib.result
 import io.reactivex.Observable
 
 open class DomainError(
-    val code: Int,
+    val code: String,
     val message: String? = null,
     val cause: Throwable? = null
 )
 
 class ErrorThrowable(
-    val code: Int,
+    val code: String,
     override val message: String? = null,
-    private val throwable: Throwable? = null
+    val throwable: Throwable? = null
 ) : Throwable(message) {
     fun toError(): DomainError {
         return DomainError(code, message, throwable)
@@ -65,7 +65,7 @@ fun <T> Result<T?>.toResult(): Observable<Result<T>> {
 }
 
 fun createError(
-    errorCode: Int,
+    errorCode: String,
     errorMessage: String? = null,
     errorThrowable: Throwable? = null
 ): DomainError {
@@ -77,7 +77,7 @@ fun createError(
 }
 
 // unknown error
-const val UNKNOWN = 99000
+const val UNKNOWN = "99000"
 class UnknownError(
     message: String? = null,
     throwable: Throwable? = null

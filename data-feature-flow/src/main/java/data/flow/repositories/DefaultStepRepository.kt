@@ -23,15 +23,15 @@ class DefaultStepRepository : StepRepository {
 
     override fun getPossibleInputSteps(stepId: String): Observable<Result<List<Step>>> {
         val allSteps = FakeStorage.getFlow().steps!!
-        val inputSteps = FakeStorage.getFlow().steps?.find { it.id == stepId }!!.inputSteps!!
-        val possibleInputSteps = allSteps.minus(inputSteps)
+        val inputSteps = FakeStorage.getFlow().steps?.find { it.id == stepId }!!.inputSteps!!.map { it.id }
+        val possibleInputSteps = allSteps.filter { it.id !in inputSteps }
         return Observable.just(Result.OnSuccess(possibleInputSteps))
     }
 
     override fun getPossibleOutputSteps(stepId: String): Observable<Result<List<Step>>> {
         val allSteps = FakeStorage.getFlow().steps!!
-        val outputSteps = FakeStorage.getFlow().steps?.find { it.id == stepId }!!.outputSteps!!
-        val possibleOutputSteps = allSteps.minus(outputSteps)
+        val outputSteps = FakeStorage.getFlow().steps?.find { it.id == stepId }!!.outputSteps!!.map { it.id }
+        val possibleOutputSteps = allSteps.filter { it.id !in outputSteps }
         return Observable.just(Result.OnSuccess(possibleOutputSteps))
     }
 

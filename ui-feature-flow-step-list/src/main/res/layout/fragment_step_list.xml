@@ -27,7 +27,7 @@
             android:id="@+id/include_all_step_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            layout="@layout/layout_step_list_type_all"
+            layout="@layout/layout_step_list"
             tools:visibility="gone"
             android:visibility="@{viewModel.screenMode == ScreenMode.ALL_STEPS}"
             app:viewModel="@{viewModel.allStepListViewModel}" />
@@ -36,7 +36,7 @@
             android:id="@+id/include_input_step_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            layout="@layout/layout_step_list_type_input"
+            layout="@layout/layout_step_list"
             tools:visibility="gone"
             android:visibility="@{viewModel.screenMode == ScreenMode.INPUT_STEPS}"
             app:viewModel="@{viewModel.inputStepListViewModel}" />
