@@ -24,35 +24,16 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // project
     implementation project(":ui-navigation")
-    implementation project(":ui-lib-di")
+
+    // annotations
     implementation project(":app-di-annotations")
-
-    //lib
-    implementation project(":core-lib-usecase")
-    implementation project(":core-lib-usecase-common")
-
-    //analytics
-    implementation project(":core-lib-plugin")
-    implementation project(":core-lib-analytics")
-
-    //domain
-    implementation project(':domain-models-core')
-    implementation project(':domain-feature-flow')
-    implementation project(':domain-models-flow')
-
-    //test
-    implementation project(':ui-navigation-test')
-    implementation project(':core-lib-analytics-test')
-    implementation project(':core-lib-plugin-test')
-    implementation project(':data-feature-flow-test')
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -65,15 +46,14 @@ dependencies {
     kaptTest "com.google.dagger:dagger-android-processor:$dagger_version"
     kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
 
-    //rxjava2
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-    implementation 'com.github.Plastix.RxSchedulerRule:rx2:1.0.2'
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.core:core-ktx:$androidx_core_ktx_version"
-    implementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

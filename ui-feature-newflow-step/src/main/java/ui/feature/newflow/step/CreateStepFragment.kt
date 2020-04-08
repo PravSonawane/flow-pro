@@ -13,6 +13,7 @@ import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.newflow.step.databinding.FragmentCreateStepBinding
 import ui.navigation.Navigator
+import ui.navigation.SimpleNavigationConfig
 import javax.inject.Inject
 
 class CreateStepFragment : AppBaseFragment() {
@@ -69,7 +70,11 @@ class CreateStepFragment : AppBaseFragment() {
         val pathParams: Map<Int, String> = mapOf(
             R.string.deeplink_newflow_selectnode_path_param_flow_id to flow.id
         )
-        navigator.navigate(R.string.deeplink_newflow_selectnode, pathParams)
+        val config = SimpleNavigationConfig(
+            R.string.deeplink_newflow_selectnode,
+            pathParams
+        )
+        navigator.navigate(config)
     }
 
     private fun onError() {

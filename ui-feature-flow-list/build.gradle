@@ -43,8 +43,10 @@ dependencies {
     implementation project(":ui-lib-utils")
     implementation project(":ui-lib-views")
     implementation project(":ui-navigation")
+    implementation project(':ui-navigation-impl')
 
     //test
+    testImplementation project(':ui-navigation-test')
     testImplementation project(":core-lib-analytics-test")
     testImplementation project(":core-lib-plugin-test")
     testImplementation project(":data-feature-flow-test")

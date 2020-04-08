@@ -12,6 +12,7 @@ import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.list.databinding.FragmentFlowListBinding
 import ui.navigation.Navigator
+import ui.navigation.SimpleNavigationConfig
 import javax.inject.Inject
 
 class FlowListFragment : AppBaseFragment() {
@@ -60,16 +61,18 @@ class FlowListFragment : AppBaseFragment() {
     }
 
     private fun handleOnCreateNewFlow() {
-        navigator.navigate(R.string.deeplink_newflow_title)
+        val config = SimpleNavigationConfig(R.string.deeplink_newflow_title)
+        navigator.navigate(config)
     }
 
     private fun handleOnViewFlow(flow: Flow) {
         val pathParams = mapOf(
             R.string.deeplink_flow_step_details_path_param_flow_id to flow.id
         )
-        navigator.navigate(
+        val config = SimpleNavigationConfig(
             R.string.deeplink_flow_step_list,
             pathParams
         )
+        navigator.navigate(config)
     }
 }

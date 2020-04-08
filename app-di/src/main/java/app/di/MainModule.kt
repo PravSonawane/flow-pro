@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import ui.lib.di.ActivityScope
 import ui.navigation.Navigator
+import ui.navigation.SimpleNavigator
 
 @Module
 class MainModule(
@@ -24,6 +25,6 @@ class MainModule(
     @Provides
     @ActivityScope
     fun navigator(@ActivityContext activity: Activity): Navigator {
-        return Navigator(activity, navHostViewId)
+        return SimpleNavigator(activity, navHostViewId)
     }
 }
