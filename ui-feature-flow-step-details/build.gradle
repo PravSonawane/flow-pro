@@ -56,6 +56,13 @@ dependencies {
     implementation project(':domain-feature-flow')
     implementation project(':domain-models-flow')
 
+    //test
+    testImplementation project(':ui-navigation-test')
+    testImplementation project(":core-lib-analytics-test")
+    testImplementation project(":core-lib-plugin-test")
+    testImplementation project(":data-feature-flow-test")
+    testImplementation project(":app-di-test")
+
     //data
     implementation project(':data-feature-flow')
 
