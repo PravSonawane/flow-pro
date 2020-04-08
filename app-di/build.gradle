@@ -33,7 +33,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //ui lib
-    implementation project(":ui-navigation")
+    implementation project(':ui-navigation')
+    implementation project(':ui-navigation-impl')
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-di")
     implementation project(":app-di-annotations")

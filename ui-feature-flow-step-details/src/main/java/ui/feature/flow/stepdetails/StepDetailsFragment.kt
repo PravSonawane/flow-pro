@@ -14,6 +14,7 @@ import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.stepdetails.databinding.FragmentFlowStepDetailsBinding
 import ui.navigation.Navigator
+import ui.navigation.SimpleNavigationConfig
 import javax.inject.Inject
 
 class StepDetailsFragment : AppBaseFragment() {
@@ -83,10 +84,11 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_details_path_param_flow_id to flowId,
             R.string.deeplink_flow_step_details_path_param_step_id to step.id
         )
-        navigator.navigate(
+        val config = SimpleNavigationConfig(
             R.string.deeplink_flow_step_details,
             pathParams
         )
+        navigator.navigate(config)
     }
 
     private fun handleOnAddInputStep(flow: Flow, step: Step) {
@@ -98,11 +100,12 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,
             R.string.deeplink_flow_step_list_query_param_step_type to StepType.INPUT.toString()
         )
-        navigator.navigate(
+        val config = SimpleNavigationConfig(
             R.string.deeplink_flow_step_list,
             pathParams,
             queryParams
         )
+        navigator.navigate(config)
     }
 
     private fun handleOnAddOutputStep(flow: Flow, step: Step) {
@@ -114,10 +117,11 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_list_query_param_step_id to step.id,
             R.string.deeplink_flow_step_list_query_param_step_type to StepType.OUTPUT.toString()
         )
-        navigator.navigate(
+        val config = SimpleNavigationConfig(
             R.string.deeplink_flow_step_list,
             pathParams,
             queryParams
         )
+        navigator.navigate(config)
     }
 }
