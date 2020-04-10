@@ -1,3 +1,5 @@
+include ':core-lib-experimentation-test'
+include ':core-lib-experimentation-impl'
 rootProject.name = 'Flow Pro'
 include ':app'
 include ':ui-feature-flow-list'

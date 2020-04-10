@@ -55,6 +55,10 @@ dependencies {
     implementation project(":core-lib-plugin")
     implementation project(":core-lib-plugin-impl")
 
+    //experimentation
+    implementation project(":core-lib-experimentation")
+    implementation project(":core-lib-experimentation-impl")
+
     //core
     implementation project(":core-lib-usecase")
     implementation project(":core-lib-usecase-common")
