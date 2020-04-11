@@ -20,7 +20,7 @@ class AnalyticsUseCase<Input, Output> @Inject constructor(
             .compose(inputAnalyticsTransformer)
             .flatMap { useCase.invoke(it) }
             .flatMap { it.toData() }
-            .map { AnalyticsData(analyticsKey, it) }
+            .map { OutputAnalyticsTransformer.Input(analyticsKey, it) }
             .compose(outputAnalyticsTransformer)
             .map { it.toResult() }
     }
