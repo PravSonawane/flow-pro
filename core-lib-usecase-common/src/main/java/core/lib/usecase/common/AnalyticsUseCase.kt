@@ -16,7 +16,7 @@ class AnalyticsUseCase<Input, Output> @Inject constructor(
 
     override fun invoke(input: Input): Observable<Result<Output>> {
         return Observable.just(input)
-            .map { AnalyticsData(analyticsKey, input) }
+            .map { InputAnalyticsTransformer.Input(analyticsKey, input) }
             .compose(inputAnalyticsTransformer)
             .flatMap { useCase.invoke(it) }
             .flatMap { it.toData() }

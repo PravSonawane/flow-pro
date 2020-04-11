@@ -9,15 +9,15 @@ import javax.inject.Inject
 
 class InputAnalyticsTransformer<T> @Inject constructor(
     private val analyticsRepository: AnalyticsRepository
-) : ObservableTransformer<AnalyticsData<T>, T> {
+) : ObservableTransformer<InputAnalyticsTransformer.Input<T>, T> {
 
-    override fun apply(upstream: Observable<AnalyticsData<T>>): ObservableSource<T> {
+    override fun apply(upstream: Observable<Input<T>>): ObservableSource<T> {
         return upstream
             .doOnNext { log(it) }
             .map { it.data }
     }
 
-    private fun log(it: AnalyticsData<T>) {
+    private fun log(it: Input<T>) {
         val attributes: MutableMap<String, Any?> = LinkedHashMap()
         attributes["message"] = "input"
 
@@ -29,4 +29,9 @@ class InputAnalyticsTransformer<T> @Inject constructor(
 
         analyticsRepository.logEvent(it.analyticsKey, attributes)
     }
+
+    data class Input<T>(
+        val analyticsKey: String,
+        val data: T
+    )
 }
