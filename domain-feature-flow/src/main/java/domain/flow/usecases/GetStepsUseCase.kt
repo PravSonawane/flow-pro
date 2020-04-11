@@ -15,7 +15,7 @@ import javax.inject.Named
 
 class GetStepsUseCase @Inject constructor(
     @Named(GetAllStepsUseCase.NAMED)
-    private val getAllStepsUseCase: BusinessUseCase<GetAllStepsInput, List<Step>>,
+    private val getAllStepsUseCase: ObservableResultUseCase<GetAllStepsInput, List<Step>>,
     @Named(GetCurrentInputStepsUseCase.NAMED)
     private val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
@@ -29,7 +29,7 @@ class GetStepsUseCase @Inject constructor(
 
     private fun getInputStepsByStepType(input: GetStepsInput): Observable<Result<List<Step>>> {
         return when {
-            input.stepId == null -> getAllStepsUseCase(allStepsInput(input.flowId))
+            input.stepId == null -> getAllStepsUseCase(GetAllStepsInput(input.flowId))
             input.stepType == StepType.INPUT -> getCurrentInputStepsUseCase(
                 currentInputStepsInput(input.stepId)
             )
@@ -38,14 +38,6 @@ class GetStepsUseCase @Inject constructor(
             )
             else -> invalidInputError(input).toResult()
         }
-    }
-
-    private fun allStepsInput(flowId: String): BusinessData<GetAllStepsInput> {
-        return BusinessData(
-            "42ec4f7f-d032",
-            Plugin("2d654511-3fa2"),
-            GetAllStepsInput(flowId)
-        )
     }
 
     private fun currentInputStepsInput(stepId: String): BusinessData<GetInputStepsInput> {
