@@ -5,7 +5,7 @@ import core.lib.usecase.ObservableResultUseCase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class ExperimentationUseCaseV2<Input, Output> @Inject constructor(
+class ExperimentationUseCase<Input, Output> @Inject constructor(
     private val experimentKey: String,
     @JvmSuppressWildcards val useCase1: ObservableResultUseCase<Input, Output>,
     @JvmSuppressWildcards val useCase2: ObservableResultUseCase<Input, Output>,

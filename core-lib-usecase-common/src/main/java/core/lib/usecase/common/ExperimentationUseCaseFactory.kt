@@ -11,8 +11,8 @@ class ExperimentationUseCaseFactory<Input, Output> @Inject constructor(
         experimentKey: String,
         useCase1: ObservableResultUseCase<Input, Output>,
         useCase2: ObservableResultUseCase<Input, Output>
-    ): ExperimentationUseCaseV2<Input, Output> {
-        return ExperimentationUseCaseV2(
+    ): ExperimentationUseCase<Input, Output> {
+        return ExperimentationUseCase(
             experimentKey,
             useCase1,
             useCase2,
