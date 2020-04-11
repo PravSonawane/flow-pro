@@ -113,22 +113,13 @@ class FlowModule {
 
     @Named(GetStepByIdUseCase.NAMED)
     @Provides
-    fun provideGetStepById(
-        factory: BusinessUseCaseFactory<String, Step>,
-        getStepByIdUseCase: GetStepByIdUseCase
-    ): BusinessUseCase<String, Step> {
-        return factory.create(getStepByIdUseCase)
-    }
-
-    @Named(GetStepByIdUseCase.NAMED_V2)
-    @Provides
     fun provideGetStepByIdV2(
         builder: BasicUseCaseBuilder<String, Step>,
         getStepByIdUseCase: GetStepByIdUseCase
     ): ObservableResultUseCase<String, Step> {
         return builder.compose(getStepByIdUseCase)
-            .withAnalytics("98301cab-9995")
-            .withPlugin("8a35d450-f99b")
+            .withAnalytics(GetStepByIdUseCase.ANALYTICS_KEY)
+            .withPlugin(GetStepByIdUseCase.PLUGIN_KEY)
             .build()
     }
 }

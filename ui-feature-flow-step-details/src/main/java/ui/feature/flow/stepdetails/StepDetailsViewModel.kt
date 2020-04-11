@@ -5,7 +5,6 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
@@ -27,9 +26,7 @@ import javax.inject.Named
 
 class StepDetailsViewModel @Inject constructor(
     @Named(GetStepByIdUseCase.NAMED)
-    val getStepByIdUseCase: BusinessUseCase<String, Step>,
-    @Named(GetStepByIdUseCase.NAMED_V2)
-    val getStepByIdUseCaseV2: ObservableResultUseCase<String, Step>,
+    val getStepByIdUseCase: ObservableResultUseCase<String, Step>,
     val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetCurrentInputStepsUseCase.NAMED)
     val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
@@ -111,7 +108,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap { getStepByIdUseCaseV2(it.id) }
+            .flatMap { getStepByIdUseCase(it.id) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
