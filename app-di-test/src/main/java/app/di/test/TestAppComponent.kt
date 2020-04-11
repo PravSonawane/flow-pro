@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import app.di.annotations.ApplicationContext
 import core.lib.analytics.di.AnalyticsComponent
+import core.lib.experimentation.di.ExperimentationComponent
 import core.lib.plugin.di.PluginComponent
 import dagger.BindsInstance
 import dagger.Component
@@ -18,6 +19,7 @@ import javax.inject.Singleton
 )
 @Singleton
 interface TestAppComponent : BaseAppComponent,
+    ExperimentationComponent,
     PluginComponent,
     AnalyticsComponent,
     FlowComponent {
