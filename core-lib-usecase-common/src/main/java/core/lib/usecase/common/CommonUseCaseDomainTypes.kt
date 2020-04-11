@@ -12,12 +12,6 @@ data class PluginData<T>(
     val data: T
 )
 
-data class BusinessData<T>(
-    val analyticsKey: String,
-    val plugin: Plugin,
-    val data: T
-)
-
 data class ExperimentData<T>(
     val experimentKey: String,
     val data: T

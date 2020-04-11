@@ -8,17 +8,19 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class AnalyticsUseCase<Input, Output> @Inject constructor(
+    private val analyticsKey: String,
     @JvmSuppressWildcards val useCase: ObservableResultUseCase<Input, Output>,
     @JvmSuppressWildcards val inputAnalyticsTransformer: InputAnalyticsTransformer<Input>,
     @JvmSuppressWildcards val outputAnalyticsTransformer: OutputAnalyticsTransformer<Output>
-) : ObservableResultUseCase<AnalyticsData<Input>, Output> {
+) : ObservableResultUseCase<Input, Output> {
 
-    override fun invoke(input: AnalyticsData<Input>): Observable<Result<Output>> {
+    override fun invoke(input: Input): Observable<Result<Output>> {
         return Observable.just(input)
+            .map { AnalyticsData(analyticsKey, input) }
             .compose(inputAnalyticsTransformer)
             .flatMap { useCase.invoke(it) }
             .flatMap { it.toData() }
-            .map { AnalyticsData(input.analyticsKey, it) }
+            .map { AnalyticsData(analyticsKey, it) }
             .compose(outputAnalyticsTransformer)
             .map { it.toResult() }
     }

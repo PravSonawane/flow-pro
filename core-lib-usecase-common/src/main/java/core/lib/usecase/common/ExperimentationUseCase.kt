@@ -6,18 +6,20 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class ExperimentationUseCase<Input, Output> @Inject constructor(
+    private val experimentKey: String,
     @JvmSuppressWildcards val useCase1: ObservableResultUseCase<Input, Output>,
     @JvmSuppressWildcards val useCase2: ObservableResultUseCase<Input, Output>,
     @JvmSuppressWildcards val experimentationTransformer: ExperimentationTransformer<Input>
-) : ObservableResultUseCase<ExperimentData<Input>, Output> {
+) : ObservableResultUseCase<Input, Output> {
 
-    override fun invoke(input: ExperimentData<Input>): Observable<Result<Output>> {
+    override fun invoke(input: Input): Observable<Result<Output>> {
         return Observable.just(input)
+            .map { ExperimentData(experimentKey, input) }
             .compose(experimentationTransformer)
             .flatMap {
                 when {
-                    it.isEnabled -> useCase1.invoke(input.data)
-                    else -> useCase2.invoke(input.data)
+                    it.isEnabled -> useCase2.invoke(input)
+                    else -> useCase1.invoke(input)
                 }
             }
     }
