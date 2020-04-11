@@ -28,16 +28,14 @@ interface FlowComponent {
     @Named(GetAllFlowsUseCase.NAMED)
     fun getAllFlows(): ObservableResultUseCase<Unit, List<Flow>>
 
-    fun getFlowById(): GetFlowByIdUseCase
+    @Named(GetFlowByIdUseCase.NAMED)
+    fun getFlowById(): ObservableResultUseCase<String, Flow>
 
     @Named(GetStepsUseCase.NAMED)
     fun getSteps(): ObservableResultUseCase<GetStepsInput, List<Step>>
 
     @Named(GetStepByIdUseCase.NAMED)
     fun getStepById(): ObservableResultUseCase<String, Step>
-
-    @Named(GetStepByIdUseCase.NAMED)
-    fun getStepByIdV2(): ObservableResultUseCase<String, Step>
 
     @Named(GetAllStepsUseCase.NAMED)
     fun getAllSteps(): ObservableResultUseCase<GetAllStepsInput, List<Step>>

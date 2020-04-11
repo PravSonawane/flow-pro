@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import core.lib.plugin.Plugin
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BusinessData
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
@@ -13,10 +14,12 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
+import javax.inject.Named
 
 class CreateStepViewModel @Inject constructor(
+    @Named(GetFlowByIdUseCase.NAMED)
+    val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     streamFactory: StreamFactory,
-    val getFlowByIdUseCase: GetFlowByIdUseCase,
     liveDataFactory: LiveDataFactory
 ) : LayoutViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
     "e2fc2772-418e",
@@ -32,13 +35,7 @@ class CreateStepViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .flatMap {
                 when (it) {
-                    is Input.FlowId -> getFlowByIdUseCase(
-                        BusinessData(
-                            "407a16de-1032",
-                            Plugin("4f270fb9-b350"),
-                            it.id
-                        )
-                    )
+                    is Input.FlowId -> getFlowByIdUseCase(it.id)
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())

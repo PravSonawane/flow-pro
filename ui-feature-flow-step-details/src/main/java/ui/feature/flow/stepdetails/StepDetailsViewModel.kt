@@ -1,10 +1,8 @@
 package ui.feature.flow.stepdetails
 
-import core.lib.plugin.Plugin
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import core.lib.usecase.common.BusinessData
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
@@ -27,7 +25,8 @@ import javax.inject.Named
 class StepDetailsViewModel @Inject constructor(
     @Named(GetStepByIdUseCase.NAMED)
     val getStepByIdUseCase: ObservableResultUseCase<String, Step>,
-    val getFlowByIdUseCase: GetFlowByIdUseCase,
+    @Named(GetFlowByIdUseCase.NAMED)
+    val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     @Named(GetCurrentInputStepsUseCase.NAMED)
     val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
@@ -81,15 +80,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.FlowId }
             .map { it as Input.FlowId }
-            .flatMap {
-                getFlowByIdUseCase(
-                    BusinessData(
-                        "e0ba73ff-5f29",
-                        Plugin("f34d4c75-3d81"),
-                        it.id
-                    )
-                )
-            }
+            .flatMap { getFlowByIdUseCase(it.id) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {

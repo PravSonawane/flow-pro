@@ -22,7 +22,8 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class StepListViewModel @Inject constructor(
-    val getFlowByIdUseCase: GetFlowByIdUseCase,
+    @Named(GetFlowByIdUseCase.NAMED)
+    val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     @Named(GetStepsUseCase.NAMED)
     val getStepsUseCase: ObservableResultUseCase<GetStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
@@ -59,15 +60,7 @@ class StepListViewModel @Inject constructor(
             }
 
         compositeDisposable += observeInput()
-            .flatMap {
-                    getFlowByIdUseCase(
-                        BusinessData(
-                            "7880cff2-530e",
-                            Plugin("152a67de-3676"),
-                            it.flowId
-                        )
-                    )
-            }
+            .flatMap { getFlowByIdUseCase(it.flowId) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
