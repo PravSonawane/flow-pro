@@ -1,12 +1,10 @@
 package ui.feature.flow.selectstep
 
 import androidx.lifecycle.MutableLiveData
-import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import core.lib.usecase.common.BusinessData
 import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
@@ -22,7 +20,8 @@ import javax.inject.Named
 class SelectStepViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED)
     getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
-    getAllNodesUseCase: GetAllNodesUseCase,
+    @Named(GetAllNodesUseCase.NAMED)
+    getAllNodesUseCase: ObservableResultUseCase<Unit, List<Node>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory

@@ -20,7 +20,8 @@ import javax.inject.Named
 class SelectNodeViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED)
     getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
-    getAllNodesUseCase: GetAllNodesUseCase,
+    @Named(GetAllNodesUseCase.NAMED)
+    getAllNodesUseCase: ObservableResultUseCase<Unit, List<Node>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory
