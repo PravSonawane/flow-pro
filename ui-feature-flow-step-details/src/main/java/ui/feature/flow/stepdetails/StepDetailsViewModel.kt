@@ -32,7 +32,7 @@ class StepDetailsViewModel @Inject constructor(
     val getStepByIdUseCaseV2: ObservableResultUseCase<String, Step>,
     val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetCurrentInputStepsUseCase.NAMED)
-    val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
+    val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
     val getCurrentOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
@@ -124,15 +124,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap {
-                getCurrentInputStepsUseCase(
-                    BusinessData(
-                        "52ad24ac-e785",
-                        Plugin("0290f8da-b3e3"),
-                        GetInputStepsInput(it.id)
-                    )
-                )
-            }
+            .flatMap { getCurrentInputStepsUseCase(GetInputStepsInput(it.id)) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
