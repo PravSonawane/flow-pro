@@ -1,6 +1,7 @@
 package core.lib.usecase.common
 
 import core.lib.analytics.AnalyticsRepository
+import core.lib.plugin.Plugin
 import core.lib.plugin.PluginRepository
 import core.lib.result.toData
 import io.reactivex.Observable
@@ -11,9 +12,9 @@ import javax.inject.Inject
 class PluginTransformer<T> @Inject constructor(
     private val analyticsRepository: AnalyticsRepository,
     private val pluginRepository: PluginRepository
-) : ObservableTransformer<PluginData<T>, T> {
+) : ObservableTransformer<PluginTransformer.Input<T>, T> {
 
-    override fun apply(upstream: Observable<PluginData<T>>): ObservableSource<T> {
+    override fun apply(upstream: Observable<Input<T>>): ObservableSource<T> {
         return upstream
             .flatMap {
                 pluginRepository.isEnabled(it.plugin)
@@ -31,4 +32,9 @@ class PluginTransformer<T> @Inject constructor(
         attributes["enabled"] = isEnabled
         analyticsRepository.logEvent(pluginKey, attributes)
     }
+
+    data class Input<T>(
+        val plugin: Plugin,
+        val data: T
+    )
 }

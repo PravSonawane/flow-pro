@@ -14,7 +14,7 @@ class PluginUseCase<Input, Output> @Inject constructor(
 
     override fun invoke(input: Input): Observable<Result<Output>> {
         return Observable.just(input)
-            .map { PluginData(Plugin(pluginKey), input) }
+            .map { PluginTransformer.Input(Plugin(pluginKey), input) }
             .compose(pluginTransformer)
             .flatMap { useCase.invoke(input) }
     }
