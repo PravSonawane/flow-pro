@@ -7,17 +7,6 @@ class ExperimentationUseCaseFactory<Input, Output> @Inject constructor(
     private val experimentationTransformer: ExperimentationTransformer<Input>
 ) {
 
-    fun create(
-        useCase1: ObservableResultUseCase<Input, Output>,
-        useCase2: ObservableResultUseCase<Input, Output>
-    ): ExperimentationUseCase<Input, Output> {
-        return ExperimentationUseCase(
-            useCase1,
-            useCase2,
-            experimentationTransformer
-        )
-    }
-
     fun createV2(
         experimentKey: String,
         useCase1: ObservableResultUseCase<Input, Output>,
@@ -30,6 +19,4 @@ class ExperimentationUseCaseFactory<Input, Output> @Inject constructor(
             experimentationTransformer
         )
     }
-
-
 }
