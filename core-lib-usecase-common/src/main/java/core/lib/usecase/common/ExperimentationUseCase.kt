@@ -14,7 +14,7 @@ class ExperimentationUseCase<Input, Output> @Inject constructor(
 
     override fun invoke(input: Input): Observable<Result<Output>> {
         return Observable.just(input)
-            .map { ExperimentData(experimentKey, input) }
+            .map { ExperimentationTransformer.Input(experimentKey, input) }
             .compose(experimentationTransformer)
             .flatMap {
                 when {
