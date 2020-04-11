@@ -17,5 +17,7 @@ class GetStepByIdUseCase @Inject constructor(
 
     companion object {
         const val NAMED = "GET_STEP_BY_ID"
+        const val ANALYTICS_KEY = "98301cab-9995"
+        const val PLUGIN_KEY = "8a35d450-f99b"
     }
 }

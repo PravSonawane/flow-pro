@@ -17,6 +17,8 @@ class GetCurrentInputStepsUseCase @Inject constructor(
 
     companion object {
         const val NAMED = "GET_CURRENT_INPUT_STEPS"
+        const val ANALYTICS_KEY = "d5869728-eded"
+        const val PLUGIN_KEY = "8ef2e492-f438"
     }
 }
 data class GetInputStepsInput(

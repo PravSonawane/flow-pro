@@ -1,7 +1,7 @@
 package domain.flow.di
 
-import core.lib.usecase.common.BusinessUseCase
-import core.lib.usecase.common.BusinessUseCaseFactory
+import core.lib.usecase.ObservableResultUseCase
+import core.lib.usecase.common.BasicUseCaseBuilder
 import dagger.Module
 import dagger.Provides
 import domain.flow.usecases.GetAllFlowsUseCase
@@ -9,6 +9,7 @@ import domain.flow.usecases.GetAllStepsInput
 import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
+import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
 import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetPossibleInputStepsInput
@@ -22,78 +23,114 @@ import domain.models.flow.Flow
 import domain.models.flow.Step
 import javax.inject.Named
 
-@Module(includes = [AbstractFlowModule::class])
+@Module
 class FlowModule {
 
     @Named(GetAllFlowsUseCase.NAMED)
     @Provides
     fun provideGetAllFlows(
-        factory: BusinessUseCaseFactory<Unit, List<Flow>>,
+        builder: BasicUseCaseBuilder<Unit, List<Flow>>,
         getAllFlowsUseCase: GetAllFlowsUseCase
-    ): BusinessUseCase<Unit, List<Flow>> {
-        return factory.create(getAllFlowsUseCase)
+    ): ObservableResultUseCase<Unit, List<Flow>> {
+        return builder.compose(getAllFlowsUseCase)
+            .withAnalytics(GetAllFlowsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetAllFlowsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetStepsUseCase.NAMED)
     @Provides
     fun provideGetSteps(
-        factory: BusinessUseCaseFactory<GetStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetStepsInput, List<Step>>,
         getStepsUseCase: GetStepsUseCase
-    ): BusinessUseCase<GetStepsInput, List<Step>> {
-        return factory.create(getStepsUseCase)
+    ): ObservableResultUseCase<GetStepsInput, List<Step>> {
+        return builder.compose(getStepsUseCase)
+            .withAnalytics(GetStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetAllStepsUseCase.NAMED)
     @Provides
     fun provideGetAllSteps(
-        factory: BusinessUseCaseFactory<GetAllStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetAllStepsInput, List<Step>>,
         getAllStepsUseCase: GetAllStepsUseCase
-    ): BusinessUseCase<GetAllStepsInput, List<Step>> {
-        return factory.create(getAllStepsUseCase)
+    ): ObservableResultUseCase<GetAllStepsInput, List<Step>> {
+        return builder.compose(getAllStepsUseCase)
+            .withAnalytics(GetAllStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetAllStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetCurrentInputStepsUseCase.NAMED)
     @Provides
     fun provideGetCurrentInputSteps(
-        factory: BusinessUseCaseFactory<GetInputStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetInputStepsInput, List<Step>>,
         getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase
-    ): BusinessUseCase<GetInputStepsInput, List<Step>> {
-        return factory.create(getCurrentInputStepsUseCase)
+    ): ObservableResultUseCase<GetInputStepsInput, List<Step>> {
+        return builder.compose(getCurrentInputStepsUseCase)
+            .withAnalytics(GetCurrentInputStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetCurrentInputStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetCurrentOutputStepsUseCase.NAMED)
     @Provides
     fun provideGetCurrentOutputSteps(
-        factory: BusinessUseCaseFactory<GetOutputStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetOutputStepsInput, List<Step>>,
         getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
-    ): BusinessUseCase<GetOutputStepsInput, List<Step>> {
-        return factory.create(getCurrentOutputStepsUseCase)
+    ): ObservableResultUseCase<GetOutputStepsInput, List<Step>> {
+        return builder.compose(getCurrentOutputStepsUseCase)
+            .withAnalytics(GetCurrentOutputStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetCurrentOutputStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetPossibleInputStepsUseCase.NAMED)
     @Provides
     fun provideGetPossibleInputSteps(
-        factory: BusinessUseCaseFactory<GetPossibleInputStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetPossibleInputStepsInput, List<Step>>,
         getPossibleInputStepsUseCase: GetPossibleInputStepsUseCase
-    ): BusinessUseCase<GetPossibleInputStepsInput, List<Step>> {
-        return factory.create(getPossibleInputStepsUseCase)
+    ): ObservableResultUseCase<GetPossibleInputStepsInput, List<Step>> {
+        return builder.compose(getPossibleInputStepsUseCase)
+            .withAnalytics(GetPossibleInputStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetPossibleInputStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetPossibleOutputStepsUseCase.NAMED)
     @Provides
     fun provideGetPossibleOutputSteps(
-        factory: BusinessUseCaseFactory<GetPossibleOutputStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetPossibleOutputStepsInput, List<Step>>,
         getPossibleOutputStepsUseCase: GetPossibleOutputStepsUseCase
-    ): BusinessUseCase<GetPossibleOutputStepsInput, List<Step>> {
-        return factory.create(getPossibleOutputStepsUseCase)
+    ): ObservableResultUseCase<GetPossibleOutputStepsInput, List<Step>> {
+        return builder.compose(getPossibleOutputStepsUseCase)
+            .withAnalytics(GetPossibleOutputStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetPossibleOutputStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetStepByIdUseCase.NAMED)
     @Provides
     fun provideGetStepById(
-        factory: BusinessUseCaseFactory<String, Step>,
+        builder: BasicUseCaseBuilder<String, Step>,
         getStepByIdUseCase: GetStepByIdUseCase
-    ): BusinessUseCase<String, Step> {
-        return factory.create(getStepByIdUseCase)
+    ): ObservableResultUseCase<String, Step> {
+        return builder.compose(getStepByIdUseCase)
+            .withAnalytics(GetStepByIdUseCase.ANALYTICS_KEY)
+            .withPlugin(GetStepByIdUseCase.PLUGIN_KEY)
+            .build()
+    }
+
+    @Named(GetFlowByIdUseCase.NAMED)
+    @Provides
+    fun provideGetFlowById(
+        builder: BasicUseCaseBuilder<String, Flow>,
+        getFlowByIdUseCase: GetFlowByIdUseCase
+    ): ObservableResultUseCase<String, Flow> {
+        return builder.compose(getFlowByIdUseCase)
+            .withAnalytics(GetFlowByIdUseCase.ANALYTICS_KEY)
+            .withPlugin(GetFlowByIdUseCase.PLUGIN_KEY)
+            .build()
     }
 }

@@ -1,10 +1,8 @@
 package ui.feature.flow.stepdetails
 
-import core.lib.plugin.Plugin
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
+import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
@@ -26,12 +24,13 @@ import javax.inject.Named
 
 class StepDetailsViewModel @Inject constructor(
     @Named(GetStepByIdUseCase.NAMED)
-    val getStepByIdUseCase: BusinessUseCase<String, Step>,
-    val getFlowByIdUseCase: GetFlowByIdUseCase,
+    val getStepByIdUseCase: ObservableResultUseCase<String, Step>,
+    @Named(GetFlowByIdUseCase.NAMED)
+    val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     @Named(GetCurrentInputStepsUseCase.NAMED)
-    val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
+    val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
-    val getCurrentOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>,
+    val getCurrentOutputStepsUseCase: ObservableResultUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     listViewModelFactory: ListViewModelFactory,
@@ -81,15 +80,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.FlowId }
             .map { it as Input.FlowId }
-            .flatMap {
-                getFlowByIdUseCase(
-                    BusinessData(
-                        "e0ba73ff-5f29",
-                        Plugin("f34d4c75-3d81"),
-                        it.id
-                    )
-                )
-            }
+            .flatMap { getFlowByIdUseCase(it.id) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
@@ -108,15 +99,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap {
-                getStepByIdUseCase(
-                    BusinessData(
-                        "98301cab-9995",
-                        Plugin("8a35d450-f99b"),
-                        it.id
-                    )
-                )
-            }
+            .flatMap { getStepByIdUseCase(it.id) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
@@ -129,15 +112,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap {
-                getCurrentInputStepsUseCase(
-                    BusinessData(
-                        "52ad24ac-e785",
-                        Plugin("0290f8da-b3e3"),
-                        GetInputStepsInput(it.id)
-                    )
-                )
-            }
+            .flatMap { getCurrentInputStepsUseCase(GetInputStepsInput(it.id)) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
@@ -150,15 +125,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap {
-                getCurrentOutputStepsUseCase(
-                    BusinessData(
-                        "dfbb9ed3-588b",
-                        Plugin("2b100786-074c"),
-                        GetOutputStepsInput(it.id)
-                    )
-                )
-            }
+            .flatMap { getCurrentOutputStepsUseCase(GetOutputStepsInput(it.id)) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {

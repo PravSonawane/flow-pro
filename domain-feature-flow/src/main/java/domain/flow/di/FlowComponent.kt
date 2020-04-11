@@ -1,6 +1,6 @@
 package domain.flow.di
 
-import core.lib.usecase.common.BusinessUseCase
+import core.lib.usecase.ObservableResultUseCase
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
@@ -26,30 +26,31 @@ import javax.inject.Named
 interface FlowComponent {
 
     @Named(GetAllFlowsUseCase.NAMED)
-    fun getAllFlows(): BusinessUseCase<Unit, List<Flow>>
+    fun getAllFlows(): ObservableResultUseCase<Unit, List<Flow>>
 
-    fun getFlowById(): GetFlowByIdUseCase
+    @Named(GetFlowByIdUseCase.NAMED)
+    fun getFlowById(): ObservableResultUseCase<String, Flow>
 
     @Named(GetStepsUseCase.NAMED)
-    fun getSteps(): BusinessUseCase<GetStepsInput, List<Step>>
+    fun getSteps(): ObservableResultUseCase<GetStepsInput, List<Step>>
 
     @Named(GetStepByIdUseCase.NAMED)
-    fun getStepById(): BusinessUseCase<String, Step>
+    fun getStepById(): ObservableResultUseCase<String, Step>
 
     @Named(GetAllStepsUseCase.NAMED)
-    fun getAllSteps(): BusinessUseCase<GetAllStepsInput, List<Step>>
+    fun getAllSteps(): ObservableResultUseCase<GetAllStepsInput, List<Step>>
 
     @Named(GetCurrentInputStepsUseCase.NAMED)
-    fun getCurrentInputSteps(): BusinessUseCase<GetInputStepsInput, List<Step>>
+    fun getCurrentInputSteps(): ObservableResultUseCase<GetInputStepsInput, List<Step>>
 
     @Named(GetCurrentOutputStepsUseCase.NAMED)
-    fun getCurrentOutputSteps(): BusinessUseCase<GetOutputStepsInput, List<Step>>
+    fun getCurrentOutputSteps(): ObservableResultUseCase<GetOutputStepsInput, List<Step>>
 
     @Named(GetPossibleInputStepsUseCase.NAMED)
-    fun getPossibleInputSteps(): BusinessUseCase<GetPossibleInputStepsInput, List<Step>>
+    fun getPossibleInputSteps(): ObservableResultUseCase<GetPossibleInputStepsInput, List<Step>>
 
     @Named(GetPossibleOutputStepsUseCase.NAMED)
-    fun getPossibleOutputSteps(): BusinessUseCase<GetPossibleOutputStepsInput, List<Step>>
+    fun getPossibleOutputSteps(): ObservableResultUseCase<GetPossibleOutputStepsInput, List<Step>>
 
     fun flowRepository(): FlowRepository
     fun nodeRepository(): NodeRepository

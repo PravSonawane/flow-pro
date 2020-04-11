@@ -1,11 +1,10 @@
 package ui.feature.flow.selectnode
 
 import androidx.lifecycle.MutableLiveData
-import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.common.BusinessData
+import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.models.flow.Flow
@@ -16,9 +15,11 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
+import javax.inject.Named
 
 class SelectNodeViewModel @Inject constructor(
-    getFlowByIdUseCase: GetFlowByIdUseCase,
+    @Named(GetFlowByIdUseCase.NAMED)
+    getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     getAllNodesUseCase: GetAllNodesUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
@@ -47,13 +48,7 @@ class SelectNodeViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .flatMap {
                 when (it) {
-                    is Input.FlowId -> getFlowByIdUseCase(
-                        BusinessData(
-                            "f432fdb6-f4d5",
-                            Plugin("004be7a6-34e9"),
-                            it.id
-                        )
-                    )
+                    is Input.FlowId -> getFlowByIdUseCase(it.id)
                 }
             }
             .observeOn(AndroidSchedulers.mainThread())
