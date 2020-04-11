@@ -102,10 +102,13 @@ class FlowModule {
     @Named(GetPossibleOutputStepsUseCase.NAMED)
     @Provides
     fun provideGetPossibleOutputSteps(
-        factory: BusinessUseCaseFactory<GetPossibleOutputStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetPossibleOutputStepsInput, List<Step>>,
         getPossibleOutputStepsUseCase: GetPossibleOutputStepsUseCase
-    ): BusinessUseCase<GetPossibleOutputStepsInput, List<Step>> {
-        return factory.create(getPossibleOutputStepsUseCase)
+    ): ObservableResultUseCase<GetPossibleOutputStepsInput, List<Step>> {
+        return builder.compose(getPossibleOutputStepsUseCase)
+            .withAnalytics(GetPossibleOutputStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetPossibleOutputStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetStepByIdUseCase.NAMED)

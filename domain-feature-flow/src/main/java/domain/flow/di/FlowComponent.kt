@@ -53,7 +53,7 @@ interface FlowComponent {
     fun getPossibleInputSteps(): ObservableResultUseCase<GetPossibleInputStepsInput, List<Step>>
 
     @Named(GetPossibleOutputStepsUseCase.NAMED)
-    fun getPossibleOutputSteps(): BusinessUseCase<GetPossibleOutputStepsInput, List<Step>>
+    fun getPossibleOutputSteps(): ObservableResultUseCase<GetPossibleOutputStepsInput, List<Step>>
 
     fun flowRepository(): FlowRepository
     fun nodeRepository(): NodeRepository
