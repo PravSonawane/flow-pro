@@ -1,5 +1,6 @@
 package domain.flow.di
 
+import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
@@ -35,6 +36,9 @@ interface FlowComponent {
 
     @Named(GetStepByIdUseCase.NAMED)
     fun getStepById(): BusinessUseCase<String, Step>
+
+    @Named(GetStepByIdUseCase.NAMED_V2)
+    fun getStepByIdV2(): ObservableResultUseCase<String, Step>
 
     @Named(GetAllStepsUseCase.NAMED)
     fun getAllSteps(): BusinessUseCase<GetAllStepsInput, List<Step>>

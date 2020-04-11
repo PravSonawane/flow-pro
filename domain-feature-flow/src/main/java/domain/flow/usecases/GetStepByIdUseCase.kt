@@ -17,5 +17,6 @@ class GetStepByIdUseCase @Inject constructor(
 
     companion object {
         const val NAMED = "GET_STEP_BY_ID"
+        const val NAMED_V2 = "GET_STEP_BY_ID_V2"
     }
 }

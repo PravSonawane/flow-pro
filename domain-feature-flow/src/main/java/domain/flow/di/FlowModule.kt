@@ -1,5 +1,7 @@
 package domain.flow.di
 
+import core.lib.usecase.ObservableResultUseCase
+import core.lib.usecase.common.BasicUseCaseBuilder
 import core.lib.usecase.common.BusinessUseCase
 import core.lib.usecase.common.BusinessUseCaseFactory
 import dagger.Module
@@ -95,5 +97,17 @@ class FlowModule {
         getStepByIdUseCase: GetStepByIdUseCase
     ): BusinessUseCase<String, Step> {
         return factory.create(getStepByIdUseCase)
+    }
+
+    @Named(GetStepByIdUseCase.NAMED_V2)
+    @Provides
+    fun provideGetStepByIdV2(
+        builder: BasicUseCaseBuilder<String, Step>,
+        getStepByIdUseCase: GetStepByIdUseCase
+    ): ObservableResultUseCase<String, Step> {
+        return builder.compose(getStepByIdUseCase)
+            .withAnalytics("98301cab-9995")
+            .withPlugin("8a35d450-f99b")
+            .build()
     }
 }

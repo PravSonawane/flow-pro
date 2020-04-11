@@ -3,6 +3,7 @@ package ui.feature.flow.stepdetails
 import core.lib.plugin.Plugin
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BusinessData
 import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
@@ -27,6 +28,8 @@ import javax.inject.Named
 class StepDetailsViewModel @Inject constructor(
     @Named(GetStepByIdUseCase.NAMED)
     val getStepByIdUseCase: BusinessUseCase<String, Step>,
+    @Named(GetStepByIdUseCase.NAMED_V2)
+    val getStepByIdUseCaseV2: ObservableResultUseCase<String, Step>,
     val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetCurrentInputStepsUseCase.NAMED)
     val getCurrentInputStepsUseCase: BusinessUseCase<GetInputStepsInput, List<Step>>,
@@ -108,15 +111,7 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap {
-                getStepByIdUseCase(
-                    BusinessData(
-                        "98301cab-9995",
-                        Plugin("8a35d450-f99b"),
-                        it.id
-                    )
-                )
-            }
+            .flatMap { getStepByIdUseCaseV2(it.id) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
