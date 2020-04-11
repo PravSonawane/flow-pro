@@ -4,7 +4,7 @@ import core.lib.usecase.ObservableResultUseCase
 import javax.inject.Inject
 
 class ExperimentationUseCaseFactory<Input, Output> @Inject constructor(
-    private val experimentationTransformer: ExperimentationTransformer<Input>
+    @JvmSuppressWildcards val experimentationTransformer: ExperimentationTransformer<Input>
 ) {
 
     fun createV2(
