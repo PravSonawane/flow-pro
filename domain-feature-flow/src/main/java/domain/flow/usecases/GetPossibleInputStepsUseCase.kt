@@ -17,6 +17,8 @@ class GetPossibleInputStepsUseCase @Inject constructor(
 
     companion object {
         const val NAMED = "GET_POSSIBLE_INPUT_STEPS"
+        const val ANALYTICS_KEY = "ecf31314-148a"
+        const val PLUGIN_KEY = "ede39000-3e69"
     }
 }
 data class GetPossibleInputStepsInput(
