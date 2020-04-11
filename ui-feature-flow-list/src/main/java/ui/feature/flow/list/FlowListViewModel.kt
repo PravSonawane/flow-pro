@@ -1,11 +1,9 @@
 package ui.feature.flow.list
 
-import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
+import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.GetAllFlowsUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +16,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class FlowListViewModel @Inject constructor(
-    @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: BusinessUseCase<Unit, List<Flow>>,
+    @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: ObservableResultUseCase<Unit, List<Flow>>,
     streamFactory: StreamFactory,
     listViewModelFactory: ListViewModelFactory,
     private val viewModelFactory: ViewModelFactory
@@ -40,13 +38,7 @@ class FlowListViewModel @Inject constructor(
                     is FlowListItemViewModel.Event.OnViewFlow -> handleOnViewFlow(it.flow)
                 }
             }
-        compositeDisposable += getAllFlowsUseCase(
-            BusinessData(
-                "58993dea-6ddf",
-                Plugin("3f39506e-6669"),
-                Unit
-            )
-        )
+        compositeDisposable += getAllFlowsUseCase(Unit)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {

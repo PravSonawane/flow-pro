@@ -27,7 +27,7 @@ import javax.inject.Named
 interface FlowComponent {
 
     @Named(GetAllFlowsUseCase.NAMED)
-    fun getAllFlows(): BusinessUseCase<Unit, List<Flow>>
+    fun getAllFlows(): ObservableResultUseCase<Unit, List<Flow>>
 
     fun getFlowById(): GetFlowByIdUseCase
 

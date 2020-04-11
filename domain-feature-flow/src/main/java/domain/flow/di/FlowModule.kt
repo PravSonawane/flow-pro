@@ -30,10 +30,13 @@ class FlowModule {
     @Named(GetAllFlowsUseCase.NAMED)
     @Provides
     fun provideGetAllFlows(
-        factory: BusinessUseCaseFactory<Unit, List<Flow>>,
+        builder: BasicUseCaseBuilder<Unit, List<Flow>>,
         getAllFlowsUseCase: GetAllFlowsUseCase
-    ): BusinessUseCase<Unit, List<Flow>> {
-        return factory.create(getAllFlowsUseCase)
+    ): ObservableResultUseCase<Unit, List<Flow>> {
+        return builder.compose(getAllFlowsUseCase)
+            .withAnalytics(GetAllFlowsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetAllFlowsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetStepsUseCase.NAMED)
