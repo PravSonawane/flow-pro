@@ -17,6 +17,8 @@ class GetCurrentOutputStepsUseCase @Inject constructor(
 
     companion object {
         const val NAMED = "GET_CURRENT_OUTPUT_STEPS"
+        const val ANALYTICS_KEY = "ad2908cf-159d"
+        const val PLUGIN_KEY = "43ea3a44-768f"
     }
 }
 

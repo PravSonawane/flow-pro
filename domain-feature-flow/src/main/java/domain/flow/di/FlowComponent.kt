@@ -47,7 +47,7 @@ interface FlowComponent {
     fun getCurrentInputSteps(): ObservableResultUseCase<GetInputStepsInput, List<Step>>
 
     @Named(GetCurrentOutputStepsUseCase.NAMED)
-    fun getCurrentOutputSteps(): BusinessUseCase<GetOutputStepsInput, List<Step>>
+    fun getCurrentOutputSteps(): ObservableResultUseCase<GetOutputStepsInput, List<Step>>
 
     @Named(GetPossibleInputStepsUseCase.NAMED)
     fun getPossibleInputSteps(): BusinessUseCase<GetPossibleInputStepsInput, List<Step>>

@@ -1,12 +1,9 @@
 package domain.flow.usecases
 
-import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.result.toResult
 import core.lib.usecase.ObservableResultUseCase
-import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
 import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.Observable
@@ -19,7 +16,7 @@ class GetStepsUseCase @Inject constructor(
     @Named(GetCurrentInputStepsUseCase.NAMED)
     private val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
-    private val getCurrentOutputStepsUseCase: BusinessUseCase<GetOutputStepsInput, List<Step>>
+    private val getCurrentOutputStepsUseCase: ObservableResultUseCase<GetOutputStepsInput, List<Step>>
 ) : ObservableResultUseCase<GetStepsInput, List<Step>> {
 
     override fun invoke(input: GetStepsInput): Observable<Result<List<Step>>> {
@@ -31,19 +28,9 @@ class GetStepsUseCase @Inject constructor(
         return when {
             input.stepId == null -> getAllStepsUseCase(GetAllStepsInput(input.flowId))
             input.stepType == StepType.INPUT -> getCurrentInputStepsUseCase(GetInputStepsInput(input.stepId))
-            input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(
-                currentOutputStepsInput(input.stepId)
-            )
+            input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(GetOutputStepsInput(input.stepId))
             else -> invalidInputError(input).toResult()
         }
-    }
-
-    private fun currentOutputStepsInput(stepId: String): BusinessData<GetOutputStepsInput> {
-        return BusinessData(
-            "ad2908cf-159d",
-            Plugin("43ea3a44-768f"),
-            GetOutputStepsInput(stepId)
-        )
     }
 
     private fun invalidInputError(input: GetStepsInput): DomainError {
