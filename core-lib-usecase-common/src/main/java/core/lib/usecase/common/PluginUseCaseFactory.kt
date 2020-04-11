@@ -10,8 +10,8 @@ class PluginUseCaseFactory<Input, Output> @Inject constructor(
     fun create(
         pluginKey: String,
         useCase: ObservableResultUseCase<Input, Output>
-    ): PluginUseCaseV2<Input, Output> {
-        return PluginUseCaseV2(
+    ): PluginUseCase<Input, Output> {
+        return PluginUseCase(
             pluginKey,
             useCase,
             pluginTransformer
