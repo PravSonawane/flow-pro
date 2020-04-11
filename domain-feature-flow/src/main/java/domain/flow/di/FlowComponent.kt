@@ -32,7 +32,7 @@ interface FlowComponent {
     fun getFlowById(): GetFlowByIdUseCase
 
     @Named(GetStepsUseCase.NAMED)
-    fun getSteps(): BusinessUseCase<GetStepsInput, List<Step>>
+    fun getSteps(): ObservableResultUseCase<GetStepsInput, List<Step>>
 
     @Named(GetStepByIdUseCase.NAMED)
     fun getStepById(): BusinessUseCase<String, Step>

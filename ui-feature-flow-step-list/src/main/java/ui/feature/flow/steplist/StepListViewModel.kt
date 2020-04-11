@@ -4,8 +4,8 @@ import core.lib.plugin.Plugin
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BusinessData
-import core.lib.usecase.common.BusinessUseCase
 import domain.flow.usecases.GetFlowByIdUseCase
 import domain.flow.usecases.GetStepsInput
 import domain.flow.usecases.GetStepsUseCase
@@ -24,7 +24,7 @@ import javax.inject.Named
 class StepListViewModel @Inject constructor(
     val getFlowByIdUseCase: GetFlowByIdUseCase,
     @Named(GetStepsUseCase.NAMED)
-    val getStepsUseCase: BusinessUseCase<GetStepsInput, List<Step>>,
+    val getStepsUseCase: ObservableResultUseCase<GetStepsInput, List<Step>>,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
@@ -49,15 +49,7 @@ class StepListViewModel @Inject constructor(
             }
 
         compositeDisposable += observeInput()
-            .flatMap {
-                getStepsUseCase(
-                    BusinessData(
-                        "41508dfb-95b4",
-                        Plugin("23145985-698d"),
-                        GetStepsInput(it.flowId, it.stepId)
-                    )
-                )
-            }
+            .flatMap { getStepsUseCase(GetStepsInput(it.flowId, it.stepId)) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {

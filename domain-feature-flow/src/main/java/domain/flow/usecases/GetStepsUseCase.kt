@@ -70,6 +70,8 @@ class GetStepsUseCase @Inject constructor(
 
     companion object {
         const val NAMED = "GET_STEPS"
+        const val ANALYTICS_KEY = "41508dfb-95b4"
+        const val PLUGIN_KEY = "23145985-698d"
     }
 }
 

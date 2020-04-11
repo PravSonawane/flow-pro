@@ -1,5 +1,6 @@
 package domain.flow.di
 
+import core.lib.plugin.Plugin
 import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BasicUseCaseBuilder
 import core.lib.usecase.common.BusinessUseCase
@@ -42,10 +43,13 @@ class FlowModule {
     @Named(GetStepsUseCase.NAMED)
     @Provides
     fun provideGetSteps(
-        factory: BusinessUseCaseFactory<GetStepsInput, List<Step>>,
+        builder: BasicUseCaseBuilder<GetStepsInput, List<Step>>,
         getStepsUseCase: GetStepsUseCase
-    ): BusinessUseCase<GetStepsInput, List<Step>> {
-        return factory.create(getStepsUseCase)
+    ): ObservableResultUseCase<GetStepsInput, List<Step>> {
+        return builder.compose(getStepsUseCase)
+            .withAnalytics(GetStepsUseCase.ANALYTICS_KEY)
+            .withPlugin(GetStepsUseCase.PLUGIN_KEY)
+            .build()
     }
 
     @Named(GetAllStepsUseCase.NAMED)
