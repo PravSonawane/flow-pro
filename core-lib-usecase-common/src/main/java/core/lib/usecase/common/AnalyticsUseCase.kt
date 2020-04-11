@@ -7,7 +7,7 @@ import core.lib.usecase.ObservableResultUseCase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class AnalyticsUseCaseV2<Input, Output> @Inject constructor(
+class AnalyticsUseCase<Input, Output> @Inject constructor(
     private val analyticsKey: String,
     @JvmSuppressWildcards val useCase: ObservableResultUseCase<Input, Output>,
     @JvmSuppressWildcards val inputAnalyticsTransformer: InputAnalyticsTransformer<Input>,

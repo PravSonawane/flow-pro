@@ -11,8 +11,8 @@ class AnalyticsUseCaseFactory<Input, Output> @Inject constructor(
     fun create(
         analyticsKey: String,
         useCase: ObservableResultUseCase<Input, Output>
-    ): AnalyticsUseCaseV2<Input, Output> {
-        return AnalyticsUseCaseV2(
+    ): AnalyticsUseCase<Input, Output> {
+        return AnalyticsUseCase(
             analyticsKey,
             useCase,
             inputAnalyticsTransformer,
