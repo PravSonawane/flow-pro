@@ -17,3 +17,14 @@ data class BusinessData<T>(
     val plugin: Plugin,
     val data: T
 )
+
+data class ExperimentData<T>(
+    val experimentKey: String,
+    val data: T
+)
+
+data class ExperimentResult<T>(
+    val isEnabled: Boolean,
+    val experimentKey: String,
+    val data: T
+)
