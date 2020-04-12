@@ -9,10 +9,10 @@ import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.step.GetAllStepsInput
 import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
-import domain.flow.usecases.GetCurrentOutputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetInputStepsInput
-import domain.flow.usecases.GetOutputStepsInput
+import domain.flow.usecases.get.step.GetOutputStepsInput
 import domain.flow.usecases.GetPossibleInputStepsInput
 import domain.flow.usecases.GetPossibleInputStepsUseCase
 import domain.flow.usecases.GetPossibleOutputStepsInput

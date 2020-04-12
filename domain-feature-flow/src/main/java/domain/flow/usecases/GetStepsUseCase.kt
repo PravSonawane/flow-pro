@@ -7,7 +7,9 @@ import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.get.step.GetAllStepsInput
 import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.step.GetInputStepsInput
+import domain.flow.usecases.get.step.GetOutputStepsInput
 import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.Observable
@@ -40,7 +42,11 @@ class GetStepsUseCase @Inject constructor(
                     input.stepId
                 )
             )
-            input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(GetOutputStepsInput(input.stepId))
+            input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(
+                GetOutputStepsInput(
+                    input.stepId
+                )
+            )
             else -> invalidInputError(input).toResult()
         }
     }
