@@ -4,6 +4,8 @@ import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.result.toResult
 import core.lib.usecase.ObservableResultUseCase
+import domain.flow.usecases.get.step.GetAllStepsInput
+import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.Observable
@@ -26,7 +28,11 @@ class GetStepsUseCase @Inject constructor(
 
     private fun getInputStepsByStepType(input: GetStepsInput): Observable<Result<List<Step>>> {
         return when {
-            input.stepId == null -> getAllStepsUseCase(GetAllStepsInput(input.flowId))
+            input.stepId == null -> getAllStepsUseCase(
+                GetAllStepsInput(
+                    input.flowId
+                )
+            )
             input.stepType == StepType.INPUT -> getCurrentInputStepsUseCase(GetInputStepsInput(input.stepId))
             input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(GetOutputStepsInput(input.stepId))
             else -> invalidInputError(input).toResult()

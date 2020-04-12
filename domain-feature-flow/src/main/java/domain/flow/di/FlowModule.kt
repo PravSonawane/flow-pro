@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.get.node.GetAllNodesUseCase
-import domain.flow.usecases.GetAllStepsInput
-import domain.flow.usecases.GetAllStepsUseCase
+import domain.flow.usecases.get.step.GetAllStepsInput
+import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
