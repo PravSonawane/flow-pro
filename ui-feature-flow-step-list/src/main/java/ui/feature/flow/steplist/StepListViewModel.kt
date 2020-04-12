@@ -48,12 +48,7 @@ class StepListViewModel @Inject constructor(
             }
 
         compositeDisposable += observeInput()
-            .flatMap { getStepsUseCase(
-                GetStepsInput(
-                    it.flowId,
-                    it.stepId
-                )
-            ) }
+            .flatMap { getStepsUseCase(GetStepsInput(it.flowId, it.stepId)) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
@@ -73,9 +68,7 @@ class StepListViewModel @Inject constructor(
     }
 
     private fun handleSuccess(steps: List<Step>) {
-        val items: List<StepItemViewModel> = steps.map {
-            viewModelFactory.create("73d5b9c7-fbc4", it)
-        }
+        val items = steps.map { viewModelFactory.create("73d5b9c7-fbc4", it) }
         this.stepListViewModel.sendInput(ListViewModel.Input(items))
     }
 
@@ -88,7 +81,7 @@ class StepListViewModel @Inject constructor(
     }
 
     fun onCreateStep() {
-        sendOutput(Event.OnCreateStep)
+        flow.value?.let { sendOutput(Event.OnCreateStep(it.id)) }
     }
 
     private fun handleOnSelectStep(step: Step) {
@@ -98,11 +91,12 @@ class StepListViewModel @Inject constructor(
     data class Input(val flowId: String, val stepId: String? = null)
 
     sealed class Event {
-        object OnCreateStep : Event()
+        data class OnCreateStep(val flowId: String) : Event()
         data class OnViewStep(val flowId: String, val step: Step) : Event()
     }
 
     override fun onCleared() {
         compositeDisposable.dispose()
+        stepListViewModel.onCleared()
     }
 }

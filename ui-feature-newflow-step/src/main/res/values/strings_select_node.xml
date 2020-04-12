@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="label_select_node">Flow Select Node</string>
-    <string name="button_select_node_next_label">Next</string>
+    <string name="button_select_node_next_label">Next: Select Node</string>
 </resources>
