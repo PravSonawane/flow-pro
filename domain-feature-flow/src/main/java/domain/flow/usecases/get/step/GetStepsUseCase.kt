@@ -1,4 +1,4 @@
-package domain.flow.usecases
+package domain.flow.usecases.get.step
 
 import core.lib.result.DomainError
 import core.lib.result.Result
@@ -26,9 +26,21 @@ class GetStepsUseCase @Inject constructor(
 
     private fun getInputStepsByStepType(input: GetStepsInput): Observable<Result<List<Step>>> {
         return when {
-            input.stepId == null -> getAllStepsUseCase(GetAllStepsInput(input.flowId))
-            input.stepType == StepType.INPUT -> getCurrentInputStepsUseCase(GetInputStepsInput(input.stepId))
-            input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(GetOutputStepsInput(input.stepId))
+            input.stepId == null -> getAllStepsUseCase(
+                GetAllStepsInput(
+                    input.flowId
+                )
+            )
+            input.stepType == StepType.INPUT -> getCurrentInputStepsUseCase(
+                GetInputStepsInput(
+                    input.stepId
+                )
+            )
+            input.stepType == StepType.OUTPUT -> getCurrentOutputStepsUseCase(
+                GetOutputStepsInput(
+                    input.stepId
+                )
+            )
             else -> invalidInputError(input).toResult()
         }
     }

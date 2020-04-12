@@ -2,7 +2,7 @@ package data.flow.repositories
 
 import core.lib.result.Result
 import domain.flow.repositories.FlowRepository
-import domain.flow.usecases.SaveOrUpdateFlowUseCase
+import domain.flow.usecases.save.flow.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.Observable
 

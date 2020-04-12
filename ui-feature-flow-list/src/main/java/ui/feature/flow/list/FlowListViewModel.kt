@@ -4,7 +4,7 @@ import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.GetAllFlowsUseCase
+import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

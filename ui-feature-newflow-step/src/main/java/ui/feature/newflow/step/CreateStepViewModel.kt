@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

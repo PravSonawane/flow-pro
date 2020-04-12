@@ -1,4 +1,4 @@
-package domain.flow.usecases
+package domain.flow.usecases.get.step
 
 import core.lib.result.Result
 import core.lib.usecase.ObservableResultUseCase
