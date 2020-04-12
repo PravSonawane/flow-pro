@@ -1,6 +1,7 @@
 package domain.flow.repositories
 
 import core.lib.result.Result
+import domain.flow.usecases.save.step.CreateStepInput
 import domain.models.flow.Step
 import io.reactivex.Observable
 
@@ -11,4 +12,6 @@ interface StepRepository {
     fun getPossibleInputSteps(stepId: String): Observable<Result<List<Step>>>
     fun getPossibleOutputSteps(stepId: String): Observable<Result<List<Step>>>
     fun getStepById(stepId: String): Observable<Result<Step>>
+
+    fun create(input: CreateStepInput): Observable<Result<Step>>
 }
