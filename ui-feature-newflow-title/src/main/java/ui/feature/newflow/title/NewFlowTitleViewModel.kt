@@ -3,7 +3,8 @@ package ui.feature.newflow.title
 import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import domain.flow.usecases.save.flow.SaveOrUpdateFlowUseCase
+import domain.flow.usecases.save.flow.CreateFlowInput
+import domain.flow.usecases.save.flow.CreateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,7 +17,7 @@ internal const val DEFAULT_FLOW_NAME_PREFIX = "My Flow "
 
 class NewFlowTitleViewModel @Inject constructor(
     streamFactory: StreamFactory,
-    private val saveOrUpdateFlowUseCase: SaveOrUpdateFlowUseCase,
+    private val createFlowUseCase: CreateFlowUseCase,
     liveDataFactory: LiveDataFactory
 ) : LayoutViewModel<NewFlowTitleViewModel.Input, NewFlowTitleViewModel.Event>(
     "718adc21-f9c0",
@@ -30,11 +31,7 @@ class NewFlowTitleViewModel @Inject constructor(
     var error: MutableLiveData<String> = liveDataFactory.mutableLiveData("ab7af821-67e7", "")
 
     fun onNext() {
-        compositeDisposable += saveOrUpdateFlowUseCase.invoke(
-            SaveOrUpdateFlowUseCase.Input(
-                title.value
-            )
-        )
+        compositeDisposable += createFlowUseCase.invoke(CreateFlowInput(title.value))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
