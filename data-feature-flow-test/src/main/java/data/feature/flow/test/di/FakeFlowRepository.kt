@@ -3,7 +3,7 @@ package data.feature.flow.test.di
 import core.lib.result.Result
 import data.feature.flow.test.FakeStorage
 import domain.flow.repositories.FlowRepository
-import domain.flow.usecases.SaveOrUpdateFlowUseCase
+import domain.flow.usecases.save.flow.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.Observable
 

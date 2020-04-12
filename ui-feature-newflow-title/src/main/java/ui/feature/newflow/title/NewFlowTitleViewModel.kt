@@ -3,7 +3,7 @@ package ui.feature.newflow.title
 import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import domain.flow.usecases.SaveOrUpdateFlowUseCase
+import domain.flow.usecases.save.flow.SaveOrUpdateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
