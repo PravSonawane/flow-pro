@@ -3,10 +3,10 @@ package ui.feature.flow.stepdetails
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.GetCurrentInputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
-import domain.flow.usecases.GetInputStepsInput
+import domain.flow.usecases.get.step.GetInputStepsInput
 import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetStepByIdUseCase
 import domain.models.flow.Flow
@@ -112,7 +112,11 @@ class StepDetailsViewModel @Inject constructor(
         compositeDisposable += observeInput()
             .filter { it is Input.StepId }
             .map { it as Input.StepId }
-            .flatMap { getCurrentInputStepsUseCase(GetInputStepsInput(it.id)) }
+            .flatMap { getCurrentInputStepsUseCase(
+                GetInputStepsInput(
+                    it.id
+                )
+            ) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
