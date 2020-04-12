@@ -87,8 +87,8 @@ class StepListViewModel @Inject constructor(
         flow.value = data
     }
 
-    fun onNext() {
-        sendOutput(Event.OnNewStep)
+    fun onCreateStep() {
+        sendOutput(Event.OnCreateStep)
     }
 
     private fun handleOnSelectStep(step: Step) {
@@ -98,7 +98,7 @@ class StepListViewModel @Inject constructor(
     data class Input(val flowId: String, val stepId: String? = null)
 
     sealed class Event {
-        object OnNewStep : Event()
+        object OnCreateStep : Event()
         data class OnViewStep(val flowId: String, val step: Step) : Event()
     }
 
