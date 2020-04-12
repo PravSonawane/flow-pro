@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Deeplink to new flow title -->
-    <string translatable="false" name="deeplink_newflow_title">https://curlybraces.dev/flowpro/newflow/title</string>
-
     <!-- Deeplink to newflow select node -->
     <string translatable="false" name="deeplink_newflow_selectnode">https://curlybraces.dev/flowpro/flow/{flowId}/step/selectnode</string>
     <string translatable="false" name="deeplink_newflow_selectnode_path_param_flow_id">flowId</string>
