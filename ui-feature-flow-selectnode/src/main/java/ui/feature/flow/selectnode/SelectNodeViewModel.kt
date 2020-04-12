@@ -5,7 +5,7 @@ import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.GetAllNodesUseCase
+import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Node
