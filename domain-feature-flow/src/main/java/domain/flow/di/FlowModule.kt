@@ -4,7 +4,7 @@ import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BasicUseCaseBuilder
 import dagger.Module
 import dagger.Provides
-import domain.flow.usecases.GetAllFlowsUseCase
+import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetAllStepsInput
 import domain.flow.usecases.GetAllStepsUseCase

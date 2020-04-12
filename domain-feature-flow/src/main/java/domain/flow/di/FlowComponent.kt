@@ -4,7 +4,7 @@ import core.lib.usecase.ObservableResultUseCase
 import domain.flow.repositories.FlowRepository
 import domain.flow.repositories.NodeRepository
 import domain.flow.repositories.StepRepository
-import domain.flow.usecases.GetAllFlowsUseCase
+import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.GetAllNodesUseCase
 import domain.flow.usecases.GetAllStepsInput
 import domain.flow.usecases.GetAllStepsUseCase
