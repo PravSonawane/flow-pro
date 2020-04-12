@@ -10,7 +10,7 @@ import domain.flow.usecases.GetAllStepsInput
 import domain.flow.usecases.GetAllStepsUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
 import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetPossibleInputStepsInput

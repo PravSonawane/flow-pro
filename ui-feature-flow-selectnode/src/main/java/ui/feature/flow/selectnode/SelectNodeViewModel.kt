@@ -6,7 +6,7 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.GetAllNodesUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers

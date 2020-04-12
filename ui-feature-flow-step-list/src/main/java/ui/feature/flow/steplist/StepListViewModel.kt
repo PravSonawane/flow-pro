@@ -4,7 +4,7 @@ import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.GetStepsInput
 import domain.flow.usecases.GetStepsUseCase
 import domain.models.flow.Flow

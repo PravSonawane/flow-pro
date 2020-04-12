@@ -5,7 +5,7 @@ import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.GetCurrentInputStepsUseCase
 import domain.flow.usecases.GetCurrentOutputStepsUseCase
-import domain.flow.usecases.GetFlowByIdUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.GetInputStepsInput
 import domain.flow.usecases.GetOutputStepsInput
 import domain.flow.usecases.GetStepByIdUseCase
