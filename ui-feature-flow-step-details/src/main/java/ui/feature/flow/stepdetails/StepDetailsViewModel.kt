@@ -8,7 +8,7 @@ import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetInputStepsInput
 import domain.flow.usecases.get.step.GetOutputStepsInput
-import domain.flow.usecases.GetStepByIdUseCase
+import domain.flow.usecases.get.step.GetStepByIdUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers

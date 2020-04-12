@@ -17,7 +17,7 @@ import domain.flow.usecases.get.step.GetPossibleInputStepsInput
 import domain.flow.usecases.get.step.GetPossibleInputStepsUseCase
 import domain.flow.usecases.get.step.GetPossibleOutputStepsInput
 import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCase
-import domain.flow.usecases.GetStepByIdUseCase
+import domain.flow.usecases.get.step.GetStepByIdUseCase
 import domain.flow.usecases.GetStepsInput
 import domain.flow.usecases.GetStepsUseCase
 import domain.models.flow.Flow
