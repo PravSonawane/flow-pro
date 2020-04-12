@@ -1,15 +1,9 @@
-package domain.flow.usecases
+package domain.flow.usecases.get.step
 
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.result.toResult
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.get.step.GetAllStepsInput
-import domain.flow.usecases.get.step.GetAllStepsUseCase
-import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
-import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
-import domain.flow.usecases.get.step.GetInputStepsInput
-import domain.flow.usecases.get.step.GetOutputStepsInput
 import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.Observable

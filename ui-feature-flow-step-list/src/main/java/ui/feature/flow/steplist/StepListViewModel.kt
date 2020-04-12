@@ -5,8 +5,8 @@ import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
-import domain.flow.usecases.GetStepsInput
-import domain.flow.usecases.GetStepsUseCase
+import domain.flow.usecases.get.step.GetStepsInput
+import domain.flow.usecases.get.step.GetStepsUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -48,7 +48,12 @@ class StepListViewModel @Inject constructor(
             }
 
         compositeDisposable += observeInput()
-            .flatMap { getStepsUseCase(GetStepsInput(it.flowId, it.stepId)) }
+            .flatMap { getStepsUseCase(
+                GetStepsInput(
+                    it.flowId,
+                    it.stepId
+                )
+            ) }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
