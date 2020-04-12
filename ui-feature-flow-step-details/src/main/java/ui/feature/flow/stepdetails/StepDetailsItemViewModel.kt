@@ -27,11 +27,7 @@ class StepDetailsItemViewModel(
     }
 
     fun onStepDetails() {
-        step.value?.let { sendOutput(
-            Event.OnStepDetails(
-                it
-            )
-        ) }
+        step.value?.let { sendOutput(Event.OnStepDetails(it)) }
     }
 
     override fun toString(): String {
