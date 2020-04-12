@@ -13,8 +13,8 @@ import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetInputStepsInput
 import domain.flow.usecases.get.step.GetOutputStepsInput
-import domain.flow.usecases.GetPossibleInputStepsInput
-import domain.flow.usecases.GetPossibleInputStepsUseCase
+import domain.flow.usecases.get.step.GetPossibleInputStepsInput
+import domain.flow.usecases.get.step.GetPossibleInputStepsUseCase
 import domain.flow.usecases.GetPossibleOutputStepsInput
 import domain.flow.usecases.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.GetStepByIdUseCase
