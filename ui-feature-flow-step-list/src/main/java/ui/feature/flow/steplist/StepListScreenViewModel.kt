@@ -45,6 +45,9 @@ class StepListScreenViewModel @Inject constructor(
                     event.step
                 )
             )
+            is StepListViewModel.Event.OnCreateStep -> sendOutput(
+                Event.OnCreateStep(event.flowId)
+            )
         }
     }
 
@@ -100,6 +103,7 @@ class StepListScreenViewModel @Inject constructor(
 
     sealed class Event {
         data class OnViewStep(val flowId: String, val step: Step) : Event()
+        data class OnCreateStep(val flowId: String) : Event()
     }
 
     override fun onCleared() {

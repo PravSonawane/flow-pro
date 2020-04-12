@@ -26,7 +26,6 @@ class CreateStepViewModel @Inject constructor(
 ) {
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val data: MutableLiveData<Any> = liveDataFactory.mutableLiveData("8e8cd2ab-2d38")
     val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("6fad0157-ba41")
 
     init {

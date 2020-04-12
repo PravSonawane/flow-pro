@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
-import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.steplist.databinding.FragmentStepListBinding
@@ -62,10 +61,8 @@ class StepListFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is StepListScreenViewModel.Event.OnViewStep -> handleOnViewStep(
-                        it.flowId,
-                        it.step
-                    )
+                    is StepListScreenViewModel.Event.OnViewStep -> handleOutput(it)
+                    is StepListScreenViewModel.Event.OnCreateStep -> handleOutput(it)
                 }
             }
 
@@ -80,13 +77,24 @@ class StepListFragment : AppBaseFragment() {
         }
     }
 
-    private fun handleOnViewStep(flowId: String, step: Step) {
+    private fun handleOutput(event: StepListScreenViewModel.Event.OnViewStep) {
         val pathParams = mapOf(
-            R.string.deeplink_flow_step_details_path_param_flow_id to flowId,
-            R.string.deeplink_flow_step_details_path_param_step_id to step.id
+            R.string.deeplink_flow_step_details_path_param_flow_id to event.flowId,
+            R.string.deeplink_flow_step_details_path_param_step_id to event.step.id
         )
         val config = SimpleNavigationConfig(
             R.string.deeplink_flow_step_details,
+            pathParams
+        )
+        navigator.navigate(config)
+    }
+
+    private fun handleOutput(event: StepListScreenViewModel.Event.OnCreateStep) {
+        val pathParams = mapOf(
+            R.string.deepLink_flow_create_step_path_param_flow_id to event.flowId
+        )
+        val config = SimpleNavigationConfig(
+            R.string.deepLink_flow_create_step,
             pathParams
         )
         navigator.navigate(config)

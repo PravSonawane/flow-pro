@@ -11,5 +11,9 @@
         android:name="ui.feature.newflow.step.CreateStepFragment"
         android:label="fragment_create_step"
         tools:layout="@layout/fragment_create_step">
+        <deepLink
+            android:id="@+id/deepLink_flow_create_step"
+            app:uri="@string/deepLink_flow_create_step"
+            />
     </fragment>
 </navigation>
