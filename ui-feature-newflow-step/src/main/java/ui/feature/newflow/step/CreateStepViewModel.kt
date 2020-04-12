@@ -51,11 +51,7 @@ class CreateStepViewModel @Inject constructor(
     fun onShowSelectNode() {
         val flow = flow.value
         if (flow != null) {
-            sendOutput(
-                Event.OnShowSelectNode(
-                    flow
-                )
-            )
+            sendOutput(Event.OnShowSelectNode(flow))
         } else {
             sendOutput(Event.OnNoFlowError)
         }
