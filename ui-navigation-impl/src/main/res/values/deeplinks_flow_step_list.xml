@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deeplink to flow steps -->
+    <string translatable="false" name="deeplink_flow_step_list">https://curlybraces.dev/flowpro/flow/{flowId}/steps?stepId={stepId}&amp;stepType={stepType}</string>
+    <string translatable="false" name="deeplink_flow_step_list_path_param_flow_id">flowId</string>
+    <string translatable="false" name="deeplink_flow_step_list_query_param_step_id">stepId</string>
+    <string translatable="false" name="deeplink_flow_step_list_query_param_step_type">stepType</string>
+</resources>
