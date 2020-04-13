@@ -6,7 +6,7 @@ import dagger.Component
 import ui.lib.di.ActivityScope
 import ui.lib.di.BaseMainComponent
 import ui.lib.di.UiModule
-import ui.navigation.Navigator
+import ui.navigation.di.NavigationComponent
 
 /** Dagger test component interface */
 @Component(
@@ -17,9 +17,8 @@ import ui.navigation.Navigator
     ]
 )
 @ActivityScope
-interface TestMainComponent : BaseMainComponent, TestAppComponent {
+interface TestMainComponent : BaseMainComponent, TestAppComponent, NavigationComponent {
     @ActivityContext fun activity(): Activity
-    fun navigator(): Navigator
 
     /** Dagger Builder for [TestMainComponent] */
     @Component.Builder

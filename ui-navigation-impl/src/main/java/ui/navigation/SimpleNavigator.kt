@@ -5,12 +5,17 @@ import android.net.Uri
 import androidx.annotation.IntegerRes
 import androidx.navigation.findNavController
 import app.di.annotations.ActivityContext
+import core.lib.usecase.ObservableResultUseCase
+import ui.navigation.usecases.LogNavigationUseCase
 import javax.inject.Inject
+import javax.inject.Named
 import kotlin.text.Regex.Companion.escape
 
 class SimpleNavigator @Inject constructor(
     @ActivityContext private val activity: Activity,
-    @IntegerRes private val navHostViewId: Int
+    @IntegerRes private val navHostViewId: Int,
+    @Named(LogNavigationUseCase.NAMED)
+    private val logNavigationUseCase: ObservableResultUseCase<NavigationConfig, NavigationConfig>
 ) : Navigator {
 
     override fun navigate(config: NavigationConfig) {
@@ -45,6 +50,7 @@ class SimpleNavigator @Inject constructor(
             throw IllegalArgumentException("Incorrect pathParams: Required: $pathSegments. Found: ${config.pathParams}")
         }
 
+        logNavigationUseCase(config).subscribe()
         activity.findNavController(navHostViewId).navigate(replacedDeeplinkUri, config.navOptions)
     }
 }
