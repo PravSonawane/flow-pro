@@ -49,7 +49,6 @@
             <option value="$PROJECT_DIR$/ui-lib-utils" />
             <option value="$PROJECT_DIR$/ui-lib-views" />
             <option value="$PROJECT_DIR$/ui-navigation" />
-            <option value="$PROJECT_DIR$/ui-navigation-impl" />
             <option value="$PROJECT_DIR$/ui-navigation-test" />
           </set>
         </option>
