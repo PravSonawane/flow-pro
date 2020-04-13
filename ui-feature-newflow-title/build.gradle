@@ -43,7 +43,6 @@ dependencies {
     implementation project(":ui-lib-utils")
     implementation project(":ui-lib-views")
     implementation project(':ui-navigation')
-    implementation project(':ui-navigation-impl')
 
     //test
     testImplementation project(':ui-navigation-test')

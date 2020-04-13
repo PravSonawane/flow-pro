@@ -9,6 +9,7 @@ import ui.lib.di.ActivityScope
 import ui.lib.di.BaseMainComponent
 import ui.lib.di.UiModule
 import ui.navigation.Navigator
+import ui.navigation.di.NavigationComponent
 
 /** Dagger component interface for an [AppCompatActivity] */
 @Component(
@@ -20,9 +21,8 @@ import ui.navigation.Navigator
     ]
 )
 @ActivityScope
-interface MainComponent : BaseMainComponent, AppComponent {
+interface MainComponent : BaseMainComponent, AppComponent, NavigationComponent {
     @ActivityContext fun activity(): Activity
-    fun navigator(): Navigator
     fun injectIn(activity: BaseActivity)
 
     /** Dagger Builder for [MainComponent] */

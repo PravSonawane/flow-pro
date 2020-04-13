@@ -47,6 +47,9 @@ dependencies {
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-databinding-adapters")
 
+    //navigation
+    implementation project(':ui-navigation')
+
     //analytics
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-impl")
