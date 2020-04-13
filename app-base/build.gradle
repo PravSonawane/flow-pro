@@ -47,7 +47,6 @@ dependencies {
 
     //navigation
     implementation project(':ui-navigation')
-    implementation project(':ui-navigation-impl')
 
     //analytics
     implementation project(":core-lib-analytics")
