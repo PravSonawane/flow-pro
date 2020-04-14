@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Deeplink to flow step details -->
-    <string translatable="false" name="deeplink_flow_step_details">https://curlybraces.dev/flowpro/flow/{flowId}/step/{stepId}</string>
+    <string translatable="false" name="deeplink_flow_step_details">https://curlybraces.dev/flowpro/54f874c1-07c8/flow/{flowId}/step/{stepId}</string>
     <string translatable="false" name="deeplink_flow_step_details_path_param_flow_id">flowId</string>
     <string translatable="false" name="deeplink_flow_step_details_path_param_step_id">stepId</string>
 </resources>

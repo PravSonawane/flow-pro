@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/step_list_graph"
+    android:id="@+id/fragment_flow_step_list"
     app:startDestination="@id/fragment_flow_step_list"
     tools:ignore="UnusedNavigation">
 
@@ -12,7 +12,7 @@
         android:label="fragment_flow_step_list"
         tools:layout="@layout/fragment_step_list">
         <deepLink
-            android:id="@+id/deepLink_flow_steps"
+            android:id="@+id/deeplink_flow_step_list"
             app:uri="@string/deeplink_flow_step_list"
             />
     </fragment>

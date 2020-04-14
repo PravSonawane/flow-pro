@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Deeplink to create new step for flow -->
-    <string translatable="false" name="deepLink_flow_create_step">https://curlybraces.dev/flowpro/flow/{flowId}/step/create</string>
+    <string translatable="false" name="deepLink_flow_create_step">https://curlybraces.dev/flowpro/99f61983-cf96/flow/{flowId}/step/create</string>
     <string translatable="false" name="deepLink_flow_create_step_path_param_flow_id">flowId</string>
 </resources>

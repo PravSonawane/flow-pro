@@ -50,7 +50,8 @@ class CreateStepFragment : AppBaseFragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val flowId = arguments?.getString(ARG_FLOW_ID)
+        val flowId =
+            arguments?.getString(resources.getString(R.string.deepLink_flow_create_step_path_param_flow_id))
             ?: throw IllegalStateException("Flow ID is required")
         viewModel.sendInput(CreateStepViewModel.Input.FlowId(flowId))
 
@@ -79,9 +80,5 @@ class CreateStepFragment : AppBaseFragment() {
 
     private fun onError() {
         Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
-    }
-
-    companion object {
-        const val ARG_FLOW_ID = "FLOW_ID"
     }
 }

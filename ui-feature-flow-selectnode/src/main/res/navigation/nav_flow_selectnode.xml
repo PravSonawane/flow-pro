@@ -2,14 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/flow_selectnode_graph"
-    app:startDestination="@id/fragment_new_flow_select_node"
+    android:id="@+id/fragment_flow_select_node"
+    app:startDestination="@id/fragment_flow_select_node"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/fragment_new_flow_select_node"
+        android:id="@+id/fragment_flow_select_node"
         android:name="ui.feature.flow.selectnode.SelectNodeFragment"
-        android:label="fragment_new_flow_select_node"
+        android:label="fragment_flow_select_node"
         tools:layout="@layout/fragment_flow_select_node">
+
+        <deepLink
+            android:id="@+id/deepLink_flow_select_node"
+            app:uri="@string/deeplink_newflow_selectnode"
+            />
     </fragment>
 </navigation>

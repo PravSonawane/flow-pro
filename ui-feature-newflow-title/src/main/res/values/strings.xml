@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="label_title">Flow title</string>
-    <string name="button_title_next_label">Next</string>
+    <string name="button_title_next_label">Next: Step List</string>
 </resources>
