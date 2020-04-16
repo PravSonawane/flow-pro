@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.annotation.IntegerRes
 import androidx.navigation.findNavController
 import app.di.annotations.ActivityContext
+import app.di.annotations.NavHostResourceId
 import core.lib.usecase.ObservableResultUseCase
 import ui.navigation.usecases.LogNavigationUseCase
 import javax.inject.Inject
@@ -13,7 +14,7 @@ import kotlin.text.Regex.Companion.escape
 
 class SimpleNavigator @Inject constructor(
     @ActivityContext private val activity: Activity,
-    @IntegerRes private val navHostViewId: Int,
+    @NavHostResourceId @IntegerRes private val navHostViewId: Int,
     @Named(LogNavigationUseCase.NAMED)
     private val logNavigationUseCase: ObservableResultUseCase<NavigationConfig, NavigationConfig>
 ) : Navigator {

@@ -13,6 +13,8 @@ open class BaseTest {
     fun mainComponent(): TestMainComponent {
         return DaggerTestMainComponent.builder()
             .appComponent(appComponent())
+            .activity(FakeActivity())
+            .navHostResId(-1) // since tests don't use navigation
             .build()
     }
 }

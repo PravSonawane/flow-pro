@@ -8,7 +8,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import app.di.AppComponent
 import app.di.DaggerMainComponent
 import app.di.MainComponent
-import app.di.MainModule
 import com.google.firebase.analytics.FirebaseAnalytics
 import dev.curlybraces.flowpro.databinding.ActivityMainBinding
 import ui.lib.base.BaseActivity
@@ -18,7 +17,8 @@ class MainActivity : BaseActivity() {
     private val mainComponent: MainComponent by lazy {
         DaggerMainComponent.builder()
             .appComponent(appComponent())
-            .mainModule(MainModule(this, R.id.nav_host_fragment))
+            .activity(this)
+            .navHostResId(R.id.nav_host_fragment)
             .build()
     }
 
