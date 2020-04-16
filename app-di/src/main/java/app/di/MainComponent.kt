@@ -34,6 +34,8 @@ interface MainComponent : BaseMainComponent, AppComponent, NavigationComponent {
         fun mainModule(mainModule: MainModule): Builder
         @BindsInstance
         fun activity(@ActivityContext activity: Activity): Builder
+        @BindsInstance
+        fun navHostResId(@NavHostResourceId navHostResId: Int): Builder
         fun build(): MainComponent
     }
 }

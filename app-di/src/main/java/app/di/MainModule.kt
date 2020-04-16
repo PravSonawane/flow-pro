@@ -1,7 +1,6 @@
 package app.di
 
 import android.app.Activity
-import androidx.annotation.IntegerRes
 import app.di.annotations.ActivityContext
 import app.di.annotations.NavHostResourceId
 import core.lib.usecase.ObservableResultUseCase
@@ -20,16 +19,7 @@ import javax.inject.Named
         NavigationModule::class
     ]
 )
-class MainModule(
-    @IntegerRes private val navHostViewId: Int
-) {
-
-    @Provides
-    @ActivityScope
-    @NavHostResourceId
-    fun provideNavHostResId(): Int {
-        return navHostViewId
-    }
+class MainModule {
 
     @Provides
     @ActivityScope
