@@ -8,14 +8,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import app.base.AppBaseFragment
 import core.lib.rxutils.plusAssign
+import core.lib.usecase.ObservableResultUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.stepdetails.databinding.FragmentFlowStepDetailsBinding
-import ui.navigation.Navigator
+import ui.navigation.NavigationConfig
 import ui.navigation.SimpleNavigationConfig
+import ui.navigation.usecases.NavigationUseCase
 import javax.inject.Inject
+import javax.inject.Named
 
 class StepDetailsFragment : AppBaseFragment() {
 
@@ -23,7 +26,8 @@ class StepDetailsFragment : AppBaseFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
-    lateinit var navigator: Navigator
+    @Named(NavigationUseCase.NAMED)
+    lateinit var navigationUseCase: ObservableResultUseCase<NavigationConfig, String>
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)
@@ -88,7 +92,9 @@ class StepDetailsFragment : AppBaseFragment() {
             R.string.deeplink_flow_step_details,
             pathParams
         )
-        navigator.navigate(config)
+        compositeDisposable += navigationUseCase.invoke(config)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 
     private fun handleOnAddInputStep(flow: Flow, step: Step) {
@@ -105,7 +111,9 @@ class StepDetailsFragment : AppBaseFragment() {
             pathParams,
             queryParams
         )
-        navigator.navigate(config)
+        compositeDisposable += navigationUseCase.invoke(config)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 
     private fun handleOnAddOutputStep(flow: Flow, step: Step) {
@@ -122,6 +130,8 @@ class StepDetailsFragment : AppBaseFragment() {
             pathParams,
             queryParams
         )
-        navigator.navigate(config)
+        compositeDisposable += navigationUseCase.invoke(config)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 }
