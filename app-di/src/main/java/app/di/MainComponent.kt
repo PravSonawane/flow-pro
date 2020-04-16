@@ -31,7 +31,6 @@ interface MainComponent : BaseMainComponent, AppComponent, NavigationComponent {
     @Component.Builder
     interface Builder {
         fun appComponent(appComponent: AppComponent): Builder
-        fun mainModule(mainModule: MainModule): Builder
         @BindsInstance
         fun activity(@ActivityContext activity: Activity): Builder
         @BindsInstance
