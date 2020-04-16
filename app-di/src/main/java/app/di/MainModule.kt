@@ -3,6 +3,7 @@ package app.di
 import android.app.Activity
 import androidx.annotation.IntegerRes
 import app.di.annotations.ActivityContext
+import app.di.annotations.NavHostResourceId
 import core.lib.usecase.ObservableResultUseCase
 import dagger.Module
 import dagger.Provides
@@ -20,24 +21,24 @@ import javax.inject.Named
     ]
 )
 class MainModule(
-    private val activity: Activity,
     @IntegerRes private val navHostViewId: Int
 ) {
 
     @Provides
     @ActivityScope
-    @ActivityContext
-    fun activity(): Activity {
-        return activity
+    @NavHostResourceId
+    fun provideNavHostResId(): Int {
+        return navHostViewId
     }
 
     @Provides
     @ActivityScope
-    fun navigator(
+    fun provideNavigator(
         @ActivityContext activity: Activity,
+        @NavHostResourceId navHostViewId: Int,
         @Named(LogNavigationUseCase.NAMED)
-        logNavigationUseCase: ObservableResultUseCase<NavigationConfig, NavigationConfig>
+        useCase: ObservableResultUseCase<NavigationConfig, NavigationConfig>
     ): Navigator {
-        return SimpleNavigator(activity, navHostViewId, logNavigationUseCase)
+        return SimpleNavigator(activity, navHostViewId, useCase)
     }
 }

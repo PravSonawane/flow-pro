@@ -3,12 +3,13 @@ package app.di
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import app.di.annotations.ActivityContext
+import app.di.annotations.NavHostResourceId
+import dagger.BindsInstance
 import dagger.Component
 import ui.lib.base.BaseActivity
 import ui.lib.di.ActivityScope
 import ui.lib.di.BaseMainComponent
 import ui.lib.di.UiModule
-import ui.navigation.Navigator
 import ui.navigation.di.NavigationComponent
 
 /** Dagger component interface for an [AppCompatActivity] */
@@ -23,6 +24,7 @@ import ui.navigation.di.NavigationComponent
 @ActivityScope
 interface MainComponent : BaseMainComponent, AppComponent, NavigationComponent {
     @ActivityContext fun activity(): Activity
+    @NavHostResourceId fun navHostResId(): Int
     fun injectIn(activity: BaseActivity)
 
     /** Dagger Builder for [MainComponent] */
@@ -30,6 +32,8 @@ interface MainComponent : BaseMainComponent, AppComponent, NavigationComponent {
     interface Builder {
         fun appComponent(appComponent: AppComponent): Builder
         fun mainModule(mainModule: MainModule): Builder
+        @BindsInstance
+        fun activity(@ActivityContext activity: Activity): Builder
         fun build(): MainComponent
     }
 }
