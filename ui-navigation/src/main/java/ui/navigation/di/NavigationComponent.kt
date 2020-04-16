@@ -1,8 +1,12 @@
 package ui.navigation.di
 
-import ui.navigation.Navigator
+import core.lib.usecase.ObservableResultUseCase
+import ui.navigation.NavigationConfig
+import ui.navigation.usecases.NavigationUseCase
+import javax.inject.Named
 
 interface NavigationComponent {
 
-    fun navigator(): Navigator
+    @Named(NavigationUseCase.NAMED)
+    fun navigationUseCase(): ObservableResultUseCase<NavigationConfig, String>
 }

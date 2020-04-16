@@ -4,9 +4,14 @@ import dagger.Module
 import dagger.Provides
 import ui.lib.di.ActivityScope
 import ui.navigation.Navigator
+import ui.navigation.di.NavigationModule
 import ui.navigation.test.FakeNavigator
 
-@Module
+@Module(
+    includes = [
+        NavigationModule::class
+    ]
+)
 class TestMainModule {
 
     @Provides
