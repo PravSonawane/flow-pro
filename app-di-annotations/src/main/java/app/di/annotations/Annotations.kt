@@ -4,6 +4,6 @@ package app.di.annotations
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ApplicationContext
 
-/** Used to mark a Activity context. */
+/** Used to mark an Activity context. */
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ActivityContext
