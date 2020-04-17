@@ -19,7 +19,7 @@ class NavigationUseCase @Inject constructor(
     }
 
     companion object {
-        const val NAMED = "ui.navigation.usecases.LogNavigationUseCase"
+        const val NAMED = "ui.navigation.usecases.NavigationUseCase"
         const val ANALYTICS_KEY = "b1957339-ddef"
         const val PLUGIN_KEY = "e74ea9a6-af53"
     }
