@@ -12,7 +12,6 @@ class AnalyticsStream<T> @Inject constructor(
 
     override fun publish(data: T) {
         val attributes: Map<String, String> = mapOf(
-            "analyticsKey" to analyticsKey,
             "onPublish" to data.toString()
         )
         analytics.logEvent(analyticsKey, attributes)
