@@ -42,6 +42,8 @@ dependencies {
 
     //core lib
     implementation project(":core-lib-result")
+    implementation project(':core-lib-cache')
+    implementation project(':core-lib-cache-impl')
     implementation project(":core-lib-experimentation")
     implementation project(":core-lib-experimentation-impl")
     implementation project(":core-lib-plugin")

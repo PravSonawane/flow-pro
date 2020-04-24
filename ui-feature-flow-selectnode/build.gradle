@@ -73,6 +73,10 @@ dependencies {
     implementation project(":core-lib-experimentation")
     implementation project(":core-lib-experimentation-impl")
 
+    //cache
+    implementation project(':core-lib-cache')
+    implementation project(':core-lib-cache-impl')
+
     //rxjava2
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"

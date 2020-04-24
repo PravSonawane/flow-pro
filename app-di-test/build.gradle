@@ -43,6 +43,7 @@ dependencies {
     implementation project(":core-lib-experimentation")
     implementation project(":core-lib-plugin")
     implementation project(":core-lib-analytics")
+    implementation project(':core-lib-cache')
 
     //domain
     implementation project(':domain-models-core')
@@ -51,6 +52,7 @@ dependencies {
 
     //test
     implementation project(':ui-navigation-test')
+    implementation project(':core-lib-cache-test')
     implementation project(":core-lib-experimentation-test")
     implementation project(':core-lib-analytics-test')
     implementation project(':core-lib-plugin-test')
