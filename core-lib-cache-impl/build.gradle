@@ -30,6 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // libs
+    implementation project(":core-lib-result")
     implementation project(":core-lib-rxutils")
 
     //analytics

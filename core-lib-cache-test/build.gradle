@@ -6,6 +6,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":core-lib-cache")
+    implementation project(":core-lib-result")
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"
