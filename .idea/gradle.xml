@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/core-lib-analytics-test" />
             <option value="$PROJECT_DIR$/core-lib-cache" />
             <option value="$PROJECT_DIR$/core-lib-cache-impl" />
+            <option value="$PROJECT_DIR$/core-lib-cache-test" />
             <option value="$PROJECT_DIR$/core-lib-experimentation" />
             <option value="$PROJECT_DIR$/core-lib-experimentation-impl" />
             <option value="$PROJECT_DIR$/core-lib-experimentation-test" />
