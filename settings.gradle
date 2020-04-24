@@ -1,3 +1,4 @@
+include ':core-lib-cache'
 rootProject.name = 'Flow Pro'
 include ':app'
 include ':ui-feature-flow-list'
