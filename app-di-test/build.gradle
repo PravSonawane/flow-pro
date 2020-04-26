@@ -40,7 +40,7 @@ dependencies {
     implementation project(":core-lib-usecase-common")
 
     //analytics
-    implementation project(":core:libraries:experimentation:core-lib-experimentation")
+    implementation project(':core:libraries:experimentation:experimentation-abstract')
     implementation project(":core-lib-plugin")
     implementation project(":core-lib-analytics")
     implementation project(':core-lib-cache')
