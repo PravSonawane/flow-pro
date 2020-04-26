@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/app-di" />
             <option value="$PROJECT_DIR$/app-di-annotations" />
             <option value="$PROJECT_DIR$/app-di-test" />
+            <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core-lib-analytics" />
             <option value="$PROJECT_DIR$/core-lib-analytics-firebase" />
             <option value="$PROJECT_DIR$/core-lib-analytics-impl" />
@@ -22,9 +23,6 @@
             <option value="$PROJECT_DIR$/core-lib-cache" />
             <option value="$PROJECT_DIR$/core-lib-cache-impl" />
             <option value="$PROJECT_DIR$/core-lib-cache-test" />
-            <option value="$PROJECT_DIR$/core-lib-experimentation" />
-            <option value="$PROJECT_DIR$/core-lib-experimentation-impl" />
-            <option value="$PROJECT_DIR$/core-lib-experimentation-test" />
             <option value="$PROJECT_DIR$/core-lib-plugin" />
             <option value="$PROJECT_DIR$/core-lib-plugin-impl" />
             <option value="$PROJECT_DIR$/core-lib-plugin-test" />
@@ -32,6 +30,11 @@
             <option value="$PROJECT_DIR$/core-lib-rxutils" />
             <option value="$PROJECT_DIR$/core-lib-usecase" />
             <option value="$PROJECT_DIR$/core-lib-usecase-common" />
+            <option value="$PROJECT_DIR$/core/libraries" />
+            <option value="$PROJECT_DIR$/core/libraries/experimentation" />
+            <option value="$PROJECT_DIR$/core/libraries/experimentation/experimentation-abstract" />
+            <option value="$PROJECT_DIR$/core/libraries/experimentation/experimentation-impl" />
+            <option value="$PROJECT_DIR$/core/libraries/experimentation/experimentation-test" />
             <option value="$PROJECT_DIR$/data-feature-flow" />
             <option value="$PROJECT_DIR$/data-feature-flow-test" />
             <option value="$PROJECT_DIR$/domain-feature-flow" />

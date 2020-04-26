@@ -48,7 +48,7 @@ dependencies {
     testImplementation project(':ui-navigation-test')
     testImplementation project(':core-lib-cache-test')
     testImplementation project(":core-lib-analytics-test")
-    testImplementation project(":core-lib-experimentation-test")
+    testImplementation project(':core:libraries:experimentation:experimentation-test')
     testImplementation project(":core-lib-plugin-test")
     testImplementation project(":data-feature-flow-test")
     testImplementation project(":app-di-test")
@@ -79,8 +79,8 @@ dependencies {
     implementation project(":core-lib-plugin-impl")
 
     //experimentation
-    implementation project(":core-lib-experimentation")
-    implementation project(":core-lib-experimentation-impl")
+    implementation project(':core:libraries:experimentation:experimentation-abstract')
+    implementation project(':core:libraries:experimentation:experimentation-impl')
 
     //cache
     implementation project(':core-lib-cache')

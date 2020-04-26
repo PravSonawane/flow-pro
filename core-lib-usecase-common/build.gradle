@@ -11,7 +11,7 @@ dependencies {
     implementation project(':core-lib-cache')
     implementation project(':core-lib-usecase')
     implementation project(':core-lib-result')
-    implementation project(':core-lib-experimentation')
+    implementation project(':core:libraries:experimentation:experimentation-abstract')
     implementation project(':core-lib-plugin')
 
     //dagger2
