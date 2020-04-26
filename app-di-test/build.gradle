@@ -53,7 +53,7 @@ dependencies {
     //test
     implementation project(':ui-navigation-test')
     implementation project(':core-lib-cache-test')
-    implementation project(":core:libraries:experimentation:core-lib-experimentation-test")
+    implementation project(':core:libraries:experimentation:experimentation-test')
     implementation project(':core-lib-analytics-test')
     implementation project(':core-lib-plugin-test')
     implementation project(':data-feature-flow-test')
