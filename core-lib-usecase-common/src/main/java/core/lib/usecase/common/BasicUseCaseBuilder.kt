@@ -3,7 +3,7 @@ package core.lib.usecase.common
 import core.lib.usecase.ObservableResultUseCase
 import javax.inject.Inject
 
-class BasicUseCaseBuilder<Input, Output> @Inject constructor(
+class BasicUseCaseBuilder<Input : Any, Output : Any> @Inject constructor(
     @JvmSuppressWildcards val analyticsUseCaseFactory: AnalyticsUseCaseFactory<Input, Output>,
     @JvmSuppressWildcards val pluginUseCaseFactory: PluginUseCaseFactory<Input, Output>,
     @JvmSuppressWildcards val experimentationUseCaseFactory: ExperimentationUseCaseFactory<Input, Output>

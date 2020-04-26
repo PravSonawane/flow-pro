@@ -26,14 +26,14 @@ fun DomainError.toThrowable(): ErrorThrowable {
     return ErrorThrowable(code, message, cause)
 }
 
-fun <T> DomainError.toResult(): Observable<Result<T>> {
+fun <T : Any> DomainError.toResult(): Observable<Result<T>> {
     return Observable.just(Result.OnError(this))
 }
 
 /**
  * Converts a [Throwable] to a [Result.OnError].
  */
-fun <T> Throwable.toResult(): Result<T> {
+fun <T : Any> Throwable.toResult(): Result<T> {
     return when (this) {
         is ErrorThrowable -> Result.OnError(this.toError())
         else -> Result.OnError(UnknownError(throwable = this))
@@ -43,7 +43,7 @@ fun <T> Throwable.toResult(): Result<T> {
 /**
  * Converts a [Result] of T to T.
  */
-fun <T> Result<T>.toData(): Observable<T> {
+fun <T : Any> Result<T>.toData(): Observable<T> {
     return when (this) {
         is Result.OnSuccess -> Observable.just(this.data)
         is Result.OnError -> Observable.error(this.domainError.toThrowable())
@@ -53,19 +53,8 @@ fun <T> Result<T>.toData(): Observable<T> {
 /**
  * Converts a [Result] of T to T.
  */
-fun <T> T.toResult(): Result<T> {
+fun <T : Any> T.toResult(): Result<T> {
     return Result.OnSuccess(this)
-}
-
-/**
- * Converts a [Result] of T to T.
- */
-fun <T> Result<T?>.toResult(): Observable<Result<T>> {
-    return when (this) {
-        is Result.OnSuccess -> Observable.just(
-            Result.OnSuccess(this.data!!))
-        is Result.OnError -> Observable.error(this.domainError.toThrowable())
-    }
 }
 
 fun createError(

@@ -54,6 +54,10 @@ dependencies {
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-impl")
 
+    //cache
+    implementation project(':core-lib-cache')
+    implementation project(':core-lib-cache-impl')
+
     //plugin
     implementation project(":core-lib-plugin")
     implementation project(":core-lib-plugin-impl")

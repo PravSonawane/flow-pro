@@ -49,6 +49,8 @@ dependencies {
     implementation project(':ui-navigation')
 
     //analytics
+    implementation project(':core-lib-cache')
+    implementation project(':core-lib-cache-impl')
     implementation project(":core-lib-analytics")
     implementation project(":core-lib-analytics-impl")
 

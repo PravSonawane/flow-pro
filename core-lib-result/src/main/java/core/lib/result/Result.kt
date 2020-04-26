@@ -9,10 +9,10 @@ package core.lib.result
  * @see OnSuccess
  * @see OnError
  */
-sealed class Result<out T> {
+sealed class Result<out T: Any> {
     /** A successful result */
-    data class OnSuccess<out T>(val data: T) : Result<T>()
+    data class OnSuccess<out T: Any>(val data: T) : Result<T>()
 
     /** An error */
-    data class OnError<out T>(val domainError: DomainError) : Result<T>()
+    data class OnError<out T: Any>(val domainError: DomainError) : Result<T>()
 }

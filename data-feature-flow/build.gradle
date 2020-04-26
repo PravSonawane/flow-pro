@@ -33,6 +33,8 @@ dependencies {
     implementation project(':core-lib-result')
     implementation project(':core-lib-usecase')
     implementation project(':core-lib-usecase-common')
+    implementation project(':core-lib-cache')
+    implementation project(':core-lib-cache-impl')
     implementation project(':core-lib-analytics')
     implementation project(':core-lib-analytics-impl')
     implementation project(':core-lib-plugin')
