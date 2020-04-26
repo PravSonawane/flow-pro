@@ -6,7 +6,7 @@ import core.lib.usecase.ObservableResultUseCase
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class PluginUseCase<Input, Output> @Inject constructor(
+class PluginUseCase<Input : Any, Output : Any> @Inject constructor(
     private val pluginKey: String,
     @JvmSuppressWildcards val useCase: ObservableResultUseCase<Input, Output>,
     @JvmSuppressWildcards val pluginTransformer: PluginTransformer<Input>

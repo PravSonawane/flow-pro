@@ -3,7 +3,7 @@ package core.lib.usecase.common
 import core.lib.usecase.ObservableResultUseCase
 import javax.inject.Inject
 
-class PluginUseCaseFactory<Input, Output> @Inject constructor(
+class PluginUseCaseFactory<Input : Any, Output : Any> @Inject constructor(
     @JvmSuppressWildcards val pluginTransformer: PluginTransformer<Input>
 ) {
 

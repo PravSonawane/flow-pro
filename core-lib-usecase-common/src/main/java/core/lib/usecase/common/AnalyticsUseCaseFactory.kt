@@ -3,7 +3,7 @@ package core.lib.usecase.common
 import core.lib.usecase.ObservableResultUseCase
 import javax.inject.Inject
 
-class AnalyticsUseCaseFactory<Input, Output> @Inject constructor(
+class AnalyticsUseCaseFactory<Input : Any, Output : Any> @Inject constructor(
     @JvmSuppressWildcards val inputAnalyticsTransformer: InputAnalyticsTransformer<Input>,
     @JvmSuppressWildcards val outputAnalyticsTransformer: OutputAnalyticsTransformer<Output>
 ) {
