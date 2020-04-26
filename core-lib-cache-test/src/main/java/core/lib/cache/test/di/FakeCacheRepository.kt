@@ -1,4 +1,4 @@
-package core.lib.cache.impl
+package core.lib.cache.test.di
 
 import core.lib.cache.CacheRepository
 import io.reactivex.Maybe
@@ -6,7 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 
-class DefaultCacheRepository : CacheRepository<String, Any> {
+class FakeCacheRepository : CacheRepository<String, Any> {
 
     val map: MutableMap<String, Any?> = HashMap()
     val cacheStream: Subject<Pair<String, Any?>> = PublishSubject.create()

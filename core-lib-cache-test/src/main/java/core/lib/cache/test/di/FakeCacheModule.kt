@@ -9,7 +9,7 @@ import dagger.Provides
 class FakeCacheModule {
 
     @Provides
-    fun cacheRepository(): CacheRepository {
+    fun cacheRepository(): CacheRepository<String, Any> {
         return FakeCacheRepository()
     }
 }

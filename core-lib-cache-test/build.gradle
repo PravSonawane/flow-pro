@@ -5,8 +5,15 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":core-lib-cache")
+    // libs
     implementation project(":core-lib-result")
+    implementation project(":core-lib-rxutils")
+
+    //analytics
+    implementation project(":core-lib-cache")
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
     //dagger2
     implementation "com.google.dagger:dagger:$dagger_version"

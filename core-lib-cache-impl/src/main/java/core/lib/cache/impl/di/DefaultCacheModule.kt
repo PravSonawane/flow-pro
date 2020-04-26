@@ -10,7 +10,7 @@ import dagger.Provides
 class DefaultCacheModule {
 
     @Provides
-    fun experimentationRepository(): CacheRepository {
+    fun cacheRepository(): CacheRepository<String, Any> {
         return DefaultCacheRepository()
     }
 }
