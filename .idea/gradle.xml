@@ -32,8 +32,8 @@
             <option value="$PROJECT_DIR$/core-lib-usecase-common" />
             <option value="$PROJECT_DIR$/core/libraries" />
             <option value="$PROJECT_DIR$/core/libraries/experimentation" />
-            <option value="$PROJECT_DIR$/core/libraries/experimentation/core-lib-experimentation-impl" />
             <option value="$PROJECT_DIR$/core/libraries/experimentation/experimentation-abstract" />
+            <option value="$PROJECT_DIR$/core/libraries/experimentation/experimentation-impl" />
             <option value="$PROJECT_DIR$/core/libraries/experimentation/experimentation-test" />
             <option value="$PROJECT_DIR$/data-feature-flow" />
             <option value="$PROJECT_DIR$/data-feature-flow-test" />

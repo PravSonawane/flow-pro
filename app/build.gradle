@@ -64,7 +64,7 @@ dependencies {
 
     //experimentation
     implementation project(':core:libraries:experimentation:experimentation-abstract')
-    implementation project(":core:libraries:experimentation:core-lib-experimentation-impl")
+    implementation project(':core:libraries:experimentation:experimentation-impl')
 
     //core
     implementation project(":core-lib-usecase")
