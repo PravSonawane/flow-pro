@@ -42,8 +42,8 @@ dependencies {
     implementation project(":core-lib-plugin-impl")
 
     //experimentation
-    implementation project(":core-lib-experimentation")
-    implementation project(":core-lib-experimentation-impl")
+    implementation project(":core:libraries:experimentation:core-lib-experimentation")
+    implementation project(":core:libraries:experimentation:core-lib-experimentation-impl")
 
     //navigation
     implementation project(':ui-navigation')
