@@ -43,7 +43,7 @@ fun <T : Any> Throwable.toResult(): Result<T> {
 /**
  * Converts a [Result] of T to T.
  */
-fun <T : Any> Result<T>.toData(): Observable<T> {
+fun <T : Any> Result<T>.toDataObservable(): Observable<T> {
     return when (this) {
         is Result.OnSuccess -> Observable.just(this.data)
         is Result.OnError -> Observable.error(this.domainError.toThrowable())

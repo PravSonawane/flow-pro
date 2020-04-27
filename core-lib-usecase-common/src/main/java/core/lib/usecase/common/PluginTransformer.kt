@@ -3,7 +3,7 @@ package core.lib.usecase.common
 import core.lib.analytics.AnalyticsRepository
 import core.lib.plugin.Plugin
 import core.lib.plugin.PluginRepository
-import core.lib.result.toData
+import core.lib.result.toDataObservable
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
@@ -18,7 +18,7 @@ class PluginTransformer<T> @Inject constructor(
         return upstream
             .flatMap {
                 pluginRepository.isEnabled(it.plugin)
-                    .flatMap { result -> result.toData() }
+                    .flatMap { result -> result.toDataObservable() }
                     .map { isEnabled -> Pair(it, isEnabled) }
             }
             .doOnNext { logEvent(it.first.plugin.pluginKey, it.second) }

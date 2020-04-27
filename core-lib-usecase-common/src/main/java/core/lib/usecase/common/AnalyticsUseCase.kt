@@ -1,7 +1,7 @@
 package core.lib.usecase.common
 
 import core.lib.result.Result
-import core.lib.result.toData
+import core.lib.result.toDataObservable
 import core.lib.result.toResult
 import core.lib.usecase.ObservableResultUseCase
 import io.reactivex.Observable
@@ -19,7 +19,7 @@ class AnalyticsUseCase<Input : Any, Output : Any> @Inject constructor(
             .map { InputAnalyticsTransformer.Input(analyticsKey, input) }
             .compose(inputAnalyticsTransformer)
             .flatMap { useCase.invoke(it) }
-            .flatMap { it.toData() }
+            .flatMap { it.toDataObservable() }
             .map { OutputAnalyticsTransformer.Input(analyticsKey, it) }
             .compose(outputAnalyticsTransformer)
             .map { it.toResult() }

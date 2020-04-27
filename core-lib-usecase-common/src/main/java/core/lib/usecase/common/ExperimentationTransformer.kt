@@ -2,7 +2,7 @@ package core.lib.usecase.common
 
 import core.lib.analytics.AnalyticsRepository
 import core.lib.experimentation.ExperimentationRepository
-import core.lib.result.toData
+import core.lib.result.toDataObservable
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
@@ -18,7 +18,7 @@ class ExperimentationTransformer<T> @Inject constructor(
             .flatMap {
                 val request = ExperimentationRepository.Request(it.experimentKey)
                 experimentationRepository.isEnabled(request)
-                    .flatMap { result -> result.toData() }
+                    .flatMap { result -> result.toDataObservable() }
                     .map { isEnabled -> Output(isEnabled, it.experimentKey, it.data) }
             }
             .doOnNext { logEvent(it) }
