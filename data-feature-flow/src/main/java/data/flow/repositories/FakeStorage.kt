@@ -8,7 +8,7 @@ import domain.models.flow.Node
 import domain.models.flow.Step
 
 object FakeStorage {
-    
+
     private var nodeId = 0
     private var stepId = 0
     private var flowId = 0
@@ -27,7 +27,7 @@ object FakeStorage {
     private var step3 = Step(generateStepId(), "Is bulb on?", "Check if bulb is on", decisionNode)
     private var step4 = Step(generateStepId(), "Is bulb burnt?", "Check if bulb is burnt", decisionNode)
     private var step5 = Step(generateStepId(), "Stop", "Stop step", stopNode)
-    
+
     init {
         step1 = step1.copy(inputSteps = emptyList(), outputSteps = listOf(step2))
         step2 = step2.copy(inputSteps = listOf(step1), outputSteps = listOf(step3))

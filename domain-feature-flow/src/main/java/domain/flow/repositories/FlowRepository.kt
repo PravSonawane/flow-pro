@@ -2,7 +2,6 @@ package domain.flow.repositories
 
 import core.lib.result.Result
 import domain.flow.usecases.save.flow.CreateFlowInput
-import domain.flow.usecases.save.flow.CreateFlowUseCase
 import domain.models.flow.Flow
 import io.reactivex.Observable
 

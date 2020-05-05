@@ -15,4 +15,3 @@ class CreateStepUseCase @Inject constructor(
         return stepRepository.create(input)
     }
 }
-

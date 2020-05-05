@@ -15,4 +15,3 @@ class CreateNodeUseCase @Inject constructor(
         return nodeRepository.create(input)
     }
 }
-

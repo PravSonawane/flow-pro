@@ -57,6 +57,13 @@ fun <T : Any> T.toResult(): Result<T> {
     return Result.OnSuccess(this)
 }
 
+fun <T : Any> Result<T>.toObservable(): Observable<Result<T>> {
+    return when (this) {
+        is Result.OnSuccess -> Observable.just(this)
+        is Result.OnError -> Observable.error(this.domainError.toThrowable())
+    }
+}
+
 fun createError(
     errorCode: String,
     errorMessage: String? = null,

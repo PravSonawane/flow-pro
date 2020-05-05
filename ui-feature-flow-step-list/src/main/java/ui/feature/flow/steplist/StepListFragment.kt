@@ -13,7 +13,6 @@ import domain.models.flow.StepType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ui.feature.flow.steplist.databinding.FragmentStepListBinding
 import ui.navigation.NavigationConfig
-import ui.navigation.Navigator
 import ui.navigation.SimpleNavigationConfig
 import ui.navigation.usecases.NavigationUseCase
 import javax.inject.Inject
