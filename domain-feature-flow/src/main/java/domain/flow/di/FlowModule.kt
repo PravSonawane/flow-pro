@@ -8,6 +8,7 @@ import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.get.flow.GetAllFlowsUseCaseInternal
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.node.GetAllNodesUseCase
+import domain.flow.usecases.get.node.GetAllNodesUseCaseInternal
 import domain.flow.usecases.get.step.GetAllStepsInput
 import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.flow.usecases.get.step.GetAllStepsUseCaseInternal
@@ -47,15 +48,14 @@ class FlowModule {
             .build()
     }
 
-    @Named(GetAllNodesUseCase.NAMED)
     @Provides
     fun provideGetAllNodes(
         builder: BasicUseCaseBuilder<Unit, List<Node>>,
-        getAllNodesUseCase: GetAllNodesUseCase
-    ): ObservableResultUseCase<Unit, List<Node>> {
+        getAllNodesUseCase: GetAllNodesUseCaseInternal
+    ): GetAllNodesUseCase {
         return builder.compose(getAllNodesUseCase)
-            .withAnalytics(GetAllNodesUseCase.ANALYTICS_KEY)
-            .withPlugin(GetAllNodesUseCase.PLUGIN_KEY)
+            .withAnalytics(GetAllNodesUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(GetAllNodesUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 

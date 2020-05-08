@@ -5,8 +5,8 @@ import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
-import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
+import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.models.flow.Flow
 import domain.models.flow.Node
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,8 +20,7 @@ import javax.inject.Named
 class SelectStepViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED)
     getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
-    @Named(GetAllNodesUseCase.NAMED)
-    getAllNodesUseCase: ObservableResultUseCase<Unit, List<Node>>,
+    getAllNodesUseCase: GetAllNodesUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     private val viewModelFactory: ViewModelFactory

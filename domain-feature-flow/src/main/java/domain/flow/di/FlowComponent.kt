@@ -15,15 +15,13 @@ import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.get.step.GetStepByIdUseCase
 import domain.flow.usecases.get.step.GetStepsUseCase
 import domain.models.flow.Flow
-import domain.models.flow.Node
 import javax.inject.Named
 
 interface FlowComponent {
 
     fun getAllFlows(): GetAllFlowsUseCase
 
-    @Named(GetAllNodesUseCase.NAMED)
-    fun getAllNodes(): ObservableResultUseCase<Unit, List<Node>>
+    fun getAllNodes(): GetAllNodesUseCase
 
     @Named(GetFlowByIdUseCase.NAMED)
     fun getFlowById(): ObservableResultUseCase<String, Flow>
