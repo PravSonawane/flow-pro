@@ -11,7 +11,6 @@ import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
 import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.step.GetPossibleInputStepsUseCase
-import domain.flow.usecases.get.step.GetPossibleOutputStepsInput
 import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.get.step.GetStepByIdUseCase
 import domain.flow.usecases.get.step.GetStepsInput
@@ -45,8 +44,7 @@ interface FlowComponent {
 
     fun getPossibleInputSteps(): GetPossibleInputStepsUseCase
 
-    @Named(GetPossibleOutputStepsUseCase.NAMED)
-    fun getPossibleOutputSteps(): ObservableResultUseCase<GetPossibleOutputStepsInput, List<Step>>
+    fun getPossibleOutputSteps(): GetPossibleOutputStepsUseCase
 
     fun flowRepository(): FlowRepository
     fun nodeRepository(): NodeRepository
