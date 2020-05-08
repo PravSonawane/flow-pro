@@ -18,7 +18,6 @@ class GetAllStepsUseCaseInternal @Inject constructor(
     }
 
     companion object {
-        const val NAMED = "GET_ALL_INPUT_STEPS"
         const val ANALYTICS_KEY = "42ec4f7f-d032"
         const val PLUGIN_KEY = "2d654511-3fa2"
     }

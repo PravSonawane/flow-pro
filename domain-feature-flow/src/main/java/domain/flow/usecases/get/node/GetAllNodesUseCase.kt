@@ -18,7 +18,6 @@ class GetAllNodesUseCaseInternal @Inject constructor(
     }
 
     companion object {
-        const val NAMED = "GET_ALL_NODES"
         const val ANALYTICS_KEY = "6254dd8c-f492"
         const val PLUGIN_KEY = "61f62f8c-28c5"
     }
