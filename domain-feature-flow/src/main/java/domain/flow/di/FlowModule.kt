@@ -5,6 +5,7 @@ import core.lib.usecase.common.BasicUseCaseBuilder
 import dagger.Module
 import dagger.Provides
 import domain.flow.usecases.get.flow.GetAllFlowsUseCase
+import domain.flow.usecases.get.flow.GetAllFlowsUseCaseInternal
 import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.step.GetAllStepsInput
 import domain.flow.usecases.get.step.GetAllStepsUseCase
@@ -29,15 +30,14 @@ import javax.inject.Named
 @Module
 class FlowModule {
 
-    @Named(GetAllFlowsUseCase.NAMED)
     @Provides
     fun provideGetAllFlows(
         builder: BasicUseCaseBuilder<Unit, List<Flow>>,
-        getAllFlowsUseCase: GetAllFlowsUseCase
-    ): ObservableResultUseCase<Unit, List<Flow>> {
+        getAllFlowsUseCase: GetAllFlowsUseCaseInternal
+    ): GetAllFlowsUseCase {
         return builder.compose(getAllFlowsUseCase)
-            .withAnalytics(GetAllFlowsUseCase.ANALYTICS_KEY)
-            .withPlugin(GetAllFlowsUseCase.PLUGIN_KEY)
+            .withAnalytics(GetAllFlowsUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(GetAllFlowsUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 

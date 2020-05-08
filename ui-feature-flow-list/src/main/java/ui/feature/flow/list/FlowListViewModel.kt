@@ -3,7 +3,6 @@ package ui.feature.flow.list
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,10 +12,9 @@ import ui.lib.utils.StreamFactory
 import ui.lib.views.list.ListViewModel
 import ui.lib.views.list.ListViewModelFactory
 import javax.inject.Inject
-import javax.inject.Named
 
 class FlowListViewModel @Inject constructor(
-    @Named(GetAllFlowsUseCase.NAMED) getAllFlowsUseCase: ObservableResultUseCase<Unit, List<Flow>>,
+    getAllFlowsUseCase: GetAllFlowsUseCase,
     streamFactory: StreamFactory,
     listViewModelFactory: ListViewModelFactory,
     private val viewModelFactory: ViewModelFactory
