@@ -7,7 +7,9 @@ import domain.models.flow.Flow
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class CreateFlowUseCase @Inject constructor(
+typealias CreateFlowUseCase = ObservableResultUseCase<CreateFlowInput, Flow>
+
+class CreateFlowUseCaseInternal @Inject constructor(
     private val flowRepository: FlowRepository
 ) : ObservableResultUseCase<CreateFlowInput, Flow> {
 
