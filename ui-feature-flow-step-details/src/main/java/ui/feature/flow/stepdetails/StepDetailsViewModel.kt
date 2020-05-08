@@ -3,9 +3,9 @@ package ui.feature.flow.stepdetails
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
 import core.lib.usecase.ObservableResultUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
 import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
-import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetInputStepsInput
 import domain.flow.usecases.get.step.GetOutputStepsInput
 import domain.flow.usecases.get.step.GetStepByIdUseCase
@@ -27,8 +27,7 @@ class StepDetailsViewModel @Inject constructor(
     val getStepByIdUseCase: ObservableResultUseCase<String, Step>,
     @Named(GetFlowByIdUseCase.NAMED)
     val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
-    @Named(GetCurrentInputStepsUseCase.NAMED)
-    val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
+    val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
     val getCurrentOutputStepsUseCase: ObservableResultUseCase<GetOutputStepsInput, List<Step>>,
     streamFactory: StreamFactory,
