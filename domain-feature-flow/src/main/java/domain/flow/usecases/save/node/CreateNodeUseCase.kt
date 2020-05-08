@@ -7,7 +7,9 @@ import domain.models.flow.Node
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class CreateNodeUseCase @Inject constructor(
+typealias CreateNodeUseCase = ObservableResultUseCase<CreateNodeInput, Node>
+
+class CreateNodeUseCaseInternal @Inject constructor(
     private val nodeRepository: NodeRepository
 ) : ObservableResultUseCase<CreateNodeInput, Node> {
 
