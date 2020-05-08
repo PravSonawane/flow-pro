@@ -11,8 +11,8 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class GetStepsUseCase @Inject constructor(
-    @Named(GetAllStepsUseCase.NAMED)
-    private val getAllStepsUseCase: ObservableResultUseCase<GetAllStepsInput, List<Step>>,
+    //@Named(GetAllStepsUseCase.NAMED)
+    private val getAllStepsUseCase: GetAllStepsUseCase,
     @Named(GetCurrentInputStepsUseCase.NAMED)
     private val getCurrentInputStepsUseCase: ObservableResultUseCase<GetInputStepsInput, List<Step>>,
     @Named(GetCurrentOutputStepsUseCase.NAMED)
