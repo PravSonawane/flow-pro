@@ -29,6 +29,9 @@ import domain.flow.usecases.get.step.GetStepByIdUseCaseInternal
 import domain.flow.usecases.get.step.GetStepsInput
 import domain.flow.usecases.get.step.GetStepsUseCase
 import domain.flow.usecases.get.step.GetStepsUseCaseInternal
+import domain.flow.usecases.save.flow.CreateFlowInput
+import domain.flow.usecases.save.flow.CreateFlowUseCase
+import domain.flow.usecases.save.flow.CreateFlowUseCaseInternal
 import domain.models.flow.Flow
 import domain.models.flow.Node
 import domain.models.flow.Step
@@ -143,6 +146,17 @@ class FlowModule {
         return builder.compose(getFlowByIdUseCase)
             .withAnalytics(GetFlowByIdUseCaseInternal.ANALYTICS_KEY)
             .withPlugin(GetFlowByIdUseCaseInternal.PLUGIN_KEY)
+            .build()
+    }
+
+    @Provides
+    fun provideCreateFlow(
+        builder: BasicUseCaseBuilder<CreateFlowInput, Flow>,
+        createFlowUseCase: CreateFlowUseCase
+    ): CreateFlowUseCase {
+        return builder.compose(createFlowUseCase)
+            .withAnalytics(CreateFlowUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(CreateFlowUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 }

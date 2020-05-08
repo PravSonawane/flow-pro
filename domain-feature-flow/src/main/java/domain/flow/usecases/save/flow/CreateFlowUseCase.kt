@@ -16,4 +16,9 @@ class CreateFlowUseCaseInternal @Inject constructor(
     override operator fun invoke(input: CreateFlowInput): Observable<Result<Flow>> {
         return flowRepository.create(input)
     }
+
+    companion object {
+        const val ANALYTICS_KEY = "d0e7ca92-327b"
+        const val PLUGIN_KEY = "977285b2-a814"
+    }
 }
