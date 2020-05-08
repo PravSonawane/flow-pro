@@ -158,7 +158,7 @@ class FlowModule {
     @Provides
     fun provideCreateFlow(
         builder: BasicUseCaseBuilder<CreateFlowInput, Flow>,
-        createFlowUseCase: CreateFlowUseCase
+        createFlowUseCase: CreateFlowUseCaseInternal
     ): CreateFlowUseCase {
         return builder.compose(createFlowUseCase)
             .withAnalytics(CreateFlowUseCaseInternal.ANALYTICS_KEY)
@@ -169,7 +169,7 @@ class FlowModule {
     @Provides
     fun provideCreateNode(
         builder: BasicUseCaseBuilder<CreateNodeInput, Node>,
-        createNodeUseCase: CreateNodeUseCase
+        createNodeUseCase: CreateNodeUseCaseInternal
     ): CreateNodeUseCase {
         return builder.compose(createNodeUseCase)
             .withAnalytics(CreateNodeUseCaseInternal.ANALYTICS_KEY)
@@ -180,7 +180,7 @@ class FlowModule {
     @Provides
     fun provideCreateStep(
         builder: BasicUseCaseBuilder<CreateStepInput, Step>,
-        createStepUseCase: CreateStepUseCase
+        createStepUseCase: CreateStepUseCaseInternal
     ): CreateStepUseCase {
         return builder.compose(createStepUseCase)
             .withAnalytics(CreateStepUseCaseInternal.ANALYTICS_KEY)

@@ -13,6 +13,9 @@ import domain.flow.usecases.get.step.GetPossibleInputStepsUseCase
 import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.get.step.GetStepByIdUseCase
 import domain.flow.usecases.get.step.GetStepsUseCase
+import domain.flow.usecases.save.flow.CreateFlowUseCase
+import domain.flow.usecases.save.node.CreateNodeUseCase
+import domain.flow.usecases.save.step.CreateStepUseCase
 
 interface FlowComponent {
 
@@ -35,6 +38,12 @@ interface FlowComponent {
     fun getPossibleInputSteps(): GetPossibleInputStepsUseCase
 
     fun getPossibleOutputSteps(): GetPossibleOutputStepsUseCase
+
+    fun createFlowUseCase(): CreateFlowUseCase
+
+    fun createStepUseCase(): CreateStepUseCase
+
+    fun createNodeUseCase(): CreateNodeUseCase
 
     fun flowRepository(): FlowRepository
     fun nodeRepository(): NodeRepository
