@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import core.lib.result.DomainError
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.models.flow.Flow
@@ -15,11 +14,9 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
-import javax.inject.Named
 
 class SelectNodeViewModel @Inject constructor(
-    @Named(GetFlowByIdUseCase.NAMED)
-    getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
+    getFlowByIdUseCase: GetFlowByIdUseCase,
     getAllNodesUseCase: GetAllNodesUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,

@@ -3,7 +3,6 @@ package ui.feature.newflow.step
 import androidx.lifecycle.MutableLiveData
 import core.lib.result.Result
 import core.lib.rxutils.plusAssign
-import core.lib.usecase.ObservableResultUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.models.flow.Flow
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,11 +11,9 @@ import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import javax.inject.Inject
-import javax.inject.Named
 
 class CreateStepViewModel @Inject constructor(
-    @Named(GetFlowByIdUseCase.NAMED)
-    val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
+    val getFlowByIdUseCase: GetFlowByIdUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
 ) : LayoutViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(

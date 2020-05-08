@@ -1,12 +1,12 @@
 package domain.flow.di
 
-import core.lib.usecase.ObservableResultUseCase
 import core.lib.usecase.common.BasicUseCaseBuilder
 import dagger.Module
 import dagger.Provides
 import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.get.flow.GetAllFlowsUseCaseInternal
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
+import domain.flow.usecases.get.flow.GetFlowByIdUseCaseInternal
 import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.node.GetAllNodesUseCaseInternal
 import domain.flow.usecases.get.step.GetAllStepsInput
@@ -32,7 +32,6 @@ import domain.flow.usecases.get.step.GetStepsUseCaseInternal
 import domain.models.flow.Flow
 import domain.models.flow.Node
 import domain.models.flow.Step
-import javax.inject.Named
 
 @Module
 class FlowModule {
@@ -136,15 +135,14 @@ class FlowModule {
             .build()
     }
 
-    @Named(GetFlowByIdUseCase.NAMED)
     @Provides
     fun provideGetFlowById(
         builder: BasicUseCaseBuilder<String, Flow>,
-        getFlowByIdUseCase: GetFlowByIdUseCase
-    ): ObservableResultUseCase<String, Flow> {
+        getFlowByIdUseCase: GetFlowByIdUseCaseInternal
+    ): GetFlowByIdUseCase {
         return builder.compose(getFlowByIdUseCase)
-            .withAnalytics(GetFlowByIdUseCase.ANALYTICS_KEY)
-            .withPlugin(GetFlowByIdUseCase.PLUGIN_KEY)
+            .withAnalytics(GetFlowByIdUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(GetFlowByIdUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 }
