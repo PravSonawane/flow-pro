@@ -11,7 +11,7 @@ typealias GetCurrentOutputStepsUseCase = ObservableResultUseCase<GetOutputStepsI
 
 class GetCurrentOutputStepsUseCaseInternal @Inject constructor(
     private val stepRepository: StepRepository
-) : ObservableResultUseCase<GetOutputStepsInput, List<Step>> {
+) : GetCurrentOutputStepsUseCase {
 
     override fun invoke(input: GetOutputStepsInput): Observable<Result<List<Step>>> {
         return stepRepository.getCurrentOutputSteps(input.stepId)

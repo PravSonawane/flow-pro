@@ -11,7 +11,7 @@ typealias GetFlowByIdUseCase = ObservableResultUseCase<String, Flow>
 
 class GetFlowByIdUseCaseInternal @Inject constructor(
     private val flowRepository: FlowRepository
-) : ObservableResultUseCase<String, Flow> {
+) : GetFlowByIdUseCase {
 
     override operator fun invoke(input: String): Observable<Result<Flow>> {
         return flowRepository.get(input)

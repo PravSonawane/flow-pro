@@ -11,7 +11,7 @@ typealias GetAllFlowsUseCase = ObservableResultUseCase<Unit, List<Flow>>
 
 class GetAllFlowsUseCaseInternal @Inject constructor(
     private val flowRepository: FlowRepository
-) : ObservableResultUseCase<Unit, List<Flow>> {
+) : GetAllFlowsUseCase {
 
     override operator fun invoke(input: Unit): Observable<Result<List<Flow>>> {
         return flowRepository.getAll()

@@ -15,7 +15,7 @@ class GetStepsUseCaseInternal @Inject constructor(
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
     private val getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
-) : ObservableResultUseCase<GetStepsInput, List<Step>> {
+) : GetStepsUseCase {
 
     override fun invoke(input: GetStepsInput): Observable<Result<List<Step>>> {
         return Observable.just(input)

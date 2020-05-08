@@ -11,7 +11,7 @@ typealias CreateFlowUseCase = ObservableResultUseCase<CreateFlowInput, Flow>
 
 class CreateFlowUseCaseInternal @Inject constructor(
     private val flowRepository: FlowRepository
-) : ObservableResultUseCase<CreateFlowInput, Flow> {
+) : CreateFlowUseCase {
 
     override operator fun invoke(input: CreateFlowInput): Observable<Result<Flow>> {
         return flowRepository.create(input)

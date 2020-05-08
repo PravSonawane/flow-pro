@@ -11,7 +11,7 @@ typealias GetAllStepsUseCase = ObservableResultUseCase<GetAllStepsInput, List<St
 
 class GetAllStepsUseCaseInternal @Inject constructor(
     private val stepRepository: StepRepository
-) : ObservableResultUseCase<GetAllStepsInput, List<Step>> {
+) : GetAllStepsUseCase {
 
     override fun invoke(input: GetAllStepsInput): Observable<Result<List<Step>>> {
         return stepRepository.getAll(input.flowId)

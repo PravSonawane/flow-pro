@@ -11,7 +11,7 @@ typealias CreateNodeUseCase = ObservableResultUseCase<CreateNodeInput, Node>
 
 class CreateNodeUseCaseInternal @Inject constructor(
     private val nodeRepository: NodeRepository
-) : ObservableResultUseCase<CreateNodeInput, Node> {
+) : CreateNodeUseCase {
 
     override operator fun invoke(input: CreateNodeInput): Observable<Result<Node>> {
         return nodeRepository.create(input)

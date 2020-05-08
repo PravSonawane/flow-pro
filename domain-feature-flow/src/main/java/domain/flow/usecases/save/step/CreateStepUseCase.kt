@@ -11,7 +11,7 @@ typealias CreateStepUseCase = ObservableResultUseCase<CreateStepInput, Step>
 
 class CreateStepUseCaseInternal @Inject constructor(
     private val stepRepository: StepRepository
-) : ObservableResultUseCase<CreateStepInput, Step> {
+) : CreateStepUseCase {
 
     override operator fun invoke(input: CreateStepInput): Observable<Result<Step>> {
         return stepRepository.create(input)

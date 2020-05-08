@@ -11,7 +11,7 @@ typealias GetStepByIdUseCase = ObservableResultUseCase<String, Step>
 
 class GetStepByIdUseCaseInternal @Inject constructor(
     private val stepRepository: StepRepository
-) : ObservableResultUseCase<String, Step> {
+) : GetStepByIdUseCase {
 
     override operator fun invoke(input: String): Observable<Result<Step>> {
         return stepRepository.getStepById(input)

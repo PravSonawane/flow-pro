@@ -11,7 +11,7 @@ typealias GetAllNodesUseCase = ObservableResultUseCase<Unit, List<Node>>
 
 class GetAllNodesUseCaseInternal @Inject constructor(
     private val nodeRepository: NodeRepository
-) : ObservableResultUseCase<Unit, List<Node>> {
+) : GetAllNodesUseCase {
 
     override fun invoke(input: Unit): Observable<Result<List<Node>>> {
         return nodeRepository.getAll()
