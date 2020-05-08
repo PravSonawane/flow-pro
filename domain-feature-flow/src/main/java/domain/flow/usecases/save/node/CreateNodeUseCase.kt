@@ -16,4 +16,9 @@ class CreateNodeUseCaseInternal @Inject constructor(
     override operator fun invoke(input: CreateNodeInput): Observable<Result<Node>> {
         return nodeRepository.create(input)
     }
+
+    companion object {
+        const val ANALYTICS_KEY = "74e4023f-02fb"
+        const val PLUGIN_KEY = "bf12f1ce-80d8"
+    }
 }
