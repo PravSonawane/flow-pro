@@ -7,7 +7,9 @@ import domain.models.flow.Step
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class CreateStepUseCase @Inject constructor(
+typealias CreateStepUseCase = ObservableResultUseCase<CreateStepInput, Step>
+
+class CreateStepUseCaseInternal @Inject constructor(
     private val stepRepository: StepRepository
 ) : ObservableResultUseCase<CreateStepInput, Step> {
 
