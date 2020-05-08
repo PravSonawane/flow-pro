@@ -9,7 +9,9 @@ import domain.models.flow.StepType
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class GetStepsUseCase @Inject constructor(
+typealias GetStepsUseCase = ObservableResultUseCase<GetStepsInput, List<Step>>
+
+class GetStepsUseCaseInternal @Inject constructor(
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
     private val getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
@@ -46,7 +48,6 @@ class GetStepsUseCase @Inject constructor(
     }
 
     companion object {
-        const val NAMED = "GET_STEPS"
         const val ANALYTICS_KEY = "41508dfb-95b4"
         const val PLUGIN_KEY = "23145985-698d"
     }

@@ -6,15 +6,15 @@ import dagger.Module
 import dagger.Provides
 import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.get.flow.GetAllFlowsUseCaseInternal
+import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.step.GetAllStepsInput
 import domain.flow.usecases.get.step.GetAllStepsUseCase
-import domain.flow.usecases.get.step.GetCurrentInputStepsUseCaseInternal
-import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCaseInternal
-import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetAllStepsUseCaseInternal
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentInputStepsUseCaseInternal
 import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCaseInternal
 import domain.flow.usecases.get.step.GetInputStepsInput
 import domain.flow.usecases.get.step.GetOutputStepsInput
 import domain.flow.usecases.get.step.GetPossibleInputStepsInput
@@ -27,6 +27,7 @@ import domain.flow.usecases.get.step.GetStepByIdUseCase
 import domain.flow.usecases.get.step.GetStepByIdUseCaseInternal
 import domain.flow.usecases.get.step.GetStepsInput
 import domain.flow.usecases.get.step.GetStepsUseCase
+import domain.flow.usecases.get.step.GetStepsUseCaseInternal
 import domain.models.flow.Flow
 import domain.models.flow.Node
 import domain.models.flow.Step
@@ -58,15 +59,14 @@ class FlowModule {
             .build()
     }
 
-    @Named(GetStepsUseCase.NAMED)
     @Provides
     fun provideGetSteps(
         builder: BasicUseCaseBuilder<GetStepsInput, List<Step>>,
-        getStepsUseCase: GetStepsUseCase
-    ): ObservableResultUseCase<GetStepsInput, List<Step>> {
+        getStepsUseCase: GetStepsUseCaseInternal
+    ): GetStepsUseCase {
         return builder.compose(getStepsUseCase)
-            .withAnalytics(GetStepsUseCase.ANALYTICS_KEY)
-            .withPlugin(GetStepsUseCase.PLUGIN_KEY)
+            .withAnalytics(GetStepsUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(GetStepsUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 

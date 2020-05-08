@@ -22,8 +22,7 @@ import javax.inject.Named
 class StepListViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED)
     val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
-    @Named(GetStepsUseCase.NAMED)
-    val getStepsUseCase: ObservableResultUseCase<GetStepsInput, List<Step>>,
+    val getStepsUseCase: GetStepsUseCase,
     private val viewModelFactory: ViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
