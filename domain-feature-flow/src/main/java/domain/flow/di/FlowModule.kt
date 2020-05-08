@@ -24,6 +24,7 @@ import domain.flow.usecases.get.step.GetPossibleOutputStepsInput
 import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCaseInternal
 import domain.flow.usecases.get.step.GetStepByIdUseCase
+import domain.flow.usecases.get.step.GetStepByIdUseCaseInternal
 import domain.flow.usecases.get.step.GetStepsInput
 import domain.flow.usecases.get.step.GetStepsUseCase
 import domain.models.flow.Flow
@@ -124,15 +125,14 @@ class FlowModule {
             .build()
     }
 
-    @Named(GetStepByIdUseCase.NAMED)
     @Provides
     fun provideGetStepById(
         builder: BasicUseCaseBuilder<String, Step>,
-        getStepByIdUseCase: GetStepByIdUseCase
-    ): ObservableResultUseCase<String, Step> {
+        getStepByIdUseCase: GetStepByIdUseCaseInternal
+    ): GetStepByIdUseCase {
         return builder.compose(getStepByIdUseCase)
-            .withAnalytics(GetStepByIdUseCase.ANALYTICS_KEY)
-            .withPlugin(GetStepByIdUseCase.PLUGIN_KEY)
+            .withAnalytics(GetStepByIdUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(GetStepByIdUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 

@@ -13,6 +13,7 @@ import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.step.GetPossibleInputStepsUseCase
 import domain.flow.usecases.get.step.GetPossibleOutputStepsUseCase
 import domain.flow.usecases.get.step.GetStepByIdUseCase
+import domain.flow.usecases.get.step.GetStepByIdUseCaseInternal
 import domain.flow.usecases.get.step.GetStepsInput
 import domain.flow.usecases.get.step.GetStepsUseCase
 import domain.models.flow.Flow
@@ -33,8 +34,7 @@ interface FlowComponent {
     @Named(GetStepsUseCase.NAMED)
     fun getSteps(): ObservableResultUseCase<GetStepsInput, List<Step>>
 
-    @Named(GetStepByIdUseCase.NAMED)
-    fun getStepById(): ObservableResultUseCase<String, Step>
+    fun getStepById(): GetStepByIdUseCase
 
     fun getAllSteps(): GetAllStepsUseCase
 

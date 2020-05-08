@@ -23,8 +23,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class StepDetailsViewModel @Inject constructor(
-    @Named(GetStepByIdUseCase.NAMED)
-    val getStepByIdUseCase: ObservableResultUseCase<String, Step>,
+    val getStepByIdUseCase: GetStepByIdUseCase,
     @Named(GetFlowByIdUseCase.NAMED)
     val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
