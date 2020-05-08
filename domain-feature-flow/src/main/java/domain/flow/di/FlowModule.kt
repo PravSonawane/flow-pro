@@ -10,10 +10,11 @@ import domain.flow.usecases.get.node.GetAllNodesUseCase
 import domain.flow.usecases.get.step.GetAllStepsInput
 import domain.flow.usecases.get.step.GetAllStepsUseCase
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCaseInternal
-import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCaseInternal
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.step.GetAllStepsUseCaseInternal
 import domain.flow.usecases.get.step.GetCurrentInputStepsUseCase
+import domain.flow.usecases.get.step.GetCurrentOutputStepsUseCase
 import domain.flow.usecases.get.step.GetInputStepsInput
 import domain.flow.usecases.get.step.GetOutputStepsInput
 import domain.flow.usecases.get.step.GetPossibleInputStepsInput
@@ -88,15 +89,14 @@ class FlowModule {
             .build()
     }
 
-    @Named(GetCurrentOutputStepsUseCase.NAMED)
     @Provides
     fun provideGetCurrentOutputSteps(
         builder: BasicUseCaseBuilder<GetOutputStepsInput, List<Step>>,
-        getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
-    ): ObservableResultUseCase<GetOutputStepsInput, List<Step>> {
+        getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCaseInternal
+    ): GetCurrentOutputStepsUseCase {
         return builder.compose(getCurrentOutputStepsUseCase)
-            .withAnalytics(GetCurrentOutputStepsUseCase.ANALYTICS_KEY)
-            .withPlugin(GetCurrentOutputStepsUseCase.PLUGIN_KEY)
+            .withAnalytics(GetCurrentOutputStepsUseCaseInternal.ANALYTICS_KEY)
+            .withPlugin(GetCurrentOutputStepsUseCaseInternal.PLUGIN_KEY)
             .build()
     }
 

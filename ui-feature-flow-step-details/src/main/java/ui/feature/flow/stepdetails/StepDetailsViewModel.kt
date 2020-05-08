@@ -28,8 +28,7 @@ class StepDetailsViewModel @Inject constructor(
     @Named(GetFlowByIdUseCase.NAMED)
     val getFlowByIdUseCase: ObservableResultUseCase<String, Flow>,
     val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
-    @Named(GetCurrentOutputStepsUseCase.NAMED)
-    val getCurrentOutputStepsUseCase: ObservableResultUseCase<GetOutputStepsInput, List<Step>>,
+    val getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory,
     listViewModelFactory: ListViewModelFactory,

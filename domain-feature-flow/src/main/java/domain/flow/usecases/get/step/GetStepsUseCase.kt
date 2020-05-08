@@ -8,13 +8,11 @@ import domain.models.flow.Step
 import domain.models.flow.StepType
 import io.reactivex.Observable
 import javax.inject.Inject
-import javax.inject.Named
 
 class GetStepsUseCase @Inject constructor(
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
-    @Named(GetCurrentOutputStepsUseCase.NAMED)
-    private val getCurrentOutputStepsUseCase: ObservableResultUseCase<GetOutputStepsInput, List<Step>>
+    private val getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase
 ) : ObservableResultUseCase<GetStepsInput, List<Step>> {
 
     override fun invoke(input: GetStepsInput): Observable<Result<List<Step>>> {
