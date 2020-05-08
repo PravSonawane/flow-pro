@@ -16,4 +16,9 @@ class CreateStepUseCaseInternal @Inject constructor(
     override operator fun invoke(input: CreateStepInput): Observable<Result<Step>> {
         return stepRepository.create(input)
     }
+
+    companion object {
+        const val ANALYTICS_KEY = "6fefbb04-d435"
+        const val PLUGIN_KEY = "71545e2b-0388"
+    }
 }
