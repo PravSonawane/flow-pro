@@ -1,7 +1,6 @@
-package ui.lib.views
+package ui.lib.base
 
 import androidx.annotation.IntegerRes
-import ui.lib.base.LayoutViewModel
 import ui.lib.utils.StreamFactory
 
 abstract class ItemViewModel<Input, Output>(

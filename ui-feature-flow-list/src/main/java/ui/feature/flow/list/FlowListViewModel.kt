@@ -27,15 +27,17 @@ class FlowListViewModel @Inject constructor(
 
     val listViewModel: ListViewModel<FlowListItemViewModel> =
         listViewModelFactory.create("2ae5bd06-7b9a")
+
     init {
 
         compositeDisposable += listViewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is FlowListItemViewModel.Event.OnViewFlow -> handleOnViewFlow(it.flow)
+                    is ListViewModel.Output.OnItemOutput -> handleFlowListViewModelOutput(it.itemOutput)
                 }
             }
+
         compositeDisposable += getAllFlowsUseCase(Unit)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -46,13 +48,19 @@ class FlowListViewModel @Inject constructor(
             }
     }
 
+    private fun handleFlowListViewModelOutput(itemOutput: ListViewModel.ItemOutput) {
+        when (itemOutput) {
+            is FlowListItemViewModel.Event.OnViewFlow -> handleOnViewFlow(itemOutput.flow)
+        }
+    }
+
     fun onCreateNewFlow() {
         sendOutput(Event.OnCreateNewFlow)
     }
 
     private fun handleGetAllFlowsSuccess(data: List<Flow>) {
         val viewModels = data.map { viewModelFactory.create("1c85e2e8-1c87", it) }
-        listViewModel.sendInput(ListViewModel.Input(viewModels))
+        listViewModel.sendInput(ListViewModel.Input.OnData(viewModels))
     }
 
     private fun handleGetAllFlowsError(domainError: DomainError) {

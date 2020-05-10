@@ -3,6 +3,7 @@ package ui.lib.views
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import ui.lib.base.ItemViewModel
 
 abstract class FeedViewHolder(
     val binding: ViewDataBinding

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import domain.models.flow.Flow
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
-import ui.lib.views.ItemViewModel
+import ui.lib.base.ItemViewModel
 import ui.lib.views.list.ListViewModel
 
 class FlowListItemViewModel(

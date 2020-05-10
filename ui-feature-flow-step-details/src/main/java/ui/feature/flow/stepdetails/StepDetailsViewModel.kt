@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
-import ui.lib.views.ItemViewModel
+import ui.lib.base.ItemViewModel
 import ui.lib.views.list.ListViewModel
 import ui.lib.views.list.ListViewModelFactory
 import javax.inject.Inject
@@ -55,8 +55,7 @@ class StepDetailsViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { event ->
                 when (event) {
-                    is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
-                    is AddStepItemViewModel.Event.OnAddMore -> handleOnAddInputStep(event.step)
+                    is ListViewModel.Output.OnItemOutput -> handleInputListItemOutput(event.itemOutput)
                 }
             }
 
@@ -64,10 +63,23 @@ class StepDetailsViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { event ->
                 when (event) {
-                    is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(event.step)
-                    is AddStepItemViewModel.Event.OnAddMore -> handleOnAddOutputStep(event.step)
+                    is ListViewModel.Output.OnItemOutput -> handleOutputListItemOutput(event.itemOutput)
                 }
             }
+    }
+
+    private fun handleInputListItemOutput(itemOutput: ListViewModel.ItemOutput) {
+        when (itemOutput) {
+            is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(itemOutput.step)
+            is AddStepItemViewModel.Event.OnAddMore -> handleOnAddInputStep(itemOutput.step)
+        }
+    }
+
+    private fun handleOutputListItemOutput(itemOutput: ListViewModel.ItemOutput) {
+        when (itemOutput) {
+            is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(itemOutput.step)
+            is AddStepItemViewModel.Event.OnAddMore -> handleOnAddOutputStep(itemOutput.step)
+        }
     }
 
     private fun handleFlowIdInput() {
@@ -161,14 +173,14 @@ class StepDetailsViewModel @Inject constructor(
             data.map { viewModelFactory.create("b3c872df-8066", it) }.toMutableList()
 
         step.value?.let { viewModels.add(viewModelFactory.createAddStep("be0cc22a-df00", it)) }
-        inputListViewModel.sendInput(ListViewModel.Input(viewModels))
+        inputListViewModel.sendInput(ListViewModel.Input.OnData(viewModels))
     }
 
     private fun handleGetOutputStepsSuccess(data: List<Step>) {
         val viewModels: MutableList<ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>> =
             data.map { viewModelFactory.create("08a354bd-ab75", it) }.toMutableList()
         step.value?.let { viewModels.add(viewModelFactory.createAddStep("79906fc2-9f40", it)) }
-        outputListViewModel.sendInput(ListViewModel.Input(viewModels))
+        outputListViewModel.sendInput(ListViewModel.Input.OnData(viewModels))
     }
 
     sealed class Input {

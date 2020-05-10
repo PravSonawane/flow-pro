@@ -2,7 +2,7 @@ package ui.lib.views.list
 
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
-import ui.lib.views.ItemViewModel
+import ui.lib.base.ItemViewModel
 import javax.inject.Inject
 
 class ListViewModelFactory @Inject constructor(
