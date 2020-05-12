@@ -70,15 +70,15 @@ class StepDetailsViewModel @Inject constructor(
 
     private fun handleInputListItemOutput(itemOutput: ListViewModel.ItemOutput) {
         when (itemOutput) {
-            is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(itemOutput.step)
-            is AddStepItemViewModel.Event.OnAddMore -> handleOnAddInputStep(itemOutput.step)
+            is StepDetailsItemViewModel.Event.OnStepDetails -> handle(itemOutput)
+            is AddStepItemViewModel.Event.OnAddMore -> handleOnAddInputStep(itemOutput)
         }
     }
 
     private fun handleOutputListItemOutput(itemOutput: ListViewModel.ItemOutput) {
         when (itemOutput) {
-            is StepDetailsItemViewModel.Event.OnStepDetails -> handleOnStepDetails(itemOutput.step)
-            is AddStepItemViewModel.Event.OnAddMore -> handleOnAddOutputStep(itemOutput.step)
+            is StepDetailsItemViewModel.Event.OnStepDetails -> handle(itemOutput)
+            is AddStepItemViewModel.Event.OnAddMore -> handleOnAddOutputStep(itemOutput)
         }
     }
 
@@ -148,16 +148,16 @@ class StepDetailsViewModel @Inject constructor(
             }
     }
 
-    private fun handleOnStepDetails(step: Step) {
-        sendOutput(Event.OnStepDetails(step))
+    private fun handle(event: StepDetailsItemViewModel.Event.OnStepDetails) {
+        sendOutput(Event.OnStepDetails(event.step))
     }
 
-    private fun handleOnAddInputStep(step: Step) {
-        flow.value?.let { sendOutput(Event.OnAddInputStep(it, step)) }
+    private fun handleOnAddInputStep(event: AddStepItemViewModel.Event.OnAddMore) {
+        flow.value?.let { sendOutput(Event.OnAddInputStep(it, event.step)) }
     }
 
-    private fun handleOnAddOutputStep(step: Step) {
-        flow.value?.let { sendOutput(Event.OnAddOutputStep(it, step)) }
+    private fun handleOnAddOutputStep(event: AddStepItemViewModel.Event.OnAddMore) {
+        flow.value?.let { sendOutput(Event.OnAddOutputStep(it, event.step)) }
     }
 
     private fun handleGetFlowByIdSuccess(data: Flow) {
