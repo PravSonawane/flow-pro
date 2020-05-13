@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 typealias GetFlowByIdUseCase = ObservableResultUseCase<String, Flow>
 
-class GetFlowByIdUseCaseInternal @Inject constructor(
+class GetFlowByIdFunction @Inject constructor(
     private val flowRepository: FlowRepository
 ) : GetFlowByIdUseCase {
 

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 typealias GetCurrentOutputStepsUseCase = ObservableResultUseCase<GetOutputStepsInput, List<Step>>
 
-class GetCurrentOutputStepsUseCaseInternal @Inject constructor(
+class GetCurrentOutputStepsFunction @Inject constructor(
     private val stepRepository: StepRepository
 ) : GetCurrentOutputStepsUseCase {
 

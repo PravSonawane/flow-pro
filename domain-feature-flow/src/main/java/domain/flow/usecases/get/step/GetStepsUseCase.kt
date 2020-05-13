@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 typealias GetStepsUseCase = ObservableResultUseCase<GetStepsInput, List<Step>>
 
-class GetStepsUseCaseInternal @Inject constructor(
+class GetStepsFunction @Inject constructor(
     private val getAllStepsUseCase: GetAllStepsUseCase,
     private val getCurrentInputStepsUseCase: GetCurrentInputStepsUseCase,
     private val getCurrentOutputStepsUseCase: GetCurrentOutputStepsUseCase

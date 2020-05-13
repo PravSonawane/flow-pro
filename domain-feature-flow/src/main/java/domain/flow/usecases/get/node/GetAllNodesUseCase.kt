@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 typealias GetAllNodesUseCase = ObservableResultUseCase<Unit, List<Node>>
 
-class GetAllNodesUseCaseInternal @Inject constructor(
+class GetAllNodesFunction @Inject constructor(
     private val nodeRepository: NodeRepository
 ) : GetAllNodesUseCase {
 

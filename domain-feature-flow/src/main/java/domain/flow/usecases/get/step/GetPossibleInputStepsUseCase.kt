@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 typealias GetPossibleInputStepsUseCase = ObservableResultUseCase<GetPossibleInputStepsInput, List<Step>>
 
-class GetPossibleInputStepsUseCaseInternal @Inject constructor(
+class GetPossibleInputStepsFunction @Inject constructor(
     private val stepRepository: StepRepository
 ) : GetPossibleInputStepsUseCase {
 

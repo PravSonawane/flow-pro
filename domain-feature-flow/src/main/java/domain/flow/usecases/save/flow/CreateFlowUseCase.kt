@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 typealias CreateFlowUseCase = ObservableResultUseCase<CreateFlowInput, Flow>
 
-class CreateFlowUseCaseInternal @Inject constructor(
+class CreateFlowFunction @Inject constructor(
     private val flowRepository: FlowRepository
 ) : CreateFlowUseCase {
 

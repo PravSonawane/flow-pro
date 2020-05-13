@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 typealias GetStepByIdUseCase = ObservableResultUseCase<String, Step>
 
-class GetStepByIdUseCaseInternal @Inject constructor(
+class GetStepByIdFunction @Inject constructor(
     private val stepRepository: StepRepository
 ) : GetStepByIdUseCase {
 
