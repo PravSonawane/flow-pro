@@ -1,6 +1,7 @@
 package ui.lib.views
 
 import androidx.lifecycle.LiveData
+import ui.lib.base.ItemViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 

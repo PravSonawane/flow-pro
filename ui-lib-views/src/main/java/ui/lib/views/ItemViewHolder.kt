@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import ui.lib.base.ItemViewModel
 
 class ItemViewHolder(
     parent: ViewGroup,

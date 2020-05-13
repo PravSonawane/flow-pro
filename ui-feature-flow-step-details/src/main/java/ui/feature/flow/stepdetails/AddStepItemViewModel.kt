@@ -2,7 +2,7 @@ package ui.feature.flow.stepdetails
 
 import domain.models.flow.Step
 import ui.lib.utils.StreamFactory
-import ui.lib.views.ItemViewModel
+import ui.lib.base.ItemViewModel
 import ui.lib.views.list.ListViewModel
 
 class AddStepItemViewModel(

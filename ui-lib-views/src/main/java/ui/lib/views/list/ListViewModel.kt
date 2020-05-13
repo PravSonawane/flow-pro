@@ -6,15 +6,15 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.BaseViewModel
+import ui.lib.base.ItemViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
-import ui.lib.views.ItemViewModel
 
 class ListViewModel<T : ItemViewModel<ListViewModel.ItemInput, ListViewModel.ItemOutput>>(
     analyticsKey: String,
     liveDataFactory: LiveDataFactory,
     streamFactory: StreamFactory
-) : BaseViewModel<ListViewModel.Input<T>, ListViewModel.ItemOutput>(
+) : BaseViewModel<ListViewModel.Input<T>, ListViewModel.Output<T>>(
     analyticsKey,
     streamFactory
 ) {
@@ -24,16 +24,28 @@ class ListViewModel<T : ItemViewModel<ListViewModel.ItemInput, ListViewModel.Ite
     init {
         compositeDisposable += observeInput()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { this.items.value = it.items }
+            .subscribe {
+                when (it) {
+                    is Input.OnData -> this.items.value = it.items
+                }
+            }
 
         items.observeForever {
             compositeDisposable += Observable.merge(it.map { item -> item.observeOutput() })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { event -> sendOutput(event) }
+                .subscribe { event -> sendOutput(Output.OnItemOutput(event)) }
         }
     }
 
-    data class Input<T>(val items: List<T>)
+    sealed class Input<T> {
+        data class OnData<T>(val items: List<T>) : Input<T>()
+        class OnLoading<T> : Input<T>()
+    }
+
+    sealed class Output<T> {
+        data class OnItemOutput<T>(val itemOutput: ItemOutput): Output<T>()
+    }
+
     interface ItemInput
     interface ItemOutput
 

@@ -37,9 +37,9 @@ class StepListViewModel @Inject constructor(
     init {
         compositeDisposable += stepListViewModel.observeOutput()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { step ->
-                when (step) {
-                    is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(step.step)
+            .subscribe {
+                when (it) {
+                    is ListViewModel.Output.OnItemOutput -> handleStepListItemOutput(it.itemOutput)
                 }
             }
 
@@ -63,9 +63,15 @@ class StepListViewModel @Inject constructor(
             }
     }
 
+    private fun handleStepListItemOutput(itemOutput: ListViewModel.ItemOutput) {
+        when (itemOutput) {
+            is StepItemViewModel.Event.OnSelectStep -> handleOnSelectStep(itemOutput.step)
+        }
+    }
+
     private fun handleSuccess(steps: List<Step>) {
         val items = steps.map { viewModelFactory.create("73d5b9c7-fbc4", it) }
-        this.stepListViewModel.sendInput(ListViewModel.Input(items))
+        this.stepListViewModel.sendInput(ListViewModel.Input.OnData(items))
     }
 
     private fun handleError(error: DomainError) {
