@@ -35,12 +35,12 @@ class NewFlowTitleViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is Result.OnSuccess -> handleSaveOrUpdateSuccess(it.data)
+                    is Result.OnSuccess -> handle(it.data)
                 }
             }
     }
 
-    private fun handleSaveOrUpdateSuccess(data: Flow) {
+    private fun handle(data: Flow) {
         sendOutput(Event.OnNext(data))
     }
 
