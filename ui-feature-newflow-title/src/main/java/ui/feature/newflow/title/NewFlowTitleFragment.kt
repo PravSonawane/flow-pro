@@ -56,14 +56,14 @@ class NewFlowTitleFragment : AppBaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is NewFlowTitleViewModel.Event.OnNext -> onNext(it.flow)
+                    is NewFlowTitleViewModel.Event.OnNext -> handle(it.flow)
                 }
             }
 
         return binding.root
     }
 
-    private fun onNext(flow: Flow) {
+    private fun handle(flow: Flow) {
         val pathParams: Map<Int, String> = mapOf(
             R.string.deeplink_flow_step_list_path_param_flow_id to flow.id
         )
