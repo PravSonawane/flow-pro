@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="label_step_description">Description</string>
+    <string name="label_step_name">Name</string>
     <string name="button_select_node_next_label">Next: Select Node</string>
 </resources>
