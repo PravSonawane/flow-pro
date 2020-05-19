@@ -10,10 +10,13 @@ import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.LayoutViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.text.TextInputLayoutViewModel
+import ui.lib.views.text.TextInputLayoutViewModelFactory
 import javax.inject.Inject
 
 class CreateStepViewModel @Inject constructor(
     val getFlowByIdUseCase: GetFlowByIdUseCase,
+    textInputLayoutViewModelFactory: TextInputLayoutViewModelFactory,
     streamFactory: StreamFactory,
     liveDataFactory: LiveDataFactory
 ) : LayoutViewModel<CreateStepViewModel.Input, CreateStepViewModel.Event>(
@@ -24,8 +27,26 @@ class CreateStepViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val flow: MutableLiveData<Flow> = liveDataFactory.mutableLiveData("6fad0157-ba41")
+    val stepNameViewModel = textInputLayoutViewModelFactory.create("8c5c88bd-0cb6")
+    val stepDescriptionViewModel = textInputLayoutViewModelFactory.create("07941ea2-439c")
 
     init {
+
+        stepNameViewModel.sendInput(
+            TextInputLayoutViewModel.Input.SetData(
+                TextInputLayoutViewModel.Data(
+                    hintRes = R.string.label_step_name
+                )
+            )
+        )
+
+        stepDescriptionViewModel.sendInput(
+            TextInputLayoutViewModel.Input.SetData(
+                TextInputLayoutViewModel.Data(
+                    hintRes = R.string.label_step_description
+                )
+            )
+        )
         compositeDisposable += observeInput()
             .flatMap {
                 when (it) {
@@ -63,6 +84,8 @@ class CreateStepViewModel @Inject constructor(
     }
 
     override fun onCleared() {
+        stepNameViewModel.onCleared()
+        stepDescriptionViewModel.onCleared()
         compositeDisposable.dispose()
     }
 }
