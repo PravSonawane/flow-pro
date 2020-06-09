@@ -63,3 +63,5 @@ detekt {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+tasks.detekt.jvmTarget = "1.8"
