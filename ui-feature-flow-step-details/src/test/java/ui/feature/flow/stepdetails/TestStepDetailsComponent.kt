@@ -2,6 +2,8 @@ package ui.feature.flow.stepdetails
 
 import app.di.test.TestMainComponent
 import dagger.Component
+import data.feature.flow.test.di.FakeFlowModule
+import domain.flow.di.FlowComponent
 import ui.lib.di.FeatureScope
 import ui.lib.di.UiModule
 
@@ -11,11 +13,12 @@ import ui.lib.di.UiModule
     ],
     modules = [
         UiModule::class,
-        StepDetailsViewModelModule::class
+        StepDetailsViewModelModule::class,
+        FakeFlowModule::class
     ]
 )
 @FeatureScope
-interface TestStepDetailsComponent : StepDetailsComponent, TestMainComponent {
+interface TestStepDetailsComponent : StepDetailsComponent, TestMainComponent, FlowComponent {
 
     fun injectIn(test: StepDetailsViewModelTests)
 

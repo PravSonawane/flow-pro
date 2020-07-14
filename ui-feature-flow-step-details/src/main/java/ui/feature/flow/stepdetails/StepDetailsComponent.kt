@@ -2,6 +2,8 @@ package ui.feature.flow.stepdetails
 
 import app.di.MainComponent
 import dagger.Component
+import data.flow.di.DefaultFlowModule
+import domain.flow.di.FlowComponent
 import ui.lib.di.FeatureScope
 import ui.lib.di.UiModule
 
@@ -11,11 +13,12 @@ import ui.lib.di.UiModule
     ],
     modules = [
         UiModule::class,
-        StepDetailsViewModelModule::class
+        StepDetailsViewModelModule::class,
+        DefaultFlowModule::class
     ]
 )
 @FeatureScope
-interface StepDetailsComponent : MainComponent {
+interface StepDetailsComponent : MainComponent, FlowComponent {
     fun injectIn(fragment: StepDetailsFragment)
 
     /** Dagger Builder for [StepDetailsComponent] */
