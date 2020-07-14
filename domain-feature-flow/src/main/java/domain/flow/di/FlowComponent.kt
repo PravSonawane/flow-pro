@@ -1,8 +1,5 @@
 package domain.flow.di
 
-import domain.flow.repositories.FlowRepository
-import domain.flow.repositories.NodeRepository
-import domain.flow.repositories.StepRepository
 import domain.flow.usecases.get.flow.GetAllFlowsUseCase
 import domain.flow.usecases.get.flow.GetFlowByIdUseCase
 import domain.flow.usecases.get.node.GetAllNodesUseCase
@@ -44,8 +41,4 @@ interface FlowComponent {
     fun createStepUseCase(): CreateStepUseCase
 
     fun createNodeUseCase(): CreateNodeUseCase
-
-    fun flowRepository(): FlowRepository
-    fun nodeRepository(): NodeRepository
-    fun stepRepository(): StepRepository
 }
