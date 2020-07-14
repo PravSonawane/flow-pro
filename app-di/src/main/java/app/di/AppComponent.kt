@@ -23,8 +23,7 @@ interface AppComponent : BaseAppComponent,
     CacheComponent,
     ExperimentationComponent,
     PluginComponent,
-    AnalyticsComponent,
-    FlowComponent {
+    AnalyticsComponent {
 
     override fun application(): Application
     @ApplicationContext override fun applicationContext(): Context

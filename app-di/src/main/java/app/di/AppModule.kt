@@ -12,8 +12,7 @@ import data.flow.di.DefaultFlowModule
         DefaultCacheModule::class,
         DefaultExperimentationModule::class,
         DefaultPluginModule::class,
-        DefaultAnalyticsModule::class,
-        DefaultFlowModule::class
+        DefaultAnalyticsModule::class
     ]
 )
 class AppModule

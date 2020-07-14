@@ -9,7 +9,6 @@ import core.lib.experimentation.di.ExperimentationComponent
 import core.lib.plugin.di.PluginComponent
 import dagger.BindsInstance
 import dagger.Component
-import domain.flow.di.FlowComponent
 import ui.lib.di.BaseAppComponent
 import javax.inject.Singleton
 
@@ -23,8 +22,7 @@ interface TestAppComponent : BaseAppComponent,
     CacheComponent,
     ExperimentationComponent,
     PluginComponent,
-    AnalyticsComponent,
-    FlowComponent {
+    AnalyticsComponent {
 
     override fun application(): Application
     @ApplicationContext
