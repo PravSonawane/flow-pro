@@ -7,7 +7,7 @@ import app.di.annotations.NavHostResourceId
 import dagger.BindsInstance
 import dagger.Component
 import ui.lib.base.BaseActivity
-import ui.lib.di.ActivityScope
+import ui.lib.di.MainScope
 import ui.lib.di.BaseMainComponent
 import ui.lib.di.UiModule
 import ui.navigation.di.NavigationComponent
@@ -21,7 +21,7 @@ import ui.navigation.di.NavigationComponent
         MainModule::class
     ]
 )
-@ActivityScope
+@MainScope
 interface MainComponent : BaseMainComponent, AppComponent, NavigationComponent {
     @ActivityContext fun activity(): Activity
     @NavHostResourceId fun navHostResId(): Int

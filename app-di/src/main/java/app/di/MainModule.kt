@@ -2,7 +2,7 @@ package app.di
 
 import dagger.Binds
 import dagger.Module
-import ui.lib.di.ActivityScope
+import ui.lib.di.MainScope
 import ui.navigation.Navigator
 import ui.navigation.SimpleNavigator
 import ui.navigation.di.NavigationModule
@@ -15,6 +15,6 @@ import ui.navigation.di.NavigationModule
 abstract class MainModule {
 
     @Binds
-    @ActivityScope
+    @MainScope
     abstract fun provideNavigator(simpleNavigator: SimpleNavigator): Navigator
 }

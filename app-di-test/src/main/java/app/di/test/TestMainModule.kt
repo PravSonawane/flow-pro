@@ -2,7 +2,7 @@ package app.di.test
 
 import dagger.Module
 import dagger.Provides
-import ui.lib.di.ActivityScope
+import ui.lib.di.MainScope
 import ui.navigation.Navigator
 import ui.navigation.di.NavigationModule
 import ui.navigation.test.FakeNavigator
@@ -15,7 +15,7 @@ import ui.navigation.test.FakeNavigator
 class TestMainModule {
 
     @Provides
-    @ActivityScope
+    @MainScope
     fun navigator(): Navigator {
         return FakeNavigator()
     }
