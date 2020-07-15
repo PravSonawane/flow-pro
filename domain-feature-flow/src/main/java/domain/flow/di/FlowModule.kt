@@ -48,9 +48,9 @@ class FlowModule {
     @Provides
     fun provideGetAllFlows(
         builder: BasicUseCaseBuilder<Unit, List<Flow>>,
-        getAllFlowsUseCase: GetAllFlowsFunction
+        getAllFlowsFunction: GetAllFlowsFunction
     ): GetAllFlowsUseCase {
-        return builder.compose(getAllFlowsUseCase)
+        return builder.compose(getAllFlowsFunction)
             .withAnalytics(GetAllFlowsFunction.ANALYTICS_KEY)
             .withPlugin(GetAllFlowsFunction.PLUGIN_KEY)
             .build()
@@ -59,9 +59,9 @@ class FlowModule {
     @Provides
     fun provideGetAllNodes(
         builder: BasicUseCaseBuilder<Unit, List<Node>>,
-        getAllNodesUseCase: GetAllNodesFunction
+        getAllNodesFunction: GetAllNodesFunction
     ): GetAllNodesUseCase {
-        return builder.compose(getAllNodesUseCase)
+        return builder.compose(getAllNodesFunction)
             .withAnalytics(GetAllNodesFunction.ANALYTICS_KEY)
             .withPlugin(GetAllNodesFunction.PLUGIN_KEY)
             .build()
@@ -70,9 +70,9 @@ class FlowModule {
     @Provides
     fun provideGetSteps(
         builder: BasicUseCaseBuilder<GetStepsInput, List<Step>>,
-        getStepsUseCase: GetStepsFunction
+        getStepsFunction: GetStepsFunction
     ): GetStepsUseCase {
-        return builder.compose(getStepsUseCase)
+        return builder.compose(getStepsFunction)
             .withAnalytics(GetStepsFunction.ANALYTICS_KEY)
             .withPlugin(GetStepsFunction.PLUGIN_KEY)
             .build()
@@ -81,9 +81,9 @@ class FlowModule {
     @Provides
     fun provideGetAllSteps(
         builder: BasicUseCaseBuilder<GetAllStepsInput, List<Step>>,
-        getAllStepsUseCase: GetAllStepsFunction
+        getAllStepsFunction: GetAllStepsFunction
     ): GetAllStepsUseCase {
-        return builder.compose(getAllStepsUseCase)
+        return builder.compose(getAllStepsFunction)
             .withAnalytics(GetAllStepsFunction.ANALYTICS_KEY)
             .withPlugin(GetAllStepsFunction.PLUGIN_KEY)
             .build()
@@ -92,9 +92,9 @@ class FlowModule {
     @Provides
     fun provideGetCurrentInputSteps(
         builder: BasicUseCaseBuilder<GetInputStepsInput, List<Step>>,
-        getCurrentInputStepsUseCase: GetCurrentInputStepsFunction
+        getCurrentInputStepsFunction: GetCurrentInputStepsFunction
     ): GetCurrentInputStepsUseCase {
-        return builder.compose(getCurrentInputStepsUseCase)
+        return builder.compose(getCurrentInputStepsFunction)
             .withAnalytics(GetCurrentInputStepsFunction.ANALYTICS_KEY)
             .withPlugin(GetCurrentInputStepsFunction.PLUGIN_KEY)
             .build()
@@ -103,9 +103,9 @@ class FlowModule {
     @Provides
     fun provideGetCurrentOutputSteps(
         builder: BasicUseCaseBuilder<GetOutputStepsInput, List<Step>>,
-        getCurrentOutputStepsUseCase: GetCurrentOutputStepsFunction
+        getCurrentOutputStepsFunction: GetCurrentOutputStepsFunction
     ): GetCurrentOutputStepsUseCase {
-        return builder.compose(getCurrentOutputStepsUseCase)
+        return builder.compose(getCurrentOutputStepsFunction)
             .withAnalytics(GetCurrentOutputStepsFunction.ANALYTICS_KEY)
             .withPlugin(GetCurrentOutputStepsFunction.PLUGIN_KEY)
             .build()
@@ -114,9 +114,9 @@ class FlowModule {
     @Provides
     fun provideGetPossibleInputSteps(
         builder: BasicUseCaseBuilder<GetPossibleInputStepsInput, List<Step>>,
-        getPossibleInputStepsUseCase: GetPossibleInputStepsFunction
+        getPossibleInputStepsFunction: GetPossibleInputStepsFunction
     ): GetPossibleInputStepsUseCase {
-        return builder.compose(getPossibleInputStepsUseCase)
+        return builder.compose(getPossibleInputStepsFunction)
             .withAnalytics(GetPossibleInputStepsFunction.ANALYTICS_KEY)
             .withPlugin(GetPossibleInputStepsFunction.PLUGIN_KEY)
             .build()
@@ -125,9 +125,9 @@ class FlowModule {
     @Provides
     fun provideGetPossibleOutputSteps(
         builder: BasicUseCaseBuilder<GetPossibleOutputStepsInput, List<Step>>,
-        getPossibleOutputStepsUseCase: GetPossibleOutputStepsFunction
+        getPossibleOutputStepsFunction: GetPossibleOutputStepsFunction
     ): GetPossibleOutputStepsUseCase {
-        return builder.compose(getPossibleOutputStepsUseCase)
+        return builder.compose(getPossibleOutputStepsFunction)
             .withAnalytics(GetPossibleOutputStepsFunction.ANALYTICS_KEY)
             .withPlugin(GetPossibleOutputStepsFunction.PLUGIN_KEY)
             .build()
@@ -147,9 +147,9 @@ class FlowModule {
     @Provides
     fun provideGetFlowById(
         builder: BasicUseCaseBuilder<String, Flow>,
-        getFlowByIdUseCase: GetFlowByIdFunction
+        getFlowByIdFunction: GetFlowByIdFunction
     ): GetFlowByIdUseCase {
-        return builder.compose(getFlowByIdUseCase)
+        return builder.compose(getFlowByIdFunction)
             .withAnalytics(GetFlowByIdFunction.ANALYTICS_KEY)
             .withPlugin(GetFlowByIdFunction.PLUGIN_KEY)
             .build()
@@ -158,9 +158,9 @@ class FlowModule {
     @Provides
     fun provideCreateFlow(
         builder: BasicUseCaseBuilder<CreateFlowInput, Flow>,
-        createFlowUseCase: CreateFlowFunction
+        createFlowFunction: CreateFlowFunction
     ): CreateFlowUseCase {
-        return builder.compose(createFlowUseCase)
+        return builder.compose(createFlowFunction)
             .withAnalytics(CreateFlowFunction.ANALYTICS_KEY)
             .withPlugin(CreateFlowFunction.PLUGIN_KEY)
             .build()
@@ -169,9 +169,9 @@ class FlowModule {
     @Provides
     fun provideCreateNode(
         builder: BasicUseCaseBuilder<CreateNodeInput, Node>,
-        createNodeUseCase: CreateNodeFunction
+        createNodeFunction: CreateNodeFunction
     ): CreateNodeUseCase {
-        return builder.compose(createNodeUseCase)
+        return builder.compose(createNodeFunction)
             .withAnalytics(CreateNodeFunction.ANALYTICS_KEY)
             .withPlugin(CreateNodeFunction.PLUGIN_KEY)
             .build()
@@ -180,9 +180,9 @@ class FlowModule {
     @Provides
     fun provideCreateStep(
         builder: BasicUseCaseBuilder<CreateStepInput, Step>,
-        createStepUseCase: CreateStepFunction
+        createStepFunction: CreateStepFunction
     ): CreateStepUseCase {
-        return builder.compose(createStepUseCase)
+        return builder.compose(createStepFunction)
             .withAnalytics(CreateStepFunction.ANALYTICS_KEY)
             .withPlugin(CreateStepFunction.PLUGIN_KEY)
             .build()
