@@ -1,4 +1,4 @@
-package ui.lib.views
+package ui.lib.databinding.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -21,7 +21,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         val item = adapterItems.find { it.layoutId == viewType }
             ?: throw IllegalStateException("Unknown viewType (layout resource ID): $viewType")
-        return ItemViewHolder(parent, item.layoutId, item.variableId)
+        return ui.lib.databinding.adapters.ItemViewHolder(
+            parent,
+            item.layoutId,
+            item.variableId
+        )
     }
 
     override fun onBindViewHolder(
@@ -45,7 +49,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
     fun updateData(viewModels: List<ItemViewModel<*, *>>) {
         compositeDisposable += Observable.fromCallable {
             val newAdapterItemList = viewModels.map { it }
-            val result = DiffUtil.calculateDiff(DiffUtilCallback(adapterItems, newAdapterItemList))
+            val result = DiffUtil.calculateDiff(
+                DiffUtilCallback(
+                    adapterItems,
+                    newAdapterItemList
+                )
+            )
             return@fromCallable Pair(newAdapterItemList, result)
         }
             .subscribeOn(Schedulers.computation())

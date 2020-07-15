@@ -35,6 +35,11 @@ dependencies {
     // lib
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-views")
+    implementation project(":core-lib-rxutils")
+
+    //rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     //design
     implementation "com.google.android.material:material:$material_components_version"

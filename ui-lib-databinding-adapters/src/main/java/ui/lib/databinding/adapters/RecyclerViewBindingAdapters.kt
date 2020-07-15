@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import ui.lib.base.ItemViewModel
-import ui.lib.views.RecyclerViewAdapter
 
 fun verticalLinear(context: Context): RecyclerView.LayoutManager {
     return LinearLayoutManager(

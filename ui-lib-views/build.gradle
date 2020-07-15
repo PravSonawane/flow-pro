@@ -59,7 +59,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     //recycler view
-    implementation "androidx.recyclerview:recyclerview:$support_version"
+    //implementation "androidx.recyclerview:recyclerview:$support_version"
 
     //design
     implementation "com.google.android.material:material:$material_components_version"

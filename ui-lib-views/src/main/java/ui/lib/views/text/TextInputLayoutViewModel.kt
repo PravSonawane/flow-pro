@@ -10,6 +10,7 @@ import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
 import ui.lib.views.BR
 import ui.lib.views.R
+import ui.lib.views.types.TextResourceBinding
 import javax.inject.Inject
 
 class TextInputLayoutViewModel @Inject constructor(
@@ -25,9 +26,8 @@ class TextInputLayoutViewModel @Inject constructor(
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    val text: MutableLiveData<CharSequence> = liveDataFactory.mutableLiveData(analyticsKey)
-    val hintRes: MutableLiveData<Int> = liveDataFactory.mutableLiveData(analyticsKey)
-    @JvmField val isHintRes: MutableLiveData<Boolean> = liveDataFactory.mutableLiveData(analyticsKey)
+    val text: MutableLiveData<TextResourceBinding> = liveDataFactory.mutableLiveData(analyticsKey)
+    val hint: MutableLiveData<TextResourceBinding> = liveDataFactory.mutableLiveData(analyticsKey)
     val errorEnabled: MutableLiveData<Boolean> = liveDataFactory.mutableLiveData(analyticsKey)
 
     // TODO not bound to the UI yet
@@ -38,10 +38,9 @@ class TextInputLayoutViewModel @Inject constructor(
             .ofType(Input.SetData::class.java)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                text.value = it.data.text
+                text.postValue(TextResourceBinding(it.data.text, it.data.textRes))
+                hint.postValue(TextResourceBinding(it.data.hint, it.data.hintRes))
                 error.value = it.data.error
-                isHintRes.value = it.data.hintRes != null
-                if(it.data.hintRes != null && it.data.hintRes > 0) hintRes.value = it.data.hintRes
                 errorEnabled.value = it.data.errorEnabled
 
                 // send data as output state
@@ -59,8 +58,10 @@ class TextInputLayoutViewModel @Inject constructor(
 
     data class Data(
         val text: CharSequence? = null,
-        val error: CharSequence? = null,
+        val hint: CharSequence? = null,
+        @StringRes val textRes: Int? = null,
         @StringRes val hintRes: Int? = null,
+        val error: CharSequence? = null,
         val errorEnabled: Boolean = false
     )
 

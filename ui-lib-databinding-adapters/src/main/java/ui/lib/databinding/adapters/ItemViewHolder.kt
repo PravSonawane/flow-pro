@@ -1,4 +1,4 @@
-package ui.lib.views
+package ui.lib.databinding.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +13,12 @@ class ItemViewHolder(
     parent: ViewGroup,
     @LayoutRes layoutId: Int,
     @IntegerRes private val variableId: Int
-) : FeedViewHolder(inflate(parent, layoutId)) {
+) : FeedViewHolder(
+    inflate(
+        parent,
+        layoutId
+    )
+) {
     override fun bind(itemViewModel: ItemViewModel<*, *>) {
         binding.setVariable(variableId, itemViewModel)
     }

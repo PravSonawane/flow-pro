@@ -18,9 +18,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.text}"
             android:inputType="text"
-            android:hint='@{viewModel.hintRes > 0 ? context.getString(viewModel.hintRes) : ""}'
+            android:text="@{viewModel.text}"
+            android:hint="@{viewModel.hint}"
             tools:text="Some Dummy Text"/>
 
     </com.google.android.material.textfield.TextInputLayout>
