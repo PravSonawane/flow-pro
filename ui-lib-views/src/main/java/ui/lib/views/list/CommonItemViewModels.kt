@@ -1,9 +1,11 @@
-package ui.lib.views
+package ui.lib.views.list
 
 import androidx.lifecycle.LiveData
 import ui.lib.base.ItemViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
+import ui.lib.views.BR
+import ui.lib.views.R
 
 class ItemListHeaderViewModel(
     analyticsKey: String,
