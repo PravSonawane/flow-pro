@@ -50,10 +50,9 @@
             <option value="$PROJECT_DIR$/ui-lib-assets" />
             <option value="$PROJECT_DIR$/ui-lib-base" />
             <option value="$PROJECT_DIR$/ui-lib-common-resources" />
-            <option value="$PROJECT_DIR$/ui-lib-databinding-adapters" />
             <option value="$PROJECT_DIR$/ui-lib-di" />
             <option value="$PROJECT_DIR$/ui-lib-utils" />
-            <option value="$PROJECT_DIR$/ui-lib-views" />
+            <option value="$PROJECT_DIR$/ui-lib-viewmodels" />
             <option value="$PROJECT_DIR$/ui-navigation" />
             <option value="$PROJECT_DIR$/ui-navigation-test" />
           </set>

@@ -45,7 +45,6 @@ dependencies {
     //ui lib
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-di")
-    implementation project(":ui-lib-databinding-adapters")
 
     //navigation
     implementation project(':ui-navigation')
