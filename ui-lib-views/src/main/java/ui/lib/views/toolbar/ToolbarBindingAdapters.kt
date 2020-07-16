@@ -1,4 +1,4 @@
-package ui.lib.databinding.adapters
+package ui.lib.views.toolbar
 
 // @BindingAdapter("title")
 // fun setToolbarTitle(view: Toolbar, title: CharSequence?) {
