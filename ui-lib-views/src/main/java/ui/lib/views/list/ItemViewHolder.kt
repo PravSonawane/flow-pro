@@ -1,4 +1,4 @@
-package ui.lib.databinding.adapters
+package ui.lib.views.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

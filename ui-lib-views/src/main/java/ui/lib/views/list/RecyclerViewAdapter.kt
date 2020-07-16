@@ -1,4 +1,4 @@
-package ui.lib.databinding.adapters
+package ui.lib.views.list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -21,7 +21,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<FeedViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         val item = adapterItems.find { it.layoutId == viewType }
             ?: throw IllegalStateException("Unknown viewType (layout resource ID): $viewType")
-        return ui.lib.databinding.adapters.ItemViewHolder(
+        return ItemViewHolder(
             parent,
             item.layoutId,
             item.variableId

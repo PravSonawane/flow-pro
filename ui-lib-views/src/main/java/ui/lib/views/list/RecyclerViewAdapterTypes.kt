@@ -1,4 +1,4 @@
-package ui.lib.databinding.adapters
+package ui.lib.views.list
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil

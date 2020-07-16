@@ -1,4 +1,4 @@
-package ui.lib.databinding.adapters
+package ui.lib.views.list
 
 import android.content.Context
 import androidx.databinding.BindingAdapter
