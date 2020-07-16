@@ -8,8 +8,8 @@ import io.reactivex.disposables.CompositeDisposable
 import ui.lib.base.ItemViewModel
 import ui.lib.utils.LiveDataFactory
 import ui.lib.utils.StreamFactory
-import ui.lib.views.BR
-import ui.lib.views.R
+import ui.lib.viewmodels.BR
+import ui.lib.viewmodels.R
 import ui.lib.views.types.TextResourceBinding
 import javax.inject.Inject
 

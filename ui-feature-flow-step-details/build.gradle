@@ -41,7 +41,7 @@ dependencies {
     implementation project(":ui-lib-common-resources")
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-utils")
-    implementation project(":ui-lib-views")
+    implementation project(":ui-lib-viewmodels")
     implementation project(':ui-navigation')
 
     //core
