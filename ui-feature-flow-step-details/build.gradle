@@ -39,7 +39,6 @@ dependencies {
     implementation project(":ui-lib-assets")
     implementation project(":ui-lib-base")
     implementation project(":ui-lib-common-resources")
-    implementation project(":ui-lib-databinding-adapters")
     implementation project(":ui-lib-di")
     implementation project(":ui-lib-utils")
     implementation project(":ui-lib-views")
