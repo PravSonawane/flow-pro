@@ -1,4 +1,4 @@
-package ui.lib.databinding.adapters
+package ui.lib.views.text
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
